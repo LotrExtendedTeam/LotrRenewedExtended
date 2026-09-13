@@ -33,6 +33,7 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 		unitInfo.setCurrentXp(nbt.getInt("cxp"));
 		unitInfo.setMaxXp(nbt.getInt("mxp"));
 		unitInfo.setMobKills(nbt.getInt("kills"));
+		unitInfo.setGuardRadius(nbt.getInt("radius"));
 		IInventory companionInv = unitInfo.getInternalUnitInventory();
 		this.container = companionInv;
 		companionInv.startOpen(pPlayerInventory.player);
@@ -102,6 +103,7 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 		nbt.putFloat("cxp", info.getCurrentXp());
 		nbt.putFloat("mxp", info.getMaxXp());
 		nbt.putInt("kills", info.getMobKills());
+		nbt.putInt("radius", info.getGuardRadius());
 		extraData.writeNbt(nbt);
 	}
 }

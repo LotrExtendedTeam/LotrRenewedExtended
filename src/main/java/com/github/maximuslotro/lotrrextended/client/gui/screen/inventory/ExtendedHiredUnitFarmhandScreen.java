@@ -35,7 +35,7 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 			}
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-				ExtendedHiredUnitFarmhandScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.info.tooltip"), 200), pMouseX, pMouseY);
+				ExtendedHiredUnitFarmhandScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.info.tooltip"), 200), pMouseX, pMouseY);
 			}
 		});	
 	}
@@ -86,9 +86,9 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
 		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
 		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
-		TranslationTextComponent level = new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.level", getMenu().getFarmhandInfo().getFarmerLevel());
+		TranslationTextComponent level = new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.farming_level", getMenu().getFarmhandInfo().getFarmerLevel());
 		this.font.draw(matrix, level, titleLabelX - (font.width(level)/2), 30, 4210752);
-		TranslationTextComponent crops = new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.crops_farmed", getMenu().getFarmhandInfo().getCropsHarvested());
+		TranslationTextComponent crops = new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.crops_farmed", getMenu().getFarmhandInfo().getCropsHarvested());
 		this.font.draw(matrix, crops, 16, 83, 4210752);
 		//drawScaled(matrix, crops, titleLabelX - (font.width(crops)/2) * 0.8F, 84, 4210752, 0.8F);
 		ITextComponent currentXP = new StringTextComponent(Integer.toString(getMenu().getFarmhandInfo().getCurrentFarmerXp()));
@@ -102,12 +102,12 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		super.renderTooltip(stack, pMouseX, pMouseY);
 		if (this.isHovering(67, 40, 42, 3, pMouseX, pMouseY)) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.level.tooltip", getMenu().getFarmhandInfo().getCurrentFarmerXp(), getMenu().getFarmhandInfo().getMaxFarmerXp()));
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.level.tooltip", getMenu().getFarmhandInfo().getCurrentFarmerXp(), getMenu().getFarmhandInfo().getMaxFarmerXp()));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
 		if ((this.isHovering(44, 61, 16, 16, pMouseX, pMouseY) || this.isHovering(51, 47, 2, 12, pMouseX, pMouseY)) && !this.getMenu().getSeedsSlot().hasItem()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.crop.tooltip").withStyle(TextFormatting.RED));
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.crop.tooltip").withStyle(TextFormatting.RED));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
 	}

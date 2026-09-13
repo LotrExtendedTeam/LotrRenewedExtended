@@ -199,7 +199,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.hire_button.tooltip", "Enlist the service of NPCs.");
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_unfriendly", "Captain is unfriendly at the moment.");
-		
 		addD("gui.lotrextended.hiring.hire_unit", "Hire: %s");
 		addD("gui.lotrextended.hiring.hire_unit.amount", "Hire for %s coins");
 		addD("gui.lotrextended.hiring.hire_unit.not_pledged", "Insufficient pledge! Pledge required to hire this unit");
@@ -209,9 +208,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit");
 		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins");
-
-		
-		// hired unit GUI
+		// hired unit main menu
 		addD("gui.lotrextended.hired_unit.interface_button", "Equipment & Tasks");
 		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit equipment and command tasks.");
 		addD("gui.lotrextended.hired_unit.dismiss_button", "Dismiss");
@@ -223,35 +220,42 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm", "Confirm Transfer");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible!");
 		addD("gui.lotrextended.hired_unit.error.old_hiring_tooltip_1_11", "Operation not available for unit hired before 1.11.0");
-
-		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
-		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor:");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor_points", "Points: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", "Toughness: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
-		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Combat Level: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Combat Xp: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
-		addD("gui.lotrextended.hired_unit_farmhand.level", "Farming Level: %s");
-		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");
-		addD("gui.lotrextended.hired_unit_farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
-		addD("gui.lotrextended.hired_unit_farmhand.info.tooltip", "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.");
-		addD("gui.lotrextended.hired_unit_farmhand.crop.tooltip", "Must contain at least one seed to continue farming!");
-
-		addD("gui.lotrextended.hired_unit_tooltip.description_disabled", "This task is disabled for this type of unit.");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_title", "Stationary: %s");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending itself.");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_title", "Follows: %s");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
-		addD("gui.lotrextended.hired_unit_tooltip.farming_title", "Farming: %s");
-		addD("gui.lotrextended.hired_unit_tooltip.farming_on_description", "Farmhand will tend the land.");
-		addD("gui.lotrextended.hired_unit_tooltip.farming_off_description", "Disable Farmhand from farming.");
-
+		addD("gui.lotrextended.hired_unit.range.guard", "Guard Range: %1$s");
+		addD("gui.lotrextended.hired_unit.range.farming", "Farming Range: %1$s");
+		addD("gui.lotrextended.hired_unit.range.tooltip", "The maximum range this unit can travel.");
+		// hired unit overview menu
+		addD("gui.lotrextended.hired_unit.companion", "Companion:");
+		addD("gui.lotrextended.hired_unit.health", "Health");
+		addD("gui.lotrextended.hired_unit.combat_level", "Combat Level: %1$s");
+		addD("gui.lotrextended.hired_unit.xp", "Combat Xp: %1$s");
+		addD("gui.lotrextended.hired_unit.mob_kills", "Mob Kills: %1$s");
+		addD("gui.lotrextended.hired_unit.order.disabled.tooltip", "Task is disabled for this type of unit.");
+		addD("gui.lotrextended.hired_unit.order.stationary.title.tooltip", "Stationary: %s");
+		addD("gui.lotrextended.hired_unit.order.stationary.on.tooltip", "Hired unit will not move unless defending itself.");
+		addD("gui.lotrextended.hired_unit.order.stationary.off.tooltip", "Hired unit is active.");
+		addD("gui.lotrextended.hired_unit.order.follows.title.tooltip", "Follows: %s");
+		addD("gui.lotrextended.hired_unit.order.follows.on.tooltip", "Hired unit is following you.");
+		addD("gui.lotrextended.hired_unit.order.follows.off.tooltip", "Hired unit is not following you.");
+		addD("gui.lotrextended.hired_unit.order.farming.title.tooltip", "Farming: %s");
+		addD("gui.lotrextended.hired_unit.order.farming.on.tooltip", "Farmhand in farming the land.");
+		addD("gui.lotrextended.hired_unit.order.farming.off.tooltip", "Farmhand is not farming.");
+		addD("gui.lotrextended.hired_unit.order.guard.title.tooltip", "Guarding: %s");
+		addD("gui.lotrextended.hired_unit.order.guard.on.tooltip", "Hired unit is guarding you.");
+		addD("gui.lotrextended.hired_unit.order.guard.off.tooltip", "Hired unit is not guarding you.");
+		// hired unit equipment menu
+		addD("gui.lotrextended.hired_unit.armor", "Armor:");
+		addD("gui.lotrextended.hired_unit.armor_points", "Points: %1$s");
+		addD("gui.lotrextended.hired_unit.armor_toughness", "Toughness: %1$s");
+		addD("gui.lotrextended.hired_unit.attack", "Attack:");
+		addD("gui.lotrextended.hired_unit.attack_damage", "Damage: %1$s");
+		addD("gui.lotrextended.hired_unit.attack_speed", "Speed: %1$s");
+		// hired unit farmhand menu
+		addD("gui.lotrextended.hired_unit.farmhand.farming_level", "Farming Level: %s");
+		addD("gui.lotrextended.hired_unit.farmhand.crops_farmed", "Crops Harvested: %s");
+		addD("gui.lotrextended.hired_unit.farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
+		addD("gui.lotrextended.hired_unit.farmhand.info.tooltip", "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.");
+		addD("gui.lotrextended.hired_unit.farmhand.crop.tooltip", "Must contain at least one seed to continue farming!");
+		// hired unit chat messages
 		addD("chat.lotrextended.hired_unit.death", "Your hired unit %1$s");
 		addD("chat.lotrextended.hired_unit.desert", "Your hired unit %1$s has deserted");
 		addD("chat.lotrextended.hired_unit.dismissed", "Your hired unit %1$s was dismissed from service");

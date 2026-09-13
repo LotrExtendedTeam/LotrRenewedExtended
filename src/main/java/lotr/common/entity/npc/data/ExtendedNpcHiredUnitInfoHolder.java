@@ -45,6 +45,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
@@ -81,9 +82,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private boolean resendData = false;
 	public boolean isInteracting = false;
 	private int currentHealth = -1;
-	private @Nullable String squad;
-
 	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
+	private @Nullable String squad;
+	private int guardRadius = 16;
 
 	public ExtendedNpcHiredUnitInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -236,6 +237,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				if(holder.contains("squad")) {
 					squad = holder.getString("squad");
 				}
+				if(holder.contains("gradius")) {
+					guardRadius = holder.getInt("gradius");
+				}
 				markDirty();
 			}else {
 				this.isHired = false;
@@ -327,6 +331,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			if(squad!=null && !squad.isEmpty()) {
 				holder.putString("squad", squad);
 			}
+			holder.putInt("gradius", guardRadius);
 		}
 		nbt.put("HiredUnitInfo", holder);
 	}
@@ -411,7 +416,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
 			if(unitInfo!=null) {
 				boolean hasOwner = buf.readBoolean();
-			    UUID ownerUUID = hasOwner ? buf.readUUID() : null;
+				UUID ownerUUID = hasOwner ? buf.readUUID() : null;
 				unitInfo.setOwnerUUID(ownerUUID);
 				unitInfo.setHired(buf.readBoolean());
 				unitInfo.setWasHired(buf.readBoolean());
@@ -523,8 +528,16 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return unitOrders;
 	}
 
-	public void setOrders(ExtendedUnitOrders orders) {
+	protected void setOrders(ExtendedUnitOrders orders) {
 		unitOrders = orders;
+		if(orders!=ExtendedUnitOrders.FARMING && guardRadius<0){
+			guardRadius = 0;
+		}
+		if(orders.isHasRadius() && guardRadius>=0) {
+			this.getThisEntity().restrictTo(this.getThisEntity().blockPosition(), guardRadius);
+		}else {
+			this.getThisEntity().restrictTo(BlockPos.ZERO, -1);
+		}
 	}
 
 	public static boolean canTypeAcceptOrders(ExtendedUnitCombatTypes unitType, ExtendedUnitOrders orders) {
@@ -566,6 +579,17 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	public void setSquad(@Nullable String pSquad) {
 		this.squad = (pSquad==null || pSquad.isEmpty()) ? null : pSquad;
+	}
+
+	public int getGuardRadius() {
+		return guardRadius;
+	}
+
+	public void setGuardRadius(int guardRadius) {
+		this.guardRadius = Math.max(-1, Math.min(32, guardRadius));
+		if(this.getThisEntity().hasRestriction()) {
+			this.getThisEntity().restrictTo(this.getThisEntity().getRestrictCenter(), guardRadius);
+		}
 	}
 
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {

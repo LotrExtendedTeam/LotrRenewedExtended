@@ -10,8 +10,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedSlider extends AbstractSlider {
-	public final String localKey;
-	private final double minValue;
+	public String localKey;
+	private double minValue;
 	private final double maxValue;
 	private final float steps;
 	private final IGetValue valueGetter;
@@ -56,6 +56,13 @@ public class ExtendedSlider extends AbstractSlider {
 		return this;
 	}
 
+	public void setMessageKey(String messageKey) {
+		this.localKey = messageKey;
+	}
+
+	public void setMinValue(int pMinValue) {
+		this.minValue = pMinValue;
+	}
 
 	@Override
 	public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
@@ -73,7 +80,7 @@ public class ExtendedSlider extends AbstractSlider {
 	}
 
 	@Override
-	protected void updateMessage() {
+	public void updateMessage() {
 		this.setMessage(new TranslationTextComponent(localKey, toValue(value)));
 	}
 

@@ -43,7 +43,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredOverviewMenuPacket.class, ExtendedCOpenHiredOverviewMenuPacket::encode, ExtendedCOpenHiredOverviewMenuPacket::decode, ExtendedCOpenHiredOverviewMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitDataPacket.class, ExtendedCSetHiredUnitDataPacket::encode, ExtendedCSetHiredUnitDataPacket::decode, ExtendedCSetHiredUnitDataPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCHireUnitPacket.class, ExtendedCHireUnitPacket::encode, ExtendedCHireUnitPacket::decode, ExtendedCHireUnitPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedDualTogglePacket.class, ExtendedDualTogglePacket::encode, ExtendedDualTogglePacket::decode, ExtendedDualTogglePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCaptainPacket.class, ExtendedCOpenCaptainPacket::encode, ExtendedCOpenCaptainPacket::decode, ExtendedCOpenCaptainPacket::handle);

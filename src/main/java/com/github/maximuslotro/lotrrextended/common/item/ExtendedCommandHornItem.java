@@ -68,14 +68,14 @@ public class ExtendedCommandHornItem extends Item {
 			if(type.isHalt()) {
 				List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, area, unit -> isValidUnit(unit, itemstack, entityplayer, ExtendedUnitOrders.FOLLOW_PLAYER));
 				for(NPCEntity unit : followingUnits) {
-					((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.STATIONARY);
+					((ExtendedINPCEntity)unit).getUnitInfo().trySetOrders(ExtendedUnitOrders.STATIONARY);
 				}
 				setType(itemstack, ExtendedUnitHornTypes.READY);
 			}
 			if(type.isReady()) {
 				List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, area, unit -> isValidUnit(unit, itemstack, entityplayer, ExtendedUnitOrders.STATIONARY));
 				for(NPCEntity unit : stationaryUnits) {
-					((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
+					((ExtendedINPCEntity)unit).getUnitInfo().trySetOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 				}
 				setType(itemstack, ExtendedUnitHornTypes.HALT);
 			}
