@@ -38,10 +38,12 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 	private int currentItemIndex = 0;
 	private final AtomicInteger completedItemsRenderScaled = new AtomicInteger(0);
 	private int failedItemCount = 0;
-	private boolean make16icons= false;
-	private boolean make32icons= false;
-	private boolean make64icons= false;
-	private boolean makeItemIcons= false;
+	private boolean make16Itemicons= false;
+	private boolean make32Itemicons= false;
+	private boolean make64Itemicons= false;
+	private boolean make16Blockicons= false;
+	private boolean make32Blockicons= false;
+	private boolean make64Blockicons= false;
 	private String output = "No output";
 	public static int optionDevelopment = 0;
 
@@ -79,51 +81,61 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 
 		SettingsCatagory itemGen = new SettingsCatagory(this, 0, x, y, xTabs);
 		addButton(itemGen.addCatagoryButton("Wiki Image Generation"));
-		addButton(itemGen.addButtonNew("16x Icons: %s", button -> {
-			make16icons = !make16icons;
-		}, (button, pd) -> {return make16icons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 16x item image generation"));
-		addButton(itemGen.addButtonNew("32x Icons: %s", button -> {
-			make32icons = !make32icons;
-		}, (button, pd) -> {return make32icons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 32x item image generation"));
-		addButton(itemGen.addButtonNew("64x Icons: %s", button -> {
-			make64icons = !make64icons;
-		}, (button, pd) -> {return make64icons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 64x item image generation"));
-		addButton(itemGen.addButtonNew("Gen item textures: %s", button -> {
-			makeItemIcons = !makeItemIcons;
-		}, (button, pd) -> {return makeItemIcons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "In addition to block textures, gen item textures"));
+		addButton(itemGen.addButtonNew("16x Item Icons: %s", button -> {
+			make16Itemicons = !make16Itemicons;
+		}, (button, pd) -> {return make16Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 16x item image generation"));
+		addButton(itemGen.addButtonNew("32x Item Icons: %s", button -> {
+			make32Itemicons = !make32Itemicons;
+		}, (button, pd) -> {return make32Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 32x item image generation"));
+		addButton(itemGen.addButtonNew("64x Item Icons: %s", button -> {
+			make64Itemicons = !make64Itemicons;
+		}, (button, pd) -> {return make64Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 64x item image generation"));
+		addButton(itemGen.addButtonNew("16x Block Icons: %s", button -> {
+			make16Blockicons = !make16Blockicons;
+		}, (button, pd) -> {return make16Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 16x block image generation"));
+		addButton(itemGen.addButtonNew("32x Block Icons: %s", button -> {
+			make32Blockicons = !make32Blockicons;
+		}, (button, pd) -> {return make32Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 32x block image generation"));
+		addButton(itemGen.addButtonNew("64x Block Icons: %s", button -> {
+			make64Blockicons = !make64Blockicons;
+		}, (button, pd) -> {return make64Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 64x block image generation"));
 		addButton(itemGen.addButtonNew("Generate Icons: %s", button -> {
-			if(isExporting || (!make16icons && !make32icons && !make64icons)) {
+			boolean checkAny = make16Itemicons || make32Itemicons || make64Itemicons || make16Blockicons || make32Blockicons || make64Blockicons;
+			if(isExporting || !checkAny) {
 				return;
 			}
 			itemsToExport= new ArrayList<>();
-			for (Item item : ForgeRegistries.ITEMS) {
-				if (item != Items.AIR && (makeItemIcons||item instanceof BlockItem)) {
-					this.itemsToExport.add(item);
+			for(Item item : ForgeRegistries.ITEMS) {
+				if(item != Items.AIR) {
+					boolean isBlock = item instanceof BlockItem;
+					if((isBlock && (make16Blockicons || make32Blockicons || make64Blockicons)) || (!isBlock && (make16Itemicons || make32Itemicons || make64Itemicons))) {
+						this.itemsToExport.add(item);
+					}
 				}
 			}
 			isExporting = true;
 			failedItemCount = 0;
-			if (itemRenderer16 != null) {
+			if(itemRenderer16 != null) {
 				itemRenderer16.close();
 			}
-			if (itemRenderer32 != null) {
+			if(itemRenderer32 != null) {
 				itemRenderer32.close();
 			}
-			if (itemRenderer64 != null) {
+			if(itemRenderer64 != null) {
 				itemRenderer64.close();
 			}
-			if(make16icons) {
+			if(make16Itemicons || make16Blockicons) {
 				itemRenderer16 = new ExtendedBlockIconRenderer(16);
 			}
-			if(make32icons) {
+			if(make32Itemicons || make32Blockicons) {
 				itemRenderer32 = new ExtendedBlockIconRenderer(32);
 			}
-			if(make64icons) {
+			if(make64Itemicons || make64Blockicons) {
 				itemRenderer64 = new ExtendedBlockIconRenderer(64);
 			}
 			currentItemIndex = 0;
 			completedItemsRenderScaled.set(0);
-		}, (button, pd) -> {return (make16icons || make32icons || make64icons) && !isExporting;}, "", "", "May crash, report any issues!"));
+		}, (button, pd) -> {return (make16Itemicons || make32Itemicons || make64Itemicons || make16Blockicons || make32Blockicons || make64Blockicons) && !isExporting;}, "", "", "May crash, report any issues!"));
 		addButton(itemGen.addButtonNew(output, button -> {
 		}, (button, pd) -> {
 			button.setMessage(new StringTextComponent(output));
@@ -154,26 +166,56 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 	@Override
 	public void tick() {
 		super.tick();
-		if (isExporting) {
+		if(isExporting) {
 			List<ExtendedBlockIconRenderer> renderers = new ArrayList<>();
 
-			if (itemRenderer16 != null) renderers.add(itemRenderer16);
-			if (itemRenderer32 != null) renderers.add(itemRenderer32);
-			if (itemRenderer64 != null) renderers.add(itemRenderer64);
-			if (currentItemIndex < itemsToExport.size()) {
-				List<ItemStack> batch = new ArrayList<>();
+			if(itemRenderer16 != null) renderers.add(itemRenderer16);
+			if(itemRenderer32 != null) renderers.add(itemRenderer32);
+			if(itemRenderer64 != null) renderers.add(itemRenderer64);
+			if(currentItemIndex < itemsToExport.size()) {
+				List<ItemStack> batch16 = new ArrayList<>();
+				List<ItemStack> batch32 = new ArrayList<>();
+				List<ItemStack> batch64 = new ArrayList<>();
 				int batchEnd = Math.min(currentItemIndex + 16, itemsToExport.size());
-
-				for (int i = currentItemIndex; i < batchEnd; i++) {
-					batch.add(new ItemStack(itemsToExport.get(i)));
+				for(int i = currentItemIndex; i < batchEnd; i++) {
+					Item item = itemsToExport.get(i);
+					boolean isBlock = item instanceof BlockItem;
+					ItemStack stack = new ItemStack(item);
+					if(isBlock) {
+						if(make16Blockicons && itemRenderer16 != null) batch16.add(stack);
+						if(make32Blockicons && itemRenderer32 != null) batch32.add(stack);
+						if(make64Blockicons && itemRenderer64 != null) batch64.add(stack);
+					} else {
+						if(make16Itemicons && itemRenderer16 != null) batch16.add(stack);
+						if(make32Itemicons && itemRenderer32 != null) batch32.add(stack);
+						if(make64Itemicons && itemRenderer64 != null) batch64.add(stack);
+					}
 				}
-				if (!batch.isEmpty()) {
-				    for (ExtendedBlockIconRenderer renderer : renderers) {
-				        renderer.exportItemsBatch(batch, completedItemsRenderScaled);
-				    }
+				if(!batch16.isEmpty() && itemRenderer16 != null) {
+					itemRenderer16.exportItemsBatch(batch16, completedItemsRenderScaled);
+				}
+				if(!batch32.isEmpty() && itemRenderer32 != null) {
+					itemRenderer32.exportItemsBatch(batch32, completedItemsRenderScaled);
+				}
+				if(!batch64.isEmpty() && itemRenderer64 != null) {
+					itemRenderer64.exportItemsBatch(batch64, completedItemsRenderScaled);
 				}
 				currentItemIndex = batchEnd;
-				output = "Exporting: " + completedItemsRenderScaled.get() + "/" + itemsToExport.size() * renderers.size() + " images";
+
+				int totalImages = 0;
+				for(Item item : itemsToExport) {
+					boolean blockItem = item instanceof BlockItem;
+					if (blockItem) {
+						if(make16Blockicons) totalImages++;
+						if(make32Blockicons) totalImages++;
+						if(make64Blockicons) totalImages++;
+					} else {
+						if(make16Itemicons) totalImages++;
+						if(make32Itemicons) totalImages++;
+						if(make64Itemicons) totalImages++;
+					}
+				}
+				output = "Exporting: " + completedItemsRenderScaled.get() + "/" + totalImages + " images";
 			} else {
 				isExporting = false;
 				for (ExtendedBlockIconRenderer renderer : renderers) {
@@ -182,7 +224,7 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 						//this.finishedWithErrors = true;
 						this.failedItemCount += currentFailedItems.size();
 					}
-			    }
+				}
 				if (failedItemCount<=0) {
 					output="Export completed!";
 					ExtendedLog.info("Export completed! Exported {} items", itemsToExport.size());
@@ -231,9 +273,9 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 				throw new IllegalStateException("Can't register more than one category button for index: "+index);
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
-				button -> {
-					ExtendedDevelopmentScreen.optionDevelopment=index;
-				}, 0.13f, 0.92f, 0.71f) {
+					button -> {
+						ExtendedDevelopmentScreen.optionDevelopment=index;
+					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
 					return ExtendedDevelopmentScreen.optionDevelopment==index;
@@ -243,9 +285,9 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		}
 		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<Boolean> pOnTick, String enabled, String disabled, String tooltip) {
 			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, 
-				(wdget, matrixStack, pMouseX, pMouseY) -> {
-					screen.renderTooltip(matrixStack, screen.font.split(new StringTextComponent(tooltip), 200), pMouseX, pMouseY);
-				}, pOnTick, enabled, disabled);
+					(wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new StringTextComponent(tooltip), 200), pMouseX, pMouseY);
+					}, pOnTick, enabled, disabled);
 			bottons.add(button);
 			offsetAmount+=1;
 			return button;
