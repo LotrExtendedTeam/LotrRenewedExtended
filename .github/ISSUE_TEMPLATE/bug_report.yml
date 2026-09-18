@@ -3,7 +3,9 @@ description: Report a bug or crash encountered in Lotr Renewed Extended
 title: "[Bug]: "
 labels: ["bug"]
 body:
-  - type: markdown
+- type: markdown
+    attributes:
+      value: "Thank you for reporting a bug! Please fill out the information below to help us investigate."
   - type: input
     id: mod-version
     attributes:
