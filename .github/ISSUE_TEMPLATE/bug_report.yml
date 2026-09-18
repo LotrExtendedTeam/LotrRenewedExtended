@@ -1,0 +1,56 @@
+name: Bug Report
+description: Report a bug or crash encountered in Lotr Renewed Extended
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+  - type: input
+    id: mod-version
+    attributes:
+      label: Mod Version
+      description: What version of Lotr Renewed Extended are you running?
+      placeholder: e.g., 1.1.0 or 1.1.0.2
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Are you playing singleplayer or on a server?
+      options:
+        - Singleplayer / LAN
+        - Multiplayer (Dedicated Server)
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we trigger this bug? Please list steps clearly.
+      placeholder: |
+        1. Open the trader GUI with...
+        2. Click on...
+        3. Error occurs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: crash-log
+    attributes:
+      label: Crash Report / Log File
+      description: |
+        Please upload your `latest.log` or crash report to [mclo.gs](https://mclo.gs/) and paste the link below. Do not paste raw logs directly here.
+      placeholder: https://mclo.gs/your-log-here
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other details, screenshots, or context that might help us debug.
+      placeholder: e.g., other major mods installed, specific items involved.
+    validations:
+      required: false
