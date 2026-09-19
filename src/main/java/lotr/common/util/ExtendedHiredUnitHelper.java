@@ -42,7 +42,7 @@ public class ExtendedHiredUnitHelper {
         if(fancy) {
         	unitName.withStyle(TextFormatting.AQUA);
         }
-        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unitName);
+        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_unit.death", unitName);
         if(fancy) {
         	companionName.withStyle(TextFormatting.YELLOW);
         }
@@ -88,7 +88,7 @@ public class ExtendedHiredUnitHelper {
             		unitName.withStyle(TextFormatting.AQUA);
             		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
                 }
-            	TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel);
+            	TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_unit.levelup.combat", unitName, newlevel);
                 if(fancy) {
                 	output.withStyle(TextFormatting.YELLOW);
                 }

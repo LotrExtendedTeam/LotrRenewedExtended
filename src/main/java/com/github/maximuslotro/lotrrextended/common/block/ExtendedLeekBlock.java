@@ -21,7 +21,7 @@ public class ExtendedLeekBlock extends CropsBlock {
 	}
 
 	@Override
-	protected IItemProvider getBaseSeedId() {
+	public IItemProvider getBaseSeedId() {
 		return ExtendedItems.LEEK.get();
 	}
 

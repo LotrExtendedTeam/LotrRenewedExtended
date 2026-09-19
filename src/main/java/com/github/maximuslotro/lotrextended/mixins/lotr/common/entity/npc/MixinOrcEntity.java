@@ -6,7 +6,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedAvoidNonLivingEntityGoal;
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
 
 import lotr.common.entity.npc.NPCEntity;
@@ -16,37 +17,31 @@ import net.minecraft.world.World;
 
 /**
  * A Mixin class that injects additional behavior into {@link OrcEntity}.
- * <p>
- * This mixin extends {@link NPCEntity} and is primarily used to modify or extend
- * NPC AI logic by injecting custom behavior during AI goal setup.
- * <p>
  * @Mixin (OrcEntity.class)
  */
 @Mixin(OrcEntity.class)
 public abstract class MixinOrcEntity extends NPCEntity {
 	/**
-     * Required constructor for Mixins extending other classes.
-     * <p>
-     * Although required for compilation, this constructor will be stripped at runtime and is not executed.
-     *
-     * @param type  A placeholder {@link EntityType} for {@link OrcEntity}, required for superclass initialization.
-     * @param world A placeholder {@link World} instance, required for superclass initialization.
-     */
+	 * Required constructor for Mixins extending other classes.
+	 * <p>
+	 * Although required for compilation, this constructor will be stripped at runtime and is not executed.
+	 *
+	 * @param type  A placeholder {@link EntityType} for {@link OrcEntity}, required for superclass initialization.
+	 * @param world A placeholder {@link World} instance, required for superclass initialization.
+	 */
 	public MixinOrcEntity(EntityType<? extends OrcEntity> type, World world) {
 		super(type, world);
 	}
 	/**
-     * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
-     * <p>
-     * This method adds an {@link ExtendedHiredSitFollowGoal} to the NPC's goal selector,
-     * enabling it to follow and sit with enhanced behavior parameters.
-     *
-     * @Inject (method = "addNPCAI()V", at = @At("TAIL"), remap = false)
-     * @param ci The {@link CallbackInfo} provided by the Mixin injector.
-     */
+	 * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
+	 * 
+	 * @param ci The {@link CallbackInfo} provided by the Mixin injector.
+	 * @Inject (method = "addNPCAI()V", at = @At("TAIL"), remap = false)
+	 */
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
-		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
+		this.goalSelector.addGoal(1, new ExtendedHiredSitGoal((NPCEntity)(Object)this));
 		this.goalSelector.addGoal(2, new ExtendedAvoidNonLivingEntityGoal<>((NPCEntity)(Object)this, ExtendedOrcBombEntity.class, 15.0f, 1.5, 2.0));
+		this.goalSelector.addGoal(5, new ExtendedHiredFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F));
 	}
 }

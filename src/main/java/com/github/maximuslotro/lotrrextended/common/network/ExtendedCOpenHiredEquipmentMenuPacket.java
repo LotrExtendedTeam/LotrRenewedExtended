@@ -34,10 +34,6 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 		buf.writeInt(msg.entityId);
 	}
 
-	public int getEntityId() {
-		return this.entityId;
-	}
-
 	public static void handle(ExtendedCOpenHiredEquipmentMenuPacket msg, Supplier<NetworkEvent.Context> context) {
 		context.get().enqueueWork(() -> {
 			ServerPlayerEntity pPlayer = context.get().getSender();

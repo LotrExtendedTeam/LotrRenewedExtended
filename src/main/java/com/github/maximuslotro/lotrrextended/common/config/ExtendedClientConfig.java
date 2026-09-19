@@ -18,8 +18,10 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
 	public static ForgeConfigSpec.BooleanValue enableLargeHiredUnitHealthbars;
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
-
+	//Models
 	public static ForgeConfigSpec.BooleanValue enableQuerkyDuckMode;
+	//GUI
+	public static ForgeConfigSpec.IntValue hornSelectScreenType;
 
 	/**
 	 * Do not set this value itself, set {@link ExtendedClientOptionsScreen}
@@ -55,6 +57,10 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 
 		builder.push("Model Settings");
 		enableQuerkyDuckMode = createBooleanValue(builder, "enableQuerkyDuckMode", false, false, "Enable early extended duck model querkyness.");
+		builder.pop();
+
+		builder.push("GUI Settings");
+		hornSelectScreenType = createIntegerValue(builder, "hornSelectScreenType", 0, 0, 2, false, "Horn select menu type, 0 Unset, 1 Legacy, 2 Extended");
 		builder.pop();
 		return builder;
 	}

@@ -13,7 +13,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedCSetHiredUnitOrdersPacket {
-
 	private final int entityId;
 	private final int orderIndex;
 
@@ -36,22 +35,13 @@ public class ExtendedCSetHiredUnitOrdersPacket {
 		buf.writeInt(msg.orderIndex);
 	}
 
-	public int getEntityId() {
-		return this.entityId;
-	}
-
-	public int getOrderIndex() {
-		return orderIndex;
-	}
-
 	public static void handle(ExtendedCSetHiredUnitOrdersPacket packet, Supplier<NetworkEvent.Context> context) {
 		context.get().enqueueWork(() -> {
 			ServerPlayerEntity player = context.get().getSender();
 			if (player != null && player.level instanceof ServerWorld) {
-				Entity entity = player.level.getEntity(packet.getEntityId());
-
+				Entity entity = player.level.getEntity(packet.entityId);
 				if (entity instanceof NPCEntity && ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner()==player) {
-					((ExtendedINPCEntity)entity).getUnitInfo().trySetOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
+					((ExtendedINPCEntity)entity).getUnitInfo().trySetOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.orderIndex));
 				}
 			}
 		});

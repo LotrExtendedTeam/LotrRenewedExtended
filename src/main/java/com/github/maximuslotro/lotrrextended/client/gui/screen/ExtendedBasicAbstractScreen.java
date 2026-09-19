@@ -1,9 +1,11 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class ExtendedBasicAbstractScreen extends Screen {
+	public static final ResourceLocation EXTENDED_WIDGETS = new ResourceLocation("lotrextended:textures/gui/extended_widgets.png");
 	/** The X size of the inventory window in pixels. */
 	protected int imageWidth;
 	/** The Y size of the inventory window in pixels. */
@@ -24,5 +26,11 @@ public abstract class ExtendedBasicAbstractScreen extends Screen {
 		super.init();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
+	}
+
+	protected boolean isHovering(int pX, int pY, int pWidth, int pHeight, double pMouseX, double pMouseY) {
+		pMouseX = pMouseX - this.leftPos;
+		pMouseY = pMouseY - this.topPos;
+		return pMouseX >= (pX - 1) && pMouseX < (pX + pWidth + 1) && pMouseY >= (pY - 1) && pMouseY < (pY + pHeight + 1);
 	}
 }
