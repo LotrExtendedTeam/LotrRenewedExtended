@@ -158,6 +158,10 @@ public abstract class ExtendedFarmingAbstractTask {
 	 * @return {@code true} if the task action is completed, or {@code false} to defer exiting and keep ticking
 	 */
 	public abstract boolean executeTask(BlockPos pChosenBlockPos, ServerWorld pServerLevel);
+
+	public boolean shouldCheckOnce() {
+		return false;
+	}
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
 	 * and that no liquid is present, as well as another block above it are replaceable materials.

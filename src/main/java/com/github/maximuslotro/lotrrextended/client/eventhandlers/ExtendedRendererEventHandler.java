@@ -197,7 +197,7 @@ public class ExtendedRendererEventHandler {
 		}
 	}
 
-	public static void onPostRenderEntity(final RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
+	public static void onPostRenderEntity(RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
 		ExtendedExclamationMarkRenderer.onPostRenderEntity(event);
 	}
 }

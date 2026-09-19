@@ -2,6 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import javax.annotation.Nullable;
 
+import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -97,7 +100,26 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 			taskPosition.set(cachedWorkBlockPos);
 			return;
 		}
-		super.setRandomBlockByTask(taskPosition, pServerLevel);
+		BlockPos entityPos = this.goalHolder.getEntity().blockPosition();
+		int horizontalRange = 8;
+		BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+		for(int x = -horizontalRange; x <= horizontalRange; x++) {
+			for(int y = -YSPLIT; y <= YSPLIT; y++) {
+				for(int z = -horizontalRange; z <= horizontalRange; z++) {
+					mutablePos.set( entityPos.getX() + x, entityPos.getY() + y, entityPos.getZ() + z);
+					if(isValidPosForTask(mutablePos, pServerLevel) && this.goalHolder.isWithinBounds(mutablePos)) {
+						taskPosition.set(mutablePos);
+						return;
+					}
+				}
+			}
+		}
+		taskPosition.set(BlockPos.ZERO);
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CRAFTING, true);
+	}
+	@Override
+	public boolean shouldCheckOnce() {
+		return true;
 	}
 	/**
 	 * Determines whether the NPC is close enough to the crafting table to execute crafting operations.
@@ -119,7 +141,8 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public boolean isValidPosForTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
-		return pServerLevel.getBlockState(pComposterPos).is(Blocks.CRAFTING_TABLE);
+		Block checkBlock =pServerLevel.getBlockState(pComposterPos).getBlock();
+		return checkBlock.is(Blocks.CRAFTING_TABLE) || checkBlock instanceof FactionCraftingTableBlock;
 	}
 	/**
 	 * Executes the seed crafting operation at the target crafting table.
@@ -135,6 +158,7 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CRAFTING, false);
 		int currentGoalTick = goalHolder.tickTime;
 		if (currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the crafting table

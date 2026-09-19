@@ -254,7 +254,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit.farmhand.crops_farmed", "Crops Harvested: %s");
 		addD("gui.lotrextended.hired_unit.farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
 		addD("gui.lotrextended.hired_unit.farmhand.info.tooltip", "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.");
-		addD("gui.lotrextended.hired_unit.farmhand.crop.tooltip", "Must contain at least one seed to continue farming!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.title", "Farmhand Issues:");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_seeds", "Seeds required to function!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.one_seed", "More than one seed required to plant!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_composter", "No Composter found nearby!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_crafting", "No Crafting Table found nearby!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_chest", "No valid Chests found nearby!");
+		addD("gui.lotrextended.hired_unit.farmhand.warning_tooltips.inventory_full", "Inventory full!");
 		// hired unit chat messages
 		addD("chat.lotrextended.hired_unit.death", "Your hired unit %1$s");
 		addD("chat.lotrextended.hired_unit.desert", "Your hired unit %1$s has deserted");

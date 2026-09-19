@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -17,8 +18,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitFarmhandContainer> {
-
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/unit_farmhand_menu.png");
+	private ExtendedTextureOffsetButton warningButton;
 
 	public ExtendedHiredUnitFarmhandScreen(ExtendedHiredUnitFarmhandContainer unitEquipmentContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitEquipmentContainer, pPlayerInventory, pTitle);
@@ -37,11 +38,42 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
 				ExtendedHiredUnitFarmhandScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.info.tooltip"), 200), pMouseX, pMouseY);
 			}
+		});
+		warningButton = this.addButton(new ExtendedTextureOffsetButton(this.leftPos + this.imageWidth, this.topPos, 176, 74, 16, 16, new StringTextComponent("WARNINGS"), button -> {}, CONTAINER_BACKGROUND){
+			@Override
+			public int hoverOffset() {
+				return 16;
+			}
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				List<ITextComponent> tooltips = new ArrayList<>();
+				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.title").withStyle(TextFormatting.RED, TextFormatting.BOLD));
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_SEEDS)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_seeds").withStyle(TextFormatting.GRAY));
+				}
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.ONE_SEEDS)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.one_seed").withStyle(TextFormatting.GRAY));
+				}
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.INVENTORY_FULL)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.inventory_full").withStyle(TextFormatting.GRAY));
+				}
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_CHEST)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_chest").withStyle(TextFormatting.GRAY));
+				}
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_COMPOSTER)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_composter").withStyle(TextFormatting.GRAY));
+				}
+				if(getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_CRAFTING)) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_crafting").withStyle(TextFormatting.GRAY));
+				}
+				ExtendedHiredUnitFarmhandScreen.this.renderComponentTooltip(pPoseStack, tooltips, pMouseX, pMouseY);
+			}
 		});	
 	}
 	@Override
 	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		this.renderBackground(pMatrixStack);
+		warningButton.visible = getMenu().getFarmhandInfo().hasWarning();
 		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
 		this.renderTooltip(pMatrixStack, pMouseX, pMouseY);
 	}
@@ -77,8 +109,8 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		}
 		int barLength = (int) (42 * ((float)getMenu().getFarmhandInfo().getCurrentFarmerXp())/getMenu().getFarmhandInfo().getMaxFarmerXp());
 		fill(pMatrixStack, leftPos + 67, topPos + 40, leftPos + 67 + barLength, topPos + 43, 0xFF1CC226);
-		if (this.getMenu().getSeedsSlot().hasItem()) {
-			this.blit(pMatrixStack, leftPos + 51, topPos + 47, 188, 54, 2, 12);
+		if (getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_SEEDS)) {
+			this.blit(pMatrixStack, leftPos + 51, topPos + 63, 186, 54, 2, 12);
 		}
 	}
 
@@ -105,9 +137,9 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.level.tooltip", getMenu().getFarmhandInfo().getCurrentFarmerXp(), getMenu().getFarmhandInfo().getMaxFarmerXp()));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
-		if ((this.isHovering(44, 61, 16, 16, pMouseX, pMouseY) || this.isHovering(51, 47, 2, 12, pMouseX, pMouseY)) && !this.getMenu().getSeedsSlot().hasItem()) {
+		if ((this.isHovering(44, 61, 16, 16, pMouseX, pMouseY) && getMenu().getFarmhandInfo().hasWarning(FarmingWarning.NO_SEEDS))) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.crop.tooltip").withStyle(TextFormatting.RED));
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.warning_tooltips.no_seeds").withStyle(TextFormatting.RED));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
 	}

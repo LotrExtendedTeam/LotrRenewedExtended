@@ -97,7 +97,12 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				farmhandOutputInventory = newFarmhandInventory;
 			}
 			if (resendData) {
-				sendDataToAllBeings();
+				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
+					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
+					if(player!=null) {
+						sendDataToPlayer(player);
+					}
+				}
 				resendData = false;
 			}
 		}
@@ -234,19 +239,18 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 	/**
 	 * Syncs the farmhand data directly to a single specific player.
+	 * 
+	 * Only sends data to owner
 	 *
-	 * @param player The {@link ServerPlayerEntity} to receive the packet.
+	 * @param pPlayer The {@link ServerPlayerEntity} to receive the packet.
 	 */
 	@Override
-	public void sendDataToPlayer(ServerPlayerEntity player) {
-		ExtendedPacketHandler.sendToClient(new ExtendedSNpcFarmhandInfoPacket(this), player);
-	}
-	/**
-	 * Syncs the farmhand data to all players tracking this entity.
-	 */
-	@Override
-	public void sendDataToAllBeings() {
-		ExtendedPacketHandler.sendToAllTrackingEntity(new ExtendedSNpcFarmhandInfoPacket(this), thisEntity);
+	public void sendDataToPlayer(ServerPlayerEntity pPlayer) {
+		if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty() && pPlayer.getUUID().equals(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID())) {
+			if(pPlayer.getUUID().equals(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID())) {
+				ExtendedPacketHandler.sendToClient(new ExtendedSNpcFarmhandInfoPacket(this), pPlayer);
+			}
+		}
 	}
 	/**
 	 * Directly sets the farmer level. Private to restrict external tampering.
@@ -463,8 +467,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 
 	public enum FarmingWarning {
 		INVENTORY_FULL(1 << 0),
-		NO_SEEDS(1 << 1);
-
+		NO_SEEDS(1 << 1),
+		NO_COMPOSTER(1 << 2),
+		NO_CRAFTING(1 << 3),
+		NO_CHEST(1 << 4),
+		ONE_SEEDS(1 << 5);
 		private final int bitFlag;
 
 		FarmingWarning(int bitFlag) {

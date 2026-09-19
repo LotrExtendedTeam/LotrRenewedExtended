@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
@@ -111,11 +112,30 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
+		if(cachedWorkBlockPos != null) {
 			taskPosition.set(cachedWorkBlockPos);
 			return;
 		}
-		super.setRandomBlockByTask(taskPosition, pServerLevel);
+		BlockPos entityPos = this.goalHolder.getEntity().blockPosition();
+		int horizontalRange = 8;
+		BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+		for(int x = -horizontalRange; x <= horizontalRange; x++) {
+			for(int y = -YSPLIT; y <= YSPLIT; y++) {
+				for(int z = -horizontalRange; z <= horizontalRange; z++) {
+					mutablePos.set( entityPos.getX() + x, entityPos.getY() + y, entityPos.getZ() + z);
+					if(isValidPosForTask(mutablePos, pServerLevel) && this.goalHolder.isWithinBounds(mutablePos)) {
+						taskPosition.set(mutablePos);
+						return;
+					}
+				}
+			}
+		}
+		taskPosition.set(BlockPos.ZERO);
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_COMPOSTER, true);
+	}
+	@Override
+	public boolean shouldCheckOnce() {
+		return true;
 	}
 	/**
 	 * Determines whether the NPC is close enough to interact with the target composter block.
@@ -154,6 +174,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_COMPOSTER, false);
 		int currentGoalTick = goalHolder.tickTime;
 		if (currentGoalTick - lastCompostTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the composter

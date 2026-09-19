@@ -8,10 +8,12 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrder
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +24,7 @@ import net.minecraft.world.server.ServerWorld;
  * <p>
  * Serves as an umbrella {@link Goal} container holding registered {@link ExtendedFarmingAbstractTask} 
  * implementations (such as planting, harvesting, tilling, collecting, and depositing). Task selection 
- * is governed by a configurable {@link SelectionMode} and throttled by a proficiency success chance calculation. 
+ * is  throttled by a proficiency success chance calculation. 
  * Once a task and reachable target block are selected, this goal manages path navigation, entity looking control, 
  * task execution, and automatic anti-deadlock timeouts.
  * </p>
@@ -62,8 +64,6 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private BlockPos targetFarmBlock;
 	/** Maximum number of random position evaluation attempts per task during target search. */
 	private static final int taskRetryCount = 16;//tweak how many tries this goal tries to find a valid task
-	/** Evaluation mode determining whether tasks are prioritized by order or by spatial position. */
-	private final SelectionMode mode = SelectionMode.PRIORITY;
 	/** Flag preventing further tick logic execution once the task has successfully completed. */
 	private boolean isActionCompleted = false;
 	/** Ticks elapsed since the goal began running, used for anti-deadlock timeout safety. */
@@ -122,8 +122,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 * <p>
 	 * Verifies mob griefing world settings, checks active unit orders (if a hired unit), evaluates 
 	 * farmer proficiency execution chance via {@link #canFarmerExecuteChance()}, and iterates over 
-	 * registered tasks according to the active {@link SelectionMode} to find a valid task and pathable 
-	 * block position.
+	 * registered tasks  to find a valid task and pathable block position.
 	 * </p>
 	 *
 	 * @return {@code true} if a valid task and target location were successfully assigned
@@ -131,38 +130,44 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 */
 	@Override
 	public boolean canUse() {
+		if(!pathNav.isDone()) {
+			return false;
+		}
 		if(farmingTasks.isEmpty()) {
 			throw new IllegalStateException("Farmhand can't have no farming tasks added!");
 		}
-		if (level==null || !net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, farmhand)) {
+		if(level==null || !net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, farmhand)) {
 			return false;
 		}
 		if(farmhandData.getUnitInfo().isNpcActiveDuty() && farmhandData.getUnitInfo().getOrders()!=ExtendedUnitOrders.FARMING) {
 			return false; //Only allow hired units that are farming to run, regular NPCs are unaffected
 		}
-		if (!canFarmerExecuteChance()) {
+		if(!canFarmerExecuteChance()) {
 			return false; // Failed level and bonus check
 		}
-		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
-		// TODO decide if there is a better way to randomize task block, while still keeping the farming delay
-		if (this.mode == SelectionMode.PRIORITY) {
-			for (ExtendedFarmingAbstractTask task : farmingTasks) {
-				if (!task.isTaskValidForNPC(level)) {
-					continue;
-				}
-				for (int i = 0; i < taskRetryCount; i++) {
-					if (tryAssignTask(task, taskPosition)) {
-						return true;
-					}
-				}
-			}
+		ItemStack seedsStack = farmhandData.getFarmhandInfo().getSeedsItem();
+		if(seedsStack.isEmpty()) {
+			farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_SEEDS, true);
 		} else {
-			for (int i = 0; i < taskRetryCount; i++) {
-				for (ExtendedFarmingAbstractTask task : farmingTasks) {
-					if (!task.isTaskValidForNPC(level)) {
-						continue;
-					}
-					if (tryAssignTask(task, taskPosition)) {
+			farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_SEEDS, false);
+			if(seedsStack.getCount()==1) {
+				farmhandData.getFarmhandInfo().setWarning(FarmingWarning.ONE_SEEDS, true);
+			} else {
+				farmhandData.getFarmhandInfo().setWarning(FarmingWarning.ONE_SEEDS, false);
+			}
+		}
+		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
+		for(ExtendedFarmingAbstractTask task : farmingTasks) {
+			if(!task.isTaskValidForNPC(level)) {
+				continue;
+			}
+			if(task.shouldCheckOnce()) {
+				if(tryAssignTask(task, taskPosition)) {
+					return true;
+				}
+			}else {
+				for(int i = 0; i < taskRetryCount; i++) {
+					if(tryAssignTask(task, taskPosition)) {
 						return true;
 					}
 				}
@@ -199,22 +204,22 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 * @return {@code true} if a valid position and navigation path were established for the task
 	 */
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
-		if (!task.setRandomBlockInBounds(taskPosition, level)) {
+		if(!task.setRandomBlockInBounds(taskPosition, level)) {
 			task.invalidateCache();
 			return false;
 		}
-		if (!task.isValidPosForTaskMutable(taskPosition, level)) {
+		if(!task.isValidPosForTaskMutable(taskPosition, level)) {
 			task.invalidateCache();
 			return false;
 		}
 		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know) Max derp
 		BlockPos targetPos = taskPosition.immutable();
 		// Rechecks bounds since isValidPosForTaskMutable may have mutated value
-		if (!pathNav.isDone() || !isWithinBounds(targetPos)) {
+		if(!isWithinBounds(targetPos)) {
 			return false;
 		}
 		Path taskPath = pathNav.createPath(targetPos, 0);
-		if (taskPath != null) {
+		if(taskPath != null) {
 			targetFarmBlock = targetPos;
 			currentTask = task;
 			path = taskPath;
@@ -239,7 +244,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 */
 	@Override
 	public boolean canContinueToUse() {
-		if (isActionCompleted || currentTask == null || targetFarmBlock == null) {
+		if(isActionCompleted || currentTask == null || targetFarmBlock == null) {
 			return false;
 		}
 		// Allow for executing action, even when navigation has ended at destination
@@ -290,7 +295,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	@Override
 	public void tick() {
 		tickTime++;
-		if (targetFarmBlock == null) {
+		if(targetFarmBlock == null) {
 			return;
 		}
 		farmhand.getLookControl().setLookAt(targetFarmBlock.getX() + 0.5D, targetFarmBlock.getY() + 0.5D, targetFarmBlock.getZ() + 0.5D);
@@ -304,15 +309,6 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		if(tickTime>300) {
 			isActionCompleted = true; //Because we allow tasks to persist when at location, ensure it is canceled if deadlock happens
 		}
-	}
-	/**
-	 * Strategy selection mode governing how tasks and target positions are evaluated during goal selection.
-	 */
-	public enum SelectionMode {
-		/** Position -> Task mode; prioritizes spatial efficiency and performance. */
-		BALANCED,
-		/** Task -> Position mode; prioritizes task order priority over spatial proximity. */
-		PRIORITY
 	}
 	/**
 	 * Defines the specialized agricultural classification for an NPC farmhand.

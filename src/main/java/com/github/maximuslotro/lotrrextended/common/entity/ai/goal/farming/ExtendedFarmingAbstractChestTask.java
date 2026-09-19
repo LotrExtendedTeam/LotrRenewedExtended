@@ -142,9 +142,17 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 			Collections.shuffle(validChests);
 			taskPosition.set(validChests.get(0));
 		}else {
+			failValue();
 			taskPosition.set(BlockPos.ZERO);
 		}
 	}
+
+	@Override
+	public boolean shouldCheckOnce() {
+		return true;
+	}
+
+	public void failValue() {}
 	/**
 	 * Checks whether the given chest position, or its connected neighbor if part of a double chest,
 	 * has an item frame mounted on its front face containing a hoe.
