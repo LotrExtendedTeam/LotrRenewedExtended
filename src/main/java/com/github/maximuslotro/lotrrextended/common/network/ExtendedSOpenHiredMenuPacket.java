@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;

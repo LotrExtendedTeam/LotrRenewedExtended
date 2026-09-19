@@ -32,7 +32,7 @@ public class ExtendedHornSelectScreen extends ExtendedAbstractWindowedScreen {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.SUMMON));
 			this.onClose();
 		}));
-		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedBasicAbstractScreen.EXTENDED_WIDGETS, button -> {
+		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
 			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
 		}) {
 			@Override

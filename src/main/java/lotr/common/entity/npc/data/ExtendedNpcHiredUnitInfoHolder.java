@@ -23,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
+import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedINPCEntity;
@@ -500,7 +501,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 					unitName.withStyle(TextFormatting.AQUA);
 					newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
 				}
-				TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel);
+				TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_unit.levelup.combat", unitName, newlevel);
 				if(fancy) {
 					output.withStyle(TextFormatting.YELLOW);
 				}
@@ -1007,7 +1008,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		if(fancy) {
 			unitName.withStyle(TextFormatting.AQUA);
 		}
-		TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unitName);
+		TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_unit.death", unitName);
 		if(fancy) {
 			companionName.withStyle(TextFormatting.YELLOW);
 		}

@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -31,8 +32,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedCommandHornItem extends Item {
 	public static final String HORNTYPE = "usage_type";

@@ -14,7 +14,7 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 
 	private NPCEntity entity;
 	private final PlayerEntity player;

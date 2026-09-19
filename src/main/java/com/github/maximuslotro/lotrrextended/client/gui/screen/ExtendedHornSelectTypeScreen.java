@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.gui.widget.button.Button;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHornSelectTypeScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedHornSelectTypeScreen extends ExtendedAbstractWindowedScreen {
 	private static final ResourceLocation TEXTURE = new ResourceLocation("lotrextended:textures/gui/screen160x90.png");
 
 	public ExtendedHornSelectTypeScreen() {

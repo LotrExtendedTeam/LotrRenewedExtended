@@ -159,6 +159,7 @@ public class ExtendedSlider extends AbstractSlider {
 			this.applyValue();
 		}
 		this.updateMessage();
+	}
 
 	public void setMessageKey(String messageKey) {
 		this.localKey = messageKey;
