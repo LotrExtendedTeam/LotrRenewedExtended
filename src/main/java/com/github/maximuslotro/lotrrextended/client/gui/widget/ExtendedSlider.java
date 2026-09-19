@@ -13,8 +13,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedSlider extends AbstractSlider {
-	public final String localKey;
-	private final double minValue;
+	public String localKey;
+	private double minValue;
 	private final double maxValue;
 	private final float steps;
 	private final IGetValue valueGetter;
@@ -159,6 +159,13 @@ public class ExtendedSlider extends AbstractSlider {
 			this.applyValue();
 		}
 		this.updateMessage();
+
+	public void setMessageKey(String messageKey) {
+		this.localKey = messageKey;
+	}
+
+	public void setMinValue(int pMinValue) {
+		this.minValue = pMinValue;
 	}
 
 	@Override
@@ -197,7 +204,7 @@ public class ExtendedSlider extends AbstractSlider {
 	}
 
 	@Override
-	protected void updateMessage() {
+	public void updateMessage() {
 		if(localKey.isEmpty()) {
 			this.setMessage(new StringTextComponent(String.valueOf(toValue(value))));
 			return;

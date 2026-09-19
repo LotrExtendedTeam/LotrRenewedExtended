@@ -1,11 +1,10 @@
-package com.github.maximuslotro.lotrrextended.client.gui.screen;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.*;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import net.minecraft.client.gui.ScreenManager;
 
-public class ExtendedScreenRegisterHandler {
+public class ExtendedContainerScreenRegisterHandler {
 	public static void register() {
 		ScreenManager.register(ExtendedContainerTypes.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);
 		ScreenManager.register(ExtendedContainerTypes.TRADING.get(), ExtendedTradeScreen::new);

@@ -8,16 +8,24 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcFarmhandInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -80,15 +88,21 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
 					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
 					if(player!=null && player.containerMenu instanceof ExtendedHiredUnitFarmhandContainer) {
-						player.closeContainer();
+							player.closeContainer();
 					}
+
 				}
 				Inventory newFarmhandInventory = makeFarmhandOutputInventory();
 				ExtendedNBTUtils.transpherInventory(getFarmhandOutputInventory(), newFarmhandInventory);
 				farmhandOutputInventory = newFarmhandInventory;
 			}
 			if (resendData) {
-				sendDataToAllBeings();
+				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
+					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
+					if(player!=null) {
+						sendDataToPlayer(player);
+					}
+				}
 				resendData = false;
 			}
 		}
@@ -130,11 +144,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			}
 
 			if (holder.contains("warnings")) {
-                int bitmask = holder.getInt("warnings");
-                setWarningBitmask(bitmask);
-                this.activeWarnings.clear();
-                this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
-            }
+				int bitmask = holder.getInt("warnings");
+				setWarningBitmask(bitmask);
+				this.activeWarnings.clear();
+				this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
+			}
 
 			farmhandInputInventory = makeFarmhandInputInventory();
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
@@ -225,19 +239,18 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 	/**
 	 * Syncs the farmhand data directly to a single specific player.
+	 * 
+	 * Only sends data to owner
 	 *
-	 * @param player The {@link ServerPlayerEntity} to receive the packet.
+	 * @param pPlayer The {@link ServerPlayerEntity} to receive the packet.
 	 */
 	@Override
-	public void sendDataToPlayer(ServerPlayerEntity player) {
-		ExtendedPacketHandler.sendToClient(new ExtendedSNpcFarmhandInfoPacket(this), player);
-	}
-	/**
-	 * Syncs the farmhand data to all players tracking this entity.
-	 */
-	@Override
-	public void sendDataToAllBeings() {
-		ExtendedPacketHandler.sendToAllTrackingEntity(new ExtendedSNpcFarmhandInfoPacket(this), thisEntity);
+	public void sendDataToPlayer(ServerPlayerEntity pPlayer) {
+		if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty() && pPlayer.getUUID().equals(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID())) {
+			if(pPlayer.getUUID().equals(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID())) {
+				ExtendedPacketHandler.sendToClient(new ExtendedSNpcFarmhandInfoPacket(this), pPlayer);
+			}
+		}
 	}
 	/**
 	 * Directly sets the farmer level. Private to restrict external tampering.
@@ -325,6 +338,23 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			// Scales slots so the 12th slot (10th additional slot) unlocks EXACTLY at Level 100
 			int earnedSlots = (this.farmerLevel - 1) * 10 / 99;
 			setInventoryAdditionalSize(earnedSlots);
+
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity)thisEntity).getUnitInfo();
+			if(unitInfo.isNpcActiveDuty() && unitInfo.getUnitOwner()!=null) {
+				boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitInfo.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+	        	TextComponent unitName = unitInfo.getHiredUnitNameAndTitle();
+	        	TextComponent newlevel = new StringTextComponent(Integer.toString(this.getFarmerLevel()));
+	        	if(fancy) {
+	        		unitName.withStyle(TextFormatting.AQUA);
+	        		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
+	            }
+	        	TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_unit.levelup.farming", unitName, newlevel);
+	            if(fancy) {
+	            	output.withStyle(TextFormatting.YELLOW);
+	            }
+	            unitInfo.getUnitOwner().sendMessage(output, unitInfo.getOwnerUUID());
+			}
+     
 		}
 		markDirty();
 	}
@@ -403,11 +433,15 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public ItemStack getSeedsItem() {
-		// Give natural NPCs seeds
-		if(!((ExtendedINPCEntity)this.thisEntity).getUnitInfo().isNpcActiveDuty() && getFarmhandInputInventory().getItem(0).isEmpty()) {
-			setSeedsItem(new ItemStack(Items.WHEAT_SEEDS, 64));
-		}
-		return getFarmhandInputInventory().getItem(0);
+		if(((ExtendedINPCEntity)this.thisEntity).getUnitInfo().isNpcActiveDuty() || !getFarmhandInputInventory().getItem(0).isEmpty()) {
+	        return getFarmhandInputInventory().getItem(0);
+	    }
+
+		Block cropBlock = this.thisEntity.level.getBlockState(this.thisEntity.blockPosition().above()).getBlock();
+	    if(cropBlock instanceof CropsBlock) {
+		    setSeedsItem(new ItemStack(((CropsBlock)cropBlock).getBaseSeedId(), 64));
+	    }
+	    return getFarmhandInputInventory().getItem(0);
 	}
 	public void setSeedsItem(ItemStack seeds) {
 		getFarmhandInputInventory().setItem(0, seeds);
@@ -433,8 +467,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 
 	public enum FarmingWarning {
 		INVENTORY_FULL(1 << 0),
-		NO_SEEDS(1 << 1);
-
+		NO_SEEDS(1 << 1),
+		NO_COMPOSTER(1 << 2),
+		NO_CRAFTING(1 << 3),
+		NO_CHEST(1 << 4),
+		ONE_SEEDS(1 << 5);
 		private final int bitFlag;
 
 		FarmingWarning(int bitFlag) {
@@ -481,7 +518,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public int getWarningBitmask() {
-	    return this.warningBitmask;
+		return this.warningBitmask;
 	}
 
 	public void setWarningBitmask(int bitmask) {

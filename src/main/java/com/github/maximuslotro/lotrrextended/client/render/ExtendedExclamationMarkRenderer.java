@@ -27,8 +27,10 @@ public class ExtendedExclamationMarkRenderer {
 	private static final float SCALE = 0.035F;
 
 	private static float[] getMarkColor(LivingEntity entity) {
-		if(entity instanceof ExtendedIFarmhand && entity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)entity).getFarmhandInfo().hasWarning()) {
-			return RED;
+		if(entity instanceof ExtendedINPCEntity) {
+			if(entity instanceof ExtendedIFarmhand && ((ExtendedINPCEntity)entity).getFarmhandInfo().hasWarning()) {
+				return RED;
+			}
 		}
 		/*
 		if(entity instanceof NPCEntity) {
@@ -37,7 +39,7 @@ public class ExtendedExclamationMarkRenderer {
 		return null;
 	}
 
-	public static void onPostRenderEntity(final RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
+	public static void onPostRenderEntity(RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
 		LivingEntity entity = event.getEntity();
 		float[] color = getMarkColor(entity);
 		if (color == null) {

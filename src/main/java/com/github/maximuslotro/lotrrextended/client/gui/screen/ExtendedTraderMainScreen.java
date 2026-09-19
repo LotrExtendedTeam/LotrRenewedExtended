@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithTraderPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithNPCPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -9,7 +9,6 @@ import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
@@ -41,10 +40,10 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	public void init() {
 		super.init();
 		// Talk button
-		talkButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()) {
+		talkButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 120, 20, new TranslationTextComponent("gui.lotrextended.entity.talk_button"), button -> talkWithNPC()) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-				ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.talk_button.tooltip", entity.getName()), 200), pMouseX, pMouseY);
+				ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.entity.talk_button.tooltip", entity.getName()), 200), pMouseX, pMouseY);
 			}
 		});
 		// Trade Button
@@ -116,8 +115,8 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	}
 
 	private void talkWithNPC() {
-		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
-		closeThisMenu();
+		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
+		this.onClose();
 	}
 
 	private void tradeWithNPC() {
@@ -150,11 +149,10 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	private void sendClientErrorMessage() {
 		if (!LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent()) {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
-			closeThisMenu();
 		}else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
-			closeThisMenu();
 		}
+		this.onClose();
 	}
 
 	@Override
@@ -162,12 +160,5 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 		renderBackground(matStack);
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
 		super.render(matStack, mouseX, mouseY, tick);
-	}
-
-	private void closeThisMenu() {
-		Minecraft mc = Minecraft.getInstance();
-		if(mc.player != null) {
-			mc.player.closeContainer();
-		}
 	}
 }

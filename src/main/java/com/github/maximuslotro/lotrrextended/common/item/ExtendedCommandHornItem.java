@@ -2,38 +2,44 @@ package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+import javax.annotation.Nullable;
+
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.LOTRItemGroups;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.UseAction;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedCommandHornItem extends Item {
-	public static final String NBTvalue = "usage_type";
+	public static final String HORNTYPE = "usage_type";
+	public static final String SQUAD = "squad";
 
 	public ExtendedCommandHornItem(Properties properties) {
 		super(properties);
-	}
-
-	public ExtendedCommandHornItem() {
-		super(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT));
 	}
 
 	@Override
@@ -49,68 +55,131 @@ public class ExtendedCommandHornItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, World world, LivingEntity entityplayer) {
 		ExtendedUnitHornTypes type = getType(itemstack);
-		if(type.isSummon()) {
-			List<NPCEntity> teleportableUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
-			});
-			for(NPCEntity unit : teleportableUnits) {
-				ExtendedHiredSitFollowGoal.teleportToOwner(unit, entityplayer, true);
+		if(type.isUnset()) {
+			return itemstack;
+		}
+		if(!world.isClientSide()) {
+			AxisAlignedBB area = new AxisAlignedBB(entityplayer.blockPosition()).inflate(64);
+			if(type.isSummon()) {
+				List<NPCEntity> teleportableUnits = world.getEntitiesOfClass(NPCEntity.class, area, unit -> isValidUnit(unit, itemstack, entityplayer, ExtendedUnitOrders.FOLLOW_PLAYER));
+				for(NPCEntity unit : teleportableUnits) {
+					ExtendedHiredFollowGoal.teleportToOwner(unit, entityplayer, true);
+				}
+			}
+			if(type.isHalt()) {
+				List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, area, unit -> isValidUnit(unit, itemstack, entityplayer, ExtendedUnitOrders.FOLLOW_PLAYER));
+				for(NPCEntity unit : followingUnits) {
+					((ExtendedINPCEntity)unit).getUnitInfo().trySetOrders(ExtendedUnitOrders.STATIONARY);
+				}
+				setType(itemstack, ExtendedUnitHornTypes.READY);
+			}
+			if(type.isReady()) {
+				List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, area, unit -> isValidUnit(unit, itemstack, entityplayer, ExtendedUnitOrders.STATIONARY));
+				for(NPCEntity unit : stationaryUnits) {
+					((ExtendedINPCEntity)unit).getUnitInfo().trySetOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
+				}
+				setType(itemstack, ExtendedUnitHornTypes.HALT);
+			}
+			world.playSound(null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
+		}else {
+			if(type.isHalt()) {
+				setType(itemstack, ExtendedUnitHornTypes.READY);
+			}
+			if(type.isReady()) {
+				setType(itemstack, ExtendedUnitHornTypes.HALT);
 			}
 		}
-		if(type.isHalt()) {
-			List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
-			});
-			for(NPCEntity unit : followingUnits) {
-				((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.STATIONARY);
-			}
-			setType(itemstack, ExtendedUnitHornTypes.READY);
-		}
-		if(type.isReady()) {
-			List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.STATIONARY;
-			});
-			for(NPCEntity unit : stationaryUnits) {
-				((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
-			}
-			setType(itemstack, ExtendedUnitHornTypes.HALT);
-		}
-		world.playSound(null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
+	}
+
+	private boolean isValidUnit(NPCEntity entity, ItemStack itemstack, LivingEntity player, ExtendedUnitOrders requiredOrders) {
+		if(entity instanceof ExtendedINPCEntity) {
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
+			return unitInfo.isNpcActiveDuty() && unitInfo.getOwnerUUID().equals(player.getUUID()) 
+				&& unitInfo.getOrders() == requiredOrders && unitInfo.isSquad(getSquad(itemstack));
+		}
+		return false;
 	}
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
-		if (getType(heldItem).isUnset()) {
-			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openHornMenu());
-			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+		if(getType(heldItem).isUnset()) {
+			openHornSelectRedial(world);
 		}else {
-			player.startUsingItem(hand);
-			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+			if(player.isShiftKeyDown()) {
+				openHornSelectRedial(world);
+			}else {
+				player.startUsingItem(hand);
+			}
+		}
+		return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+	}
+
+	private void openHornSelectRedial(World world) {
+		if(world.isClientSide()) {
+			ExtendedClientsideSeparatedScreenHandler.openHornModeSelect();
 		}
 	}
 
 	@Override
-	public String getDescriptionId(ItemStack itemstack) {
-		return super.getDescriptionId()+getType(itemstack).getDisc();
+    public ActionResultType onItemUseFirst(ItemStack pStack, ItemUseContext context) {
+        if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() == ExtendedBlocks.CONQUEST_TABLE.get()) {
+        	if(context.getLevel().isClientSide()) {
+            	ExtendedClientsideSeparatedScreenHandler.openHornSquadSelect(getSquad(pStack));
+        	}
+            return ActionResultType.sidedSuccess(context.getLevel().isClientSide());
+        }
+        return ActionResultType.PASS;
+    }
+
+	@Override
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		IFormattableTextComponent modeName;
+		if(!getType(pStack).isUnset()) {
+			modeName = getType(pStack).getText().withStyle(getType(pStack).getFormatting());
+		}else {
+			modeName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
+		}
+		pTooltip.add(1, new TranslationTextComponent("gui.lotrextended.horn_of_command.type", modeName).withStyle(TextFormatting.WHITE));
+		IFormattableTextComponent squadName;
+		if(getSquad(pStack)!=null) {
+			squadName = new StringTextComponent(getSquad(pStack)).withStyle(TextFormatting.WHITE);
+		}else {
+			squadName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
+		}
+		pTooltip.add(2, new TranslationTextComponent("gui.lotrextended.horn_of_command.squad", squadName).withStyle(TextFormatting.WHITE));
 	}
 
 	public static ExtendedUnitHornTypes getType(ItemStack itemStack) {
-		CompoundNBT compoundnbt = itemStack.getTag();
-		if(compoundnbt == null || !compoundnbt.contains(NBTvalue)) {
+		if(!itemStack.hasTag() || !itemStack.getTag().contains(HORNTYPE)) {
 			return ExtendedUnitHornTypes.NOTSET;
 		}
-		return ExtendedUnitHornTypes.getByUnchangingIndex(compoundnbt.getInt(NBTvalue));
+		return ExtendedUnitHornTypes.getByUnchangingIndex(itemStack.getTag().getInt(HORNTYPE));
 	}
 
-	public static void setType(ItemStack itemStack, ExtendedUnitHornTypes type) {
-		if(!itemStack.hasTag()) {
-			itemStack.setTag(new CompoundNBT());
+	public static ItemStack setType(ItemStack itemStack, ExtendedUnitHornTypes type) {
+		if(type==ExtendedUnitHornTypes.NOTSET) {
+			itemStack.removeTagKey(HORNTYPE);
+		}else {
+			itemStack.getOrCreateTag().putInt(HORNTYPE, type.getUnchangingIndex());
 		}
-		itemStack.getTag().putInt(NBTvalue, type.getUnchangingIndex());
+		return itemStack;
+	}
+
+	public static @Nullable String getSquad(ItemStack itemStack) {
+		if(!itemStack.hasTag() || !itemStack.getTag().contains(SQUAD)) {
+			return null;
+		}
+		return itemStack.getTag().getString(SQUAD);
+	}
+
+	public static ItemStack setSquad(ItemStack itemStack, @Nullable String pSquadName) {
+		if(pSquadName==null || pSquadName.isEmpty()) {
+			itemStack.removeTagKey(SQUAD);
+		}else {
+			itemStack.getOrCreateTag().putString(SQUAD, pSquadName);
+		}
+		return itemStack;
 	}
 }

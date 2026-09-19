@@ -155,6 +155,7 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.entity.ai.goal.MixinGoalSelector",
 		"net.minecraft.entity.item.MixinArmorStandEntity",
 		"net.minecraft.entity.item.MixinHangingEntity",
 		"net.minecraft.entity.item.MixinItemFrameEntity",

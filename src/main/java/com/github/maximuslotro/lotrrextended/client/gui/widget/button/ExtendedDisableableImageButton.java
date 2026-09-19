@@ -11,30 +11,30 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 /**
- * Copied from ImageButton to add four states for the button, pressed/un-pressed + hovered/un-hovered
+ * Copied from ImageButton to add three states for the button, hovered/un-hovered + disabled
  * @see ImageButton
  * */
-public class ExtendedImageAddOffsetButton extends Button {
+public class ExtendedDisableableImageButton extends Button {
 	private final ResourceLocation resourceLocation;
 	private final int xTexStart;
-	private final int yTexStart;
-	private final int yDiffTex;
+	protected final int yTexStart;
+	protected final int yDiffTex;
 	private final int textureWidth;
 	private final int textureHeight;
 
-	public ExtendedImageAddOffsetButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, Button.IPressable pOnPress) {
+	public ExtendedDisableableImageButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, Button.IPressable pOnPress) {
 		this(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffTex, pResourceLocation, 256, 256, pOnPress);
 	}
 
-	public ExtendedImageAddOffsetButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress) {
+	public ExtendedDisableableImageButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress) {
 		this(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffTex, pResourceLocation, pTextureWidth, pTextureHeight, pOnPress, StringTextComponent.EMPTY);
 	}
 
-	public ExtendedImageAddOffsetButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress, ITextComponent pMessage) {
+	public ExtendedDisableableImageButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress, ITextComponent pMessage) {
 		this(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffTex, pResourceLocation, pTextureWidth, pTextureHeight, pOnPress, NO_TOOLTIP, pMessage);
 	}
 
-	public ExtendedImageAddOffsetButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress, Button.ITooltip pOnTooltip, ITextComponent pMessage) {
+	public ExtendedDisableableImageButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, int pTextureWidth, int pTextureHeight, Button.IPressable pOnPress, Button.ITooltip pOnTooltip, ITextComponent pMessage) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 		this.textureWidth = pTextureWidth;
 		this.textureHeight = pTextureHeight;
@@ -44,9 +44,15 @@ public class ExtendedImageAddOffsetButton extends Button {
 		this.resourceLocation = pResourceLocation;
 	}
 
-	public void setPosition(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
+	@Override
+	protected int getYImage(boolean pIsHovered) {
+		int i = yTexStart;
+		if (!active) {
+			i += yDiffTex*2;
+		}else if (this.isHovered()) {
+			i += yDiffTex*1;
+		}
+		return i;
 	}
 
 	@Override
@@ -57,23 +63,9 @@ public class ExtendedImageAddOffsetButton extends Button {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.enableDepthTest();
-		int i = yTexStart;
-		if (!active) {
-			i += yDiffTex*4;
-		}else if (this.isHovered()&&!shouldShowEnabled()) {
-			i += yDiffTex*1;
-		}else if (!isHovered()&&shouldShowEnabled()) {
-			i += (yDiffTex*2);
-		}else if (isHovered()&&shouldShowEnabled()) {
-			i += (yDiffTex*3);
-		}
-		blit(pMatrixStack, this.x, this.y, (float)this.xTexStart, (float)i, this.width, this.height, this.textureWidth, this.textureHeight);
+		blit(pMatrixStack, this.x, this.y, this.xTexStart, getYImage(this.isHovered()), this.width, this.height, this.textureWidth, this.textureHeight);
 		if (this.isHovered()) {
 			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
 		}
-	}
-
-	public boolean shouldShowEnabled() {
-		return false;
 	}
 }

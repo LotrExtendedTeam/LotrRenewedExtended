@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.inventory.IInventory;
@@ -128,6 +129,12 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 		}
 		return false;
 	}
+
+	@Override
+	public void failValue() {
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CHEST, true);
+
+	}
 	/**
 	 * Executes the deposit transfer into the target chest container.
 	 * <p>
@@ -142,6 +149,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 	 */
 	@Override
 	public boolean executeTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CHEST, false);
 		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if (!(blockEntity instanceof ChestTileEntity)) {
 			return true;

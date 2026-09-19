@@ -18,8 +18,8 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedNearestAttackableTargetNPCGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingAbstractTask;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 import com.google.common.base.Predicates;
 
@@ -381,12 +381,16 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 			}
 
 		}
-		if (hand == Hand.MAIN_HAND) {
-			if (unitInfo.isNpcActiveDuty() && player.getUUID().equals(unitInfo.getOwnerUUID())) {
-				if (this.level.isClientSide()) {
-					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredOverviewMenuPacket(getId()));
+		if (hand == Hand.MAIN_HAND && !this.level.isClientSide()) {
+			if(player.getUUID().equals(unitInfo.getOwnerUUID())) {
+				if (unitInfo.isNpcActiveDuty()) {
+					if (player instanceof ServerPlayerEntity) {
+						ExtendedPacketHandler.sendToClient(new ExtendedSOpenHiredMenuPacket(getId(), unitInfo.hasHireInfo()), (ServerPlayerEntity) player);
+					}
+					ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
+				}else if (unitInfo.isNPCDismissed()) {
+					
 				}
-				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
 			}
 		}
 	}

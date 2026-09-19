@@ -81,10 +81,12 @@ public interface ExtendedNpcDataInterface {
 	 * @param player The {@link ServerPlayerEntity} to send entity data to
 	 * */
 	public void sendDataToPlayer(ServerPlayerEntity player);
-	/*
+	/**
 	 * Update All Client's Entity Data
-	 * */
-	public void sendDataToAllBeings();
+	 * 
+	 * Optional as some entity data should not be sent to all players
+	 */
+	public default void sendDataToAllBeings() {}
 	/*
 	 * Generate a {@link PacketBuffer} to send information to a client
 	 * @param buf A {@link PacketBuffer} to save info to

@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageAddOffsetButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAddOffsetImageButton;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitOverviewContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitOrdersPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitRadiusPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -29,68 +31,93 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	private DecimalFormat df = new DecimalFormat("#.#");
 
 	// buttons
-	private ExtendedImageAddOffsetButton stationaryButton;
-	private ExtendedImageAddOffsetButton followsButton;
-	private ExtendedImageAddOffsetButton farmingButton;
+	private ExtendedAddOffsetImageButton stationaryButton;
+	private ExtendedAddOffsetImageButton followsButton;
+	private ExtendedAddOffsetImageButton farmingButton;
+	private ExtendedAddOffsetImageButton guardButton;
+	private ExtendedSlider rangeSlider;
 
 	// Current entity states
 	private ExtendedUnitOrders orders;
+	private ExtendedUnitOrders lastOrders = null;
+	private double radius;
 
 	public ExtendedHiredUnitOverviewScreen(ExtendedHiredUnitOverviewContainer unitInventoryContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitInventoryContainer, pPlayerInventory, pTitle);
 		df.setRoundingMode(RoundingMode.CEILING);
 		setIndex(0);
 		this.orders = unitInventoryContainer.initialOrders;
-	}
-
-	@Override
-	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
-		this.renderBackground(pMatrixStack);
-		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
-		this.renderTooltip(pMatrixStack, pMouseX, pMouseY);
+		this.radius = ((ExtendedINPCEntity)menu.getCompanion()).getUnitInfo().getGuardRadius();
 	}
 
 	@Override
 	protected void init() {
 		super.init();
-
-		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 42, 16, 12, 0, 0, 12, ORDER_BUTTONS,
-			btn -> {
-				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.STATIONARY)) {
-					orders = ExtendedUnitOrders.STATIONARY;
-					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.STATIONARY));
-				}
-			}) {
+		this.stationaryButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 42, 16, 12, 0, 0, 12, ORDER_BUTTONS,
+			btn -> handleSetOrders(ExtendedUnitOrders.STATIONARY)) {
 			@Override
 			public boolean shouldShowEnabled() {
 				return orders.equals(ExtendedUnitOrders.STATIONARY);
 			}
 		});
-		this.followsButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 55, 16, 12, 16, 0, 12, ORDER_BUTTONS, 
-			btn -> {
-				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FOLLOW_PLAYER)) {
-					orders = ExtendedUnitOrders.FOLLOW_PLAYER;
-					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FOLLOW_PLAYER));
-				}
-			}) {
+		this.followsButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 55, 16, 12, 16, 0, 12, ORDER_BUTTONS, 
+			btn -> handleSetOrders(ExtendedUnitOrders.FOLLOW_PLAYER)) {
 			@Override
 			public boolean shouldShowEnabled() {
 				return orders.equals(ExtendedUnitOrders.FOLLOW_PLAYER);
 			}
 		});
-		this.farmingButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 68, 16, 12, 48, 0, 12, ORDER_BUTTONS, 
-			btn -> {
-				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FARMING)) {
-					orders = ExtendedUnitOrders.FARMING;
-					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FARMING));
-				}
-			}) {
+		this.guardButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 68, 16, 12, 32, 0, 12, ORDER_BUTTONS, 
+			btn -> handleSetOrders(ExtendedUnitOrders.GUARD_AREA)) {
+			@Override
+			public boolean shouldShowEnabled() {
+				return orders.equals(ExtendedUnitOrders.GUARD_AREA);
+			}
+		});
+		this.farmingButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 81, 16, 12, 48, 0, 12, ORDER_BUTTONS, 
+			btn -> handleSetOrders(ExtendedUnitOrders.FARMING)) {
 			@Override
 			public boolean shouldShowEnabled() {
 				return orders.equals(ExtendedUnitOrders.FARMING);
 			}
 		});
-		farmingButton.active=getMenu().profile.getUnitType().isFarming();
+		rangeSlider = addButton(new ExtendedSlider(leftPos+38, topPos + 85, 100, 20, "gui.lotrextended.hired_unit.range.guard", 1, 64, 1, 
+			() -> radius, this::handleRadiusSlider).setToolTip((wdget, matrixStack, pMouseX, pMouseY)->{
+				ExtendedHiredUnitOverviewScreen.this.renderTooltip(matrixStack, new TranslationTextComponent("gui.lotrextended.hired_unit.range.tooltip"), pMouseX, pMouseY);
+			}));
+		rangeSlider.active = orders.isHasRadius();
+		farmingButton.active = getMenu().profile.getUnitType().isFarming();
+		guardButton.active = !farmingButton.active;
+	}
+
+	@Override
+	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
+		this.renderBackground(pMatrixStack);
+		rangeSlider.active = orders.isHasRadius();
+		if(lastOrders!=orders) {
+			if(orders==ExtendedUnitOrders.GUARD_AREA) {
+				rangeSlider.setMessageKey("gui.lotrextended.hired_unit.range.guard");
+				rangeSlider.updateMessage();
+			}else if(orders==ExtendedUnitOrders.FARMING) {
+				rangeSlider.setMessageKey("gui.lotrextended.hired_unit.range.farming");
+				rangeSlider.updateMessage();
+			}
+			lastOrders= orders;
+		}
+		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
+		this.renderTooltip(pMatrixStack, pMouseX, pMouseY);
+	}
+
+	public void handleSetOrders(ExtendedUnitOrders pOrders) {
+		if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), pOrders)) {
+			orders = pOrders;
+			ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), orders));
+		}
+	}
+
+	public void handleRadiusSlider(double pRadius) {
+		this.radius = pRadius;
+	    ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitRadiusPacket(menu.getCompanion().getId(), (int) Math.floor(radius)));
 	}
 
 	@Override
@@ -106,15 +133,16 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
 		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), 8, this.titleLabelY + 12, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.companion").withStyle(TextFormatting.UNDERLINE), 8, this.titleLabelY + 12, 4210752);
 
 		this.font.draw(matrix, new TranslationTextComponent(menu.profile.getEntityUnitTypeName()), 8, this.titleLabelY + 22, 4210752);
 
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), 8, this.titleLabelY + 32, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.health").withStyle(TextFormatting.UNDERLINE), 8, this.titleLabelY + 32, 4210752);
 		this.font.draw(matrix, new StringTextComponent(df.format(info.getHiredUnitHealth()) + "/" + info.getHiredUnitMaxHealth()), 8, this.titleLabelY + 42, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", info.getUnitLevel()), 8, this.titleLabelY + 56, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", info.getCurrentXp() + "/" + info.getMaxXp()), 8, this.titleLabelY + 64, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", info.getMobKills()), 8, this.titleLabelY + 73, 4210752);
+		// TODO move to same rendering system as farming menu
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.combat_level", info.getUnitLevel()), 8, this.titleLabelY + 56, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.xp", info.getCurrentXp() + "/" + info.getMaxXp()), 8, this.titleLabelY + 64, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.mob_kills", info.getMobKills()), 8, this.titleLabelY + 73, 4210752);
 	}
 
 	@Override
@@ -124,18 +152,19 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, stationaryButton, ExtendedUnitOrders.STATIONARY, "stationary");
 		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, followsButton, ExtendedUnitOrders.FOLLOW_PLAYER, "follows");
 		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, farmingButton, ExtendedUnitOrders.FARMING, "farming");
+		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, guardButton, ExtendedUnitOrders.GUARD_AREA, "guard");
 	}
 
-	public void renderTooltipForUnitButtons(MatrixStack stack, int pMouseX, int pMouseY, ExtendedImageAddOffsetButton button, ExtendedUnitOrders orderType, String designator) {
+	public void renderTooltipForUnitButtons(MatrixStack stack, int pMouseX, int pMouseY, ExtendedAddOffsetImageButton button, ExtendedUnitOrders orderType, String designator) {
 		if (button.isHovered()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
 			String status = orders==orderType? "gui.lotrextended.base.on" : "gui.lotrextended.base.off";
-			String message = "gui.lotrextended.hired_unit_tooltip."+ designator + (orders==orderType ? "_on_description" : "_off_description");
+			String message = "gui.lotrextended.hired_unit.order."+ designator + (orders==orderType ? ".on.tooltip" : ".off.tooltip");
 			if(!button.active) {
 				status = "gui.lotrextended.base.disabled";
-				message = "gui.lotrextended.hired_unit_tooltip.description_disabled";
+				message = "gui.lotrextended.hired_unit.order.disabled.tooltip";
 			}
-			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip."+designator+"_title", new TranslationTextComponent(status)));
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit.order."+designator+".title.tooltip", new TranslationTextComponent(status)));
 			tooltips.add(new TranslationTextComponent(message).withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}

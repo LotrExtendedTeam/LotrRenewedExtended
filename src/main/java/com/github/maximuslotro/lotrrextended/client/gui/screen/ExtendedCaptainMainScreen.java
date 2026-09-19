@@ -11,6 +11,7 @@ import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
@@ -29,6 +30,8 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	private Button hireButton;
 	private Button leftArrowButton;
 	private Button rightArrowButton;
+	private TextFieldWidget squad;
+	private String squadName="";
 
 	public ExtendedCaptainMainScreen(NPCEntity entity, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent(entity.getName().getString()), 176, 256);
@@ -77,6 +80,12 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 				switchToNext();
 			}));
 		}
+		this.addButton(squad = new TextFieldWidget(this.font, (this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos+112, 150, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.custom.textBox")));
+		this.squad.setMaxLength(20);
+		this.squad.setValue(squadName);
+		 this.squad.setResponder((newValue) -> {
+	         this.squadName = newValue;
+	      });
 		updateHireButton();
 	}
 
@@ -88,6 +97,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 			hireButton.active=false;
 			return;
 		}
+		squad.tick();
 		Faction fac = npcEntity.getFaction();
 		AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
 		if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
@@ -148,7 +158,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", currentProfile.getHiringCost()), Util.NIL_UUID);
 				closeConnection();
 			}else {
-				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), currentProfile.getId()));
+				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), currentProfile.getId(), squadName));
 			}
 		}
 	}

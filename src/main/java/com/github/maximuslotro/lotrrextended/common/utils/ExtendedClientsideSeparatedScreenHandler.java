@@ -4,11 +4,16 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerCon
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectRadialScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectTypeScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSquadScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedMapScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedUnitMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
@@ -36,6 +41,15 @@ public class ExtendedClientsideSeparatedScreenHandler {
 
 	public static void openTraderMainMenuGui(NPCEntity entity, PlayerEntity player) {
 		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, player));
+	}
+
+	public static void openUnitMainMenuGui(int entityId, boolean hireDataPresent) {
+		Minecraft mc = Minecraft.getInstance();
+		ClientPlayerEntity clientplayerentity = mc.player;
+		Entity entity = mc.level.getEntity(entityId);
+		if (clientplayerentity!=null && entity instanceof NPCEntity) {
+			Minecraft.getInstance().setScreen(new ExtendedUnitMainScreen((NPCEntity)entity, clientplayerentity, hireDataPresent));
+		}
 	}
 
 	public static void openCaptainGui(ExtendedSOpenCaptainPacket packet) {
@@ -71,6 +85,20 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		Minecraft.getInstance().setScreen(new ExtendedBannerConfigurationScreen(packet));
 	}
 
+	public static void openHornModeSelect() {
+		if(ExtendedClientConfig.hornSelectScreenType.get()==0) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
+		}else if(ExtendedClientConfig.hornSelectScreenType.get()==1) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectScreen());
+		}else if(ExtendedClientConfig.hornSelectScreenType.get()==2) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectRadialScreen());
+		}
+	}
+
+	public static void openHornSquadSelect(String currentSquadName) {
+		Minecraft.getInstance().setScreen(new ExtendedHornSquadScreen(currentSquadName));
+	}
+
 	public static void handleBannerGUIUpdate(ExtendedSBannerOpenChangedScreenPacket packet) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.screen instanceof ExtendedBannerConfigurationScreen && ((ExtendedBannerConfigurationScreen)mc.screen).getConfigurePos().equals(packet.configurePos)) {
@@ -80,17 +108,17 @@ public class ExtendedClientsideSeparatedScreenHandler {
 
 	public static void openCarvingGUI(ExtendedSOpenStoneTextSignPacket packet) {
 		Minecraft mc = Minecraft.getInstance();
-    	TileEntity tileentity = mc.level.getBlockEntity(packet.getPos());
-        if (!(tileentity instanceof ExtendedStoneTextSignTileEntity)) {
-           tileentity = new ExtendedStoneTextSignTileEntity();
-           tileentity.setLevelAndPosition(mc.level, packet.getPos());
-        }
-    	mc.setScreen(new ExtendedExitStoneTextSignScreen((ExtendedStoneTextSignTileEntity)tileentity));
+		TileEntity tileentity = mc.level.getBlockEntity(packet.getPos());
+		if (!(tileentity instanceof ExtendedStoneTextSignTileEntity)) {
+			tileentity = new ExtendedStoneTextSignTileEntity();
+			tileentity.setLevelAndPosition(mc.level, packet.getPos());
+		}
+		mc.setScreen(new ExtendedExitStoneTextSignScreen((ExtendedStoneTextSignTileEntity)tileentity));
 	}
 
 	public static void openHoistGUI(ExtendedHoistTileEntity te) {
 		Minecraft mc = Minecraft.getInstance();
-    	mc.setScreen(new ExtendedHoistOptionsScreen(te));
+		mc.setScreen(new ExtendedHoistOptionsScreen(te));
 	}
 
 	public static void openConquestGUI() {
