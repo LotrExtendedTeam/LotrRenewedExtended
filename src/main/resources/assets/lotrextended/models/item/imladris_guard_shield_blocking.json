@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/imladris_guard_shield",
+	"parent": "lotrextended:item/imladris_guard_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/imladris_guard_shield_blocking"
+			"model": "lotrextended:item/imladris_guard_shield_blocking"
 		}
 	],
 	"display": {

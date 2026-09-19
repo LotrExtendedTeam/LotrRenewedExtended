@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/dwarven_shield",
+	"parent": "lotrextended:item/dwarven_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/dwarven_shield_blocking"
+			"model": "lotrextended:item/dwarven_shield_blocking"
 		}
 	],
 	"display": {

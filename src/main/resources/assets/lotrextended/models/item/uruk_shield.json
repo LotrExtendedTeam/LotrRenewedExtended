@@ -269,7 +269,7 @@
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/uruk_shield_blocking"
+			"model": "lotrextended:item/uruk_shield_blocking"
 		}
 	],
 	"display": {

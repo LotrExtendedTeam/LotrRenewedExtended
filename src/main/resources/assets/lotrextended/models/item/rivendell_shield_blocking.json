@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/rivendell_shield",
+	"parent": "lotrextended:item/rivendell_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/rivendell_shield_blocking"
+			"model": "lotrextended:item/rivendell_shield_blocking"
 		}
 	],
 	"display": {

@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/dunlending_shield",
+	"parent": "lotrextended:item/dunlending_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/dunlending_shield_blocking"
+			"model": "lotrextended:item/dunlending_shield_blocking"
 		}
 	],
 	"display": {
