@@ -61,12 +61,13 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private double lastMouseY;
 	private double lastMouseXjitter;
 	private double lastMouseYjitter;
+	// Render toggles
 	private boolean showDebug = false;
 	private boolean showConquest = false;
-	private boolean showMap = true;
+	private boolean showMapOverlay = true;
 	private boolean showGUI = true;
 	private boolean showConquestDEBUG = false;
-	private int conquestScaleSize = 8;
+	private int conquestDebugScaleSize = 3;
 
 	// Factions
 	private @Nullable Faction selectedFaction;
@@ -81,10 +82,11 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private float highestConquestlevel = 0.0f;
 	private float minConquestOpacity = 0.20f;
 
-	public ExtendedMapScreen() {
-		super(new StringTextComponent("CONQUEST"));
+	public ExtendedMapScreen(boolean pConquest) {
+		super(StringTextComponent.EMPTY);
 		factionSettings = FactionSettingsManager.clientInstance().getCurrentLoadedFactions();
 		conquestData = ExtendedLevelData.clientInstance().getConquestData();
+		showConquest = pConquest;
 	}
 
 	@Override
@@ -117,11 +119,11 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		}
 		clampMapBoundaries();
 		addButton(new ExtendedSimpleButton(width-100, 0, 100, 20, new StringTextComponent("GUI"), (button)-> showGUI=!showGUI));
-		addButton(new ExtendedSimpleButton(width-100, 20, 100, 20, new StringTextComponent("MapOVERLAY"), (button)-> showMap=!showMap));
+		addButton(new ExtendedSimpleButton(width-100, 20, 100, 20, new StringTextComponent("MapOVERLAY"), (button)-> showMapOverlay=!showMapOverlay));
 		addButton(new ExtendedSimpleButton(width-100, 40, 100, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
 		addButton(new ExtendedSimpleButton(width-100, 60, 100, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
 		addButton(new ExtendedSimpleButton(width-100, 80, 100, 20, new StringTextComponent("ConquestDEBUG"), (button)-> showConquestDEBUG=!showConquestDEBUG));
-		addButton(new ExtendedSlider(width-100, 100, 100, 20, "Conquest Scale", 1f, 16f, 1f, () -> conquestScaleSize, (v)-> conquestScaleSize =(int) v));
+		addButton(new ExtendedSlider(width-100, 100, 100, 20, "Conquest Scale", 1, 5, 1, () -> conquestDebugScaleSize, (v)-> conquestDebugScaleSize =(int) v));
 		addButton(new ExtendedSlider(width-100, 120, 100, 20, "Conquest Res", 0.1f, 1f, 0.01f, () -> minConquestOpacity, (v)-> minConquestOpacity = (float) v));
 
 		factionSlider = addButton(new ExtendedSlider((this.width/2)-150, height-50, 300, 14, "", 0F, 1.0F, 0, () -> 0, this::handleFactionSlider)
@@ -283,7 +285,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.minecraft.getTextureManager().bind(MAP_TEXTURE);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
-		if(showMap && MAP_TEXTURE_OVERLAY!=null) {
+		if(showMapOverlay && MAP_TEXTURE_OVERLAY!=null) {
 			this.minecraft.getTextureManager().bind(MAP_TEXTURE_OVERLAY);
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
@@ -388,10 +390,11 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			}
 		}
 		if(showConquestDEBUG) {
-			for(int x = 0; x < mapWidth; x += conquestScaleSize) {
-				for(int z = 0; z < mapHeight; z += conquestScaleSize) {
-					if(((x / conquestScaleSize) + (z / conquestScaleSize)) % 2 == 0) {
-						renderMapSquare(matrixStack, x, z, conquestScaleSize, CONQUEST_SQUARE_RED);
+			int scale = 1 << conquestDebugScaleSize;
+			for(int x = 0; x < mapWidth; x += scale) {
+				for(int z = 0; z < mapHeight; z += scale) {
+					if(((x / scale) + (z / scale)) % 2 == 0) {
+						renderMapSquare(matrixStack, x, z, scale, CONQUEST_SQUARE_RED);
 					}
 				}
 			}

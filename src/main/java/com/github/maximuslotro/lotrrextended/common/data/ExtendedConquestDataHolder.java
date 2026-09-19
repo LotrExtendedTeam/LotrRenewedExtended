@@ -37,6 +37,7 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	private File conquestFilesFolder;
 	private File conquestDataFile;
 	private int gridSquareScale=3;
+	private int gridRadialSpread=3;
 	private int mapScale;
 	private int mapOriginX;
 	private int mapOriginZ;
@@ -113,27 +114,52 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		if(!ExtendedServerConfig.enableConquest.get()) {
 			return;
 		}
-		ExtendedConquestRegion conquestRegion = getConquestSquare(convertCordsToConquest(position.getX(), position.getZ()));
 		conquestAdd *= conquestRate;
+		conquestAdd *= ExtendedBiomeInformationManager.INSTANCE.get(player.level.getBiome(position)).getConquestRate();
 		if(hiredUnit) {
 			conquestAdd *= 0.25F;
 		}
-		conquestAdd *= ExtendedBiomeInformationManager.INSTANCE.get(player.level.getBiome(position)).getConquestRate();
-		//TODO circular conquest
-		conquestRegion.addConquestRaw(playerFaction.getName(), conquestAdd);
-		conquestRegion.addConquestRaw(opposingFaction.getName(), -conquestAdd);
-		player.sendMessage(new StringTextComponent(String.format("+%.2f Conquest", conquestAdd)), Util.NIL_UUID);
-		ExtendedLog.info("Added {} conquest strength for {} for faction {} against {} for new amount {} ", conquestAdd, player.getDisplayName().getString(), 
-			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestRegion.getConquest(playerFaction.getName()));
+
+		ExtendedConquestPos centerCoord = convertCordsToConquest(position.getX(), position.getZ());
+		int radius = gridRadialSpread;
+		float decayRate = 0.25F;
+		float centerConquestAdded = 0f;
+		int cornerCutoff = (2 * radius) - 1;
+		for (int dx = -radius; dx <= radius; dx++) {
+			for (int dz = -radius; dz <= radius; dz++) {
+				if (Math.abs(dx) + Math.abs(dz) >= cornerCutoff) {
+		            continue;
+		        }
+				double distanceSquared = (dx * dx) + (dz * dz);
+				/*
+				if (distanceSquared > (radius * radius)) {
+					continue;
+				}*/
+				float distance = (float) Math.sqrt(distanceSquared);
+				float spreadMultiplier = Math.max(0.0f, 1.0f - (distance * decayRate));
+				float finalConquestForSquare = conquestAdd * spreadMultiplier;
+				if (finalConquestForSquare <= 0f) {
+					continue;
+				}
+				ExtendedConquestRegion conquestRegion = getConquestSquare(new ExtendedConquestPos(centerCoord.getPosX() + dx, centerCoord.getPosZ() + dz));
+				conquestRegion.addConquestRaw(playerFaction.getName(), finalConquestForSquare);
+				conquestRegion.addConquestRaw(opposingFaction.getName(), -finalConquestForSquare);
+				if (dx == 0 && dz == 0) {
+					centerConquestAdded = finalConquestForSquare;
+				}
+			}
+		}
+
+		player.sendMessage(new StringTextComponent(String.format("+%.2f Conquest", centerConquestAdded)), Util.NIL_UUID);
 	}
 	//########### Conquest map
-	public ExtendedConquestRegion getConquestSquare(Vector3i position) {
+	public @Nonnull ExtendedConquestRegion getConquestSquare(Vector3i position) {
 		return getConquestSquare(convertVectorToConquest(position));
 	}
-	public ExtendedConquestRegion getConquestSquare(Vector3d position) {
+	public @Nonnull ExtendedConquestRegion getConquestSquare(Vector3d position) {
 		return getConquestSquare(convertVectorToConquest(position));
 	}
-	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
+	public @Nonnull ExtendedConquestRegion getConquestSquare(@Nonnull ExtendedConquestPos conquestPos) {
 		lazyLoadConquestData();
 		return conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
 	}
@@ -235,6 +261,9 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		if(nbt.contains("conquest_scale")) {
 			gridSquareScale=nbt.getInt("conquest_scale");
 		}
+		if(nbt.contains("conquest_spread")) {
+			gridRadialSpread=nbt.getInt("conquest_spread");
+		}
 		if(nbt.contains("conquest_rate")) {
 			conquestRate=nbt.getFloat("conquest_rate");
 		}
@@ -287,6 +316,7 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	public void saveDataFile() {
 		CompoundNBT nbt = new CompoundNBT();
 		nbt.putInt("conquest_scale", gridSquareScale);
+		nbt.putInt("conquest_spread", gridRadialSpread);
 		nbt.putFloat("conquest_rate", conquestRate);
 		ExtendedIOUtils.save(conquestDataFile, nbt);
 	}

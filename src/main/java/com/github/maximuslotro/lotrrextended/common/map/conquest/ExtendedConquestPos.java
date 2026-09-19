@@ -1,16 +1,18 @@
 package com.github.maximuslotro.lotrrextended.common.map.conquest;
 
-import java.util.Objects;
-
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.ChunkPos;
 
+/**
+ * Based of {@link ChunkPos}
+ * */
 public class ExtendedConquestPos implements Comparable<ExtendedConquestPos> {
 	private final int x;
 	private final int z;
 
-	public ExtendedConquestPos(int x, int z) {
-		this.x = x;
-		this.z = z;
+	public ExtendedConquestPos(int pX, int pZ) {
+		this.x = pX;
+		this.z = pZ;
 	}
 
 	public int getPosX() {
@@ -19,6 +21,14 @@ public class ExtendedConquestPos implements Comparable<ExtendedConquestPos> {
 
 	public int getPosZ() {
 		return z;
+	}
+
+	public long toLong() {
+		return ((long) this.x & 4294967295L) | ((long) this.z & 4294967295L) << 32;
+	}
+
+	public static ExtendedConquestPos fromLong(long packed) {
+		return new ExtendedConquestPos((int)(packed & 4294967295L), (int)(packed >>> 32));
 	}
 
 	public void writeBuf(PacketBuffer buf) {
@@ -35,11 +45,8 @@ public class ExtendedConquestPos implements Comparable<ExtendedConquestPos> {
 		if (other == null) {
 			throw new NullPointerException("Cannot compare ExtendedConquestPos to null");
 		}
-		int same = Integer.compare(this.x, other.x);
-		if (same != 0) {
-			return same;
-		}
-		return Integer.compare(this.z, other.z);
+		int cmp = Integer.compare(this.x, other.x);
+		return cmp != 0 ? cmp : Integer.compare(this.z, other.z);
 	}
 
 	@Override
@@ -56,11 +63,11 @@ public class ExtendedConquestPos implements Comparable<ExtendedConquestPos> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(x, z);
+		return Long.hashCode(toLong());
 	}
 
 	@Override
 	public String toString() {
-		return "ExtendedConquestPos{" + "x=" + x + ", z=" + z + '}';
+		return "ConquestPos[" + this.x + ", " + this.z + "]";
 	}
 }

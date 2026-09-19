@@ -123,6 +123,6 @@ public class ExtendedClientsideSeparatedScreenHandler {
 
 	public static void openConquestGUI() {
 		Minecraft mc = Minecraft.getInstance();
-    	mc.setScreen(new ExtendedMapScreen());
+    	mc.setScreen(new ExtendedMapScreen(true));
 	}
 }
