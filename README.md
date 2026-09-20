@@ -43,6 +43,13 @@ Please check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide for full setup ins
 
 ---
 
+## Licensing (Dual-License Model)
+This project utilizes a split-license structure to keep code open while protecting our artwork:
+* **Source Code, and data generation files:** Licensed under the **LGPL-3.0-or-later** license (see `LICENSE`).
+* **Language Files & Speechbanks (`langs` directory, `speech` folders, `en_us.json`, etc.):** Licensed under the **GPL-3.0-or-later** license (synchronized with our localization repository).
+* **Visual & Audio Assets (Textures, 3D Models, Sounds, Structures):** Licensed under **All Rights Reserved (ARR)** (see `ASSET_LICENSE`).
+---
+
 ## Credits
 * Firstly, credit goes to everyone who contributed to the mod directly. 
 * Secondly, credit needs to go to Mevans for his ideas in LOTR: Legacy and for developing LOTR: Renewed, of which we have built our mod off of.

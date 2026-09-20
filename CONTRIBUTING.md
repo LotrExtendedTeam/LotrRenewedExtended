@@ -4,6 +4,19 @@ Thank you for your interest in contributing to **Lotr Renewed Extended** for Min
 
 ---
 
+## Licensing & Contribution Rules
+
+Before contributing, please note our **Dual-License Model**:
+* **Source Code & Data:** Licensed under **LGPL-3.0-or-later**. You can freely fork and contribute code, recipes, advancements, and text.
+* **Visual & Audio Assets:** **All Rights Reserved (ARR)**. You cannot submit copyrighted artwork or audio ripped from other projects.
+
+### Mandatory CLA Signing on Your First PR
+To protect the project, **all contributors must sign our Contributor License Agreement (CLA)**. 
+* When you open your **very first Pull Request**, our automated bot (`CLA Assistant`) will leave a comment with instructions on how to sign the CLA. 
+* Once signed, your PR will be automatically unlocked for review. You will **not** need to sign it again for future pull requests.
+
+---
+
 ## Prerequisites & Requirements
 
 Before setting up your workspace, ensure you have the following installed:
