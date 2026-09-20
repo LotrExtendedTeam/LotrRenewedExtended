@@ -30,7 +30,9 @@ import lotr.common.world.map.MapSettingsManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
@@ -407,7 +409,18 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 
 	private void renderConquestTooltip(MatrixStack matrixStack, int mouseX, int mouseY) {
 		if (hoveredConquestEntry != null && hoveredConquestLevel > 0) {
-			renderTooltip(matrixStack, new TranslationTextComponent("gui.lotrextended.map.conquest.strength", String.format("%.2f", hoveredConquestLevel)), mouseX, mouseY);
+			List<ITextComponent> tooltips = new ArrayList<>();
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.map.conquest.strength", String.format("%.2f", hoveredConquestLevel)));
+			if(hoveredConquestLevel>1) {
+				tooltips.add(new TranslationTextComponent("gui.lotrextended.map.conquest.benefit.low").withStyle(TextFormatting.GRAY));
+				//tooltips.add(new TranslationTextComponent("gui.lotrextended.map.conquest.benefit.spawning", 100).withStyle(TextFormatting.GRAY));
+				if(hoveredConquestLevel>500) {
+					tooltips.add(new TranslationTextComponent("gui.lotrextended.map.conquest.benefit.crafting", 500).withStyle(TextFormatting.GRAY));
+				}
+			}else {
+				tooltips.add(new TranslationTextComponent("gui.lotrextended.map.conquest.benefit.none").withStyle(TextFormatting.GRAY));
+			}
+			renderComponentTooltip(matrixStack, tooltips,  mouseX, mouseY);
 		}
 	}
 

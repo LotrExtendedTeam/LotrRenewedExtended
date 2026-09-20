@@ -479,6 +479,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Map
 		addD("gui.lotrextended.map.teleport", "Press '%s' to /tp");
 		addD("gui.lotrextended.map.conquest.strength", "Conquest Strength: %s");
+		addD("gui.lotrextended.map.conquest.benefit.none", "No effect.");
+		addD("gui.lotrextended.map.conquest.benefit.low", "Conquest is too low to benefit faction");
+		addD("gui.lotrextended.map.conquest.benefit.alies", "Conquest boosts %s allies");
+		addD("gui.lotrextended.map.conquest.benefit.crafting", "Enemy crafting tables unlocked");
+		addD("gui.lotrextended.map.conquest.benefit.spawning", "Faction units spawn");
 
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
