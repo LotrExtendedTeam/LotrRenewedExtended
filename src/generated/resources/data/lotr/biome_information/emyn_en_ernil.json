@@ -1,4 +1,5 @@
 {
   "id": "lotr:emyn_en_ernil",
-  "conquest_rate": 1.0
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE"
 }

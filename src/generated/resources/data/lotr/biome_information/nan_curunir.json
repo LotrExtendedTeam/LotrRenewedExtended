@@ -1,4 +1,5 @@
 {
   "id": "lotr:nan_curunir",
-  "conquest_rate": 0.2
+  "conquest_rate": 0.2,
+  "bandit_chance": "UNCOMMON"
 }

@@ -1,4 +1,5 @@
 {
   "id": "lotr:eastern_desolation",
-  "conquest_rate": 0.5
+  "conquest_rate": 0.5,
+  "bandit_chance": "NONE"
 }

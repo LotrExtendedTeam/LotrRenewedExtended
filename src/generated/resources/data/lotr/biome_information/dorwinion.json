@@ -1,4 +1,5 @@
 {
   "id": "lotr:dorwinion",
-  "conquest_rate": 0.75
+  "conquest_rate": 0.75,
+  "bandit_chance": "RARE"
 }

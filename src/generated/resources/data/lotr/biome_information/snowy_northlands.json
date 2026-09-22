@@ -1,4 +1,5 @@
 {
   "id": "lotr:snowy_northlands",
-  "conquest_rate": 1.0
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE"
 }

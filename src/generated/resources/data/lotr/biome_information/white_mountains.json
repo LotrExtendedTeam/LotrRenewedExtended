@@ -1,4 +1,5 @@
 {
   "id": "lotr:white_mountains",
-  "conquest_rate": 1.0
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE"
 }

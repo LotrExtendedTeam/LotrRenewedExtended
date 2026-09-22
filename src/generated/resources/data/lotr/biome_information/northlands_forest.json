@@ -1,4 +1,5 @@
 {
   "id": "lotr:northlands_forest",
-  "conquest_rate": 1.0
+  "conquest_rate": 1.0,
+  "bandit_chance": "UNCOMMON"
 }

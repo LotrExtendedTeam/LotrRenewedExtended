@@ -1,6 +1,8 @@
-package lotr.common.world.spawning;
+package com.github.maximuslotro.lotrrextended.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
+
 import lotr.common.entity.npc.ExtendedBanditEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.entity.SpawnReason;
@@ -32,14 +34,7 @@ public class BanditsSpawner {
         if (!alwaysSpawn) {
             BlockPos pos = new BlockPos(player.position());
             String biomeName = world.getBiomeName(pos).toString();
-            int chance = 0;
-
-            try {
-                chance = BanditBiomeList.getChanceOfBanditFromBiomeName(biomeName);
-            } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit");
-            }
-
+            int chance = ExtendedBiomeInformationManager.INSTANCE.get(world.getBiome(pos)).getBanditChance().getChance();
             int roll = world.random.nextInt(100) + 1;
             if (roll >= chance) {
                 ExtendedLog.debug("Roll for Bandit failed - Got " + roll + " and chance was " + chance + ".");
@@ -56,14 +51,7 @@ public class BanditsSpawner {
             int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
             BlockPos pos = new BlockPos(x, y, z);
 
-            // verify the position in within a biome that can have bandits in case they are at the border
-            String biomeName = world.getBiomeName(pos).toString();
-            int chance = 0;
-            try {
-                chance = BanditBiomeList.getChanceOfBanditFromBiomeName(biomeName);
-            } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit");
-            }
+            int chance = ExtendedBiomeInformationManager.INSTANCE.get(world.getBiome(pos)).getBanditChance().getChance();
 
             // all possible conditions that should make us quit and pick a new location
             BlockPos plusOneY = new BlockPos(x, y + 1, z);

@@ -1,4 +1,5 @@
 {
   "id": "lotr:tower_hills",
-  "conquest_rate": 0.5
+  "conquest_rate": 0.5,
+  "bandit_chance": "RARE"
 }

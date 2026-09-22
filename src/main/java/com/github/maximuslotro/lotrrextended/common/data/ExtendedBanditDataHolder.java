@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.BanditsSpawner;
 
-import lotr.common.world.spawning.BanditsSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;

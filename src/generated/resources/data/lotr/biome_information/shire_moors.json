@@ -1,4 +1,5 @@
 {
   "id": "lotr:shire_moors",
-  "conquest_rate": 0.2
+  "conquest_rate": 0.2,
+  "bandit_chance": "RARE"
 }

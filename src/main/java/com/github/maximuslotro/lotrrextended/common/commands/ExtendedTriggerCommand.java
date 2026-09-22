@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 import java.util.Collection;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.BanditsSpawner;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
-import lotr.common.world.spawning.BanditsSpawner;
 import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;

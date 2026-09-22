@@ -1,4 +1,5 @@
 {
   "id": "lotr:rivendell_river",
-  "conquest_rate": 0.2
+  "conquest_rate": 0.2,
+  "bandit_chance": "NONE"
 }
