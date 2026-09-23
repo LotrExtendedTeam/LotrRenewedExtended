@@ -3,7 +3,7 @@
 
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
-license="LGPL-3.0-or-later"
+license="LGPL-3.0-or-later (Code), GPL-3.0-or-later (Langs), ARR (Assets). See LICENSE.txt for details."
 issueTrackerURL="github.com/LotrExtendedTeam/LotrRenewedExtended/issues"
 
 [[mods]]
@@ -21,6 +21,7 @@ Extending Lotr Renewed's functionality to include all* 1.7.10 features
 * Pending work
 
 Note: Code is licensed under LGPL-3.0-or-later and assets are All Rights Reserved. Names, characters, races, and locations are property of J.R.R. Tolkien and his estate.
+Note: This mod included third-party code. See LICENSE.txt for details.
 '''
 
 [[dependencies.lotrextended]]
