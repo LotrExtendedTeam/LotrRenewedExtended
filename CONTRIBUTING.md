@@ -17,6 +17,13 @@ To protect the project, **all contributors must sign our Contributor License Agr
 
 ---
 
+## ## Contribution Acceptance & Large Changes
+Please note that not every contribution or pull request is guaranteed to be accepted. To ensure your work aligns with the vision of the mod and to save yourself time and effort, please consult the team before starting work on large additions, major gameplay changes, or new features.
+* **Before you code**: Open an issue or start a discussion on GitHub to pitch your idea and get feedback from the maintainers.
+* **Scope matters**: Bug fixes, small tweaks, translations, and minor asset improvements generally do not require prior consultation, but massive overhauls or brand-new feature additions do.
+
+---
+
 ## Prerequisites & Requirements
 
 Before setting up your workspace, ensure you have the following installed:
