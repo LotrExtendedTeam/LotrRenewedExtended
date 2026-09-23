@@ -32,8 +32,9 @@ We have reimplemented and expanded many classic systems, putting our own unique 
 ## Installation (For Players)
 1. Install Minecraft Forge for version 1.16.5.
 2. Download the latest `.jar` release of **Lotr Renewed Extended** from [CurseForge](https://legacy.curseforge.com/minecraft/mc-mods/lotr-renewed-extended/) or [Modrinth](https://modrinth.com/mod/lotr-renewed-extended/).
-3. Move the downloaded `.jar` file into your Minecraft `mods` folder.
-4. Launch the game and enjoy Middle-earth!
+3. Download the latest `.jar` release of **Lotr Renewed** from [CurseForge](https://legacy.curseforge.com/minecraft/mc-mods/the-lord-of-the-rings-mod-renewed/files/3661524).
+4. Move the downloaded `.jar` files into your Minecraft `mods` folder.
+5. Launch the game and enjoy Middle-earth!
 
 ---
 
