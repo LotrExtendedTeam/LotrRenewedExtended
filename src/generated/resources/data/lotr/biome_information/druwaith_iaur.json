@@ -1,5 +1,6 @@
 {
   "id": "lotr:druwaith_iaur",
   "conquest_rate": 1.0,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {}
 }

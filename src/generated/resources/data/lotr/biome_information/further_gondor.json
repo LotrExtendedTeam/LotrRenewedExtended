@@ -1,5 +1,8 @@
 {
   "id": "lotr:further_gondor",
   "conquest_rate": 1.0,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotrextended:near_harad_umbar": "RARE"
+  }
 }

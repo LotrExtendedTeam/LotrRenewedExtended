@@ -1,5 +1,6 @@
 {
   "id": "lotr:mordor_mountains",
   "conquest_rate": 0.5,
-  "bandit_chance": "NONE"
+  "bandit_chance": "NONE",
+  "invasion_data": {}
 }

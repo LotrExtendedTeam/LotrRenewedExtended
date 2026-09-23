@@ -1,5 +1,9 @@
 {
   "id": "lotr:swanfleet",
   "conquest_rate": 1.0,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:northern_orcs_wargs": "RARE",
+    "lotr:northern_orcs": "RARE"
+  }
 }

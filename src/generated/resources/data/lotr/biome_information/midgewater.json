@@ -1,5 +1,10 @@
 {
   "id": "lotr:midgewater",
   "conquest_rate": 1.0,
-  "bandit_chance": "UNCOMMON"
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:dunedain_north": "RARE",
+    "lotr:northern_orcs_wargs": "RARE",
+    "lotr:northern_orcs": "RARE"
+  }
 }

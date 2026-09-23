@@ -1,5 +1,10 @@
 {
   "id": "lotr:harnennor",
   "conquest_rate": 1.0,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:mordor": "UNCOMMON",
+    "lotr:gondor": "UNCOMMON",
+    "lotrextended:near_harad_umbar": "RARE"
+  }
 }

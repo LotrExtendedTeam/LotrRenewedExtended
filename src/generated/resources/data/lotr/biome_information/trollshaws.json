@@ -1,5 +1,10 @@
 {
   "id": "lotr:trollshaws",
   "conquest_rate": 1.0,
-  "bandit_chance": "COMMON"
+  "bandit_chance": "COMMON",
+  "invasion_data": {
+    "lotr:dunedain_north": "UNCOMMON",
+    "lotr:northern_orcs_wargs": "UNCOMMON",
+    "lotr:northern_orcs": "UNCOMMON"
+  }
 }

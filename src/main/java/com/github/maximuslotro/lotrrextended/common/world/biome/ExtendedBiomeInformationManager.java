@@ -13,6 +13,7 @@ import com.google.gson.JsonElement;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
@@ -29,7 +30,9 @@ public class ExtendedBiomeInformationManager extends JsonReloadListener {
 	private ExtendedBiomeInformationManager() {
 		super(GSON, directory);
 	}
-
+	public ExtendedBiomeInformation get(RegistryKey<Biome> pBiome) {
+		return get(pBiome.location());
+	}
 	public ExtendedBiomeInformation get(Biome pBiome) {
 		return get(pBiome.getRegistryName());
 	}

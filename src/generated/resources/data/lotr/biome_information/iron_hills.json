@@ -1,5 +1,9 @@
 {
   "id": "lotr:iron_hills",
   "conquest_rate": 1.0,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:northern_orcs_wargs": "UNCOMMON",
+    "lotr:northern_orcs": "RARE"
+  }
 }

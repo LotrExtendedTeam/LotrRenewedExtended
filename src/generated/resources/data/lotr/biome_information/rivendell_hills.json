@@ -1,5 +1,10 @@
 {
   "id": "lotr:rivendell_hills",
   "conquest_rate": 1.0,
-  "bandit_chance": "NONE"
+  "bandit_chance": "NONE",
+  "invasion_data": {
+    "lotr:high_elves_rivendell": "UNCOMMON",
+    "lotr:northern_orcs_wargs": "RARE",
+    "lotr:northern_orcs": "RARE"
+  }
 }

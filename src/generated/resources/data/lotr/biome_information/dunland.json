@@ -1,5 +1,11 @@
 {
   "id": "lotr:dunland",
   "conquest_rate": 0.5,
-  "bandit_chance": "COMMON"
+  "bandit_chance": "COMMON",
+  "invasion_data": {
+    "lotr:rohan": "UNCOMMON",
+    "lotr:dunedain_north": "RARE",
+    "lotr:northern_orcs_wargs": "RARE",
+    "lotr:northern_orcs": "RARE"
+  }
 }

@@ -1,4 +1,4 @@
-package lotr.common.world.spawning;
+package com.github.maximuslotro.lotrrextended.common.enums;
 
 /**
  * Represents the relative invasion frequency for a biome.
@@ -58,7 +58,7 @@ package lotr.common.world.spawning;
  *   https://www.usna.edu/Users/physics/mungan/_files/documents/Scholarship/OddsToBeChosen.pdf</li>
  * </ul>
  */
-public enum InvasionChance {
+public enum ExtendedInvasionChance {
 
     /** Invasions never occur. */
     NONE(0F),
@@ -83,7 +83,7 @@ public enum InvasionChance {
      *
      * @param chance hourly probability (0–1) that at least one invasion occurs
      */
-    private InvasionChance(float chance) {
+    private ExtendedInvasionChance(float chance) {
         this.chance = chance;
 
         /*

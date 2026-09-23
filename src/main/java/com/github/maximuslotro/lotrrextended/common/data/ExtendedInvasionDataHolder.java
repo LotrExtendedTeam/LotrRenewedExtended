@@ -7,7 +7,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import lotr.common.world.spawning.InvasionSpawner;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.InvasionSpawner;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;

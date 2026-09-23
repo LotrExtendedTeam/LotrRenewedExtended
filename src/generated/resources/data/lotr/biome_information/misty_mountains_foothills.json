@@ -1,5 +1,6 @@
 {
   "id": "lotr:misty_mountains_foothills",
   "conquest_rate": 1.0,
-  "bandit_chance": "NONE"
+  "bandit_chance": "NONE",
+  "invasion_data": {}
 }

@@ -1,5 +1,10 @@
 {
   "id": "lotr:ettenmoors",
   "conquest_rate": 0.75,
-  "bandit_chance": "UNCOMMON"
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:dunedain_north": "UNCOMMON",
+    "lotr:northern_orcs_wargs": "COMMON",
+    "lotr:northern_orcs": "COMMON"
+  }
 }

@@ -1,5 +1,10 @@
 {
   "id": "lotr:ithilien",
   "conquest_rate": 1.0,
-  "bandit_chance": "UNCOMMON"
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:mordor": "COMMON",
+    "lotr:gondor": "UNCOMMON",
+    "lotrextended:near_harad_umbar": "RARE"
+  }
 }

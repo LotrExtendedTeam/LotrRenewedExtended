@@ -1,5 +1,10 @@
 {
   "id": "lotr:eriador_downs",
   "conquest_rate": 1.0,
-  "bandit_chance": "UNCOMMON"
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:dunedain_north": "UNCOMMON",
+    "lotr:northern_orcs_wargs": "UNCOMMON",
+    "lotr:northern_orcs": "UNCOMMON"
+  }
 }

@@ -1,13 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
-public enum BanditChance {
+public enum ExtendedBanditChance {
 	NONE(0),
 	RARE(10),
 	UNCOMMON(30),
 	COMMON(70);
 	private int chance;
 
-	private BanditChance(int chance) {
+	private ExtendedBanditChance(int chance) {
 		this.chance = chance;
 	}
 
@@ -20,8 +20,8 @@ public enum BanditChance {
 		return name();
 	}
 
-	public static BanditChance byName(String name) {
-		for (BanditChance value : values()) {
+	public static ExtendedBanditChance byName(String name) {
+		for (ExtendedBanditChance value : values()) {
 			if (value.name().equalsIgnoreCase(name)) {
 				return value;
 			}

@@ -1,5 +1,6 @@
 {
   "id": "lotr:umbar_forest",
   "conquest_rate": 0.2,
-  "bandit_chance": "RARE"
+  "bandit_chance": "RARE",
+  "invasion_data": {}
 }

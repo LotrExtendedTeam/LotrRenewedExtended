@@ -1,5 +1,6 @@
 {
   "id": "lotr:shire_woodlands",
   "conquest_rate": 0.2,
-  "bandit_chance": "NONE"
+  "bandit_chance": "NONE",
+  "invasion_data": {}
 }

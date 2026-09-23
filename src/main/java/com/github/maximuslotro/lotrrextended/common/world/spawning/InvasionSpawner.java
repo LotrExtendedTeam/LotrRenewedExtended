@@ -1,8 +1,10 @@
-package lotr.common.world.spawning;
+package com.github.maximuslotro.lotrrextended.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedInvasionChance;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.fac.AlignmentPredicates;
@@ -11,9 +13,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class InvasionSpawner {
@@ -53,7 +59,7 @@ public class InvasionSpawner {
 			}
 
 			try {
-				ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
+				ExtendedInvasions invasion = pickInvasionFromBiomeName(world, world.getBiome(pos));
 				if (invasion != null) {
 					ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
 					spawner.setTypeKey(invasion.getTypeKey());
@@ -71,14 +77,45 @@ public class InvasionSpawner {
 
 		return spawnedInvasion;
 	}
+    public static ExtendedInvasions pickInvasionFromBiomeName(World world, Biome biome) throws IllegalArgumentException {
+        Map<ExtendedInvasions, ExtendedInvasionChance> invasionMap = ExtendedBiomeInformationManager.INSTANCE.get(biome).getInvasionMap();
+        return invasionMap.isEmpty() ? null : getInvasionFromHashmap(invasionMap, world);
+    }
+    /**
+     * Performs a weighted random selection from the provided invasion map.
+     *
+     * <p>Each {@link ExtendedInvasionChance#getChanceInt()} value contributes to the total
+     * weight out of 100. The world's random instance is used for selection.</p>
+     *
+     * @param rates map of invasions to their weighted chances
+     * @param world the world providing the random source
+     * @return the selected {@link ExtendedInvasions}, or {@code null} if none matched
+     */
+    private static ExtendedInvasions getInvasionFromHashmap(Map<ExtendedInvasions, ExtendedInvasionChance> rates, World world) {
+        // generate minimums
+        Map<Integer, ExtendedInvasions> minimums = new HashMap<>();
+        int minimum = 1;
+        for (ExtendedInvasions key : rates.keySet()) {
+            minimums.put(minimum, key);
+            minimum += rates.get(key).getChanceInt();
+        }
 
+        int random = world.random.nextInt(100) + 1;
+        Object[] minimumsSorted = minimums.keySet().toArray();
+        Arrays.sort(minimumsSorted);
+        for (int i = minimumsSorted.length - 1; i > -1; i--) {
+            if (random >= (Integer) minimumsSorted[i]) return minimums.get(minimumsSorted[i]);
+        }
+
+        return null;
+    }
 	/**
 	 * Performs natural invasion spawn checks near the player.
 	 *
 	 * <p>This method is intended for periodic/random spawning. It:</p>
 	 * <ul>
 	 *   <li>Gets all invasions valid for the player's current biome</li>
-	 *   <li>Rolls each invasion using {@link InvasionChance#getChancePerSecond()}</li>
+	 *   <li>Rolls each invasion using {@link ExtendedInvasionChance#getChancePerSecond()}</li>
 	 *   <li>Attempts up to 8 placement checks per successful roll</li>
 	 * </ul>
 	 *
@@ -97,12 +134,12 @@ public class InvasionSpawner {
 		boolean spawnedInvasion = false;
 
 		// get all possible invasions that could spawn where the player is standing
-		Map<ExtendedInvasions, InvasionChance> invasions = InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(new BlockPos(player.position())));
+		Map<ExtendedInvasions, ExtendedInvasionChance> invasions = ExtendedBiomeInformationManager.INSTANCE.get(world.getBiome(new BlockPos(player.position()))).getInvasionMap();
 		if (invasions.isEmpty()) {
 			return false;
 		}
 
-		for (Map.Entry<ExtendedInvasions, InvasionChance> entry : invasions.entrySet()) {
+		for (Map.Entry<ExtendedInvasions, ExtendedInvasionChance> entry : invasions.entrySet()) {
 			double pickedNum = world.random.nextDouble();
 			if (pickedNum <= entry.getValue().getChancePerSecond()) {
 				boolean isNegative = entry.getKey().getFactionPointer().resolveFaction(world).map(faction -> LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(faction, AlignmentPredicates.NEGATIVE)).orElse(false);
@@ -124,7 +161,7 @@ public class InvasionSpawner {
 						continue;
 					}
 					// Check again if position can have invasion, in the case of a border with a different biome
-					if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(spawnPos)).containsKey(entry.getKey())) {
+					if (!ExtendedBiomeInformationManager.INSTANCE.get(world.getBiome(spawnPos)).getInvasionMap().containsKey(entry.getKey())) {
 						continue;
 					}
 
