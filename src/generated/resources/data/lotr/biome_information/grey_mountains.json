@@ -3,8 +3,8 @@
   "conquest_rate": 1.0,
   "bandit_chance": "RARE",
   "invasion_data": {
-    "lotrextended:durins_folk": "RARE",
+    "lotr:northern_orcs": "RARE",
     "lotr:northern_orcs_wargs": "UNCOMMON",
-    "lotr:northern_orcs": "RARE"
+    "lotrextended:durins_folk": "RARE"
   }
 }

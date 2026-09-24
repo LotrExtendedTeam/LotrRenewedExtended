@@ -1,6 +1,6 @@
 {
   "id": "lotr:emyn_winion",
-  "conquest_rate": 1.0,
+  "conquest_rate": 0.75,
   "bandit_chance": "NONE",
   "invasion_data": {
     "lotr:mordor": "RARE"

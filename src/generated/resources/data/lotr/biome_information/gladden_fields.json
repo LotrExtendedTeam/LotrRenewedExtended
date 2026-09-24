@@ -3,7 +3,7 @@
   "conquest_rate": 1.0,
   "bandit_chance": "UNCOMMON",
   "invasion_data": {
-    "lotr:northern_orcs_wargs": "UNCOMMON",
-    "lotr:northern_orcs": "UNCOMMON"
+    "lotr:northern_orcs": "UNCOMMON",
+    "lotr:northern_orcs_wargs": "UNCOMMON"
   }
 }

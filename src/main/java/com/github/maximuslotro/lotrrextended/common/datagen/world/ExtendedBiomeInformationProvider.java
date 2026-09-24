@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInf
 import com.google.gson.Gson;
 
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -73,8 +74,11 @@ public abstract class ExtendedBiomeInformationProvider implements IDataProvider 
 		return "Extended Biome Information Provider";
 	}
 
+	public ExtendedBiomeInformation.Builder make(PreRegisteredLOTRBiome pBiome) {
+		return make(pBiome.getInitialisedBiome());
+	}
+
 	public ExtendedBiomeInformation.Builder make(Biome pBiome) {
 		return new ExtendedBiomeInformation.Builder(pBiome);
 	}
-
 }

@@ -3,6 +3,6 @@
   "conquest_rate": 1.0,
   "bandit_chance": "RARE",
   "invasion_data": {
-    "lotr:northern_orcs": "RARE"
+    "lotrextended:near_harad_umbar": "RARE"
   }
 }

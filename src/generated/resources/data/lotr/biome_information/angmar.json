@@ -4,7 +4,7 @@
   "bandit_chance": "NONE",
   "invasion_data": {
     "lotr:high_elves_rivendell": "RARE",
-    "lotr:dunedain_north": "RARE",
-    "lotr:high_elves_lindon": "RARE"
+    "lotr:high_elves_lindon": "RARE",
+    "lotr:dunedain_north": "RARE"
   }
 }

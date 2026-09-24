@@ -3,8 +3,8 @@
   "conquest_rate": 1.0,
   "bandit_chance": "RARE",
   "invasion_data": {
-    "lotr:mordor": "RARE",
+    "lotr:northern_orcs": "UNCOMMON",
     "lotr:northern_orcs_wargs": "UNCOMMON",
-    "lotr:northern_orcs": "UNCOMMON"
+    "lotr:mordor": "RARE"
   }
 }

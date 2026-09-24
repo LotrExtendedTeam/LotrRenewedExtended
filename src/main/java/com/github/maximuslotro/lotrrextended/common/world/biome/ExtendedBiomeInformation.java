@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
@@ -112,7 +113,7 @@ public class ExtendedBiomeInformation {
 		private final ResourceLocation biomeID;
 		private float conquestRate = 1.0f;
 		private ExtendedBanditChance banditSpawnChance = ExtendedBanditChance.NONE;
-		private Map<ExtendedInvasions, ExtendedInvasionChance> invasionData = new HashMap<>();
+		private Map<ExtendedInvasions, ExtendedInvasionChance> invasionData = new TreeMap<>();
 
 		public Builder(Biome pBiome) {
 			this(pBiome.getRegistryName());
@@ -122,6 +123,13 @@ public class ExtendedBiomeInformation {
 			this.biomeID = pBiomeID;
 		}
 
+		public Builder parent(ExtendedBiomeInformation biomeInformation) {
+			conquestRate = biomeInformation.getConquestRate();
+			banditSpawnChance = biomeInformation.getBanditChance();
+			invasionData = biomeInformation.getInvasionMap();
+			return this;
+		}
+
 		public Builder setConquestRate(float rate) {
 			conquestRate = rate;
 			return this;
@@ -129,6 +137,11 @@ public class ExtendedBiomeInformation {
 
 		public Builder setBanditChance(ExtendedBanditChance pChance) {
 			banditSpawnChance = pChance;
+			return this;
+		}
+
+		public Builder clearInvasions() {
+			invasionData.clear();
 			return this;
 		}
 
