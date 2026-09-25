@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.utils;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.banner.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
