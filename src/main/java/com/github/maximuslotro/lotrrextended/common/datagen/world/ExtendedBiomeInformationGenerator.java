@@ -46,18 +46,13 @@ public class ExtendedBiomeInformationGenerator extends ExtendedBiomeInformationP
 		make(LOTRBiomes.SHIRE_MARSHES).parent(shire).save(pConsumer);
 		make(LOTRBiomes.OLD_FOREST).setConquestRate(0).save(pConsumer);
 		// Bree
-		make(LOTRBiomes.BREELAND).setBanditChance(ExtendedBanditChance.RARE)
+		ExtendedBiomeInformation bree = make(LOTRBiomes.BREELAND).setBanditChance(ExtendedBanditChance.RARE)
 		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
 		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
-		make(LOTRBiomes.CHETWOOD).setBanditChance(ExtendedBanditChance.UNCOMMON)
-		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
-		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
+		make(LOTRBiomes.CHETWOOD).parent(bree).setBanditChance(ExtendedBanditChance.UNCOMMON).save(pConsumer);
+		// Barrow downs
 		ExtendedBiomeInformation barrowDowns = make(ExtendedBiomes.BARROW_DOWNS).setConquestRate(0.2f).save(pConsumer);
 		make(ExtendedBiomes.BARROW_DOWNS_RIVER).parent(barrowDowns).save(pConsumer);
-		make(LOTRBiomes.MIDGEWATER).setBanditChance(ExtendedBanditChance.UNCOMMON)
-		.addInvasion(ExtendedInvasions.DUNEDAIN, ExtendedInvasionChance.RARE)
-		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
-		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
 		// Rivendell
 		ExtendedBiomeInformation rivendell = make(LOTRBiomes.RIVENDELL).setConquestRate(0.2f).save(pConsumer);
 		make(ExtendedBiomes.RIVENDELL_CLIFFS).parent(rivendell).save(pConsumer);
@@ -112,6 +107,10 @@ public class ExtendedBiomeInformationGenerator extends ExtendedBiomeInformationP
 		.addInvasion(ExtendedInvasions.DUNEDAIN, ExtendedInvasionChance.UNCOMMON)
 		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.UNCOMMON)
 		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.UNCOMMON).save(pConsumer);
+		make(LOTRBiomes.MIDGEWATER).setBanditChance(ExtendedBanditChance.UNCOMMON)
+		.addInvasion(ExtendedInvasions.DUNEDAIN, ExtendedInvasionChance.RARE)
+		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
+		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
 		make(LOTRBiomes.SWANFLEET).setBanditChance(ExtendedBanditChance.RARE)
 		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
 		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
