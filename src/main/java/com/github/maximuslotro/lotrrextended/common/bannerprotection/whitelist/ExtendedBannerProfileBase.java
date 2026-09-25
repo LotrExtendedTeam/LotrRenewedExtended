@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -89,5 +90,22 @@ public abstract class ExtendedBannerProfileBase {
 	public CompoundNBT writeGameProfile(CompoundNBT pTag) {
 		pTag.putString("type", getType());
 		return writeProfileData(pTag);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (o == null || !(o instanceof ExtendedBannerProfileBase)) {
+	    	return false;
+	    }
+	    ExtendedBannerProfileBase that = (ExtendedBannerProfileBase) o;
+	    return Objects.equals(this.getId(), that.getId()) &&
+	           Objects.equals(this.getType(), that.getType()) &&
+	           Objects.equals(this.getName(), that.getName());
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(getId(), getType(), getName());
 	}
 }

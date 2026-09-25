@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -832,6 +833,21 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			// Set the permissions for the entry
 			entry.setPerms(entryPerms);
 			return entry;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+		    if (this == o) return true;
+		    if (o == null || getClass() != o.getClass()) {
+		    	return false;
+		    }
+		    ProtectionEntry that = (ProtectionEntry) o;
+		    return Objects.equals(entryPerms, that.entryPerms) && Objects.equals(profile, that.profile);
+		}
+
+		@Override
+		public int hashCode() {
+		    return Objects.hash(entryPerms, profile);
 		}
 	}
 }

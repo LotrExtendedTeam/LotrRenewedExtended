@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.list.AbstractOptionList;
@@ -34,16 +35,21 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 	public ExtendedProtectionListEntry(Minecraft pMinecraft, ExtendedBannerConfigurationScreen pParentScreen, ProtectionEntry pProtectionEntry) {
 		this.minecraft = pMinecraft;
 		this.protection = pProtectionEntry;
-		textField =  new TextFieldWidget(minecraft.font, 0, 0, 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox")) {
-			@Override
-			public void setFocus(boolean pIsFocused) {
-				super.setFocus(pIsFocused);
-			}
-		};
+		textField = new TextFieldWidget(minecraft.font, 0, 0, 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"));
 		textField.setBordered(false);
 		textField.setValue("");
 		textField.setFocus(false);
 		textField.setCanLoseFocus(true);
+		
+		this.textField.setResponder((newValue) -> {
+			if(protection.getProfile() instanceof ExtendedBannerProfileClient) {
+				((ExtendedBannerProfileClient)protection.getProfile()).setName(newValue);
+			}
+			else {
+				ExtendedBannerProfileClient newProfile = new ExtendedBannerProfileClient(newValue);
+				protection.updateProfile(newProfile);
+			}
+		});
 
 		permShowButton = new IndexedButton(3, 2, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showPerms=!showPerms){
 			@Override
@@ -84,16 +90,19 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 				leftLoc += (perm.ordinal()-1) * 10;
 			}
 			PermissionButton permButton = new PermissionButton(leftLoc, 2, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
-				ExtendedBannerPermissions tweaking = ((PermissionButton)button).perm;
-				if(protection.getEntryPerms().contains(tweaking)) {
-					protection.getEntryPerms().remove(tweaking);
+				ExtendedBannerPermissions permission = ((PermissionButton)button).perm;
+				if(protection.getEntryPerms().contains(permission)) {
+					protection.getEntryPerms().remove(permission);
 				}else {
-					if(tweaking.equals(ExtendedBannerPermissions.EVERYTHING)) {
+					// Handle adding permissions
+					if(permission.equals(ExtendedBannerPermissions.EVERYTHING)) {
+						// If everything is allowed, clear everything but banner (which isn't covered by everything
 						protection.getEntryPerms().removeIf((bannerPerm) -> !bannerPerm.equals(ExtendedBannerPermissions.BANNER));
-					}else if(!tweaking.equals(ExtendedBannerPermissions.EVERYTHING) && !tweaking.equals(ExtendedBannerPermissions.BANNER)){
+					}else if(!permission.equals(ExtendedBannerPermissions.EVERYTHING) && !permission.equals(ExtendedBannerPermissions.BANNER)){
+						// If anything except everything and banner, clear everything
 						protection.getEntryPerms().remove(ExtendedBannerPermissions.EVERYTHING);
 					}
-					protection.getEntryPerms().add(tweaking);
+					protection.getEntryPerms().add(permission);
 				}
 			}){
 				@Override
@@ -113,11 +122,9 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 			permButton.visible = showPerms;
 			permButtons.add(permButton);
 		}
-		this.children = ImmutableList.of(this.permShowButton, this.deleteButton, textField);
-		this.children.addAll(permButtons);
-
-
+		this.children = new ImmutableList.Builder<IGuiEventListener>().add(this.permShowButton).add(this.deleteButton).add(this.textField).addAll(this.permButtons).build();
 	}
+
 	public void setRemoved(boolean pRemoved) {
 		this.isRemoved = pRemoved;
 	}
@@ -129,12 +136,17 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 
 	public void tick() {
 		textField.tick();
+		textField.setTextColor(protection.getProfile() instanceof ExtendedBannerProfileClient ? 14737632 : 65313);
+		if(isRemoved) {
+			textField.setTextColor(16711680);
+		}
+		permButtons.forEach((button) -> button.visible = showPerms);
 	}
 
 	@Override
 	public void render(MatrixStack pMatrixStack, int pIndex, int pTop, int pLeft, int pWidth, int pHeight, int pMouseX, int pMouseY, boolean pIsMouseOver, float pPartialTicks) {
-		textField.setTextColor(protection.getProfile() instanceof ExtendedBannerProfileClient ? 14737632 : 65313);
-		permButtons.forEach((button) -> button.visible = showPerms);
+		this.minecraft.getTextureManager().bind(ExtendedBannerConfigurationScreen.guiTexture);
+	    AbstractGui.blit(pMatrixStack, 0, 0, 0, 192, 80, 17, 200, 192);
+	    AbstractGui.blit(pMatrixStack, 20, 0, 1, 192, 79, 17, 200, 192);
 	}
-
 }
