@@ -1,23 +1,25 @@
 package com.github.maximuslotro.lotrrextended.client.gui.banner;
 
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedScrollList;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.widget.list.AbstractOptionList;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ExtendedProtectionList extends AbstractOptionList<ExtendedProtectionListEntry> {
+public class ExtendedProtectionList extends ExtendedScrollList<ExtendedProtectionListEntry> {
 	private final ExtendedBannerConfigurationScreen bannerScreen;
 	private final Minecraft minecraft;
 	private final List<ExtendedProtectionListEntry> protections = Lists.newArrayList();
 
-	public ExtendedProtectionList(ExtendedBannerConfigurationScreen pParentScreen, Minecraft pMinecraft, int pWidth, int pHeight, int pY0, int pY1, int pItemHeight) {
-		super(pMinecraft, pWidth, pHeight, pY0, pY1, pItemHeight);
+	public ExtendedProtectionList(ExtendedBannerConfigurationScreen pParentScreen, Minecraft pMinecraft, int pWindowHeight, int pX0, int pScrollPlaneWidth, int pY0, int pY1, int pItemHeight) {
+		super(pMinecraft, pWindowHeight, pX0, pScrollPlaneWidth, pY0, pY1, pItemHeight);
 		this.bannerScreen = pParentScreen;
 		this.minecraft = pMinecraft;
 		this.setRenderBackground(false);
@@ -27,7 +29,7 @@ public class ExtendedProtectionList extends AbstractOptionList<ExtendedProtectio
 	@Override
 	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		double d0 = this.minecraft.getWindow().getGuiScale();
-		RenderSystem.enableScissor((int)((double)this.getRowLeft() * d0), (int)((this.height - this.y1) * d0), (int)((this.getScrollbarPosition() + 6) * d0), (int)((this.height - (this.height - this.y1) - this.y0 - 4) * d0));
+		RenderSystem.enableScissor((int)((double)this.getRowLeft() * d0), (int)((double)(this.height - this.y1) * d0), (int)((double)(this.getScrollbarPosition() + 6) * d0), (int)((double)(this.y1 - this.y0) * d0));
 		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
 		RenderSystem.disableScissor();
 	}
@@ -46,7 +48,15 @@ public class ExtendedProtectionList extends AbstractOptionList<ExtendedProtectio
 	}
 
 	public void tick() {
-		protections.forEach(ExtendedProtectionListEntry::tick);
+		this.protections.removeIf(entry -> {
+			entry.tick();
+			if (entry.isRemoved()) {
+				this.removeEntry(entry);
+				bannerScreen.getEditableData().whitelist.removeIf(p -> p.getClientID().equals(entry.protection.getClientID()));
+				return true;
+			}
+			return false;
+		});
 	}
 
 	public void addProtection(ProtectionEntry protectionEntry) {

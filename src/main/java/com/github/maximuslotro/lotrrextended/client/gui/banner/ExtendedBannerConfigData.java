@@ -41,17 +41,6 @@ public class ExtendedBannerConfigData {
         this.protMessage = packet.protMessage;
     }
 
-    // Copy constructor (used to clone state for local editing)
-    public ExtendedBannerConfigData(ExtendedBannerConfigData other) {
-        this.globalPerms = new ArrayList<>(other.globalPerms);
-        this.factionPerms = new ArrayList<>(other.factionPerms);
-        this.alignmentLevel = other.alignmentLevel;
-        this.whitelist = new ArrayList<>(other.whitelist);
-        this.canSelfProtect = other.canSelfProtect;
-        this.protectionType = other.protectionType;
-        this.protMessage = other.protMessage;
-    }
-
     public boolean differsFrom(ExtendedBannerConfigData other) {
         if (other == null) return true;
         return !Objects.equals(this.globalPerms, other.globalPerms) ||
@@ -60,6 +49,6 @@ public class ExtendedBannerConfigData {
                !Objects.equals(this.whitelist, other.whitelist) ||
                this.canSelfProtect != other.canSelfProtect ||
                this.protectionType != other.protectionType ||
-               !Objects.equals(this.protMessage, other.protMessage);
+               !this.protMessage.equals(other.protMessage);
     }
 }

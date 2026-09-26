@@ -34,7 +34,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -58,6 +57,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  * and alignment-based behavior. It also tracks placement metadata and lifecycle state.</p>
  */
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
+	private static final int MAX_PROTECTION_SIZE = 128;
 	/**
 	 * Whether this banner is the "active half" of a the two-block high banner instance.
 	 */
@@ -418,29 +418,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		return factionPerms.contains(ExtendedBannerPermissions.EVERYTHING) || factionPerms.contains(perm);
 	}
 
+
 	public void setProtectionWhitelist(List<ProtectionEntry> whitelist) {
-		protectionWhitelist.clear();
-		protectionWhitelist.addAll(whitelist);
+	    protectionWhitelist.clear();
+	    if (whitelist.size() > MAX_PROTECTION_SIZE) {
+            protectionWhitelist.addAll(whitelist.subList(0, MAX_PROTECTION_SIZE));
+        } else {
+            protectionWhitelist.addAll(whitelist);
+        }
 	}
 
 	public List<ProtectionEntry> getProtectionWhitelist() {
 		return protectionWhitelist;
-	}
-
-	public void addWhitelistPlayer(PlayerEntity player) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())));
-	}
-
-	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<ExtendedBannerPermissions> perms) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())).setPerms(perms));
-	}
-
-	public void addWhitelistPlayer(ExtendedFellowship fellowship) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())));
-	}
-
-	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<ExtendedBannerPermissions> perms) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
 	public boolean isSelfProtecting() {
@@ -734,6 +723,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public static class ProtectionEntry {
 		private List<ExtendedBannerPermissions> entryPerms = new ArrayList<>();
 		private ExtendedBannerProfileBase profile;
+		private UUID clientID;
 
 		public ProtectionEntry(ExtendedBannerProfileBase profile) {
 			this.profile = profile;
@@ -747,6 +737,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		public ProtectionEntry addPerm(ExtendedBannerPermissions perm) {
 			entryPerms.add(perm);
 			return this;
+		}
+
+		public UUID getClientID() {
+			return clientID;
+		}
+
+		public void setClientID(UUID clientID) {
+			this.clientID = clientID;
 		}
 
 		public boolean containsPermissionNode(ExtendedBannerPermissions permission) {

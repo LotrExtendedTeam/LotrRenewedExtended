@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedAbstractWindowedScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
@@ -32,8 +33,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedScreen {
-	protected static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/banner_gui.png");
+	protected static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotrextended:textures/gui/banner_gui.png");
 	private static final TranslationTextComponent TITLE = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
+	protected final static int SIZE = 512;
 	private ExtendedBannerConfigData serverData;
 	private ExtendedBannerConfigData editableData;
 	private boolean dataChanged = false;
@@ -42,9 +44,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	private TextFieldWidget alignmentField;
 	private TextFieldWidget messageField;
 	private boolean showDefaultPerms = false;
-	private List<Button> globalPermButtons = new ArrayList<>();
+	private List<PermissionButton> globalPermButtons = new ArrayList<>();
 	private boolean showFactionPerms = false;
-	private List<Button> factionPermButtons = new ArrayList<>();
+	private List<PermissionButton> factionPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
 	private Button createFellowship;
 	private Button createPlayer;
@@ -56,7 +58,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	private String playerName;
 	private Button playerInfo;
 	private ExtendedProtectionList protectionWhitelist;
-	private boolean initialized = false;;
 
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverPacket) {
@@ -90,7 +91,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	@Override
 	public void init() {
 		super.init();
-		playerInfo = this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 184, this.topPos + 6, 80, 232, 10, 10, new StringTextComponent("PlayerName"), button -> {}, guiTexture){
+		playerInfo = this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 184, this.topPos + 6, 80, 232, 10, 10, new StringTextComponent("PlayerName"), button -> {}, 
+			GUI_TEXTURE, SIZE, SIZE){
 			@Override
 			public int hoverOffset() {
 				return 10;
@@ -108,7 +110,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 				editableData.protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):
 					editableData.protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
 						new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
-		this.addButton(syncChanges = new ExtendedSimpleButton(this.leftPos + 85, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
+		this.addButton(syncChanges = new ExtendedSimpleButton(this.leftPos + 85, this.topPos + 167, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			if(isEnabled) {
 				sendPacket();
 			}
@@ -119,9 +121,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			}
 		});
 		syncChanges.active = false;
-		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 62, this.topPos + this.imageHeight-25, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
+		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 62, this.topPos + 167, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
 			editableData.canSelfProtect = !editableData.canSelfProtect;
-		}, guiTexture){
+		}, GUI_TEXTURE, SIZE, SIZE){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.editableData.canSelfProtect;
@@ -134,7 +136,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, lines, pMouseX, pMouseY);
 			}
 		});
-		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.global"), button -> showDefaultPerms = !showDefaultPerms, guiTexture){
+		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 7, this.topPos + 167, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.global"), 
+			button -> showDefaultPerms = !showDefaultPerms, GUI_TEXTURE, SIZE, SIZE){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showDefaultPerms;
@@ -166,8 +169,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 					leftLoc += (perm.ordinal()-1) * 10;
 				}
 			}
-			int upLoc = this.topPos + ((perm.ordinal()==0||perm.ordinal()>4) ? this.imageHeight-15 : this.imageHeight-25);
-			ExtendedTextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
+			int upLoc = this.topPos + ((perm.ordinal()==0||perm.ordinal()>4) ? 177 : 167);
+			PermissionButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
 				ExtendedBannerPermissions tweaking = ((PermissionButton)button).perm;
 				if(editableData.globalPerms.contains(tweaking)) {
 					editableData.globalPerms.remove(tweaking);
@@ -212,7 +215,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		this.alignmentField.setValue("+"+editableData.alignmentLevel);
 		this.alignmentField.setFocus(false);
 		this.alignmentField.setCanLoseFocus(true);
-		this.addButton(factionPermButton = new ExtendedTextureOffsetButton(this.leftPos + 145, this.topPos + 80, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showFactionPerms = !showFactionPerms, guiTexture){
+		this.addButton(factionPermButton = new ExtendedTextureOffsetButton(this.leftPos + 145, this.topPos + 80, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), 
+			button -> showFactionPerms = !showFactionPerms, GUI_TEXTURE, SIZE, SIZE){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showFactionPerms;
@@ -237,7 +241,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			int leftLoc = this.leftPos + 43 + (perm.ordinal() * 15);
 
 			int upLoc = this.topPos + 100;
-			ExtendedTextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
+			PermissionButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
 				ExtendedBannerPermissions tweaking = ((PermissionButton)button).perm;
 				if(editableData.factionPerms.contains(tweaking)) {
 					editableData.factionPerms.remove(tweaking);
@@ -285,23 +289,24 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			this.editableData.protMessage = newValue;
 		});
 		// Whitelist
-		if (this.initialized) {
-			this.protectionWhitelist.updateSize(this.width, this.height, 88, 88);
-		} else {
-			this.protectionWhitelist = new ExtendedProtectionList(this, this.minecraft, this.width, this.height, 88, 88, 36);
-		}
-		this.addButton(createPlayer = new ExtendedSimpleButton(this.leftPos + 29, this.topPos + 46, 64, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), button -> {
-			ProtectionEntry newProt = new ProtectionEntry(new ExtendedBannerProfileClient("")).addPerm(ExtendedBannerPermissions.EVERYTHING);
-			this.editableData.whitelist.add(newProt);
-			protectionWhitelist.addProtection(newProt);
-		}));
-		this.addButton(createFellowship = new ExtendedSimpleButton(this.leftPos + 92, this.topPos + 46, 79, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
-			ProtectionEntry newProt = new ProtectionEntry(new ExtendedBannerProfileClient("f/")).addPerm(ExtendedBannerPermissions.EVERYTHING);
-			this.editableData.whitelist.add(newProt);
-			protectionWhitelist.addProtection(newProt);
-		}));
+		this.protectionWhitelist = new ExtendedProtectionList(this, this.minecraft, this.height, leftPos + 27, 166, topPos + 45, topPos + 45 + 119, 36);
 		this.children.add(this.protectionWhitelist);
-		this.initialized = true;
+		this.addButton(createPlayer = new ExtendedSimpleButton(this.leftPos + 4, this.topPos + 45, 20, 20, new TranslationTextComponent("+P"), button -> {
+			ProtectionEntry newProt = new ProtectionEntry(new ExtendedBannerProfileClient("")).addPerm(ExtendedBannerPermissions.EVERYTHING);
+			newProt.setClientID(UUID.randomUUID());
+			this.editableData.whitelist.add(newProt);
+			protectionWhitelist.addProtection(newProt);
+		}, (Button button, MatrixStack stack, int mouseX, int mouseY) -> {
+			ExtendedBannerConfigurationScreen.this.renderTooltip(stack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), 200), mouseX, mouseY);
+		}));
+		this.addButton(createFellowship = new ExtendedSimpleButton(this.leftPos + 4, this.topPos + 66, 20, 20, new TranslationTextComponent("+F"), button -> {
+			ProtectionEntry newProt = new ProtectionEntry(new ExtendedBannerProfileClient("f/")).addPerm(ExtendedBannerPermissions.EVERYTHING);
+			newProt.setClientID(UUID.randomUUID());
+			this.editableData.whitelist.add(newProt);
+			protectionWhitelist.addProtection(newProt);
+		}, (Button button, MatrixStack stack, int mouseX, int mouseY) -> {
+			ExtendedBannerConfigurationScreen.this.renderTooltip(stack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), 200), mouseX, mouseY);
+		}));
 		this.protectionWhitelist.updateProtections(editableData.whitelist, protectionWhitelist.getScrollAmount());
 	}
 
@@ -348,11 +353,15 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		return factionMessage;
 	}
 
+	public ExtendedBannerConfigData getEditableData() {
+		return editableData;
+	}
+
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-		this.minecraft.getTextureManager().bind(guiTexture);
-		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		this.minecraft.getTextureManager().bind(GUI_TEXTURE);
+		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, SIZE, SIZE);
 		TranslationTextComponent title = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
 		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
 		if(!isEnabled) {
@@ -383,21 +392,19 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 				this.minecraft.getTextureManager().bind(this.getFlagLoc());
 				blit(matStack, this.leftPos-90, this.topPos + (this.imageHeight/2) - 74, 0, 0, 80, 148);
 			}
-			this.minecraft.getTextureManager().bind(guiTexture);
-			blit(matStack, this.leftPos+60, this.topPos+76, 0, 192, 80, 17);
+			this.minecraft.getTextureManager().bind(GUI_TEXTURE);
+			blit(matStack, this.leftPos+60, this.topPos+76, 0, 192, 80, 17, SIZE, SIZE);
 			// Permissions box
 			if(this.showFactionPerms) {
-				blit(matStack, this.leftPos+40, this.topPos+97, 0, 192, 79, 12);
-				blit(matStack, this.leftPos+40, this.topPos+109, 0, 205, 79, 4);
-				blit(matStack, this.leftPos+119, this.topPos+97, 38, 192, 42, 12);
-				blit(matStack, this.leftPos+119, this.topPos+109, 38, 205, 42, 4);
+				blit(matStack, this.leftPos+40, this.topPos+97, 0, 192, 79, 12, SIZE, SIZE);
+				blit(matStack, this.leftPos+40, this.topPos+109, 0, 205, 79, 4, SIZE, SIZE);
+				blit(matStack, this.leftPos+119, this.topPos+97, 38, 192, 42, 12, SIZE, SIZE);
+				blit(matStack, this.leftPos+119, this.topPos+109, 38, 205, 42, 4, SIZE, SIZE);
 			}
 			alignmentField.render(matStack, mouseX, mouseY, tick);
 		}else if(editableData.protectionType==1) {
 			//Whitelist
-			if (!this.protectionWhitelist.isEmpty()) {
-				this.protectionWhitelist.render(matStack, mouseX, mouseY, tick);
-			}
+			this.protectionWhitelist.render(matStack, mouseX, mouseY, tick);
 			alignmentField.visible=false;
 			factionPermButton.visible = false;
 			showFactionPerms=false;
@@ -413,15 +420,15 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			createPlayer.visible = false;
 			createFellowship.visible = false;
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.custom.description"), leftPos + 31, topPos + 64, 4210752);
-			this.minecraft.getTextureManager().bind(guiTexture);
-			blit(matStack, this.leftPos+30, this.topPos+76, 0, 192, 79, 17);
-			blit(matStack, this.leftPos+100, this.topPos+76, 1, 192, 79, 17);
+			this.minecraft.getTextureManager().bind(GUI_TEXTURE);
+			blit(matStack, this.leftPos+30, this.topPos+76, 0, 192, 79, 17, SIZE, SIZE);
+			blit(matStack, this.leftPos+100, this.topPos+76, 1, 192, 79, 17, SIZE, SIZE);
 			messageField.render(matStack, mouseX, mouseY, tick);
 		}
-		for(Button button : globalPermButtons) {
+		for(PermissionButton button : globalPermButtons) {
 			button.visible = showDefaultPerms;
 		}
-		for(Button button : factionPermButtons) {
+		for(PermissionButton button : factionPermButtons) {
 			button.visible = showFactionPerms;
 		}
 		super.render(matStack, mouseX, mouseY, tick);
@@ -439,6 +446,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		checkIfModified();
 		syncChanges.active = dataChanged;
 		protectionWhitelist.tick();
+		boolean toMany = editableData.whitelist.size()>128;
+		createFellowship.active = !toMany;
+		createPlayer.active = !toMany;
 	}
 
 	@Override
@@ -481,14 +491,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	public static class PermissionButton extends ExtendedTextureOffsetButton {
 		public ExtendedBannerPermissions perm;
 		public PermissionButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, ExtendedBannerPermissions perm, IPressable pOnPress) {
-			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, guiTexture);
+			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, GUI_TEXTURE, SIZE, SIZE);
 			this.perm = perm;
-		}
-	}
-
-	public static class IndexedButton extends ExtendedTextureOffsetButton {
-		public IndexedButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress) {
-			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, guiTexture);
 		}
 	}
 }

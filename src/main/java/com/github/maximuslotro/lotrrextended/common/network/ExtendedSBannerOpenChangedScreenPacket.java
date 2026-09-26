@@ -125,6 +125,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 			}
 			ProtectionEntry entry = new ProtectionEntry(type);
 			entry.setPerms(profilePerms);
+			entry.setClientID(UUID.randomUUID());
 			packet.whitelist.add(entry);
 		}
 		packet.canSelfProtect = buf.readBoolean();

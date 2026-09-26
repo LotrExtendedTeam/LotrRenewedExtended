@@ -11,11 +11,25 @@ public class ExtendedTextureOffsetButton extends ExtendedSimpleButton {
 	private int xLoc;
 	private int yLoc;
 	private final ResourceLocation guiTexture;
+	private int textureWidth = 256;
+	private int textureHeight = 256;
+
 	public ExtendedTextureOffsetButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress, ResourceLocation guiTexture) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
 		xLoc = tX;
 		yLoc = tY;
 		this.guiTexture = guiTexture;
+	}
+
+	public ExtendedTextureOffsetButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress, 
+		ResourceLocation guiTexture, int pTexturewidth, int pTextureheight) {
+		this(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, guiTexture);
+		this.setTextureSize(pTexturewidth, pTextureheight);
+	}
+
+	public void setTextureSize(int width, int height) {
+		this.textureWidth = width;
+		this.textureHeight = height;
 	}
 
 	@Override
@@ -30,7 +44,7 @@ public class ExtendedTextureOffsetButton extends ExtendedSimpleButton {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.enableDepthTest();
-		this.blit(pMatrixStack, this.x, this.y, xLoc, yLoc+amount, this.width, this.height);
+		blit(pMatrixStack, this.x, this.y, this.getBlitOffset(), (float)xLoc, (float)yLoc+amount, this.width, this.height, textureWidth, textureHeight);
 		this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
 		if (this.isHovered()) {
 			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
