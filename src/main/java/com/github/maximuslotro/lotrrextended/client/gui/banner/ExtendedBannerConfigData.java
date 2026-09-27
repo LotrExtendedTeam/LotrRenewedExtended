@@ -6,9 +6,8 @@ import java.util.Objects;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
-
-import net.minecraft.util.math.MathHelper;
 
 public class ExtendedBannerConfigData {
 	public List<ExtendedBannerPermissions> globalPerms;
@@ -23,7 +22,7 @@ public class ExtendedBannerConfigData {
 	public ExtendedBannerConfigData(ExtendedSBannerScreenPacket packet) {
 		this.globalPerms = new ArrayList<>(packet.globalPerms);
 		this.factionPerms = new ArrayList<>(packet.factionPerms);
-		this.alignmentLevel = MathHelper.clamp(Math.round(packet.alignmentLevel * 10) / 10f, 0f, 10000f);
+		this.alignmentLevel = ExtendedMEBannerTileEntity.clampAlignmentValue(packet.alignmentLevel);
 		// Deep copy using the new copy constructor
 	    this.whitelist = new ArrayList<>();
 	    for (ProtectionEntry entry : packet.whitelist) {

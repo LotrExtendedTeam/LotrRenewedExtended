@@ -46,6 +46,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -58,6 +59,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  */
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
 	private static final int MAX_PROTECTION_SIZE = 128;
+	public static final int MAX_ALIGNMENT = 10000;
 	/**
 	 * Whether this banner is the "active half" of a the two-block high banner instance.
 	 */
@@ -565,6 +567,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 	}
 
+	public static float clampAlignmentValue(float input) {
+		return MathHelper.clamp(Math.round(input * 10) / 10f, 0f, MAX_ALIGNMENT);
+	}
 	public void loadProtectionData(CompoundNBT loadableData) {
 		if(loadableData.contains("ProtectionDataUnique")) {
 			if(loadableData.contains("connectedEntity")) {
@@ -576,7 +581,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			protectionType = ExtendedBannerProtectionOwners.getByID(pCompound.getInt("protectionType"));
 			used = true;
 			if(pCompound.contains("alignmentThreshold")) {
-				alignmentLevel = pCompound.getFloat("alignmentThreshold");
+				alignmentLevel = MathHelper.clamp(pCompound.getFloat("alignmentThreshold"), 0f, ExtendedMEBannerTileEntity.MAX_ALIGNMENT);
 			}
 			if(pCompound.contains("placedPlayer")) {
 				placedPlayerUUID = pCompound.getUUID("placedPlayer");

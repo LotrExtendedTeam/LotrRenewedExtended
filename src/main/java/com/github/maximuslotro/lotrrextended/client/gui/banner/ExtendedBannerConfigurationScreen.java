@@ -26,7 +26,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -73,7 +72,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	public void updateFromPacket(ExtendedSBannerScreenPacket serverPacket) {
 		this.serverData = new ExtendedBannerConfigData(serverPacket);
 		this.editableData = new ExtendedBannerConfigData(serverPacket);
-		handleAlignmentUpdate();
+		handleAlignmentUpdate(true);
+		handleServerMessage();
 		this.protectionWhitelist.updateProtections(editableData.whitelist, protectionWhitelist.getScrollAmount());
 		this.configurePos = serverPacket.configurePos;
 		this.isEnabled = serverPacket.enabled;
@@ -209,7 +209,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			public void setFocus(boolean pIsFocused) {
 				super.setFocus(pIsFocused);
 				if(!pIsFocused) {
-					ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
+					ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate(true);
 				}
 			}
 		});
@@ -217,8 +217,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		this.alignmentField.setMaxLength(12);
 		this.alignmentField.setBordered(false);
 		this.alignmentField.setValue("+"+editableData.alignmentLevel);
-		this.alignmentField.setFocus(false);
-		this.alignmentField.setCanLoseFocus(true);
 		this.addButton(factionPermButton = new ExtendedTextureOffsetButton(this.leftPos + 145, this.topPos + 80, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), 
 			button -> showFactionPerms = !showFactionPerms, GUI_TEXTURE, SIZE, SIZE){
 			@Override
@@ -285,14 +283,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		this.addButton(messageField = new TextFieldWidget(this.font, this.leftPos+33, this.topPos+81, 145, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.custom.textBox")));
 		this.messageField.setMaxLength(24);
 		this.messageField.setBordered(false);
-		if(this.editableData.protMessage.isEmpty()) {
-			this.messageField.setValue("The Server");
-		}else {
-			this.messageField.setValue(this.editableData.protMessage);
-		}
-		this.messageField.setTextColor(65313);
+		handleServerMessage();
 		this.messageField.setFocus(false);
-		this.messageField.setCanLoseFocus(true);
 		this.messageField.setResponder((newValue) -> {
 			this.editableData.protMessage = newValue;
 			messageField.setTextColor(serverData.protMessage.equals(editableData.protMessage) ? 65313 : 14737632);
@@ -317,6 +309,15 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			ExtendedBannerConfigurationScreen.this.renderTooltip(stack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), 200), mouseX, mouseY);
 		}));
 		this.protectionWhitelist.updateProtections(editableData.whitelist, protectionWhitelist.getScrollAmount());
+	}
+
+	private void handleServerMessage() {
+		if(this.editableData.protMessage.isEmpty()) {
+			this.messageField.setValue("The Server");
+		}else {
+			this.messageField.setValue(this.editableData.protMessage);
+		}
+		this.messageField.setTextColor(65313);
 	}
 
 	private void rotatePermissionType() {
@@ -468,7 +469,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	@Override
 	public void onClose() {
 		super.onClose();
-		handleAlignmentUpdate();
+		handleAlignmentUpdate(true);
 		if(isEnabled) {
 			sendPacket();
 		}
@@ -481,18 +482,20 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		}
 	}
 
-	public void handleAlignmentUpdate() {
-		String newValue = alignmentField.getValue();
-		if(newValue.startsWith("+")) {
-			newValue=newValue.substring(1);
+	public void handleAlignmentUpdate(boolean setValue) {
+		if(!setValue) {
+			String newValue = alignmentField.getValue();
+			if(newValue.startsWith("+")) {
+				newValue=newValue.substring(1);
+			}
+			newValue=newValue.trim();
+			float newLevel =1.0f;
+			try {
+				newLevel = Float.parseFloat(newValue);
+			}catch(NumberFormatException e) {}
+			newLevel = ExtendedMEBannerTileEntity.clampAlignmentValue(newLevel);
+			editableData.alignmentLevel = newLevel;
 		}
-		newValue=newValue.trim();
-		float newLevel =1.0f;
-		try {
-			newLevel = Float.parseFloat(newValue);
-		}catch(NumberFormatException e) {}
-		newLevel = MathHelper.clamp(newLevel, 0f, 10000f);
-		editableData.alignmentLevel = Math.round(newLevel * 10) / 10.f;
 		alignmentField.setTextColor(Float.compare(serverData.alignmentLevel, editableData.alignmentLevel) == 0 ? 65313 : 14737632);
 		alignmentField.setValue("+"+editableData.alignmentLevel);
 	}
