@@ -20,7 +20,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissi
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerScreenPacket;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
@@ -420,12 +420,12 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 
 	public void setProtectionWhitelist(List<ProtectionEntry> whitelist) {
-	    protectionWhitelist.clear();
-	    if (whitelist.size() > MAX_PROTECTION_SIZE) {
-            protectionWhitelist.addAll(whitelist.subList(0, MAX_PROTECTION_SIZE));
-        } else {
-            protectionWhitelist.addAll(whitelist);
-        }
+		protectionWhitelist.clear();
+		if(whitelist.size() > MAX_PROTECTION_SIZE) {
+			protectionWhitelist.addAll(whitelist.subList(0, MAX_PROTECTION_SIZE));
+		} else {
+			protectionWhitelist.addAll(whitelist);
+		}
 	}
 
 	public List<ProtectionEntry> getProtectionWhitelist() {
@@ -440,7 +440,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		this.selfProtecting = canProtectSelf;
 	}
 
-	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(ServerPlayerEntity serverPlayer) {
+	public ExtendedSBannerScreenPacket verifyInfo(ServerPlayerEntity serverPlayer) {
 		boolean fixedBroken = false;
 		if(alignmentLevel<0) {
 			alignmentLevel = 0f;
@@ -519,10 +519,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			fixedBroken = true;
 		}
 		markAndUpdate();
-		if(fixedBroken) {
-			return new ExtendedSBannerOpenChangedScreenPacket(this);
-		}
-		return null;
+		// Always send back a response packet to the player, so GUI elements are updated
+		//if(fixedBroken) {
+		return new ExtendedSBannerScreenPacket(this, false, false);
+		//}
+		//return null;
 	}
 	@Override
 	@Nullable
@@ -729,6 +730,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			this.profile = profile;
 		}
 
+		// Perform deep copy
+		public ProtectionEntry(ProtectionEntry other) {
+			this.profile = other.getProfile().copy();
+			this.entryPerms = new ArrayList<>(other.entryPerms);
+			this.clientID = other.clientID;
+		}
+
 		public ProtectionEntry setPerms(List<ExtendedBannerPermissions> perms) {
 			entryPerms = perms;
 			return this;
@@ -835,17 +843,17 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 		@Override
 		public boolean equals(Object o) {
-		    if (this == o) return true;
-		    if (o == null || getClass() != o.getClass()) {
-		    	return false;
-		    }
-		    ProtectionEntry that = (ProtectionEntry) o;
-		    return Objects.equals(entryPerms, that.entryPerms) && Objects.equals(profile, that.profile);
+			if(this == o) return true;
+			if(o == null || getClass() != o.getClass()) {
+				return false;
+			}
+			ProtectionEntry that = (ProtectionEntry) o;
+			return this.entryPerms.size() == that.entryPerms.size() && this.entryPerms.containsAll(that.entryPerms) && profile.equals(that.profile);
 		}
 
 		@Override
 		public int hashCode() {
-		    return Objects.hash(entryPerms, profile);
+			return Objects.hash(entryPerms, profile);
 		}
 	}
 }

@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class ExtendedSBannerOpenChangedScreenPacket {
+public class ExtendedSBannerScreenPacket {
 	/** Default permissions applied under all protection modes. */
 	public List<ExtendedBannerPermissions> globalPerms;
 	/** Faction permissions applied under faction protection mode. */
@@ -36,12 +36,18 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	public BlockPos configurePos;
 	/** Whether banner protection is enabled for this banner. */
 	public boolean enabled;
+	/** Whether the receiving client has OP-level permissions. */
+	public boolean isClientOP;
+	/** Custom server protection mode message. */
 	public String protMessage;
+	/** Name of player who placed the banner. */
 	public String bannerPlacer;
+	/** true to open screen, false for screen updates. */
+	public boolean openScreen;
 
-	public ExtendedSBannerOpenChangedScreenPacket() {}
+	public ExtendedSBannerScreenPacket() {}
 
-	public ExtendedSBannerOpenChangedScreenPacket(boolean enabled) {
+	public ExtendedSBannerScreenPacket(boolean enabled) {
 		this.globalPerms = new ArrayList<>();
 		this.factionPerms = new ArrayList<>();
 		this.alignmentLevel = 0;
@@ -49,12 +55,14 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.canSelfProtect = true;
 		this.protectionType = 0;
 		this.configurePos = new BlockPos(0,0,0);
+		this.isClientOP = false;
 		this.enabled = enabled;
 		this.protMessage = "";
 		this.bannerPlacer = "";
+		this.openScreen = true;
 	}
 
-	public ExtendedSBannerOpenChangedScreenPacket(ExtendedMEBannerTileEntity bannerEntity) {
+	public ExtendedSBannerScreenPacket(ExtendedMEBannerTileEntity bannerEntity, boolean pIsClientOP, boolean openScreen) {
 		this.globalPerms = bannerEntity.getGlobalPerms();
 		this.factionPerms = bannerEntity.getFactionPerms();
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
@@ -62,12 +70,14 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.canSelfProtect = bannerEntity.isSelfProtecting();
 		this.protectionType = bannerEntity.getProtectionType().getId();
 		this.configurePos = bannerEntity.getBlockPos();
+		this.isClientOP = pIsClientOP;
 		this.enabled = true;
 		this.protMessage = bannerEntity.getProtectionOverrideMessage();
 		this.bannerPlacer = bannerEntity.getPlacedPlayerName();
+		this.openScreen = openScreen;
 	}
 
-	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
+	public static void encode(ExtendedSBannerScreenPacket packet, PacketBuffer buf) {
 		buf.writeInt(packet.globalPerms.size());
 		for(ExtendedBannerPermissions perm : packet.globalPerms) {
 			buf.writeByte((byte) perm.ordinal());
@@ -90,12 +100,14 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		buf.writeInt(packet.protectionType);
 		buf.writeBlockPos(packet.configurePos);
 		buf.writeBoolean(packet.enabled);
+		buf.writeBoolean(packet.isClientOP);
 		buf.writeUtf(packet.protMessage);
 		buf.writeUtf(packet.bannerPlacer);
+		buf.writeBoolean(packet.openScreen);
 	}
 
-	public static ExtendedSBannerOpenChangedScreenPacket decode(PacketBuffer buf) {
-		ExtendedSBannerOpenChangedScreenPacket packet = new ExtendedSBannerOpenChangedScreenPacket();
+	public static ExtendedSBannerScreenPacket decode(PacketBuffer buf) {
+		ExtendedSBannerScreenPacket packet = new ExtendedSBannerScreenPacket();
 		int globalPermsSize = buf.readInt();
 		packet.globalPerms = new ArrayList<>();
 		for(int i = 0; i<globalPermsSize; i++) {
@@ -119,7 +131,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 			String name = buf.readUtf(32767);
 			ExtendedBannerProfileBase type;
 			if(name.startsWith("f/")) {
-				type = new ExtendedBannerProfileFellowship(name.substring(2), id);
+				type = new ExtendedBannerProfileFellowship(id, name.substring(2));
 			}else {
 				type = new ExtendedBannerProfilePlayer(id, name);
 			}
@@ -132,13 +144,15 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		packet.protectionType = buf.readInt();
 		packet.configurePos = buf.readBlockPos();
 		packet.enabled = buf.readBoolean();
+		packet.isClientOP = buf.readBoolean();
 		packet.protMessage = buf.readUtf();
 		packet.bannerPlacer = buf.readUtf();
+		packet.openScreen = buf.readBoolean();
 		return packet;
 	}
 
-	public static void handle(ExtendedSBannerOpenChangedScreenPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.handleBannerGUIUpdate(pPacket));
+	public static void handle(ExtendedSBannerScreenPacket pPacket, Supplier<NetworkEvent.Context> context) {
 		context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> { ExtendedClientsideSeparatedScreenHandler.handleBannerGUI(pPacket);});
 	}
 }

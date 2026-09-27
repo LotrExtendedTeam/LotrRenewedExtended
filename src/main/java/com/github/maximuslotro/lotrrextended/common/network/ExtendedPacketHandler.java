@@ -38,9 +38,8 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSSyncServerSettingsPacket.class, ExtendedSSyncServerSettingsPacket::encode, ExtendedSSyncServerSettingsPacket::decode, ExtendedSSyncServerSettingsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCStopInteractingWithInteractablePacket.class, ExtendedCStopInteractingWithInteractablePacket::encode, ExtendedCStopInteractingWithInteractablePacket::decode, ExtendedCStopInteractingWithInteractablePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSBannerScreenPacket.class, ExtendedSBannerScreenPacket::encode, ExtendedSBannerScreenPacket::decode, ExtendedSBannerScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredOverviewMenuPacket.class, ExtendedCOpenHiredOverviewMenuPacket::encode, ExtendedCOpenHiredOverviewMenuPacket::decode, ExtendedCOpenHiredOverviewMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);

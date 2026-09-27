@@ -2,10 +2,10 @@ package com.github.maximuslotro.lotrrextended.client.gui.banner;
 
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedScrollList;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
-import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ExtendedProtectionList extends ExtendedScrollList<ExtendedProtectionListEntry> {
 	private final ExtendedBannerConfigurationScreen bannerScreen;
 	private final Minecraft minecraft;
-	private final List<ExtendedProtectionListEntry> protections = Lists.newArrayList();
+	private final List<ExtendedProtectionListEntry> protections = new ArrayList<>();
 
 	public ExtendedProtectionList(ExtendedBannerConfigurationScreen pParentScreen, Minecraft pMinecraft, int pWindowHeight, int pX0, int pScrollPlaneWidth, int pY0, int pY1, int pItemHeight) {
 		super(pMinecraft, pWindowHeight, pX0, pScrollPlaneWidth, pY0, pY1, pItemHeight);
@@ -50,7 +50,7 @@ public class ExtendedProtectionList extends ExtendedScrollList<ExtendedProtectio
 	public void tick() {
 		this.protections.removeIf(entry -> {
 			entry.tick();
-			if (entry.isRemoved()) {
+			if(entry.isRemoved()) {
 				this.removeEntry(entry);
 				bannerScreen.getEditableData().whitelist.removeIf(p -> p.getClientID().equals(entry.protection.getClientID()));
 				return true;

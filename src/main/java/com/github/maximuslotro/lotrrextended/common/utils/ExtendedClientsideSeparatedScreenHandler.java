@@ -15,8 +15,7 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.Extende
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenStoneTextSignPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
@@ -81,10 +80,6 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		}
 	}
 
-	public static void openBannerGUI(ExtendedSBannerOpenScreenPacket packet) {
-		Minecraft.getInstance().setScreen(new ExtendedBannerConfigurationScreen(packet));
-	}
-
 	public static void openHornModeSelect() {
 		if(ExtendedClientConfig.hornSelectScreenType.get()==0) {
 			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
@@ -99,9 +94,11 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		Minecraft.getInstance().setScreen(new ExtendedHornSquadScreen(currentSquadName));
 	}
 
-	public static void handleBannerGUIUpdate(ExtendedSBannerOpenChangedScreenPacket packet) {
+	public static void handleBannerGUI(ExtendedSBannerScreenPacket packet) {
 		Minecraft mc = Minecraft.getInstance();
-		if(mc.screen instanceof ExtendedBannerConfigurationScreen && ((ExtendedBannerConfigurationScreen)mc.screen).getConfigurePos().equals(packet.configurePos)) {
+		if(packet.openScreen) {
+			mc.setScreen(new ExtendedBannerConfigurationScreen(packet));
+		}else if(mc.screen instanceof ExtendedBannerConfigurationScreen && ((ExtendedBannerConfigurationScreen)mc.screen).getConfigurePos().equals(packet.configurePos)) {
 			((ExtendedBannerConfigurationScreen)mc.screen).updateFromPacket(packet);
 		}
 	}

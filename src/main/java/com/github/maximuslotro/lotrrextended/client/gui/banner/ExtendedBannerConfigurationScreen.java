@@ -13,8 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.E
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -27,6 +26,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -60,7 +60,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	private ExtendedProtectionList protectionWhitelist;
 
 
-	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverPacket) {
+	public ExtendedBannerConfigurationScreen(ExtendedSBannerScreenPacket serverPacket) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
 		this.serverData = new ExtendedBannerConfigData(serverPacket);
 		this.editableData = new ExtendedBannerConfigData(serverPacket);
@@ -70,13 +70,13 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		this.playerName = serverPacket.bannerPlacer;
 	}
 
-	public void updateFromPacket(ExtendedSBannerOpenChangedScreenPacket serverPacket) {
+	public void updateFromPacket(ExtendedSBannerScreenPacket serverPacket) {
 		this.serverData = new ExtendedBannerConfigData(serverPacket);
 		this.editableData = new ExtendedBannerConfigData(serverPacket);
-		this.configurePos = serverPacket.configurePos;
-		this.isEnabled = serverPacket.enabled;
 		handleAlignmentUpdate();
 		this.protectionWhitelist.updateProtections(editableData.whitelist, protectionWhitelist.getScrollAmount());
+		this.configurePos = serverPacket.configurePos;
+		this.isEnabled = serverPacket.enabled;
 		this.playerName = serverPacket.bannerPlacer;
 	}
 
@@ -175,9 +175,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 				if(editableData.globalPerms.contains(tweaking)) {
 					editableData.globalPerms.remove(tweaking);
 				}else {
+					// Handle adding permissions
 					if(tweaking.equals(ExtendedBannerPermissions.EVERYTHING)) {
+						// If everything is allowed, clear everything but banner (which isn't covered by everything
 						editableData.globalPerms.removeIf((bannerPerm) -> !bannerPerm.equals(ExtendedBannerPermissions.BANNER));
 					}else if(!tweaking.equals(ExtendedBannerPermissions.EVERYTHING) && !tweaking.equals(ExtendedBannerPermissions.BANNER)){
+						// If anything except everything and banner, clear everything
 						editableData.globalPerms.remove(ExtendedBannerPermissions.EVERYTHING);
 					}
 					editableData.globalPerms.add(tweaking);
@@ -210,6 +213,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 				}
 			}
 		});
+		this.alignmentField.setTextColor(65313);
 		this.alignmentField.setMaxLength(12);
 		this.alignmentField.setBordered(false);
 		this.alignmentField.setValue("+"+editableData.alignmentLevel);
@@ -249,9 +253,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 						editableData.factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
 					}
 				}else {
+					// Handle adding permissions
 					if(tweaking.equals(ExtendedBannerPermissions.EVERYTHING)) {
+						// If everything is allowed, clear everything
 						editableData.factionPerms.clear();
 					}else if(!tweaking.equals(ExtendedBannerPermissions.EVERYTHING)){
+						// If anything except everything and banner, clear everything
 						editableData.factionPerms.remove(ExtendedBannerPermissions.EVERYTHING);
 					}
 					editableData.factionPerms.add(tweaking);
@@ -283,10 +290,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		}else {
 			this.messageField.setValue(this.editableData.protMessage);
 		}
+		this.messageField.setTextColor(65313);
 		this.messageField.setFocus(false);
 		this.messageField.setCanLoseFocus(true);
 		this.messageField.setResponder((newValue) -> {
 			this.editableData.protMessage = newValue;
+			messageField.setTextColor(serverData.protMessage.equals(editableData.protMessage) ? 65313 : 14737632);
 		});
 		// Whitelist
 		this.protectionWhitelist = new ExtendedProtectionList(this, this.minecraft, this.height, leftPos + 27, 166, topPos + 45, topPos + 45 + 119, 36);
@@ -386,7 +395,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			createFellowship.visible = false;
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
 			if(this.getFactionMessage()!=null) {
-				this.font.draw(matStack, this.getFactionMessage(), leftPos + (this.imageWidth/2) - (this.font.width(this.getFactionMessage())/2), topPos + 45, 4210752);
+				this.font.draw(matStack, this.getFactionMessage(), leftPos + (this.imageWidth/2) - (this.font.width(this.getFactionMessage())/2), topPos + 47, 4210752);
 			}
 			if(this.getFlagLoc()!=null) {
 				this.minecraft.getTextureManager().bind(this.getFlagLoc());
@@ -478,14 +487,14 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			newValue=newValue.substring(1);
 		}
 		newValue=newValue.trim();
+		float newLevel =1.0f;
 		try {
-			editableData.alignmentLevel = Float.parseFloat(newValue);
-		}catch(NumberFormatException e) {
-			editableData.alignmentLevel=1.0f;
-		}
-		editableData.alignmentLevel = Math.round(editableData.alignmentLevel * 10) / 10.f;
-
-		this.alignmentField.setValue("+"+editableData.alignmentLevel);
+			newLevel = Float.parseFloat(newValue);
+		}catch(NumberFormatException e) {}
+		newLevel = MathHelper.clamp(newLevel, 0f, 10000f);
+		editableData.alignmentLevel = Math.round(newLevel * 10) / 10.f;
+		alignmentField.setTextColor(Float.compare(serverData.alignmentLevel, editableData.alignmentLevel) == 0 ? 65313 : 14737632);
+		alignmentField.setValue("+"+editableData.alignmentLevel);
 	}
 
 	public static class PermissionButton extends ExtendedTextureOffsetButton {

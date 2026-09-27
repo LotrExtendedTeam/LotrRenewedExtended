@@ -13,14 +13,12 @@ import net.minecraft.nbt.CompoundNBT;
  * Provides abstract methods to access profile details and persistence operations.
  */
 public abstract class ExtendedBannerProfileBase {
-
 	/**
 	 * Gets the unique identifier for this profile.
 	 *
 	 * @return the UUID of the profile
 	 */
 	public abstract UUID getId();
-
 	/**
 	 * Gets the underlying name of the profile.
 	 * This may be {@code null} for partial profile data constructed manually.
@@ -29,7 +27,12 @@ public abstract class ExtendedBannerProfileBase {
 	 */
 	@Nullable
 	public abstract String getName();
-
+	/**
+	 * Creates a deep copy/clone of this profile entry.
+	 * 
+	 * @return a new independent instance of the profile
+	 */
+	public abstract ExtendedBannerProfileBase copy();
 	/**
 	 * Gets the display name of the profile.
 	 * Can be the same as {@link #getName()}.
@@ -39,14 +42,12 @@ public abstract class ExtendedBannerProfileBase {
 	 */
 	@Nullable
 	public abstract String getDisplayName();
-
 	/**
 	 * Gets the profile type.
 	 *
 	 * @return the type of the profile as a String
 	 */
 	public abstract String getType();
-
 	/**
 	 * Determines if this profile is complete.
 	 * A complete profile has no empty fields.
@@ -55,14 +56,12 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return {@code true} if the profile is complete, {@code false} otherwise
 	 */
 	public abstract boolean isComplete();
-
 	/**
 	 * Checks if all fields in the profile class are filled.
 	 *
 	 * @return {@code true} if the profile is valid, {@code false} otherwise
 	 */
 	public abstract boolean isValid();
-
 	/**
 	 * Checks if the given player is contained within this profile entry.
 	 *
@@ -70,7 +69,6 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return {@code true} if the player is contained, {@code false} otherwise
 	 */
 	public abstract boolean isPlayerContained(PlayerEntity player);
-
 	/**
 	 * Saves the profile data into the given {@link CompoundNBT}.
 	 *
@@ -78,7 +76,6 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return the modified {@link CompoundNBT} containing the profile data
 	 */
 	public abstract CompoundNBT writeProfileData(CompoundNBT pTag);
-
 	/**
 	 * Saves the profile entry to the given {@link CompoundNBT}.
 	 * <p>
@@ -94,8 +91,8 @@ public abstract class ExtendedBannerProfileBase {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (o == null || !(o instanceof ExtendedBannerProfileBase)) {
+	    if(this == o) return true;
+	    if(o == null || getClass() != o.getClass()) {
 	    	return false;
 	    }
 	    ExtendedBannerProfileBase that = (ExtendedBannerProfileBase) o;

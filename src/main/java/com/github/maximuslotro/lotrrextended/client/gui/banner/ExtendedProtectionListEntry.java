@@ -37,7 +37,8 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 		this.minecraft = pMinecraft;
 		this.protection = pProtectionEntry;
 		this.parentScreen = pParentScreen;
-		textField = new TextFieldWidget(minecraft.font, 0, 0, 120, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"));
+		this.showPerms = !(protection.getEntryPerms().size() == 1 && protection.getEntryPerms().contains(ExtendedBannerPermissions.EVERYTHING));
+		textField = new TextFieldWidget(minecraft.font, 0, 0, 135, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"));
 		textField.setBordered(false);
 		textField.setValue(protection.getProfile().getDisplayName());
 		textField.setFocus(false);
@@ -94,6 +95,9 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 				ExtendedBannerPermissions permission = ((PermissionButton)button).perm;
 				if(protection.getEntryPerms().contains(permission)) {
 					protection.getEntryPerms().remove(permission);
+					if(protection.getEntryPerms().isEmpty()) {
+						protection.getEntryPerms().add(ExtendedBannerPermissions.EVERYTHING);
+					}
 				}else {
 					// Handle adding permissions
 					if(permission.equals(ExtendedBannerPermissions.EVERYTHING)) {
@@ -117,6 +121,7 @@ public class ExtendedProtectionListEntry extends AbstractOptionList.Entry<Extend
 				}
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+					//TODO fix tooltip clipping like how social interactions menu does it
 					pParentScreen.renderTooltip(pPoseStack, minecraft.font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==ExtendedBannerPermissions.BANNER ? TextFormatting.RED : (perm==ExtendedBannerPermissions.EVERYTHING ? TextFormatting.YELLOW : TextFormatting.WHITE)), 200), pMouseX, pMouseY);
 				}
 			};
