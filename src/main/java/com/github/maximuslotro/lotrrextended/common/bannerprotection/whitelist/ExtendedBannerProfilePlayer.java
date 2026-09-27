@@ -29,6 +29,10 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 		this.name = name;
 	}
 
+	@Override
+	public ExtendedBannerProfilePlayer copy() {
+		return new ExtendedBannerProfilePlayer(id, name);
+	}
 	/**
 	 * Gets the unique ID of this banner profile.
 	 * This may be null for partial profile data if constructed manually.
@@ -38,7 +42,6 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	public UUID getId() {
 		return id;
 	}
-
 	/**
 	 * Get underlying name for profile
 	 * This may be null for partial profile data if constructed manually.
@@ -49,7 +52,6 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	public String getName() {
 		return name;
 	}
-
 	/**
 	 * Get display name for profile
 	 * same as getName()

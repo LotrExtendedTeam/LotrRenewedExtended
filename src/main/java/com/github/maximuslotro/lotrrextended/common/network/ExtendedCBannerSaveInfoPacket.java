@@ -150,7 +150,7 @@ public class ExtendedCBannerSaveInfoPacket {
 			String name = buf.readUtf(32767);
 			ExtendedBannerProfileBase type;
 			if(name.startsWith("f/")) {
-				type = new ExtendedBannerProfileFellowship(name.substring(2), id);
+				type = new ExtendedBannerProfileFellowship(id, name.substring(2));
 			}else {
 				type = new ExtendedBannerProfilePlayer(id, name);
 			}
@@ -186,7 +186,7 @@ public class ExtendedCBannerSaveInfoPacket {
 	    		bannerTE.setCanProtectSelf(pPacket.canSelfProtect);
 	    		bannerTE.setProtectionType(ExtendedBannerProtectionOwners.getByID(pPacket.protectionType));
 	    		bannerTE.setProtectionOverrideMessage(pPacket.protMessage);
-	    		ExtendedSBannerOpenChangedScreenPacket returnPacket = bannerTE.verifyInfo(player);
+	    		ExtendedSBannerScreenPacket returnPacket = bannerTE.verifyInfo(player);
 	    		if(returnPacket!=null) {
 	    			ExtendedPacketHandler.sendToClient(returnPacket, player);
 	    		}

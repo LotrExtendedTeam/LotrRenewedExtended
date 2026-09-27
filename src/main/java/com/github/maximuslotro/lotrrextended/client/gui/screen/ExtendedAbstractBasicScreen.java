@@ -12,7 +12,7 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 
 /**
- * A class of modified vanilla methods expose additional functionality along with helper methods
+ * A class of modified vanilla methods to expose additional functionality along with helper methods
  * */
 public abstract class ExtendedAbstractBasicScreen extends Screen {
 	public static final int WHITE_TEXT = 16777215;

@@ -10,8 +10,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 public class ExtendedSimpleButton extends Button {
+
 	public ExtendedSimpleButton(int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
+	}
+
+	public ExtendedSimpleButton(int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip) {
+		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 	}
 
 	@Override

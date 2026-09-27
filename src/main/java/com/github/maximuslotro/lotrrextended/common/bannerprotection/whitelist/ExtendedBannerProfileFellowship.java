@@ -41,9 +41,14 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	 * @param id Unique ID of the profile
 	 * @param name Display name of the profile
 	 */
-	public ExtendedBannerProfileFellowship(final String name, final UUID id) {
-		this.name = name;
+	public ExtendedBannerProfileFellowship(final UUID id, final String name) {
 		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public ExtendedBannerProfileFellowship copy() {
+		return new ExtendedBannerProfileFellowship(id, name);
 	}
 
 	/**

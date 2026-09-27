@@ -37,7 +37,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private final static ResourceLocation MAP_ICONS = new ResourceLocation("lotrextended", "textures/gui/map_icons.png");
-	private final static int MAP_ICONS_SIZE = 512;
+	private final static int MAP_TEX_SIZE = 512;
 	private final static int CONQUEST_SQUARE_RED = 0x80FF0000;
 	private final static int CONQUEST_SQUARE_GREEN = 0x8000FF00;
 	private final static int CONQUEST_SQUARE_GRAY = 0x80808080;
@@ -129,7 +129,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		addButton(new ExtendedSlider(width-100, 120, 100, 20, "Conquest Res", 0.1f, 1f, 0.01f, () -> minConquestOpacity, (v)-> minConquestOpacity = (float) v));
 
 		factionSlider = addButton(new ExtendedSlider((this.width/2)-150, height-50, 300, 14, "", 0F, 1.0F, 0, () -> 0, this::handleFactionSlider)
-			.setSliderTexture(MAP_ICONS, 16).setDrawBackground(false).setSliderTextureUV(0, 14).setTextureSize(MAP_ICONS_SIZE, MAP_ICONS_SIZE).disableMessage());
+			.setSliderTexture(MAP_ICONS, 16).setDrawBackground(false).setSliderTextureUV(0, 14).setTextureSize(MAP_TEX_SIZE, MAP_TEX_SIZE).disableMessage());
 	}
 
 	public void setSelectedFaction(Faction pFaction) {
@@ -335,7 +335,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int scrollBarLeft = (this.width / 2) - 150;
 		int scrollBarTop = height - 50;
-		blitFloat(matrixStack, scrollBarLeft, scrollBarTop, 0, 0, 300, 14, MAP_ICONS_SIZE, MAP_ICONS_SIZE);
+		blitFloat(matrixStack, scrollBarLeft, scrollBarTop, 0, 0, 300, 14, MAP_TEX_SIZE, MAP_TEX_SIZE);
 		if(regionFactions.isEmpty()) {
 			return;
 		}
