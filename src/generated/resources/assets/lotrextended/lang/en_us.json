@@ -2295,6 +2295,7 @@
   "gui.lotrextended.map.conquest.benefit.none": "No effect.",
   "gui.lotrextended.map.conquest.benefit.spawning": "Faction units spawn",
   "gui.lotrextended.map.conquest.strength": "Conquest Strength: %s",
+  "gui.lotrextended.map.region_button": "Region: %s",
   "gui.lotrextended.map.teleport": "Press '%s' to /tp",
   "gui.lotrextended.menu.achievements": "Achievements",
   "gui.lotrextended.menu.advancements": "Advancements",

@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
 import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedColorUtil;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedConquestDataHolder;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestPos;
@@ -77,11 +78,13 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private @Nonnull List<Faction> regionFactions = new ArrayList<>();
 	private final FactionSettings factionSettings;
 	private ExtendedSlider factionSlider;
+	private ExtendedSimpleButton regionButton;
 	// Conquest
 	private final ExtendedConquestDataHolder conquestData;
 	private @Nullable Entry<ExtendedConquestPos, ExtendedConquestRegion> hoveredConquestEntry = null;
-	private float hoveredConquestLevel = 0.0f;
-	private float highestConquestlevel = 0.0f;
+	private float hoveredConquestLevel;
+	private float highestConquestlevel;
+	private float lowestConquestlevel;
 	private float minConquestOpacity = 0.20f;
 
 	public ExtendedMapScreen(boolean pConquest) {
@@ -106,15 +109,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			this.MAP_TEXTURE_OVERLAY = overlay;
 		}
 
-		List<FactionRegion> regions = factionSettings.getRegionsForDimension(mc.level.dimension());
-		if(regions!=null && !regions.isEmpty()) {
-			selectedRegion= regions.get(0);
-			List<Faction> factions = factionSettings.getFactionsForRegion(selectedRegion);
-			regionFactions = factions;
-			if(factions!=null && !factions.isEmpty()) {
-				setSelectedFaction(factions.get(0));
-			}
-		}
+		rotateRegion();
 
 		if (this.minecraft != null && this.minecraft.player != null) {
 			centerMapOnCords(this.minecraft.player.getX(), this.minecraft.player.getZ());
@@ -122,14 +117,17 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		clampMapBoundaries();
 		addButton(new ExtendedSimpleButton(width-100, 0, 100, 20, new StringTextComponent("GUI"), (button)-> showGUI=!showGUI));
 		addButton(new ExtendedSimpleButton(width-100, 20, 100, 20, new StringTextComponent("MapOVERLAY"), (button)-> showMapOverlay=!showMapOverlay));
-		addButton(new ExtendedSimpleButton(width-100, 40, 100, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
-		addButton(new ExtendedSimpleButton(width-100, 60, 100, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
-		addButton(new ExtendedSimpleButton(width-100, 80, 100, 20, new StringTextComponent("ConquestDEBUG"), (button)-> showConquestDEBUG=!showConquestDEBUG));
-		addButton(new ExtendedSlider(width-100, 100, 100, 20, "Conquest Scale", 1, 5, 1, () -> conquestDebugScaleSize, (v)-> conquestDebugScaleSize =(int) v));
-		addButton(new ExtendedSlider(width-100, 120, 100, 20, "Conquest Res", 0.1f, 1f, 0.01f, () -> minConquestOpacity, (v)-> minConquestOpacity = (float) v));
-
+		
+		if(ExtendedClientConfig.isDevMode()) {
+			addButton(new ExtendedSimpleButton(width-100, 40, 100, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
+			addButton(new ExtendedSimpleButton(width-100, 60, 100, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
+			addButton(new ExtendedSimpleButton(width-100, 80, 100, 20, new StringTextComponent("ConquestDEBUG"), (button)-> showConquestDEBUG=!showConquestDEBUG));
+			addButton(new ExtendedSlider(width-100, 100, 100, 20, "Conquest Scale", 1, 5, 1, () -> conquestDebugScaleSize, (v)-> conquestDebugScaleSize =(int) v));
+			addButton(new ExtendedSlider(width-100, 120, 100, 20, "Conquest Res", 0.1f, 1f, 0.01f, () -> minConquestOpacity, (v)-> minConquestOpacity = (float) v));
+		}
 		factionSlider = addButton(new ExtendedSlider((this.width/2)-150, height-50, 300, 14, "", 0F, 1.0F, 0, () -> 0, this::handleFactionSlider)
 			.setSliderTexture(MAP_ICONS, 16).setDrawBackground(false).setSliderTextureUV(0, 14).setTextureSize(MAP_TEX_SIZE, MAP_TEX_SIZE).disableMessage());
+		regionButton = addButton(new ExtendedSimpleButton((this.width/2)-50, height-30, 100, 20, StringTextComponent.EMPTY, (button)-> rotateRegion()));
 	}
 
 	public void setSelectedFaction(Faction pFaction) {
@@ -137,6 +135,30 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.selectedFaction = pFaction;
 		if(selectedFaction!=null && oldFaction!=selectedFaction) {
 			ExtendedPacketHandler.sendToServer(new ExtendedCRequestConquestDataPacket(selectedFaction.getName()));
+		}
+	}
+
+	public void rotateRegion() {
+		List<FactionRegion> regions = factionSettings.getRegionsForDimension(mc.level.dimension());
+		if(regions!=null && !regions.isEmpty()) {
+			if(selectedRegion==null) {
+				selectedRegion= regions.get(0);
+			}else {
+				int index = regions.indexOf(selectedRegion);
+				if(index!=-1) {
+					int nextIndex = (index + 1) % regions.size();
+					selectedRegion= regions.get(nextIndex);
+				}else{
+					selectedRegion= regions.get(0);
+				}
+			}
+			List<Faction> factions = factionSettings.getFactionsForRegion(selectedRegion);
+			regionFactions = factions;
+			if(factions!=null && !factions.isEmpty()) {
+				setSelectedFaction(factions.get(0));
+			}else {
+				setSelectedFaction(null);
+			}
 		}
 	}
 
@@ -273,6 +295,17 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	}
 
 	@Override
+	public void tick() {
+		super.tick();
+		if(this.selectedRegion!=null) {
+			selectedRegion.getDisplayName();
+			regionButton.setMessage(new TranslationTextComponent("gui.lotrextended.map.region_button", selectedRegion.getDisplayName()));
+		}
+		factionSlider.visible=showConquest;
+		regionButton.visible=showConquest;
+	}
+
+	@Override
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		this.lastMouseXjitter = mouseX;
 		this.lastMouseYjitter = mouseY;
@@ -289,7 +322,6 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
 		if(showMapOverlay && MAP_TEXTURE_OVERLAY!=null) {
 			this.minecraft.getTextureManager().bind(MAP_TEXTURE_OVERLAY);
-			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
 		}
 		// Render Conquest
@@ -315,7 +347,6 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		if(showDebug) {
 			renderDebugInfo(matrixStack, mouseX, mouseY);
 		}
-		factionSlider.visible=showConquest;
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}
 
@@ -349,8 +380,8 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 
 	private void renderConquest(MatrixStack matrixStack, int mouseX, int mouseY) {
 		this.hoveredConquestEntry = null;
-		this.hoveredConquestLevel = 0.0f;
-		this.highestConquestlevel = 0.0f;
+		this.highestConquestlevel = 1.0f;
+		this.lowestConquestlevel = 0.0f;
 		if(selectedFaction == null || conquestData.isConquestMapEmpty()) {
 			return;
 		}
@@ -359,34 +390,50 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		double maxVisibleMapX = screenToMapPixelX(this.width);
 		double minVisibleMapZ = screenToMapPixelZ(0);
 		double maxVisibleMapZ = screenToMapPixelZ(this.height);
-		float maxVisibleConquest = 1.0f;
+
+		float maxVisibleConquest = 0.0f;
+	    float minVisibleConquest = Float.MAX_VALUE;
 		Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = conquestData.getConquestMap();
 		for(Entry<ExtendedConquestPos, ExtendedConquestRegion> entry : conquestMap.entrySet()) {
 			int mapPixelX = conquestData.convertConquestToMapPixelX(entry.getKey().getPosX());
 			int mapPixelZ = conquestData.convertConquestToMapPixelZ(entry.getKey().getPosZ());
 			if (mapPixelX + conquestPixels >= minVisibleMapX && mapPixelX <= maxVisibleMapX && mapPixelZ + conquestPixels >= minVisibleMapZ && mapPixelZ <= maxVisibleMapZ) {
 				float levelFaction = entry.getValue().getConquest(selectedFaction.getName());
-				if (levelFaction > maxVisibleConquest) {
-					maxVisibleConquest = levelFaction;
-				}
+				if(levelFaction > maxVisibleConquest) {
+	                maxVisibleConquest = levelFaction;
+	            }
+	            if(levelFaction < minVisibleConquest) {
+	                minVisibleConquest = levelFaction;
+	            }
 			}
 		}
-		highestConquestlevel = maxVisibleConquest;
+		if(maxVisibleConquest <= 0.0f) {
+	        maxVisibleConquest = 1.0f;
+		}
+	    if(minVisibleConquest != Float.MAX_VALUE) {
+	        lowestConquestlevel = minVisibleConquest;
+	    }
+	    highestConquestlevel = maxVisibleConquest;
 		double mouseMapPixelX = screenToMapPixelX(mouseX);
 		double mouseMapPixelZ = screenToMapPixelZ(mouseY);
+		
+		float conquestRange = highestConquestlevel - lowestConquestlevel;
+
 		for(Entry<ExtendedConquestPos, ExtendedConquestRegion> region : conquestMap.entrySet()) {
 			float levelFaction = region.getValue().getConquest(selectedFaction.getName());
 			if(levelFaction>0) {
 				int mapPixelX = conquestData.convertConquestToMapPixelX(region.getKey().getPosX());
 				int mapPixelZ = conquestData.convertConquestToMapPixelZ(region.getKey().getPosZ());
-				if (mapPixelX + conquestPixels < minVisibleMapX || mapPixelX > maxVisibleMapX || mapPixelZ + conquestPixels < minVisibleMapZ || mapPixelZ > maxVisibleMapZ) {
+				if(mapPixelX + conquestPixels < minVisibleMapX || mapPixelX > maxVisibleMapX || mapPixelZ + conquestPixels < minVisibleMapZ || mapPixelZ > maxVisibleMapZ) {
 					continue;
 				}
-				if (mouseMapPixelX >= mapPixelX && mouseMapPixelX < (mapPixelX + conquestPixels) && mouseMapPixelZ >= mapPixelZ && mouseMapPixelZ < (mapPixelZ + conquestPixels)) {
+				if(mouseMapPixelX >= mapPixelX && mouseMapPixelX < (mapPixelX + conquestPixels) && mouseMapPixelZ >= mapPixelZ && mouseMapPixelZ < (mapPixelZ + conquestPixels)) {
 					this.hoveredConquestEntry = region;
 					this.hoveredConquestLevel = levelFaction;
 				}
-				int percent = (int) (Math.max(minConquestOpacity, Math.min(1.0f, levelFaction / maxVisibleConquest)) * 255.0f);
+				float normalized = (conquestRange > 0.0f) ? (levelFaction - lowestConquestlevel) / conquestRange : 1.0f;
+	            float alphaFactor = minConquestOpacity + normalized * (1.0f - minConquestOpacity);
+	            int percent = (int) (Math.max(0.0f, Math.min(1.0f, alphaFactor)) * 255.0f);
 				int scaledRed = (percent << 24) | 0x00FF0000;
 				renderMapSquare(matrixStack, mapPixelX, mapPixelZ, conquestData.getConquestSizeInMapPixels(), scaledRed);
 			}
@@ -437,8 +484,8 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		fillFloat(matrixStack, barLeft - 1, barTop, barLeft, barTop + barHeight, 0xFFFFFFFF);
 		fillFloat(matrixStack, barLeft + barWidth, barTop, barLeft + barWidth + 1, barTop + barHeight, 0xFFFFFFFF);
 
-		float minVal = minConquestOpacity * highestConquestlevel;
-		float midVal = ((1.0f + minConquestOpacity) / 2.0f) * highestConquestlevel;
+		float minVal = lowestConquestlevel;
+		float midVal = (lowestConquestlevel + highestConquestlevel) / 2.0f;
 		float maxVal = highestConquestlevel;
 		String minStr = String.format("%.1f", minVal);
 		String midStr = String.format("%.1f", midVal);

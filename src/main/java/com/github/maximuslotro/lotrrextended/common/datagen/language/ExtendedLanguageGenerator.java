@@ -478,6 +478,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.worldprune.canceled", "Pruning canceled (%s/%s regions processed)");
 		// Map
 		addD("gui.lotrextended.map.teleport", "Press '%s' to /tp");
+		addD("gui.lotrextended.map.region_button", "Region: %s");
 		addD("gui.lotrextended.map.conquest.strength", "Conquest Strength: %s");
 		addD("gui.lotrextended.map.conquest.benefit.none", "No effect.");
 		addD("gui.lotrextended.map.conquest.benefit.low", "Conquest is too low to benefit faction");
