@@ -38,6 +38,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private final static ResourceLocation MAP_ICONS = new ResourceLocation("lotrextended", "textures/gui/map_icons.png");
+	private final static ResourceLocation MAP_CONQUEST_OVERLAY = new ResourceLocation("lotrextended", "textures/gui/map_overlay_conquest.png");
 	private final static int MAP_TEX_SIZE = 512;
 	private final static int CONQUEST_SQUARE_RED = 0x80FF0000;
 	private final static int CONQUEST_SQUARE_GREEN = 0x8000FF00;
@@ -322,7 +323,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
 		if(showMapOverlay && MAP_TEXTURE_OVERLAY!=null) {
 			this.minecraft.getTextureManager().bind(MAP_TEXTURE_OVERLAY);
-			blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
+			blit(matrixStack, 0, 0, 0, 0, mapWidth, height, mapWidth, mapHeight);
 		}
 		// Render Conquest
 		if(showConquest && selectedFaction!=null) {
@@ -339,6 +340,12 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			renderTeleportMessage(matrixStack);
 		}
 		if(showConquest) {
+			RenderSystem.enableBlend();
+			RenderSystem.defaultBlendFunc();
+			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+			this.minecraft.getTextureManager().bind(MAP_CONQUEST_OVERLAY);
+			blit(matrixStack, 0, 0, 0, 0, 854, 400, 854, 400);
+			RenderSystem.disableBlend();
 			renderFactionScrollBar(matrixStack);
 			renderSelectedFaction(matrixStack);
 			renderConquestVisualizer(matrixStack);
@@ -475,7 +482,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		int barWidth = (int) (this.width * 0.75F);
 		int barHeight = 12;
 		int barLeft = (this.width - barWidth) / 2;
-		int barTop = this.height - 70;
+		int barTop = this.height - 100;
 		int startAlpha = Math.min(255, Math.max(0, (int) (minConquestOpacity * 255.0f)));
         int startColor = (startAlpha << 24) | 0x00FF0000;
 		fillGradientHorizontal(matrixStack, barLeft, barTop, barLeft + barWidth, barTop + barHeight, startColor, 0xFFFF0000);
