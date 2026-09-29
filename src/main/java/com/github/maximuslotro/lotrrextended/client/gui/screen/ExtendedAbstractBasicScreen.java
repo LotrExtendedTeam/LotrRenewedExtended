@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -25,8 +27,8 @@ public abstract class ExtendedAbstractBasicScreen extends Screen {
 		boolean hasCheatsEnabled = false;
 		if (this.minecraft.getSingleplayerServer() != null) {
 			hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
-					&& this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
-					|| this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
+				&& this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
+				|| this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
 		} else {
 			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
 		}
@@ -127,5 +129,36 @@ public abstract class ExtendedAbstractBasicScreen extends Screen {
 		pBuilder.vertex(pMatrix, (float)pX1, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
 		pBuilder.vertex(pMatrix, (float)pX1, (float)pY2, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
 		pBuilder.vertex(pMatrix, (float)pX2, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
+	}
+
+	// Based off ExtendedRadialScreen.drawPieSegment
+	public void fillCircleArc(MatrixStack matrixStack, float cx, float cy, float radius, double startAngle, double endAngle, int color) {
+		matrixStack.pushPose();
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder buffer = tessellator.getBuilder();
+		int precision = 16;
+		double step = (endAngle - startAngle) / precision;
+		RenderSystem.enableBlend();
+		RenderSystem.disableTexture();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableCull();
+		int r = (color >> 16) & 0xFF;
+		int g = (color >> 8) & 0xFF;
+		int b = color & 0xFF;
+		int a = (color >> 24) & 0xFF;
+		buffer.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+		// Center vertex of the fan
+		buffer.vertex(matrixStack.last().pose(), cx, cy, 0).color(r, g, b, a).endVertex();
+		for(int i = 0; i <= precision; i++) {
+			double currentAngle = startAngle + (i * step);
+			float x = (float) (cx + radius * Math.cos(currentAngle));
+			float y = (float) (cy + radius * Math.sin(currentAngle));
+			buffer.vertex(matrixStack.last().pose(), x, y, 0).color(r, g, b, a).endVertex();
+		}
+		tessellator.end();
+		RenderSystem.enableCull();
+		RenderSystem.enableTexture();
+		RenderSystem.disableBlend();
+		matrixStack.popPose();
 	}
 }

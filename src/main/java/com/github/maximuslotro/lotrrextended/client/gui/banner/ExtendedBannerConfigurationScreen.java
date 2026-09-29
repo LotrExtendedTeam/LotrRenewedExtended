@@ -400,7 +400,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			}
 			if(this.getFlagLoc()!=null) {
 				this.minecraft.getTextureManager().bind(this.getFlagLoc());
-				blit(matStack, this.leftPos-90, this.topPos + (this.imageHeight/2) - 74, 0, 0, 80, 148);
+				//blit(matStack, this.leftPos-90, this.topPos + (this.imageHeight/2) - 74, 0, 0, 80, 148);
+				// Use actual image scaling instead of hacky scaling above 
+				blit(matStack, this.leftPos-90, this.topPos + (this.imageHeight/2) - 74, 80, 148, 0.0F, 0.0F, 20, 37, 64, 64);
 			}
 			this.minecraft.getTextureManager().bind(GUI_TEXTURE);
 			blit(matStack, this.leftPos+60, this.topPos+76, 0, 192, 80, 17, SIZE, SIZE);

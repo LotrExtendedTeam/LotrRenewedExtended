@@ -39,6 +39,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private final static ResourceLocation MAP_ICONS = new ResourceLocation("lotrextended", "textures/gui/map_icons.png");
 	private final static ResourceLocation MAP_CONQUEST_OVERLAY = new ResourceLocation("lotrextended", "textures/gui/map_overlay_conquest.png");
+	private final static ResourceLocation MAP_CONQUEST_OVERLAY_BOTTOM = new ResourceLocation("lotrextended", "textures/gui/map_overlay_conquest_bottom.png");
 	private final static int MAP_TEX_SIZE = 512;
 	private final static int CONQUEST_SQUARE_RED = 0x80FF0000;
 	private final static int CONQUEST_SQUARE_GREEN = 0x8000FF00;
@@ -118,7 +119,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		clampMapBoundaries();
 		addButton(new ExtendedSimpleButton(width-100, 0, 100, 20, new StringTextComponent("GUI"), (button)-> showGUI=!showGUI));
 		addButton(new ExtendedSimpleButton(width-100, 20, 100, 20, new StringTextComponent("MapOVERLAY"), (button)-> showMapOverlay=!showMapOverlay));
-		
+
 		if(ExtendedClientConfig.isDevMode()) {
 			addButton(new ExtendedSimpleButton(width-100, 40, 100, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
 			addButton(new ExtendedSimpleButton(width-100, 60, 100, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
@@ -339,15 +340,19 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		if(showGUI) {
 			renderTeleportMessage(matrixStack);
 		}
-		if(showConquest) {
+		if(showConquest && selectedFaction!=null) {
+			renderSelectedFaction(matrixStack);
 			RenderSystem.enableBlend();
 			RenderSystem.defaultBlendFunc();
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			this.minecraft.getTextureManager().bind(MAP_CONQUEST_OVERLAY);
-			blit(matrixStack, 0, 0, 0, 0, 854, 400, 854, 400);
+			blit(matrixStack, 0, 0, this.width, this.height - 60, 0.0F, 0.0F, 854, 420, 854, 420);
+			int factionColor = ExtendedColorUtil.applyAlpha(selectedFaction.getColor(), 255);
+			fill(matrixStack, 0, this.height - 60, this.width, this.height, factionColor);
+			this.minecraft.getTextureManager().bind(MAP_CONQUEST_OVERLAY_BOTTOM);
+			blit(matrixStack, 0, this.height - 60, this.width, 60, 0.0F, 0.0F, 854, 60, 854, 60);
 			RenderSystem.disableBlend();
 			renderFactionScrollBar(matrixStack);
-			renderSelectedFaction(matrixStack);
 			renderConquestVisualizer(matrixStack);
 			renderConquestTooltip(matrixStack, mouseX, mouseY);
 		}
@@ -358,14 +363,26 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	}
 
 	private void renderSelectedFaction(MatrixStack matrixStack) {
-		if(selectedFaction!=null) {
-			IFormattableTextComponent faction = selectedFaction.getColoredDisplayName();
-			float minText = (this.width / 2) - (font.width(faction) / 2);
-			float maxText = minText + font.width(faction);
-			fillFloat(matrixStack, minText-5, 28, maxText+5, 41, 0xFFFFD800);
-			fillFloat(matrixStack, minText-3, 30, maxText+3, 39, 0xFFFFFFFF);
-			this.font.draw(matrixStack, faction, minText, 31, selectedFaction.getColor());
-		}
+		IFormattableTextComponent faction = selectedFaction.getDisplayName();
+		int textWidth = font.width(faction);
+		int boxHeight = 30;
+		int bodyTop = 0;
+		float centerX = this.width / 2.0F;
+		float halfTextWidth = textWidth / 2.0F;
+		float bodyLeft = centerX - halfTextWidth - 12;
+		float bodyRight = centerX + halfTextWidth + 12;
+		int borderColor = 0xFF000000;
+		float borderSize = 2.0F;
+        fillFloat(matrixStack, bodyLeft, bodyTop, bodyRight, boxHeight+borderSize, borderColor);
+        fillCircleArc(matrixStack, bodyLeft, 0, boxHeight + borderSize, Math.PI / 2, Math.PI, borderColor);
+        fillCircleArc(matrixStack, bodyRight, 0, boxHeight + borderSize, 0, Math.PI / 2, borderColor);
+		int factionColor = ExtendedColorUtil.applyAlpha(selectedFaction.getColor(), 255);
+		fillFloat(matrixStack, bodyLeft, bodyTop, bodyRight, boxHeight, factionColor);
+		fillCircleArc(matrixStack, bodyLeft, 0, boxHeight, Math.PI / 2, Math.PI, factionColor);
+		fillCircleArc(matrixStack, bodyRight, 0, boxHeight, 0, Math.PI / 2, factionColor);
+		float textX = centerX - halfTextWidth;
+		float textY = bodyTop + 12;
+		this.font.draw(matrixStack, faction, textX, textY, 0xFFFFFFFF);
 	}
 
 	private void renderFactionScrollBar(MatrixStack matrixStack) {
@@ -389,7 +406,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.hoveredConquestEntry = null;
 		this.highestConquestlevel = 1.0f;
 		this.lowestConquestlevel = 0.0f;
-		if(selectedFaction == null || conquestData.isConquestMapEmpty()) {
+		if(conquestData.isConquestMapEmpty()) {
 			return;
 		}
 		int conquestPixels = conquestData.getConquestSizeInMapPixels();
@@ -399,7 +416,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		double maxVisibleMapZ = screenToMapPixelZ(this.height);
 
 		float maxVisibleConquest = 0.0f;
-	    float minVisibleConquest = Float.MAX_VALUE;
+		float minVisibleConquest = Float.MAX_VALUE;
 		Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = conquestData.getConquestMap();
 		for(Entry<ExtendedConquestPos, ExtendedConquestRegion> entry : conquestMap.entrySet()) {
 			int mapPixelX = conquestData.convertConquestToMapPixelX(entry.getKey().getPosX());
@@ -407,23 +424,23 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			if (mapPixelX + conquestPixels >= minVisibleMapX && mapPixelX <= maxVisibleMapX && mapPixelZ + conquestPixels >= minVisibleMapZ && mapPixelZ <= maxVisibleMapZ) {
 				float levelFaction = entry.getValue().getConquest(selectedFaction.getName());
 				if(levelFaction > maxVisibleConquest) {
-	                maxVisibleConquest = levelFaction;
-	            }
-	            if(levelFaction < minVisibleConquest) {
-	                minVisibleConquest = levelFaction;
-	            }
+					maxVisibleConquest = levelFaction;
+				}
+				if(levelFaction < minVisibleConquest) {
+					minVisibleConquest = levelFaction;
+				}
 			}
 		}
 		if(maxVisibleConquest <= 0.0f) {
-	        maxVisibleConquest = 1.0f;
+			maxVisibleConquest = 1.0f;
 		}
-	    if(minVisibleConquest != Float.MAX_VALUE) {
-	        lowestConquestlevel = minVisibleConquest;
-	    }
-	    highestConquestlevel = maxVisibleConquest;
+		if(minVisibleConquest != Float.MAX_VALUE) {
+			lowestConquestlevel = minVisibleConquest;
+		}
+		highestConquestlevel = maxVisibleConquest;
 		double mouseMapPixelX = screenToMapPixelX(mouseX);
 		double mouseMapPixelZ = screenToMapPixelZ(mouseY);
-		
+
 		float conquestRange = highestConquestlevel - lowestConquestlevel;
 
 		for(Entry<ExtendedConquestPos, ExtendedConquestRegion> region : conquestMap.entrySet()) {
@@ -439,8 +456,8 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 					this.hoveredConquestLevel = levelFaction;
 				}
 				float normalized = (conquestRange > 0.0f) ? (levelFaction - lowestConquestlevel) / conquestRange : 1.0f;
-	            float alphaFactor = minConquestOpacity + normalized * (1.0f - minConquestOpacity);
-	            int percent = (int) (Math.max(0.0f, Math.min(1.0f, alphaFactor)) * 255.0f);
+				float alphaFactor = minConquestOpacity + normalized * (1.0f - minConquestOpacity);
+				int percent = (int) (Math.max(0.0f, Math.min(1.0f, alphaFactor)) * 255.0f);
 				int scaledRed = (percent << 24) | 0x00FF0000;
 				renderMapSquare(matrixStack, mapPixelX, mapPixelZ, conquestData.getConquestSizeInMapPixels(), scaledRed);
 			}
@@ -484,7 +501,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		int barLeft = (this.width - barWidth) / 2;
 		int barTop = this.height - 100;
 		int startAlpha = Math.min(255, Math.max(0, (int) (minConquestOpacity * 255.0f)));
-        int startColor = (startAlpha << 24) | 0x00FF0000;
+		int startColor = (startAlpha << 24) | 0x00FF0000;
 		fillGradientHorizontal(matrixStack, barLeft, barTop, barLeft + barWidth, barTop + barHeight, startColor, 0xFFFF0000);
 		fillFloat(matrixStack, barLeft - 1, barTop - 1, barLeft + barWidth + 1, barTop, 0xFFFFFFFF);
 		fillFloat(matrixStack, barLeft - 1, barTop + barHeight, barLeft + barWidth + 1, barTop + barHeight + 1, 0xFFFFFFFF);
@@ -553,10 +570,10 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	}
 
 	private void renderTeleportMessage(MatrixStack matrixStack) {
-		if(this.hasCheatsEnabled()) {
+		if(this.hasCheatsEnabled() && !showConquest) {
 			TranslationTextComponent teleport = new TranslationTextComponent("gui.lotrextended.map.teleport", LOTRKeyHandler.KEY_BIND_MAP_TELEPORT.getTranslatedKeyMessage());
-			int textX = this.width-20 - this.font.width(teleport);
-			int textY = this.height-40;
+			int textX = this.width-30 - this.font.width(teleport);
+			int textY = this.height-30;
 			this.font.draw(matrixStack, teleport, textX, textY, 16777215);
 		}
 	}
