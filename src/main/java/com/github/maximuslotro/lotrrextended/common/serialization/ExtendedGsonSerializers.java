@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.serialization;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
@@ -39,7 +39,7 @@ public class ExtendedGsonSerializers {
 		return createConditionSerializer()
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentPool.class, new ExtendedHiredUnitEquipmentPool.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentItem.class, new ExtendedHiredUnitEquipmentItem.Serializer())
-			.registerTypeAdapter(ExtendedServerHiredUnitProfile.class, new ExtendedServerHiredUnitProfile.Serializer());
+			.registerTypeAdapter(ExtendedHiredUnitProfile.class, new ExtendedHiredUnitProfile.Serializer());
 	}
 
 	public static GsonBuilder createCaptainSerializer() {

@@ -25,7 +25,7 @@ public class ExtendedCaptainProfile {
 
 	private final ResourceLocation id;
 	private final List<ResourceLocation> unitProfileIDs;
-	private List<ExtendedServerHiredUnitProfile> cachedUnitProfiles;
+	private List<ExtendedHiredUnitProfile> cachedUnitProfiles;
 	/** Required alignment level to access this trader. */
 	private final int hiringAlignmentRequired;
 
@@ -50,14 +50,14 @@ public class ExtendedCaptainProfile {
 		return hiringAlignmentRequired;
 	}
 
-	public List<ExtendedServerHiredUnitProfile> getUnitProfiles() {
+	public List<ExtendedHiredUnitProfile> getUnitProfiles() {
 		if(cachedUnitProfiles!=null) {
 			return cachedUnitProfiles;
 		}
-		List<ExtendedServerHiredUnitProfile> serverProfiles = new ArrayList<>();
+		List<ExtendedHiredUnitProfile> serverProfiles = new ArrayList<>();
 
 		for (ResourceLocation profileId : unitProfileIDs) {
-			ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(profileId);
+			ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(profileId);
 			if(unitProfile != null && !unitProfile.isEmptyUnitType()) {
 				serverProfiles.add(unitProfile);
 			}

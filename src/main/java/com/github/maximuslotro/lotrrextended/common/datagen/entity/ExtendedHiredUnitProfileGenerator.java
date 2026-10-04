@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
@@ -22,7 +22,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 	}
 
 	@Override
-	public void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
+	public void makeHiredUnitProfiles(Consumer<ExtendedHiredUnitProfile> pConsumer) {
 		make(ExtendedEntities.HOBBIT_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)

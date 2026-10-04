@@ -12,8 +12,8 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipment
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedUnitInventory;
@@ -71,7 +71,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private static final int HEAL_RATE = 80;
 	// Unit meta data
 	private final NPCEntity thisEntity;
-	private ExtendedServerHiredUnitProfile hiredUnitProfileHolder;
+	private ExtendedHiredUnitProfile hiredUnitProfileHolder;
 	private ResourceLocation unitProfile = LotrExtendedMod.EMPTY;
 	// Entity Settings
 	private UUID ownerUUID = null;
@@ -100,13 +100,13 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	/**
 	 * SHOULD ONLY BE CALLED ON THE SERVER, UNIT PROFILES ARE NOT AVAILABLE CLIENT SIDE!
 	 * IM LOOKING AT YOU MAX! (MYSELF) (I keep making the mistake)
-	 * @return The {@link ExtendedServerHiredUnitProfile} instance associated with this unit
+	 * @return The {@link ExtendedHiredUnitProfile} instance associated with this unit
 	 * */
-	public ExtendedServerHiredUnitProfile getUnitProfile() {
+	public ExtendedHiredUnitProfile getUnitProfile() {
 		if(hiredUnitProfileHolder!=null) {
 			return hiredUnitProfileHolder;
 		}
-		ExtendedServerHiredUnitProfile loaded = ExtendedServerHiredUnitProfileManager.INSTANCE.get(unitProfile);
+		ExtendedHiredUnitProfile loaded = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfile);
 		if(!loaded.isEmptyUnitType()) {
 			return hiredUnitProfileHolder = loaded;
 		}

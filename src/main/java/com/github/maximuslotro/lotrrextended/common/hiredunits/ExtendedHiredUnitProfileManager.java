@@ -15,16 +15,16 @@ import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedServerHiredUnitProfileManager extends JsonReloadListener {
+public class ExtendedHiredUnitProfileManager extends JsonReloadListener {
 	public static final Gson GSON = ExtendedGsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().setPrettyPrinting().create();
-	public static final ExtendedServerHiredUnitProfileManager INSTANCE = new ExtendedServerHiredUnitProfileManager();
-	private Map<ResourceLocation, ExtendedServerHiredUnitProfile> hiredUnitProfiles = ImmutableMap.of();
+	public static final ExtendedHiredUnitProfileManager INSTANCE = new ExtendedHiredUnitProfileManager();
+	private Map<ResourceLocation, ExtendedHiredUnitProfile> hiredUnitProfiles = ImmutableMap.of();
 
 	/*
 	 * Keep Private
 	 * Don't allow more than one instance than {@link ExtendedServerHiredUnitProfileManager#INSTANCE }
 	 * */
-	private ExtendedServerHiredUnitProfileManager() {
+	private ExtendedHiredUnitProfileManager() {
 		super(GSON, "hired_unit_profiles");
 	}
 
@@ -33,24 +33,24 @@ public class ExtendedServerHiredUnitProfileManager extends JsonReloadListener {
 	 * @param unitProfileId Id of the Profile
 	 * @return An instance of {@link ExtendedServerHiredUnitProfile} if found, else {@link ExtendedServerHiredUnitProfile#EMPTY}
 	 * */
-	public ExtendedServerHiredUnitProfile get(ResourceLocation unitProfileId) {
-		return this.hiredUnitProfiles.getOrDefault(unitProfileId, ExtendedServerHiredUnitProfile.EMPTY);
+	public ExtendedHiredUnitProfile get(ResourceLocation unitProfileId) {
+		return this.hiredUnitProfiles.getOrDefault(unitProfileId, ExtendedHiredUnitProfile.EMPTY);
 	}
 
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
-		Builder<ResourceLocation, ExtendedServerHiredUnitProfile> builder = ImmutableMap.builder();
+		Builder<ResourceLocation, ExtendedHiredUnitProfile> builder = ImmutableMap.builder();
 		JsonElement jsonelement = json.remove(LotrExtendedMod.EMPTY);
 		if (jsonelement != null) {
-			ExtendedLog.warn("Datapack tried to redefine {} hired unit pool, ignoring", ExtendedServerHiredUnitProfile.EMPTY);
+			ExtendedLog.warn("Datapack tried to redefine {} hired unit pool, ignoring", ExtendedHiredUnitProfile.EMPTY);
 		}
 		json.forEach((spawnName, spawnListJson) -> {
 			try {
-				ExtendedServerHiredUnitProfile hiredUnitProfile = deserialize(GSON, spawnListJson, ExtendedServerHiredUnitProfile.class);
+				ExtendedHiredUnitProfile hiredUnitProfile = deserialize(GSON, spawnListJson, ExtendedHiredUnitProfile.class);
 				if (hiredUnitProfile != null) {
 					if(!hiredUnitProfile.getId().equals(spawnName)) {
 						ExtendedLog.warn("Loaded a Hired Unit Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! {}", spawnName);
-						hiredUnitProfile = new ExtendedServerHiredUnitProfile(spawnName, hiredUnitProfile.stringsAreTranslated(), hiredUnitProfile.getEntityUnitTitle(), 
+						hiredUnitProfile = new ExtendedHiredUnitProfile(spawnName, hiredUnitProfile.stringsAreTranslated(), hiredUnitProfile.getEntityUnitTitle(), 
 							hiredUnitProfile.getEntityUnitShorthandName(), hiredUnitProfile.getEntityUnitTypeName(), hiredUnitProfile.getEquipmentPools(),
 							hiredUnitProfile.getHiringCost(), hiredUnitProfile.isHiringRequiresPledge(), hiredUnitProfile.getHiringAlignmentRequired(), hiredUnitProfile.getUnitType(), hiredUnitProfile.getUnitEntityType());
 					}
@@ -62,7 +62,7 @@ public class ExtendedServerHiredUnitProfileManager extends JsonReloadListener {
 			}
 
 		});
-		builder.put(LotrExtendedMod.EMPTY, ExtendedServerHiredUnitProfile.EMPTY);
+		builder.put(LotrExtendedMod.EMPTY, ExtendedHiredUnitProfile.EMPTY);
 		this.hiredUnitProfiles = builder.build();
 		ExtendedLog.info("Loaded Hired Unit Profile from Json - {} hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}

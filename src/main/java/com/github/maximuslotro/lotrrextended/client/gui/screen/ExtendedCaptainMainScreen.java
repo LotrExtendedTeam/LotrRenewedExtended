@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -25,7 +25,7 @@ import java.util.List;
 public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	private NPCEntity npcEntity;
 	private final PlayerEntity player;
-	private final List<ExtendedClientHiredUnitProfile> unitProfiles;
+	private final List<ExtendedHiredUnitProfile> unitProfiles;
 	private int currentProfileIndex;
 	private Button hireButton;
 	private Button leftArrowButton;
@@ -33,8 +33,8 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	private TextFieldWidget squad;
 	private String squadName="";
 
-	public ExtendedCaptainMainScreen(NPCEntity entity, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent(entity.getName().getString()), 176, 256);
+	public ExtendedCaptainMainScreen(NPCEntity entity, List<ExtendedHiredUnitProfile> profiles) {
 		Minecraft mc = Minecraft.getInstance();
 		this.npcEntity = entity;
 		this.player = mc.player;
@@ -42,7 +42,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 		this.currentProfileIndex = 0;
 	}
 
-	private ExtendedClientHiredUnitProfile getCurrentProfile() {
+	private ExtendedHiredUnitProfile getCurrentProfile() {
 		if (unitProfiles.isEmpty()) return null;
 		return unitProfiles.get(currentProfileIndex);
 	}
@@ -53,7 +53,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 		hireButton = this.addButton(new Button((this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos + 92, 150, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_unit"), button -> hireFromNPC()) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-				ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+				ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 				if (currentProfile == null) {
 					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new StringTextComponent("ERROR CAPTAIN PROFILE NOT FOUND!").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
 					return;
@@ -92,7 +92,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void tick() {
 		super.tick();
-		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile == null) {
 			hireButton.active=false;
 			return;
@@ -112,7 +112,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	}
 
 	private void updateHireButton() {
-		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 		TextComponent unitName;
 		if (currentProfile == null) {
 			unitName = new StringTextComponent("ERROR NULL");
@@ -142,7 +142,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
-		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile == null) return;
 
 		if(npcEntity instanceof ExtendedICaptainEntity) {
@@ -176,7 +176,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
 
 		// Display unit type name and page indicator
-		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile != null) {
 			// Show unit type name
 			String unitTypeName = currentProfile.getEntityUnitTypeName();
