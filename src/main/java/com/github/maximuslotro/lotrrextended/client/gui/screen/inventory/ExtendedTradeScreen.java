@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTradeSellButton;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
@@ -36,7 +37,7 @@ public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeCo
     private PlayerEntity player;
 
     public ExtendedTradeScreen(ExtendedTradeContainer container, PlayerInventory playerInventory, ITextComponent title) {
-        super(container, playerInventory, title);
+        super(container, playerInventory, ((MixinNPCEntityInvoker)container.traderNPC).invokeNPCName());
 
         this.imageHeight = 270;
         this.imageWidth = 176;
@@ -122,7 +123,7 @@ public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeCo
         this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 192, 0xFFFFFFFF);
 
         // render labels
-        this.font.draw(matrix, container.trader.getTraderName(), (((imageWidth - 32) - font.width(container.trader.getTraderName())) / 2) + 16, 11, 4210752);
+        this.font.draw(matrix, this.title, (((imageWidth - 32) - font.width(this.title)) / 2) + 16, 11, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), 8, this.inventoryLabelY, 4210752);
         this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.buy"), 8, 30, 4210752);
         this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell"), 8, 82, 4210752);

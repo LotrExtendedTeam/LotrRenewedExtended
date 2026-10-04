@@ -9,8 +9,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -28,7 +26,7 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 
 	private final boolean hasHireData;
 	public ExtendedUnitMainScreen(NPCEntity entity, PlayerEntity player, boolean hasHireData) {
-		super(new StringTextComponent("Unit Menu"), 176, 256);
+		super(entity.getName(), 176, 256);
 		this.entity = entity;
 		this.player = player;
 		this.hasHireData = hasHireData;
@@ -142,7 +140,6 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-		TextComponent title = new StringTextComponent(entity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
 		super.render(matStack, mouseX, mouseY, tick);
 	}

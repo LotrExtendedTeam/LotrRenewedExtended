@@ -209,6 +209,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit");
 		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins");
+		addD("gui.lotrextended.hiring.squad_assign", "Squadron?");
+		addD("gui.lotrextended.hiring.pledge_required", "Pledge Required");
 		// hired unit main menu
 		addD("gui.lotrextended.hired_unit.interface_button", "Equipment & Tasks");
 		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit equipment and command tasks.");

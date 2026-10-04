@@ -2274,6 +2274,8 @@
   "gui.lotrextended.hiring.not_alignment": "Your alignment is too low. You need %s alignment to hire that unit",
   "gui.lotrextended.hiring.not_enough_money": "Not enough money. You need %s coins to hire that unit",
   "gui.lotrextended.hiring.not_pledged": "You need to be pledged to hire that unit",
+  "gui.lotrextended.hiring.pledge_required": "Pledge Required",
+  "gui.lotrextended.hiring.squad_assign": "Squadron?",
   "gui.lotrextended.hiring.unit_has_been_hired": "The %1$s has been hired for %2$s coins",
   "gui.lotrextended.horn_of_command.squad": "Squad: %1$s",
   "gui.lotrextended.horn_of_command.type": "Current Mode - %1$s",

@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedDisableableImageButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageButtonButton;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSelectHornPacket;
@@ -25,7 +25,7 @@ public class ExtendedHornSelectRadialScreen extends ExtendedRadialScreen {
 	@Override
 	public void init() {
 		super.init();
-		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
+		this.addButton(new ExtendedImageButtonButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
 			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
 		}) {
 			@Override
