@@ -1,0 +1,10 @@
+{
+  "id": "lotr:harondor",
+  "conquest_rate": 1.0,
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:mordor": "UNCOMMON",
+    "lotr:gondor": "UNCOMMON",
+    "lotrextended:near_harad_umbar": "RARE"
+  }
+}

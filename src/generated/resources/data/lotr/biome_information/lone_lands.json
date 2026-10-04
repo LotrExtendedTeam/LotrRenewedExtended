@@ -1,0 +1,11 @@
+{
+  "id": "lotr:lone_lands",
+  "conquest_rate": 1.0,
+  "bandit_chance": "COMMON",
+  "invasion_data": {
+    "lotr:high_elves_rivendell": "RARE",
+    "lotr:northern_orcs": "COMMON",
+    "lotr:northern_orcs_wargs": "COMMON",
+    "lotr:dunedain_north": "COMMON"
+  }
+}

@@ -12,7 +12,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedWorldPruneScreen extends ExtendedBasicAbstractScreen{
+public class ExtendedWorldPruneScreen extends ExtendedAbstractWindowedScreen{
 	public static final TranslationTextComponent TITLE = new TranslationTextComponent("gui.lotrextended.worldprune.title");
 	private ExtendedWorldRegenEngine.Stage stage;
 

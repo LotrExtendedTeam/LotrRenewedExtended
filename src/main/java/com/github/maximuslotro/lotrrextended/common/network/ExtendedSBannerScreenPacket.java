@@ -1,0 +1,158 @@
+package com.github.maximuslotro.lotrrextended.common.network;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.function.Supplier;
+
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
+
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.network.NetworkEvent;
+
+public class ExtendedSBannerScreenPacket {
+	/** Default permissions applied under all protection modes. */
+	public List<ExtendedBannerPermissions> globalPerms;
+	/** Faction permissions applied under faction protection mode. */
+	public List<ExtendedBannerPermissions> factionPerms;
+	/** Alignment level used for faction-based protection logic. */
+	public float alignmentLevel;
+	/** Whitelist entries defining special access rules for players/factions. */
+	public List<ProtectionEntry> whitelist;
+	/** Whether the banner protects itself from unauthorized destruction. */
+	public boolean canSelfProtect;
+	/** Numeric ID of the banner protection owner type. */
+	public int protectionType;
+	/** Position of the banner tile entity being configured. */
+	public BlockPos configurePos;
+	/** Whether banner protection is enabled for this banner. */
+	public boolean enabled;
+	/** Whether the receiving client has OP-level permissions. */
+	public boolean isClientOP;
+	/** Custom server protection mode message. */
+	public String protMessage;
+	/** Name of player who placed the banner. */
+	public String bannerPlacer;
+	/** true to open screen, false for screen updates. */
+	public boolean openScreen;
+
+	public ExtendedSBannerScreenPacket() {}
+
+	public ExtendedSBannerScreenPacket(boolean enabled) {
+		this.globalPerms = new ArrayList<>();
+		this.factionPerms = new ArrayList<>();
+		this.alignmentLevel = 0;
+		this.whitelist = new ArrayList<>();
+		this.canSelfProtect = true;
+		this.protectionType = 0;
+		this.configurePos = new BlockPos(0,0,0);
+		this.isClientOP = false;
+		this.enabled = enabled;
+		this.protMessage = "";
+		this.bannerPlacer = "";
+		this.openScreen = true;
+	}
+
+	public ExtendedSBannerScreenPacket(ExtendedMEBannerTileEntity bannerEntity, boolean pIsClientOP, boolean openScreen) {
+		this.globalPerms = bannerEntity.getGlobalPerms();
+		this.factionPerms = bannerEntity.getFactionPerms();
+		this.alignmentLevel = bannerEntity.getAlignmentLevel();
+		this.whitelist = bannerEntity.getProtectionWhitelist();
+		this.canSelfProtect = bannerEntity.isSelfProtecting();
+		this.protectionType = bannerEntity.getProtectionType().getId();
+		this.configurePos = bannerEntity.getBlockPos();
+		this.isClientOP = pIsClientOP;
+		this.enabled = true;
+		this.protMessage = bannerEntity.getProtectionOverrideMessage();
+		this.bannerPlacer = bannerEntity.getPlacedPlayerName();
+		this.openScreen = openScreen;
+	}
+
+	public static void encode(ExtendedSBannerScreenPacket packet, PacketBuffer buf) {
+		buf.writeInt(packet.globalPerms.size());
+		for(ExtendedBannerPermissions perm : packet.globalPerms) {
+			buf.writeByte((byte) perm.ordinal());
+		}
+		buf.writeInt(packet.factionPerms.size());
+		for(ExtendedBannerPermissions perm : packet.factionPerms) {
+			buf.writeByte((byte) perm.ordinal());
+		}
+		buf.writeFloat(packet.alignmentLevel);
+		buf.writeInt(packet.whitelist.size());
+		for(ProtectionEntry entry : packet.whitelist) {
+			buf.writeInt(entry.getEntryPerms().size());
+			for(ExtendedBannerPermissions perm : entry.getEntryPerms()) {
+				buf.writeByte((byte) perm.ordinal());
+			}
+			buf.writeUUID(entry.getProfile().getId());
+			buf.writeUtf(entry.getProfile().getDisplayName(), 32767);
+		}
+		buf.writeBoolean(packet.canSelfProtect);
+		buf.writeInt(packet.protectionType);
+		buf.writeBlockPos(packet.configurePos);
+		buf.writeBoolean(packet.enabled);
+		buf.writeBoolean(packet.isClientOP);
+		buf.writeUtf(packet.protMessage);
+		buf.writeUtf(packet.bannerPlacer);
+		buf.writeBoolean(packet.openScreen);
+	}
+
+	public static ExtendedSBannerScreenPacket decode(PacketBuffer buf) {
+		ExtendedSBannerScreenPacket packet = new ExtendedSBannerScreenPacket();
+		int globalPermsSize = buf.readInt();
+		packet.globalPerms = new ArrayList<>();
+		for(int i = 0; i<globalPermsSize; i++) {
+			packet.globalPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		}
+		int factionPermsSize = buf.readInt();
+		packet.factionPerms = new ArrayList<>();
+		for(int i = 0; i<factionPermsSize; i++) {
+			packet.factionPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		}
+		packet.alignmentLevel = buf.readFloat();
+		packet.whitelist = new ArrayList<>();
+		int whitelistSize = buf.readInt();
+		for(int i = 0; i<whitelistSize; i++) {
+			int permListSize = buf.readInt();
+			List<ExtendedBannerPermissions> profilePerms = new ArrayList<>();
+			for(int j = 0; j<permListSize; j++) {
+				profilePerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+			}
+			UUID id = buf.readUUID();
+			String name = buf.readUtf(32767);
+			ExtendedBannerProfileBase type;
+			if(name.startsWith("f/")) {
+				type = new ExtendedBannerProfileFellowship(id, name.substring(2));
+			}else {
+				type = new ExtendedBannerProfilePlayer(id, name);
+			}
+			ProtectionEntry entry = new ProtectionEntry(type);
+			entry.setPerms(profilePerms);
+			entry.setClientID(UUID.randomUUID());
+			packet.whitelist.add(entry);
+		}
+		packet.canSelfProtect = buf.readBoolean();
+		packet.protectionType = buf.readInt();
+		packet.configurePos = buf.readBlockPos();
+		packet.enabled = buf.readBoolean();
+		packet.isClientOP = buf.readBoolean();
+		packet.protMessage = buf.readUtf();
+		packet.bannerPlacer = buf.readUtf();
+		packet.openScreen = buf.readBoolean();
+		return packet;
+	}
+
+	public static void handle(ExtendedSBannerScreenPacket pPacket, Supplier<NetworkEvent.Context> context) {
+		context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> { ExtendedClientsideSeparatedScreenHandler.handleBannerGUI(pPacket);});
+	}
+}

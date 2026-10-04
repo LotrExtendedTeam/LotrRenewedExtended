@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -17,36 +18,55 @@ public class ExtendedTickHandlerServer {
 	}
 
 	@SubscribeEvent
-	public void onWorldTick(TickEvent.WorldTickEvent event) {
-		if (event.side == LogicalSide.SERVER) {
-			ServerWorld world = (ServerWorld) event.world;
-			TickEvent.Phase phase = event.phase;
-			ExtendedLevelData levelData = ExtendedLevelData.serverInstance();
-			// make sure data is loaded at beginning of tick
-			if (phase == TickEvent.Phase.START) {
-				//Ensure we only load level data when the main dimension ticks
-				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
-					if (levelData.needsLoad()) {
-						levelData.load(world);
-					}
-				}
+	public void onWorldTick$Extended(TickEvent.WorldTickEvent event) {
+		if (event.side != LogicalSide.SERVER) {
+			return;
+		}
+		ServerWorld world = (ServerWorld) event.world;
+		ExtendedLevelData levelData = ExtendedLevelData.serverInstance();
+		// Load data at beginning of server tick
+		if (event.phase == TickEvent.Phase.START) {
+            if (levelData.needsLoad()) {
+                levelData.loadAndLock(world.getServer());
+            }
+            return;
+        }
+		// Don't allow ticking or saving if loading has not happened
+		if (levelData.needsLoad()) {
+			return;
+		}
+		if (world.dimension().equals(World.OVERWORLD)) {
+			// Save when needs saving or every 30 seconds
+			if (levelData.isDirty() || world.getGameTime() % 600L == 0L) {
+				levelData.save(world.getServer());
 			}
-			// Ensure we append all our actions to the "queue" at the end of the server tick
-			if (phase == TickEvent.Phase.END) {
-				//Ensure we only save level data when the main dimension ticks
-				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
-					// Save when needs saving
-					if (levelData.isDirty()) {
-						levelData.save(world);
-					} // Save every 30 seconds
-					else if (world.getGameTime() % 600L == 0L) {
-						levelData.save(world);
-					}
-				} else if (LOTRDimensions.isDimension(world, LOTRDimensions.MIDDLE_EARTH_WORLD_KEY)) {
-					// Ensure we run these functions only when Middle Earth ticks
-					levelData.tick(world);
-				}
-			}
+		} else if (world.dimension().equals(LOTRDimensions.MIDDLE_EARTH_WORLD_KEY)) {
+			levelData.tick(world);
 		}
 	}
+
+	@SubscribeEvent
+	public void onWorldSave(WorldEvent.Save event) {
+	    if (!event.getWorld().isClientSide() && event.getWorld() instanceof ServerWorld) {
+	        ServerWorld world = (ServerWorld) event.getWorld();
+	        // Save data on world save
+	        if (world.dimension().equals(World.OVERWORLD)) {
+	            ExtendedLevelData levelData = ExtendedLevelData.serverInstance();
+	            if (!levelData.needsLoad()) {
+	                levelData.save(world.getServer());
+	            }
+	        }
+	    }
+	}
+
+	@SubscribeEvent
+    public void onWorldUnload(WorldEvent.Unload event) {
+        if (!event.getWorld().isClientSide() && event.getWorld() instanceof ServerWorld) {
+            ServerWorld world = (ServerWorld) event.getWorld();
+            if (world.dimension().equals(World.OVERWORLD)) {
+            	// IMPORTANT! Clear levelData on world unload, so data does not presist across saves!
+                ExtendedLevelData.serverInstance().resetOnServerExit();
+            }
+        }
+    }
 }

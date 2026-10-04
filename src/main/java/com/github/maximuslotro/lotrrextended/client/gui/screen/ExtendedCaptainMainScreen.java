@@ -22,8 +22,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
-public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
-
+public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	private NPCEntity npcEntity;
 	private final PlayerEntity player;
 	private final List<ExtendedClientHiredUnitProfile> unitProfiles;
@@ -34,10 +33,11 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	private TextFieldWidget squad;
 	private String squadName="";
 
-	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles) {
-		super(new StringTextComponent("Captain Menu"), 176, 256);
+	public ExtendedCaptainMainScreen(NPCEntity entity, List<ExtendedClientHiredUnitProfile> profiles) {
+		super(new StringTextComponent(entity.getName().getString()), 176, 256);
+		Minecraft mc = Minecraft.getInstance();
 		this.npcEntity = entity;
-		this.player = player;
+		this.player = mc.player;
 		this.unitProfiles = profiles;
 		this.currentProfileIndex = 0;
 	}
@@ -173,7 +173,6 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-		TextComponent title = new StringTextComponent(npcEntity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
 
 		// Display unit type name and page indicator

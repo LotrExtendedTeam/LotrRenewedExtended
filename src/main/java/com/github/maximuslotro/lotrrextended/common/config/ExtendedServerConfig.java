@@ -21,6 +21,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableLegacyFeastMode;
 	public static ForgeConfigSpec.BooleanValue enableHungerDecrease;
 	public static ForgeConfigSpec.ConfigValue<String> alternateMapTeleportCommand;
+	public static ForgeConfigSpec.BooleanValue enableConquest;
 
 	// Entity Settings
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
@@ -85,6 +86,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
 		enableHungerDecrease = createBooleanValue(builder, "enableHungerDecrease", true, false, "Decrease hunger meter exhaustion");
 		alternateMapTeleportCommand = createStringValue(builder, "alternateMapTeleportCommand", "/tp %d %d %d", false, "Map menu instant tp command");
+		enableConquest = createBooleanValue(builder, "enableConquest", true, false, "Allow players to conquer areas of the map for their faction");
 		builder.pop();
 
 		builder.push("Entity settings");

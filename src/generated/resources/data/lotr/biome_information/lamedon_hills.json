@@ -1,0 +1,9 @@
+{
+  "id": "lotr:lamedon_hills",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:mordor": "UNCOMMON",
+    "lotrextended:near_harad_umbar": "RARE"
+  }
+}

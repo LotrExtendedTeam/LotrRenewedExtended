@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHoistOptionsScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedHoistOptionsScreen extends ExtendedAbstractWindowedScreen {
 	private int horizontalOffset;
 	private int verticalOffset;
 	private int verticalHeight;

@@ -1,0 +1,8 @@
+{
+  "id": "lotr:mirkwood",
+  "conquest_rate": 1.0,
+  "bandit_chance": "NONE",
+  "invasion_data": {
+    "lotr:woodland_realm": "UNCOMMON"
+  }
+}

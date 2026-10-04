@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedHornSelectScreen extends ExtendedAbstractWindowedScreen {
 	private static final ResourceLocation TEXTURE = new ResourceLocation("lotrextended:textures/gui/horn_select.png");
 
 	public ExtendedHornSelectScreen() {
@@ -32,7 +32,7 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.SUMMON));
 			this.onClose();
 		}));
-		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedBasicAbstractScreen.EXTENDED_WIDGETS, button -> {
+		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
 			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
 		}) {
 			@Override

@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 public class ExtendedSOpenCaptainPacket {
 
@@ -43,8 +45,9 @@ public class ExtendedSOpenCaptainPacket {
     }
 
     public static void handle(ExtendedSOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
-        ExtendedClientsideSeparatedScreenHandler.openCaptainGui(packet);
         context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openCaptainGui(packet));
+
     }
 
 	public int getCaptainId() {

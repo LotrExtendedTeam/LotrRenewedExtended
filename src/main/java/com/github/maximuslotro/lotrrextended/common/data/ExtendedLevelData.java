@@ -3,31 +3,42 @@ package com.github.maximuslotro.lotrrextended.common.data;
 import java.io.File;
 import java.util.*;
 
-import lotr.common.LOTRLog;
-import lotr.common.data.SaveUtil;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
+
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
 public class ExtendedLevelData {
-	private static final ExtendedLevelData SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
+    private static class ServerHolder {// Lazy holder for Server Instance
+        private static final ExtendedLevelData INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
+    }
+    private static class ClientHolder {// Lazy holder for Client Instance
+        private static final ExtendedLevelData INSTANCE = new ExtendedLevelData(LogicalSide.CLIENT);
+    }
+	public static ExtendedLevelData serverInstance() {
+        return ServerHolder.INSTANCE;
+    }
+    public static ExtendedLevelData clientInstance() {
+        return ClientHolder.INSTANCE;
+    }
+	private File extendedDataFile;
 	private final List<ExtendedAbstractLevelDataHolder> dataHolders;
 	private final ExtendedTraderDataHolder traderData;
 	private final ExtendedBanditDataHolder banditData;
 	private final ExtendedInvasionDataHolder invasionData;
 	private final ExtendedBarrowsDataHolder barrowData;
 	private final ExtendedTolkienDataHolder tolkienData;
+	private final ExtendedFellowshipDataHolder fellowshipData;
+	private final ExtendedConquestDataHolder conquestData;
+	private final ExtendedPlayerInfoHolder playerData;
 
 	private boolean dirty = false;
 	private boolean needsLoad = true;
-
 	private final LogicalSide side;
 
-	public static ExtendedLevelData serverInstance() {
-		return SERVER_INSTANCE;
-	}
-
-	public ExtendedLevelData(LogicalSide side) {
+	private ExtendedLevelData(LogicalSide side) {
 		this.side = side;
 		dataHolders = new ArrayList<>();
 		traderData = addHolder(new ExtendedTraderDataHolder(this));
@@ -35,6 +46,9 @@ public class ExtendedLevelData {
 		invasionData = addHolder(new ExtendedInvasionDataHolder(this));
 		barrowData = addHolder(new ExtendedBarrowsDataHolder(this));
 		tolkienData = addHolder(new ExtendedTolkienDataHolder(this));
+		fellowshipData = addHolder(new ExtendedFellowshipDataHolder(this));
+		conquestData = addHolder(new ExtendedConquestDataHolder(this));
+		playerData = addHolder(new ExtendedPlayerInfoHolder(this));
 	}
 
 	private <H extends ExtendedAbstractLevelDataHolder> H addHolder(H dataHolder) {
@@ -54,37 +68,60 @@ public class ExtendedLevelData {
 		this.dirty = true;
 	}
 
-	public void save(ServerWorld world) {
-		try {
-			File lotrDataFile = getLOTRDataFile(world);
-			if (!lotrDataFile.exists()) {
-				SaveUtil.saveNBTToFile(lotrDataFile, new CompoundNBT());
-			}
-			CompoundNBT levelData = new CompoundNBT();
-			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-				holder.saveData(levelData);
-			}
-
-			SaveUtil.saveNBTToFile(lotrDataFile, levelData);
-			this.dirty = false;
-		} catch (Exception e) {
-			LOTRLog.error("Error saving Extended mod data!");
-			e.printStackTrace();
-		}
+	public LogicalSide getSide() {
+		return side;
 	}
 
-	public void load(ServerWorld world) {
-		try {
-			CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
-			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-				holder.loadData(levelData);
-			}
-			this.needsLoad = false;
-			this.save(world);
-		} catch (Exception e) {
-			LOTRLog.error("Error loading Extended mod data!");
-			e.printStackTrace();
+	public File getOrCreateDataFile(MinecraftServer server) {
+		if(extendedDataFile==null) {
+			extendedDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "EXTENDED.dat");
 		}
+		return extendedDataFile;
+	}
+
+	public void save(MinecraftServer server) {
+		CompoundNBT levelData = new CompoundNBT();
+		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+			holder.saveData(levelData);
+		}
+		ExtendedIOUtils.save(getOrCreateDataFile(server), levelData);
+		this.dirty = false;
+	}
+
+	public void loadAndLock(MinecraftServer server) {
+		if(!needsLoad) {
+			return;
+		}
+		// Copy ExtendedLevelDat from /lotr/EXTENDED.dat
+		File oldData = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, server, false), "EXTENDED.dat");
+		if(oldData.exists()) {
+			ExtendedIOUtils.moveIfOldPath(getOrCreateDataFile(server).toPath(), oldData.toPath(), false);
+		}
+		CompoundNBT levelData = ExtendedIOUtils.load(getOrCreateDataFile(server));
+		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+			holder.loadDataServer(levelData, server);
+		}
+		this.needsLoad = false;
+		this.save(server);
+	}
+
+	public void loadClientSafe() {
+		if(side.isClient()) {
+			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+				holder.loadDataClient();
+			}
+		}
+	}
+	/**
+	 * Resets instance when the server stops to prevent leaking between worlds
+	 */
+	public void resetOnServerExit() {
+		this.extendedDataFile = null;
+		this.needsLoad = true;
+		this.dirty = false;
+		for (ExtendedAbstractLevelDataHolder holder : dataHolders) {
+            holder.clearData();
+        }
 	}
 
 	public void tick(ServerWorld world) {
@@ -92,11 +129,6 @@ public class ExtendedLevelData {
 			holder.tick(world);
 		}
 	}
-
-	private static File getLOTRDataFile(ServerWorld world) {
-		return new File(SaveUtil.getOrCreateLOTRDir(world), "EXTENDED.dat");
-	}
-
 
 	public ExtendedTraderDataHolder getTraderData() {
 		return traderData;
@@ -116,5 +148,17 @@ public class ExtendedLevelData {
 
 	public ExtendedTolkienDataHolder getTolkienData() {
 		return tolkienData;
+	}
+
+	public ExtendedFellowshipDataHolder getFellowshipData() {
+		return fellowshipData;
+	}
+
+	public ExtendedConquestDataHolder getConquestData() {
+		return conquestData;
+	}
+
+	public ExtendedPlayerInfoHolder getPlayerData() {
+		return playerData;
 	}
 }

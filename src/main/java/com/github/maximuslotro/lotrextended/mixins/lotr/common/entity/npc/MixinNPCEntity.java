@@ -38,7 +38,6 @@ import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.fac.Faction;
 import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
@@ -337,21 +336,24 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	public boolean checkSpawnRules(IWorld iworld, SpawnReason reason) {
 		if (super.checkSpawnRules(iworld, reason)) {
 			if (reason == SpawnReason.NATURAL) {
-				// Extended Start
-				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isNotAllowed()) {
+				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) 
+					/*Extended Start*/|| ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isNotAllowed()/*Extended End*/) {
 					return false;
 				}
-				// Extended End
 				if (this.spawnRequiresSurfaceBlock && !this.checkSpawningOnSurfaceBlock(iworld, reason)) {
 					return false;
 				}
 			}
+			// Extended Start
+			// Bandit, wandering traders, Tolkien, invasions
 			if (reason == SpawnReason.EVENT) {
 				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
 			}
+			// Structures, Respawner
 			if (reason == SpawnReason.SPAWNER) {
 				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
 			}
+			/*Extended End*/
 			return true;
 		} else {
 			return false;
@@ -419,7 +421,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Override
 	public boolean isAlliedTo(Entity otherEntity) {
 		if (unitInfo.isNpcActiveDuty()) {
-			LivingEntity livingentity = unitInfo.getUnitOwner();
+			PlayerEntity livingentity = unitInfo.getUnitOwner();
 			if (otherEntity == livingentity) {
 				return true;
 			}
@@ -439,7 +441,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Override
 	public void die(DamageSource damageSource) {
 		if(unitInfo.isNpcActiveDuty()) {
-			ExtendedHiredUnitHelper.die(unitInfo, damageSource);
+			unitInfo.die(damageSource);
 		}
 		super.die(damageSource);
 	}
@@ -460,7 +462,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
 	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
 		if(unitInfo.isNpcActiveOrDismissed()) {
-			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
+			// Disabled due to NPCEntity using new logic we don't want for unit drops
+	        //super.dropCustomDeathLoot(damageSource, looting, player);
+			unitInfo.dropCustomDeathLoot(random, looting);
 			ci.cancel();// Hired units should only handle it's own equipment.
 		}
 	}

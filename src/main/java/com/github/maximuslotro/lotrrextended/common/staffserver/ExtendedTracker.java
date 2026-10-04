@@ -25,32 +25,7 @@ public interface ExtendedTracker {
 		try {
 			Files.write(logFile, (timedMessage + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE,  StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			e.printStackTrace();
+	    	ExtendedLog.warn("Failed logging to file: {} with message [{}]", logFile.toString(), message, e);
 		}
-	}
-	
-	public static void migrateIfNeeded(Path newFile, Path oldFile) {
-	    try {
-	        if (!Files.exists(newFile) && Files.exists(oldFile)) {
-	            // Ensure new directory exists
-	            Files.createDirectories(newFile.getParent());
-	            // Move old file to new location
-	            Files.move(oldFile, newFile);
-	            // Delete old directory if empty
-	            tryDeleteDirectory(oldFile.getParent());
-
-	            ExtendedLog.info("[Extended] Migrated " + oldFile + " → " + newFile);
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-
-	public static void tryDeleteDirectory(Path dir) {
-	    try {
-	        if (Files.isDirectory(dir) && Files.list(dir).findAny().isPresent()) {
-	            Files.delete(dir);
-	        }
-	    } catch (IOException ignored) {}
 	}
 }

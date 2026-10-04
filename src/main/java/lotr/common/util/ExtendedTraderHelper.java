@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptain
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCoinExchangePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenTradeMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
@@ -25,6 +25,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedTraderHelper {
 
@@ -49,9 +51,7 @@ public class ExtendedTraderHelper {
     	return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player) {
-        if (entity.level.isClientSide()) {
-            ExtendedClientsideSeparatedScreenHandler.openTraderMainMenuGui(entity, player);
-        }
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openTraderMainMenuGui(entity, player));
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 

@@ -169,6 +169,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.on", "On");
 		addD("gui.lotrextended.base.off", "Off");
 		addD("gui.lotrextended.base.return", "Return");
+		addD("gui.lotrextended.base.player_not_found", "Player not found");
 		addD("gui.lotrextended.base.unset", "Unset");
 
 		// npc generic buttons
@@ -395,6 +396,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.overworldspawnradius.setting", "Overworld Spawn Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.middleearthspawnradius.setting", "ME Spawn Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.no_perm", "Requires singleplayer cheats or server operator permissions.");
+		addD("gui.lotrextended.serversettings.enableconquest.setting", "Conquest: %s");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.button", "Client Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
@@ -474,6 +476,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.worldprune.finished", "Pruning complete! Deleted %s regions, saving %s, and skipped %s");
 		addD("gui.lotrextended.worldprune.finished.dry", "[Dry Run] Would delete %s regions, saving %s");
 		addD("gui.lotrextended.worldprune.canceled", "Pruning canceled (%s/%s regions processed)");
+		// Map
+		addD("gui.lotrextended.map.teleport", "Press '%s' to /tp");
+		addD("gui.lotrextended.map.region_button", "Region: %s");
+		addD("gui.lotrextended.map.conquest.strength", "Conquest Strength: %s");
+		addD("gui.lotrextended.map.conquest.benefit.none", "No effect.");
+		addD("gui.lotrextended.map.conquest.benefit.low", "Conquest is too low to benefit faction");
+		addD("gui.lotrextended.map.conquest.benefit.alies", "Conquest boosts %s allies");
+		addD("gui.lotrextended.map.conquest.benefit.crafting", "Enemy crafting tables unlocked");
+		addD("gui.lotrextended.map.conquest.benefit.spawning", "Faction units spawn");
+
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
 		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");
@@ -655,6 +667,25 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.trigger.bandit.failure", "Attempt to spawn bandit at %s was unsuccessful.");
 		addD("command.lotrextended.trigger.invasion.success", "An invasion was successfully spawned near %s.");
 		addD("command.lotrextended.trigger.invasion.failure", "Could not find an invasion to spawn near %s.");
+
+		// Conquest command
+		addD("command.lotrextended.seen.rate.get", "Global conquest rate is %1$s");
+		addD("command.lotrextended.conquest.rate.set", "Set global conquest rate to %1$s");
+		addD("command.lotrextended.conquest.rate.get", "Global conquest rate is %1$s");
+		addD("command.lotrextended.conquest.scale.get", "Conquest grid scale is %1$s, which is %2$s map pixels across");
+		addD("command.lotrextended.conquest.scale.set", "Set conquest grid scale to %1$s, which is %2$s map pixels across");
+		addD("command.lotrextended.conquest.clear", "Cleared all conquest");
+		addD("command.lotrextended.conquest.get", "%1$s has %2$s conquest strength at %3$s");
+		addD("command.lotrextended.conquest.get.failure", "No %1$s conquest present at %2$s");
+		addD("command.lotrextended.conquest.modify.set", "Set %1$s conquest strength to %2$s at %3$s");
+		addD("command.lotrextended.conquest.modify.add", "Added %1$s to %2$s conquest strength at %3$s");
+		addD("command.lotrextended.conquest.toggle", "%s conquest");
+
+		// Player time commands
+		addD("command.lotrextended.seen.joined", "%1$s first joined on %2$s");
+		addD("command.lotrextended.seen.online", "%1$s is currently online");
+		addD("command.lotrextended.seen.never", "%1$s has never logged out");
+		addD("command.lotrextended.seen.last", "%1$s was last seen %2$s");
 
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");

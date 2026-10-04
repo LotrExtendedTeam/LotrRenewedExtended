@@ -7,9 +7,8 @@ import java.util.UUID;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -17,7 +16,6 @@ import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fellowship.ExtendedFellowship;
-import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import lotr.common.network.LOTRPacketHandler;
 import lotr.common.network.SPacketMapPlayerLocations;
 import lotr.common.world.map.MapPlayerLocation;
@@ -27,33 +25,11 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 /**
- * Need to add more server managed data
+ * Need to fellowship support to player location sending
  * @Mixin (LOTRLevelData.class)
  * */
 @Mixin(LOTRLevelData.class)
 public class MixinLOTRLevelData {
-
-	/**
-	 * @reason Need to add more level saved data, in this case Fellowships
-	 * @Inject (method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
-	 * @param world The ServerWorld to query for data
-	 * @param info The local CallbackInfo for this Injection
-	 * */
-	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
-	public void saveFactionData(ServerWorld world, CallbackInfo info) {
-		ExtendedFellowshipHolderServer.saveAll(world);
-	}
-
-	/**
-	 * @reason Need to load data from saved data, in this case Fellowships
-	 * @Inject (method = "load(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
-	 * @param world The ServerWorld to query for data
-	 * @param info The local CallbackInfo for this Injection
-	 * */
-	@Inject(method = "load(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
-	public void loadFactionData(ServerWorld world, CallbackInfo info) {
-		ExtendedFellowshipHolderServer.loadAll(world);
-	}
 
 	/**
 	 * Need to get the LOTRPlayerData instance associated with a given player
@@ -63,19 +39,6 @@ public class MixinLOTRLevelData {
 	 * */
 	@Shadow(remap=false)
 	public LOTRPlayerData getData(PlayerEntity player) {return null;}
-
-	/**
-	 * @reason On player login, send additional server settings information
-	 * @Inject (method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
-	 * @param player The ServerPlayerEntity to send to
-	 * @param ci The local CallbackInfo instance of this Inject
-	 * */
-	@Inject(method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
-	public void sendLoginPacket(ServerPlayerEntity player, CallbackInfo ci) {
-		//ExtendedSSyncServerSettingsPacket packet = new ExtendedSSyncServerSettingsPacket();
-		//packet.setMakeMetalDoorsRequirePower(ExtendedServerConfig.makeMetalDoorsRequirePower.get());
-		//ExtendedPacketHandler.sendToClient(packet, player);
-	}
 
 	/**
 	 * @author maximuslotro
@@ -94,7 +57,7 @@ public class MixinLOTRLevelData {
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<>();
 		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
-			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(world, fsID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID);
 			if (fs != null && fs.isHideMapLocation())
 				fellowshipsMapShow.add(fs);
 		}
@@ -113,12 +76,14 @@ public class MixinLOTRLevelData {
 				if (isOp && creative) {
 					show = true;
 				} else {
+					// Extended Start
 					for (ExtendedFellowship fs : fellowshipsMapShow) {
 						if (fs.isInFellowship(otherPlayer.getUUID())) {
 							show = true;
 							break;
 						}
 					}
+					// Extended End
 				}
 			}
 			if (show) {

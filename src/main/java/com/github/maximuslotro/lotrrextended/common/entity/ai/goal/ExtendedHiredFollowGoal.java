@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
@@ -80,7 +81,7 @@ public class ExtendedHiredFollowGoal extends Goal {
 		if (!((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() || ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()!=ExtendedUnitOrders.FOLLOW_PLAYER) {
 			return false;
 		}
-		LivingEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
+		PlayerEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
 		if (livingOwner == null) { // Null owner means player is offline
 			return false;
 		} else if (livingOwner.isSpectator()) {

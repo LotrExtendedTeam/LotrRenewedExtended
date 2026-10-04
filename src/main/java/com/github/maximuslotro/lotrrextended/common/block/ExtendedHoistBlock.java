@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,6 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedHoistBlock extends Block {
 
@@ -22,17 +24,14 @@ public class ExtendedHoistBlock extends Block {
 
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (!world.isClientSide) {
-			return ActionResultType.CONSUME;
-		} else {
-			TileEntity tileentity = world.getBlockEntity(pos);
-			if (tileentity instanceof ExtendedHoistTileEntity) {
-				if(player.isCreative()) {
-					ExtendedClientsideSeparatedScreenHandler.openHoistGUI((ExtendedHoistTileEntity)tileentity);
-				}
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof ExtendedHoistTileEntity) {
+			if(player.isCreative()) {
+				DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openHoistGUI((ExtendedHoistTileEntity)tileentity));
+				return ActionResultType.sidedSuccess(world.isClientSide());
 			}
-			return ActionResultType.CONSUME;
 		}
+		return ActionResultType.FAIL;
 	}
 
 	@Override

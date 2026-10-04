@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -37,6 +38,11 @@ public abstract class ExtendedRadialScreen extends Screen {
 	@Override
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
+		renderRadialMenu(matrixStack, mouseX, mouseY, centerX, centerY, innerRadius, outerRadius, this.font);
+
+		this.font.draw(matrixStack, title, (width - font.width(title)) / 2, 20, 16777215);
+	}
+	protected void renderRadialMenu(MatrixStack matrixStack, int mouseX, int mouseY, int cx, int cy, int innerR, int outerR, FontRenderer fontRenderer) {
 		int count = getOptionsCount();
 		if (count == 0) {
 			return;
@@ -62,21 +68,21 @@ public abstract class ExtendedRadialScreen extends Screen {
 			double endAngle = (i + 1) * segmentAngle - (Math.PI / 2);
 			boolean isHovered = (i == hoveredIndex);
 			int r = 40;
-		    int g = 40;
-		    int b = 40;
-		    int a = 230;
-		    Integer color = getText(i).getColor();
-		    if (color != null) {
-		        r = (color >> 16) & 0xFF;
-		        g = (color >> 8) & 0xFF;
-		        b = color & 0xFF;
-		    }
-		    if (!isHovered) {
-		    	r = (int) (r * 0.5F);
-		        g = (int) (g * 0.5F);
-		        b = (int) (b * 0.5F);
-		        a = 150;
-		    }
+			int g = 40;
+			int b = 40;
+			int a = 230;
+			Integer color = getText(i).getColor();
+			if (color != null) {
+				r = (color >> 16) & 0xFF;
+				g = (color >> 8) & 0xFF;
+				b = color & 0xFF;
+			}
+			if (!isHovered) {
+				r = (int) (r * 0.5F);
+				g = (int) (g * 0.5F);
+				b = (int) (b * 0.5F);
+				a = 150;
+			}
 			drawPieSegment(matrixStack, centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, r, g, b, 255);
 		}
 		RenderSystem.enableTexture();
@@ -89,7 +95,6 @@ public abstract class ExtendedRadialScreen extends Screen {
 			int color = (i == hoveredIndex) ? 0xFFFFFF : 0xAAAAAA;
 			drawCenteredString(matrixStack, this.font, text, textX, textY - 4, color);
 		}
-		this.font.draw(matrixStack, title, (width - font.width(title)) / 2, 20, 16777215);
 	}
 
 	private void drawPieSegment(MatrixStack matrixStack, float cx, float cy, float innerR, float outerR, double startAngle, double endAngle, int r, int g, int b, int a) {
@@ -99,9 +104,9 @@ public abstract class ExtendedRadialScreen extends Screen {
 		int precision = 16;
 		double step = (endAngle - startAngle) / precision;
 		RenderSystem.enableBlend();
-	    RenderSystem.disableTexture();
-	    RenderSystem.defaultBlendFunc();
-	    RenderSystem.disableCull();
+		RenderSystem.disableTexture();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableCull();
 		buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
 		for (int i = 0; i <= precision; i++) {
 			double currentAngle = startAngle + (i * step);
@@ -112,7 +117,8 @@ public abstract class ExtendedRadialScreen extends Screen {
 		}
 		tessellator.end();
 		RenderSystem.enableCull();
-	    RenderSystem.enableTexture();
-	    matrixStack.popPose();
+		RenderSystem.enableTexture();
+		RenderSystem.disableBlend();
+		matrixStack.popPose();
 	}
 }

@@ -30,6 +30,11 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase {
 		this.name = name;
 	}
 
+	@Override
+	public ExtendedBannerProfileClient copy() {
+		return new ExtendedBannerProfileClient(name);
+	}
+
 	/**
 	 * Gets the unique ID of this banner profile.
 	 * For client profiles, this is always {@link Util#NIL_UUID}.

@@ -83,10 +83,10 @@ public class MixinEntityFactionHelper {
 		LOTRPlayerData playerData = LOTRLevelData.getSidedData(attacker);
 		boolean friendlyFire = false;
 		boolean friendlyFireEnabled = playerData.getAlignmentData().isFriendlyFireEnabled();
-		if (target instanceof PlayerEntity && target != attacker) {
+		if (target instanceof PlayerEntity && target != attacker && !attacker.level.isClientSide()) {
 			// Extended Start
 			ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
-			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(attacker.level);
+			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships();
 			for (ExtendedFellowship fs : fellowships) {
 				if (fs.isPreventPVP() && fs.isInFellowship(target.getUUID())) {
 					return false;
@@ -112,11 +112,13 @@ public class MixinEntityFactionHelper {
 				}
 				else {
 					// Check if unit is owned by fellowship member and friendly fire is being protected
-					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
-					List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(attacker.level);
-					for (ExtendedFellowship fs : fellowships) {
-						if (fs.isPreventHiredFF() && fs.isInFellowship(hiredUnitOwnerUUID)) {
-							return false;
+					if(!attacker.level.isClientSide()) {
+						ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
+						List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships();
+						for (ExtendedFellowship fs : fellowships) {
+							if (fs.isPreventHiredFF() && fs.isInFellowship(hiredUnitOwnerUUID)) {
+								return false;
+							}
 						}
 					}
 				}

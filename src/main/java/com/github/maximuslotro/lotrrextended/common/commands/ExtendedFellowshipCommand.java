@@ -284,8 +284,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int list(CommandSource source, PlayerEntity player) {
-		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
-		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships(player.level);
+		List<ExtendedFellowship> fellowships = getFellowshipData(player).getFellowships();
 		String fellowshipList = "";
 		for(ExtendedFellowship fellowship : fellowships) {
 			if(!fellowshipList.isEmpty()) {
@@ -376,11 +375,9 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
-		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
-		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+		ExtendedFellowship fellowship = getFellowshipData(player).getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	ExtendedFellowshipDataModule fellowshipData2 = getFellowshipData(newMember);
-        	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
+        	getFellowshipData(newMember).addInvitePlayer(fellowship, player.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.invited", newMember.getDisplayName().getString()), true);
         	return 0;
         }
@@ -489,8 +486,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         return 0;
 	}
 	private static int displayInfo(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
-		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+		ExtendedFellowship fellowship = getFellowshipData(player).getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
 			//Send Name
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.name").withStyle(TextFormatting.GREEN)

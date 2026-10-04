@@ -1,0 +1,8 @@
+{
+  "id": "lotr:southron_coasts_forest",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotrextended:near_harad_umbar": "RARE"
+  }
+}

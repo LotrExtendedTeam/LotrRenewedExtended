@@ -14,7 +14,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHornSquadScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedHornSquadScreen extends ExtendedAbstractWindowedScreen {
 	private static final ResourceLocation TEXTURE = new ResourceLocation("lotrextended:textures/gui/horn_squad.png");
 	private ExtendedEmptyTextFieldWidget squadTextField;
 	private String newSquadName;

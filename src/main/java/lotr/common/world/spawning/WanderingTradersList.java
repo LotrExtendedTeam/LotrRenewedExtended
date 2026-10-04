@@ -257,11 +257,11 @@ public class WanderingTradersList {
 		return map;
 	}
 
-	public static @Nonnull Optional<ExtendedWanderingTraderData> pickTraderFromBiomeId(World world, Optional<RegistryKey<Biome>> biomeKey) throws IllegalArgumentException {
+	public static Optional<ExtendedWanderingTraderData> pickTraderFromBiomeId(World world, Optional<RegistryKey<Biome>> biomeKey) throws IllegalArgumentException {
 		return pickTraderIdFromBiomeName(world, biomeKey.get().location());
 	}
 
-	public static @Nonnull Optional<ExtendedWanderingTraderData> pickTraderIdFromBiomeName(World world, ResourceLocation biomeName) {
+	public static Optional<ExtendedWanderingTraderData> pickTraderIdFromBiomeName(World world, ResourceLocation biomeName) {
 		if (!biomeName.getNamespace().equalsIgnoreCase("lotr")) {
 			return Optional.empty();
 		}
@@ -272,7 +272,7 @@ public class WanderingTradersList {
 		return rollWeightedTrader(weights, world);
 	}
 
-	private static @Nonnull Optional<ExtendedWanderingTraderData> rollWeightedTrader(Map<ExtendedWanderingTraderData, Integer> weights, World world) {
+	private static Optional<ExtendedWanderingTraderData> rollWeightedTrader(Map<ExtendedWanderingTraderData, Integer> weights, World world) {
 		int totalWeight = weights.values().stream().mapToInt(Integer::intValue).sum();
 		if (totalWeight <= 0) {
 			ExtendedLog.error("Found empty total biome weights");
@@ -292,7 +292,7 @@ public class WanderingTradersList {
 	}
 
 	public static class ExtendedWanderingTraderData {
-		final EntityType<?> traderType;
+		final @Nonnull EntityType<?> traderType;
 		final Faction traderFaction;
 
 		private ExtendedWanderingTraderData(@Nonnull EntityType<?> pTraderType, Faction pTraderFaction){

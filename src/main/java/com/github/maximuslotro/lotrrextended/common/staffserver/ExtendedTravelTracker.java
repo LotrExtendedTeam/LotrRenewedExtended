@@ -3,14 +3,15 @@ package com.github.maximuslotro.lotrrextended.common.staffserver;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedPlayerInfoHolder;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -32,69 +33,61 @@ public class ExtendedTravelTracker implements ExtendedTracker {
 		}
 	}
 
-	public static void handlePlayerDimChange(ServerPlayerEntity player, RegistryKey<World> dim) {
-		ResourceLocation toDim = dim.location();
-		if (toDim.equals(World.NETHER.location())) {
-			handleNetherPlayer(player.getGameProfile().getId(), player);
-		} else if (toDim.equals(World.END.location())) {
-			handleEndPlayer(player.getGameProfile().getId(), player);
-		} else if (toDim.equals(World.OVERWORLD.location())) {
-			handleOverworldPlayer(player.getGameProfile().getId(), player);
-		}
-	}
-
-	public static void handleServerTravelTick() {
+	public static void handleServerTravelSecond() {
 		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
 		if (server == null) {
 			return;
 		}
+		ExtendedPlayerInfoHolder playerData = ExtendedLevelData.serverInstance().getPlayerData();
 		for (ServerPlayerEntity player : server.getPlayerList().getPlayers()) {
-			ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(player.getGameProfile().getId());
-			if(info.isInJail()) {
-				player.teleportTo(server.overworld(), -86, 114, 6, 8, 8);
-				return;
+			if(playerData.getPlayerInfo(player.getUUID()).isJailed()) {
+				teleportToJail(server, player);
+				continue;
 			}
 			ResourceLocation dim = player.level.dimension().location();
-			if (dim.equals(World.NETHER.location())) {
-				handleNetherPlayer(player.getGameProfile().getId(), player);
-			} else if (dim.equals(World.END.location())) {
-				handleEndPlayer(player.getGameProfile().getId(), player);
-			} else if (dim.equals(World.OVERWORLD.location())) {
-				handleOverworldPlayer(player.getGameProfile().getId(), player);
-			}else if (dim.equals(World.OVERWORLD.location()) && ExtendedModTracker.autoBanMap.containsKey("overworld_travel_spawn")) {
-				double dx = player.getX() - spawn.getX();
-				double dz = player.getZ() - spawn.getZ();
-				double distSq = dx * dx + dz * dz;
-				if (distSq > SPAWN_RADIUS * SPAWN_RADIUS) {
-					info.sendToJail(true);
-					ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " left overworld spawn at " + player.blockPosition());
-				}
+			checkDimensionRestrictions(player, dim);
+
+			if (dim.equals(World.OVERWORLD.location()) && !playerData.getPlayerInfo(player.getUUID()).isJailed() && ExtendedModTracker.autoBanMap.containsKey("overworld_travel_spawn")) {
+				checkOverworldSpawnBoundary(playerData, player);
 			}
-			if(info.isInJail()) {
-				player.teleportTo(server.overworld(), -86, 114, 6, 8, 8);
+
+			if(playerData.getPlayerInfo(player.getUUID()).isJailed()) {
+				teleportToJail(server, player);
 			}
 		}
 	}
 
-	private static void handleNetherPlayer(UUID uuid, ServerPlayerEntity player) {
-		if (ExtendedModTracker.autoBanMap.containsKey("nether_travel")) {
-			ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
-			info.sendToJail(true);
-			ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " entered NETHER at " + player.blockPosition());
+	protected static void checkDimensionRestrictions(ServerPlayerEntity player, ResourceLocation dim) {
+		if (dim.equals(World.NETHER.location())) {
+			handleJailingPlayer(player, "nether_travel", "NETHER");
+		} else if (dim.equals(World.END.location())) {
+			handleJailingPlayer(player, "end_travel", "END");
+		} else if (dim.equals(World.OVERWORLD.location())) {
+			handleJailingPlayer(player, "overworld_travel", "OVERWORLD");
 		}
 	}
-	private static void handleEndPlayer(UUID uuid, ServerPlayerEntity player) {
-		if (ExtendedModTracker.autoBanMap.containsKey("end_travel")) {
-			ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
-			info.sendToJail(true);
-			ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " entered END at " + player.blockPosition());
+
+	private static void teleportToJail(MinecraftServer server, ServerPlayerEntity player) {
+		player.teleportTo(server.overworld(), -86.0F, 114.0F, 6.0F, 8.0F, 8.0F);
+	}
+
+	private static void checkOverworldSpawnBoundary(ExtendedPlayerInfoHolder playerData, ServerPlayerEntity player) {
+		double dx = player.getX() - spawn.getX();
+		double dz = player.getZ() - spawn.getZ();
+		if ((dx * dx + dz * dz) > (SPAWN_RADIUS * SPAWN_RADIUS)) {
+			playerData.setJailed(player.getUUID(), true);
+			String logMsg = String.format("%s left overworld spawn at %s", player.getGameProfile().getName(), player.blockPosition());
+			ExtendedTracker.logToFile(LOGGER, LOG_FILE, logMsg);
 		}
 	}
-	private static void handleOverworldPlayer(UUID uuid, ServerPlayerEntity player) {
-		if (ExtendedModTracker.autoBanMap.containsKey("overworld_travel")) {
-			ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
-			info.sendToJail(true);
-			ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " entered OVERWORLD at " + player.blockPosition());
+
+	private static void handleJailingPlayer(ServerPlayerEntity player, String key, String dimName) {
+		if (!ExtendedModTracker.autoBanMap.containsKey(key)) {
+			return;
 		}
+		ExtendedLevelData.serverInstance().getPlayerData().setJailed(player.getUUID(), true);
+		String logMessage = String.format("%s entered %s at %s", player.getGameProfile().getName(), dimName, player.blockPosition());
+		ExtendedTracker.logToFile(LOGGER, LOG_FILE, logMessage);
+
 	}
 }
