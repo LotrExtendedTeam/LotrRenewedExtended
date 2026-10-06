@@ -29,7 +29,7 @@ public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<Exte
 		return new ExtendedAlignmentLevelTrigger.Instance(predicate, alignmentpredicate, JSONUtils.getAsBoolean(jsonObject, "pledged", false));
 	}
 
-	public void trigger(ServerPlayerEntity player, Faction faction, Float level, boolean pledged) {
+	public void trigger(ServerPlayerEntity player, Faction faction, float level, boolean pledged) {
 		this.trigger(player, (p_226627_1_) -> p_226627_1_.matches(player, faction, level, pledged));
 	}
 
@@ -55,7 +55,7 @@ public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<Exte
 			return new ExtendedAlignmentLevelTrigger.Instance(EntityPredicate.AndPredicate.ANY, ExtendedAlignmentPredicate.ANY, true);
 		}
 
-		public boolean matches(PlayerEntity player, Faction faction, Float level, boolean pledged) {
+		public boolean matches(PlayerEntity player, Faction faction, float level, boolean pledged) {
 			if(requiresPledge && !pledged) {
 				return false;
 			}
