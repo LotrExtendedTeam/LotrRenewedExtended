@@ -1,3 +1,12 @@
 {
-   "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "maximuslotro",
+      "id": 61996354,
+      "comment_id": 6041249126,
+      "created_at": "2026-10-07T15:36:24Z",
+      "repoId": 698106497,
+      "pullRequestNo": 477
+    }
+  ]
 }
