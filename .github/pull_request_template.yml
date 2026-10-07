@@ -1,0 +1,40 @@
+name: Pull Request
+description: Submit changes for review
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Briefly describe your changes or bug fix.
+    validations:
+      required: true
+  - type: input
+    id: related-issue
+    attributes:
+      label: Related Issue
+      description: Link to the GitHub issue this addresses, e.g., Resolves #12
+  - type: checkboxes
+    id: type-of-change
+    attributes:
+      label: Type of Change
+      options:
+        - label: Bug fix
+        - label: New feature
+        - label: Data Generation (JSONs, recipes, models, loot tables)
+        - label: Localization / Translation
+        - label: Textures / Assets
+        - label: Code Refactoring / Performance
+        - label: Other (please specify below)
+  - type: checkboxes
+    id: testing
+    attributes:
+      label: Testing
+      options:
+        - label: Tested locally in a Minecraft 1.16.5 Forge client/server environment
+        - label: Ran `./gradlew runData` and verified generated JSON files
+        - label: Successfully built the mod using `./gradlew build` without errors
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Add any context, screenshots, or extra information.
