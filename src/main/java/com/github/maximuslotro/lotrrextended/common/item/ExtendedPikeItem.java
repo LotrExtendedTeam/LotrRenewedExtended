@@ -10,7 +10,7 @@ public class ExtendedPikeItem extends ExtendedSwordItem {
 	}
 
 	public ExtendedPikeItem(IItemTier pItemTeir, Properties pProperties) {
-		this(pItemTeir, 4, -3F, 1.5F, pProperties);
+		this(pItemTeir, 3, -3.5F, 2.0F, pProperties);
 	}
 
 	public ExtendedPikeItem(IItemTier pItemTeir, ItemGroup pCategory) {

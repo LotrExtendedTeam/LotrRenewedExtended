@@ -761,9 +761,9 @@ public class ExtendedItems {
 
 	// Generic
 	public static RegistryObject<Item> IRON_THROWABLE_AXE = regItem("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
-	public static RegistryObject<Item> IRON_THROWABLE_PIKE = regItem("iron_pike", () -> new ExtendedPikeItem(ItemTier.IRON, LOTRItemGroups.COMBAT));
+	public static RegistryObject<Item> IRON_PIKE = regItem("iron_pike", () -> new ExtendedPikeItem(ItemTier.IRON, LOTRItemGroups.COMBAT));
 	public static RegistryObject<Item> BRONZE_THROWABLE_AXE = regItem("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
-	public static RegistryObject<Item> BRONZE_THROWABLE_PIKE = regItem("bronze_pike", () -> new ExtendedPikeItem(LOTRMaterial.BRONZE.asTool(), LOTRItemGroups.COMBAT));
+	public static RegistryObject<Item> BRONZE_PIKE = regItem("bronze_pike", () -> new ExtendedPikeItem(LOTRMaterial.BRONZE.asTool(), LOTRItemGroups.COMBAT));
 	
 	//Generic Orc Equipment
 	public static RegistryObject<Item> ORC_BOW = regItem("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
