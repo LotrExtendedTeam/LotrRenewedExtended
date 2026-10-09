@@ -86,6 +86,13 @@
           "item": "lotr:iron_spear",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:iron_pike",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
       }
     ],
     "ranged": [

@@ -8,7 +8,6 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -35,7 +34,7 @@ public enum ExtendedInvasions {
 	ROHAN("lotr:rohan", FactionPointers.ROHAN, new ItemStack(LOTRItems.ROHAN_SWORD.get())),
 	ISENGARD("lotr:isengard", FactionPointers.ISENGARD, new ItemStack(LOTRItems.URUK_CLEAVER.get())),
 	DUNLAND("lotrextended:dunland", FactionPointers.DUNLAND, new ItemStack(LOTRItems.DUNLENDING_CLUB.get())),
-	BREE("lotrextended:bree", FactionPointers.BREE, new ItemStack(Items.IRON_SWORD)),
+	BREE("lotrextended:bree", FactionPointers.BREE, new ItemStack(ExtendedItems.IRON_PIKE.get())),
 	BLUE_MOUNTAINS("lotrextended:blue_mountains", FactionPointers.BLUE_MOUNTAINS, new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get())),
 	DALE("lotrextended:dale", FactionPointers.DALE, new ItemStack(LOTRItems.DALE_SWORD.get())),
 	DURINS_FOLK("lotrextended:durins_folk", FactionPointers.DURINS_FOLK, new ItemStack(LOTRItems.DWARVEN_SWORD.get())),
