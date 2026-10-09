@@ -1678,6 +1678,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeOreFurnaceRecipe(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get(), 0.5f);
 		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f, 2400);
 		makeSmeltingRecipe(consumer, ExtendedItems.MORGOND.get(), ExtendedItems.SMOOTH_MORGOND.get(), 1.0f, 2400);
+		makeSmeltingRecipe(consumer, ExtendedItems.MORGOND_DRIPSTONE.get(), ExtendedItems.SMOOTH_MORGOND_DRIPSTONE.get(), 1.0f, 2400);
 	}
 
 	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {
