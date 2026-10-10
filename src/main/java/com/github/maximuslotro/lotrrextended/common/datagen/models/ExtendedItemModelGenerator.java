@@ -35,6 +35,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPikeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.google.common.collect.ImmutableSet;
@@ -183,7 +184,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
-					genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 					genSwordLarge(item.get());
 					continue;
 				}
@@ -252,13 +252,15 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				}
 				continue;
 			}
+			if(item.get() instanceof ExtendedPikeItem) {
+				genPike(item.get());
+				continue;
+			}
 			if(item.get() instanceof SpearItem) {
-				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				genSpear(item.get());
 				continue;
 			}
 			if(item.get() instanceof ExtendedStaffItem) {
-				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				genStaff(item.get());
 				continue;
 			}
@@ -267,7 +269,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
-				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				genSwordLarge(item.get());
 				continue;
 			}
@@ -351,6 +352,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return "Renewed Extended Item Model Provider";
 	}
 
+	// TODO fix bows not being drawn in the inventory 
 	private void genBow(Item item) {
 		//		String bowPulling0 = name+"_pulling_0";
 		//		String bowPulling1 = name+"_pulling_1";
@@ -381,19 +383,28 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genSwordLarge(Item item) {
+		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_large");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
 	private ItemModelBuilder genStaff(Item item) {
+		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_spear");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
 	private ItemModelBuilder genSpear(Item item) {
+		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_spear");
 		ItemModelBuilder builderPulling = withExistingParent(item.getRegistryName().toString()+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
 		builder.override().model(builderPulling).predicate(mcLoc("pulling"), 1);
+		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
+	}
+
+	private ItemModelBuilder genPike(Item item) {
+		genHandheld(item,  new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotrextended:item/template_pike");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
