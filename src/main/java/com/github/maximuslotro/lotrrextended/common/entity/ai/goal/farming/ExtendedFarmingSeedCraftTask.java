@@ -93,14 +93,14 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 		return false;
 	}
 	@Override
-    protected Optional<Supplier<BlockPos>> getCacheGetter() {
-        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedCraftingTable);
-    }
+	protected Optional<Supplier<BlockPos>> getCacheGetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedCraftingTable);
+	}
 
-    @Override
-    protected Optional<Consumer<BlockPos>> getCacheSetter() {
-        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedCraftingTable);
-    }
+	@Override
+	protected Optional<Consumer<BlockPos>> getCacheSetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedCraftingTable);
+	}
 	/**
 	 * Assigns a target block position for this task, utilizing cached coordinates if still within valid distance.
 	 *
@@ -110,10 +110,22 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		BlockPos cachedCraftingTablePos = getCacheGetter().get().get();
-		if (cachedCraftingTablePos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedCraftingTablePos.getX() + 0.5, cachedCraftingTablePos.getY() + 0.5, cachedCraftingTablePos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedCraftingTablePos);
-				return;
+		if(cachedCraftingTablePos != null) {
+			taskPosition.set(cachedCraftingTablePos);
+			return;
+		}
+		BlockPos entityPos = this.goalHolder.getEntity().blockPosition();
+		int horizontalRange = 8;
+		BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+		for(int x = -horizontalRange; x <= horizontalRange; x++) {
+			for(int y = -YSPLIT; y <= YSPLIT; y++) {
+				for(int z = -horizontalRange; z <= horizontalRange; z++) {
+					mutablePos.set( entityPos.getX() + x, entityPos.getY() + y, entityPos.getZ() + z);
+					if(isValidPosForTask(mutablePos, pServerLevel) && this.goalHolder.isWithinBounds(mutablePos)) {
+						taskPosition.set(mutablePos);
+						return;
+					}
+				}
 			}
 		}
 		taskPosition.set(BlockPos.ZERO);
@@ -162,37 +174,37 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
 		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CRAFTING, false);
 		int currentGoalTick = goalHolder.tickTime;
-		if (currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
+		if(currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the crafting table
 		}
 		ItemStack targetSeedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		Item cropItem = getCraftCropFromSeeds(targetSeedsStack.getItem());
-		if (cropItem == null) {
+		if(cropItem == null) {
 			return true; // No valid recipe, mark task as complete
 		}
 		Inventory outputInventory = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
 		int cropSlot = -1;
-		for (int i = 0; i < outputInventory.getContainerSize(); i++) {
+		for(int i = 0; i < outputInventory.getContainerSize(); i++) {
 			ItemStack stack = outputInventory.getItem(i);
 			if (!stack.isEmpty() && stack.getItem() == cropItem) {
 				cropSlot = i;
 				break;
 			}
 		}
-		if (cropSlot == -1) {
+		if(cropSlot == -1) {
 			return true; // No slot found, exit task
 		}
 		outputInventory.removeItem(cropSlot, 1);
 		ItemStack createdSeeds = getCraftFromCrop(cropItem);
-		if (createdSeeds != null) {
+		if(createdSeeds != null) {
 			int seedsProduced = createdSeeds.getCount();
 			int spaceInMainStack = CRAFTING_MAX - targetSeedsStack.getCount();
-			if (spaceInMainStack > 0) {
+			if(spaceInMainStack > 0) {
 				int toAdd = Math.min(seedsProduced, spaceInMainStack);
 				targetSeedsStack.grow(toAdd);
 				seedsProduced -= toAdd;
 			}
-			if (seedsProduced > 0) {
+			if(seedsProduced > 0) {
 				ItemStack dropStack = new ItemStack(targetSeedsStack.getItem(), seedsProduced);
 				dropSeeds(pServerLevel.getBlockState(pComposterPos), pServerLevel, pComposterPos, goalHolder.getEntity(), dropStack);
 			}
@@ -213,7 +225,7 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 * @param dropStack   the item stack of seeds to drop
 	 */
 	public static void dropSeeds(BlockState pState, World pLevel, BlockPos pCrafterPos, Entity pEntity, ItemStack dropStack) {
-		if (!pLevel.isClientSide) {
+		if(!pLevel.isClientSide) {
 			float f = 0.7F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
