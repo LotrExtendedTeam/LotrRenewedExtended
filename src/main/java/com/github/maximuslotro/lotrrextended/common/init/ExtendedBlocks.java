@@ -76,7 +76,6 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -233,7 +232,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_WILLOW_BRANCH = register("stripped_willow_branch", () -> new BranchBlock(STRIPPED_WILLOW_WOOD));
 	public static RegistryObject<Block> WILLOW_BEAM_SLAB = register("willow_beam_slab", () -> new LogSlabBlock(WILLOW_BEAM));
 	public static RegistryObject<Block> FALLEN_WILLOW_LEAVES = register("fallen_willow_leaves", () -> new FallenLeavesBlock(WILLOW_LEAVES));
-	public static RegistryObject<Block> WILLOW_VINES = register("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+	public static RegistryObject<Block> WILLOW_VINES = register("willow_vines", () -> new ExtendedVineBlock(Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 
 	public static RegistryObject<Block> EBONY_LOG = register("ebony_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_BLACK, ExtendedBlocks.STRIPPED_EBONY_LOG));
 	public static RegistryObject<Block> EBONY_WOOD = register("ebony_wood", () -> new StrippableWoodBlock(EBONY_LOG, ExtendedBlocks.STRIPPED_EBONY_WOOD));
@@ -573,10 +572,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_STAIRS = register("mossy_red_rhunic_brick_stairs", () -> new LOTRStairsBlock(MOSSY_RED_RHUNIC_BRICK));
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL = register("mossy_red_rhunic_brick_wall", () -> new ExtendedWallBlock(MOSSY_RED_RHUNIC_BRICK));
 
-	public static RegistryObject<Block> ROHAN_BEAM = register("rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
-	public static RegistryObject<Block> ORNATE_ROHAN_BEAM = register("ornate_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
-	public static RegistryObject<Block> GOLDEN_ROHAN_BEAM = register("golden_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
-	public static RegistryObject<Block> ORNATE_GOLDEN_ROHAN_BEAM = register("ornate_golden_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
+	public static RegistryObject<Block> ROHAN_BEAM = register("rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F).harvestTool(ToolType.AXE)));
+	public static RegistryObject<Block> ORNATE_ROHAN_BEAM = register("ornate_rohan_beam", () -> new LOTRPillarBlock(Properties.copy(ROHAN_BEAM.get())));
+	public static RegistryObject<Block> GOLDEN_ROHAN_BEAM = register("golden_rohan_beam", () -> new LOTRPillarBlock(Properties.copy(ROHAN_BEAM.get())));
+	public static RegistryObject<Block> ORNATE_GOLDEN_ROHAN_BEAM = register("ornate_golden_rohan_beam", () -> new LOTRPillarBlock(Properties.copy(ROHAN_BEAM.get())));
 
 	// Goblin
 	public static RegistryObject<Block> GOBLIN_BRICK = register("goblin_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GRAY));
@@ -673,8 +672,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> HIGH_ELVEN_LANTERN = register("high_elven_lantern", () -> new ExtendedLanternElvenBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
 	public static RegistryObject<Block> NUMENOREAN_LANTERN = register("numenorean_lantern", () -> new ExtendedLanternNumenoreanBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
 
-	public static RegistryObject<Block> ORC_STEEL_DOOR = register("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
-	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR = register("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
+	public static RegistryObject<Block> ORC_STEEL_DOOR = register("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion().harvestTool(ToolType.PICKAXE)));
+	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR = register("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.copy(ORC_STEEL_DOOR.get())));
 	public static RegistryObject<Block> ORC_CHAIN = register("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 
 	@SuppressWarnings("unchecked")
@@ -682,7 +681,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGUL_WALL_TORCH = register("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(MORGUL_TORCH));
 	public static RegistryObject<Block> GREEN_FLAME_HEARTH_BLOCK = register("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
 	public static RegistryObject<Block> GREEN_FIRE_BLOCK = register("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
-	public static RegistryObject<Block> WASTE_BLOCK = register("waste_block", () -> new ExtendedWasteBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_BROWN).strength(1.0F).speedFactor(0.4F).harvestTool(ToolType.SHOVEL).sound(SoundType.GRASS).isValidSpawn(ExtendedBlockParms::always).isRedstoneConductor(ExtendedBlockParms::always).isViewBlocking(ExtendedBlockParms::always).isSuffocating(ExtendedBlockParms::always)));
+	public static RegistryObject<Block> WASTE_BLOCK = register("waste_block", () -> new ExtendedWasteBlock(Properties.of(Material.SAND, MaterialColor.COLOR_BROWN).strength(1.0F).speedFactor(0.4F).harvestTool(ToolType.SHOVEL).sound(SoundType.GRASS).isValidSpawn(ExtendedBlockParms::always).isRedstoneConductor(ExtendedBlockParms::always).isViewBlocking(ExtendedBlockParms::always).isSuffocating(ExtendedBlockParms::always)));
 	public static RegistryObject<Block> CHEESE_WHEEL = register("cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE, ExtendedFoods.CHEESE_WHEEL_SLICE, ExtendedCheeseState.UNAFFECTED));
 	public static RegistryObject<Block> AGED_CHEESE_WHEEL = register("aged_cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.1F, ExtendedItems.AGED_CHEESE_SLICE, ExtendedFoods.AGED_CHEESE_WHEEL_SLICE, ExtendedCheeseState.AGED));
 
@@ -843,16 +842,16 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> WOODLAND_REALM_WALL_BANNER = register("woodland_realm_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.WOODLAND_REALM));
 
 
-	public static RegistryObject<Block> DEAD_MOSS_VINES = register("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+	public static RegistryObject<Block> DEAD_MOSS_VINES = register("dead_moss_vines", () -> new ExtendedVineBlock(Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 	// Birdcages
-	public static RegistryObject<Block> WOODEN_BIRDCAGE = register("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
-	public static RegistryObject<Block> BRONZE_BIRDCAGE = register("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
-	public static RegistryObject<Block> IRON_BIRDCAGE = register("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
-	public static RegistryObject<Block> SILVER_BIRDCAGE = register("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
-	public static RegistryObject<Block> GOLDEN_BIRDCAGE = register("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
-	public static RegistryObject<Block> MITHRIL_BIRDCAGE = register("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
+	public static RegistryObject<Block> WOODEN_BIRDCAGE = register("wooden_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
+	public static RegistryObject<Block> BRONZE_BIRDCAGE = register("bronze_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
+	public static RegistryObject<Block> IRON_BIRDCAGE = register("iron_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
+	public static RegistryObject<Block> SILVER_BIRDCAGE = register("silver_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
+	public static RegistryObject<Block> GOLDEN_BIRDCAGE = register("golden_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
+	public static RegistryObject<Block> MITHRIL_BIRDCAGE = register("mithril_birdcage", () -> new ExtendedBirdcageBlock(Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
 
-	public static RegistryObject<Block> GRASS_VOID = register("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops().isValidSpawn(ExtendedBlockParms::always)));
+	public static RegistryObject<Block> GRASS_VOID = register("grass_void", () -> new ExtendedGrassVoidBlock(Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops().isValidSpawn(ExtendedBlockParms::always)));
 
 	public static RegistryObject<Block> DWARVEN_DOOR = register("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 	public static RegistryObject<Block> DWARVEN_DOOR_LUIGON = register("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
@@ -862,21 +861,21 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GLOWSTONE_CRYSTAL_CHANDELIER = register("glowstone_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 20).sound(SoundType.STONE).noOcclusion()));
 	public static RegistryObject<Block> GULDURIL_CRYSTAL_CHANDELIER = register("gulduril_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 20).sound(SoundType.STONE).noOcclusion()));
 
-	public static RegistryObject<Block> STONE_SIGN = register("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
-	public static RegistryObject<Block> HOIST = register("mine_placeholder", () -> new ExtendedHoistBlock(AbstractBlock.Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE)));
+	public static RegistryObject<Block> STONE_SIGN = register("stone_engraving", () -> new ExtendedStoneTextSignBlock(Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
+	public static RegistryObject<Block> HOIST = register("mine_placeholder", () -> new ExtendedHoistBlock(Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE)));
 
 	public static RegistryObject<Block> HIGH_ELVEN_CHAIN = register("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 	public static RegistryObject<Block> SHARDS_OF_NARSIL = register("shards_of_narsil", () -> new ExtendedNarsilShardsBlock(Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.5F).noOcclusion()));
 
 	public static RegistryObject<Block> PLACED_BOOKS = register("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
-	public static RegistryObject<Block> EXTENDED_BOOKSHELF = register("bookshelf", () -> new ExtendedBookshelfBlock(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
+	public static RegistryObject<Block> EXTENDED_BOOKSHELF = register("bookshelf", () -> new ExtendedBookshelfBlock(Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
 
-	public static RegistryObject<Block> ORC_BOMB = register("orc_bomb", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, false));
-	public static RegistryObject<Block> ORC_BOMB_DOUBLE = register("orc_bomb_double", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, false));
-	public static RegistryObject<Block> ORC_BOMB_TRIPLE = register("orc_bomb_triple", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, false));
-	public static RegistryObject<Block> ORC_BOMB_FIRE = register("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, true));
-	public static RegistryObject<Block> ORC_BOMB_FIRE_DOUBLE = register("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, true));
-	public static RegistryObject<Block> ORC_BOMB_FIRE_TRIPLE = register("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
+	public static RegistryObject<Block> ORC_BOMB = register("orc_bomb", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), 0, false));
+	public static RegistryObject<Block> ORC_BOMB_DOUBLE = register("orc_bomb_double", () -> new ExtendedOrcBombBlock(Properties.copy(ORC_BOMB.get()), 1, false));
+	public static RegistryObject<Block> ORC_BOMB_TRIPLE = register("orc_bomb_triple", () -> new ExtendedOrcBombBlock(Properties.copy(ORC_BOMB.get()), 2, false));
+	public static RegistryObject<Block> ORC_BOMB_FIRE = register("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.copy(ORC_BOMB.get()), 0, true));
+	public static RegistryObject<Block> ORC_BOMB_FIRE_DOUBLE = register("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.copy(ORC_BOMB.get()), 1, true));
+	public static RegistryObject<Block> ORC_BOMB_FIRE_TRIPLE = register("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.copy(ORC_BOMB.get()), 2, true));
 
 	public static RegistryObject<Block> NUMENOREAN_BARS = register("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 

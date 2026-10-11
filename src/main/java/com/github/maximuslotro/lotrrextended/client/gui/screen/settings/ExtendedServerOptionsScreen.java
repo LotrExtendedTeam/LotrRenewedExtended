@@ -50,9 +50,18 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		addButton(gameplay.addButton("gui.lotrextended.serversettings.bannerprotection.setting", 
 				ExtendedServerConfig.enableBannerProtection, ExtendedSettingToggles.BANNER_PROTECTION, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableBannerProtection"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.enableconquest.setting", 
+				ExtendedServerConfig.enableConquest, ExtendedSettingToggles.CONQUEST, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableConquest"));
 		addButton(gameplay.addButton("gui.lotrextended.serversettings.fellowshipcreation.setting", 
 				ExtendedServerConfig.enableFellowshipCreation, ExtendedSettingToggles.FELLOWSHIP_CREATION, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableFellowshipCreation"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.feastmode.setting", 
+				ExtendedServerConfig.enableLegacyFeastMode, ExtendedSettingToggles.FEAST_MODE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyFeastMode"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.decreasedhunger.setting", 
+				ExtendedServerConfig.enableHungerDecrease, ExtendedSettingToggles.DECREASED_HUNGER, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableHungerDecrease"));
 		addButton(gameplay.addButton("gui.lotrextended.serversettings.renewedwaypointcreate.setting", 
 				ExtendedServerConfig.enableRenewedWaypointCreation, ExtendedSettingToggles.RENEWED_WAYPOINT_CREATE, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableRenewedWaypointCreation"));
@@ -65,12 +74,6 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		addButton(gameplay.addButton("gui.lotrextended.serversettings.customwaypointteleportation.setting", 
 				ExtendedServerConfig.enableCustomWaypointTeleportation, ExtendedSettingToggles.CUSTOM_WAYPOINT_TELEPORT, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableCustomWaypointTeleportation"));
-		addButton(gameplay.addButton("gui.lotrextended.serversettings.feastmode.setting", 
-				ExtendedServerConfig.enableLegacyFeastMode, ExtendedSettingToggles.FEAST_MODE, 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyFeastMode"));
-		addButton(gameplay.addButton("gui.lotrextended.serversettings.decreasedhunger.setting", 
-				ExtendedServerConfig.enableHungerDecrease, ExtendedSettingToggles.DECREASED_HUNGER, 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableHungerDecrease"));
 		catagories.add(gameplay);
 
 		SettingsCatagory entity = new SettingsCatagory(this, 1, x, y, xTabs);

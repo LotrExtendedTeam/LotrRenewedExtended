@@ -206,7 +206,7 @@
 			"predicate": {
 				"blocking": 1
 			}, 
-			"model": "lotr:item/dunedain_shield_blocking"
+			"model": "lotrextended:item/dunedain_shield_blocking"
 		}
 	],
 	"display": {

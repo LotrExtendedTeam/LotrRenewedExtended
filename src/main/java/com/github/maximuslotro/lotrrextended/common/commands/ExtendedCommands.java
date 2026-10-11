@@ -18,5 +18,8 @@ public class ExtendedCommands {
 		ExtendedTriggerCommand.register(dispatcher);
 		ExtendedSummonCommand.register(dispatcher);
 		ExtendedDebugCommand.register(dispatcher);
+		ExtendedFirstLastSeenCommand.register(dispatcher);
+		ExtendedPruneWorldCommand.register(dispatcher);
+		ExtendedConquestCommand.register(dispatcher);
 	}
 }

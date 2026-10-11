@@ -142,7 +142,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 				//int tileChunkZ = pos.getZ() >> 4;
 				//Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1
 				// Check if pos is within 24 blocks circled and is on the same relative y-plane
-				if (pos.distSqr(farmhandPos)<ExtendedFarmingGoalHolder.MAXFARMDISTANCE_SQU && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
+				if (goalHolder.isWithinBounds(pos) && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
 					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
 						if (tileEntity instanceof ChestTileEntity) {
 							if (isValidPosForTask(pos, pServerLevel) && hasHoeItemFrameOnFront(pos, pServerLevel)) {
@@ -156,8 +156,18 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 		if (!validChests.isEmpty()) {
 			Collections.shuffle(validChests);
 			taskPosition.set(validChests.get(0));
+		}else {
+			failValue();
+			taskPosition.set(BlockPos.ZERO);
 		}
 	}
+
+	@Override
+	public boolean shouldCheckOnce() {
+		return true;
+	}
+
+	public void failValue() {}
 	/**
 	 * Checks whether the given chest position, or its connected neighbor if part of a double chest,
 	 * has an item frame mounted on its front face containing a hoe.

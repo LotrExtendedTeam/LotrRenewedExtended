@@ -1,0 +1,9 @@
+{
+  "id": "lotr:rohan",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:isengard": "UNCOMMON",
+    "lotrextended:dunland": "UNCOMMON"
+  }
+}

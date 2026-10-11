@@ -1,0 +1,6 @@
+{
+    "parent": "lotr:item/plate_food/template_full_bowl",
+    "textures": {
+        "all": "lotrextended:item/leek_soup_plate"
+    }
+}

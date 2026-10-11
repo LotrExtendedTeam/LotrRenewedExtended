@@ -44,10 +44,6 @@ public abstract class ExtendedFarmingAbstractTask {
 	 */
 	protected static final int YSPLIT = 1;
 	/**
-	 * Maximum allowable squared distance from the NPC to its cached block before forcing target re-validation.
-	 */
-	protected static final double MAX_DISTANCE_SQ = Math.pow(12, 2);
-	/**
 	 * Parent goal instance holding references to the entity, world, and inventory data.
 	 */
 	protected ExtendedFarmingGoalHolder goalHolder;
@@ -76,7 +72,19 @@ public abstract class ExtendedFarmingAbstractTask {
 		return isTaskValidForNPC(pServerLevel);
 	}
 	/**
+	 * Validates the mutated {taskPosition} value is within bounds
+	 *
+	 * @param taskPosition {@link net.minecraft.util.math.BlockPos.Mutable} to mutate in place
+	 * @param pServerLevel world where task is being executed
+	 * @return True if within entity restrictions
+	 */
+	public boolean setRandomBlockInBounds(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
+		setRandomBlockByTask(taskPosition, pServerLevel);
+		return !taskPosition.equals(BlockPos.ZERO) && this.goalHolder.isWithinBounds(taskPosition);
+	}
+	/**
 	 * Mutates {@code taskPosition} to either a random block in bounds, or via overrides to a specific position.
+	 * Do not check for bounds restrictions in this method, unless checking entities or other non-random range positions.
 	 *
 	 * @param taskPosition {@link net.minecraft.util.math.BlockPos.Mutable} to mutate in place
 	 * @param pServerLevel world where task is being executed
@@ -173,6 +181,10 @@ public abstract class ExtendedFarmingAbstractTask {
 	 * @return {@code true} if the task action is completed, or {@code false} to defer exiting and keep ticking
 	 */
 	public abstract boolean executeTask(BlockPos pChosenBlockPos, ServerWorld pServerLevel);
+
+	public boolean shouldCheckOnce() {
+		return false;
+	}
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
 	 * and that no liquid is present, as well as another block above it are replaceable materials.

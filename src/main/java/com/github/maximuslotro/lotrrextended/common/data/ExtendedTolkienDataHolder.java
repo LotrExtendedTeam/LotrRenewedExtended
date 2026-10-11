@@ -11,10 +11,11 @@ import lotr.common.entity.npc.ExtendedTolkienEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
-	private List<UUID> tolkienTalkedTo = new ArrayList<>();
+	private final List<UUID> tolkienTalkedTo = new ArrayList<>();
 	private final int tolkienTalkedToVersion = 1;
 
 	public ExtendedTolkienDataHolder(ExtendedLevelData pHolder) {
@@ -22,15 +23,14 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		int tolkienVersion = pTag.getInt("tolkienVersion");
+		tolkienTalkedTo.clear();
 		if(tolkienVersion!=tolkienTalkedToVersion) {
-			tolkienTalkedTo = new ArrayList<>();
 			return;
 		}
 		ListNBT listnbt = pTag.getList("tolkienTalkedTo", 10);
 		if (listnbt.isEmpty()) {
-			tolkienTalkedTo = new ArrayList<>();
 			return;
 		}
 
@@ -39,6 +39,11 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 			UUID playerUUID = compoundnbt.getUUID("player");
 			tolkienTalkedTo.add(playerUUID);
 		}
+	}
+
+	@Override
+	protected void clearData() {
+		tolkienTalkedTo.clear();
 	}
 
 	@Override
@@ -74,5 +79,4 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 			}
 		}
 	}
-
 }

@@ -1,0 +1,11 @@
+{
+  "id": "lotr:enedwaith",
+  "conquest_rate": 1.0,
+  "bandit_chance": "COMMON",
+  "invasion_data": {
+    "lotr:northern_orcs": "RARE",
+    "lotr:northern_orcs_wargs": "UNCOMMON",
+    "lotr:dunedain_north": "RARE",
+    "lotrextended:dunland": "UNCOMMON"
+  }
+}

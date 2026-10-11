@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen.settings;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedAbstractWindowedScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -9,24 +9,13 @@ import lotr.client.gui.widget.button.LeftRightButton;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstractScreen{
+public abstract class AbstractExtendedOptionsScreen extends ExtendedAbstractWindowedScreen{
 	private final SettingsPage currentPage;
 	public AbstractExtendedOptionsScreen(ITextComponent pTitle, SettingsPage pCurrentPage) {
 		super(pTitle, 200, 256);
 		this.currentPage = pCurrentPage;
 	}
 
-	public boolean hasCheatsEnabled() {
-		boolean hasCheatsEnabled = false;
-		if (this.minecraft.getSingleplayerServer() != null) {
-		    hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
-		            && this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
-		            || this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
-		} else {
-			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
-		}
-		return hasCheatsEnabled;
-	}
 	@Override
 	public void init() {
 		super.init();

@@ -9,7 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissi
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 import com.google.common.collect.ImmutableMap;
@@ -277,13 +277,13 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 			TileEntity tileentity = world.getBlockEntity(blockPosBottom);
 			if (tileentity instanceof ExtendedMEBannerTileEntity && ((ExtendedMEBannerTileEntity) tileentity).isProtecting()) {
 				if(!ExtendedServerConfig.enableBannerProtection.get()) {
-					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket(false);
+					ExtendedSBannerScreenPacket packet = new ExtendedSBannerScreenPacket(false);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
 				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPosBottom, new ProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
 					boolean clientOP = ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile());
-					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity, clientOP);
+					ExtendedSBannerScreenPacket packet = new ExtendedSBannerScreenPacket((ExtendedMEBannerTileEntity)tileentity, clientOP, true);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}

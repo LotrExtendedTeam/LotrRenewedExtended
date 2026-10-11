@@ -75,9 +75,7 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 		@Override
 		public JsonElement serialize(ExtendedTraderPoolItem traderPool, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
-			if(traderPool.weight!=1) {
-				jsonobject.addProperty("weight", traderPool.weight);
-			}
+			jsonobject.addProperty("weight", traderPool.weight);
 			if(traderPool.getMaxTransferQuantity()!=200) {
 				jsonobject.addProperty("maxTransferQuantity", traderPool.getMaxTransferQuantity());
 			}

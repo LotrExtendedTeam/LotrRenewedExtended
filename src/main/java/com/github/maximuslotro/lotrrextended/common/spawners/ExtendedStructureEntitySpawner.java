@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedSerialization;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedCompoundNBTSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
 import com.google.common.collect.Lists;
@@ -810,7 +810,7 @@ public class ExtendedStructureEntitySpawner {
 				}
 			}
 			if(jsonobject.has("bbInflateFactor")) {
-				spawner.setSpawnBBOffset(ExtendedSerialization.Vector3fSerializer.fromJson(jsonobject.get("bbInflateFactor")));
+				spawner.setSpawnBBOffset(ExtendedCompoundNBTSerializers.Vector3fSerializer.fromJson(jsonobject.get("bbInflateFactor")));
 			}
 			// Set to false since above operations set it to true and only the below check can properly set it!
 			spawner.isCustom = false;
@@ -861,7 +861,7 @@ public class ExtendedStructureEntitySpawner {
 				jsonobject.addProperty("homeRadius", entitySpawner.getHomeRadius());
 			}
 			if(entitySpawner.getBBInflateFactor()!=null) {
-				jsonobject.add("bbInflateFactor", ExtendedSerialization.Vector3fSerializer.toJson(entitySpawner.getBBInflateFactor()));
+				jsonobject.add("bbInflateFactor", ExtendedCompoundNBTSerializers.Vector3fSerializer.toJson(entitySpawner.getBBInflateFactor()));
 			}
 			jsonobject.addProperty("persistenceRequired", entitySpawner.isPersistenceRequired());
 			if(entitySpawner.shouldRespawnOnDeath()) {

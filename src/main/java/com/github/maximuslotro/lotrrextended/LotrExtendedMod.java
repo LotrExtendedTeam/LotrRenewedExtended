@@ -32,12 +32,13 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedIDataSerializerSerializers;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedServerData;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedStructureProcessors;
@@ -82,7 +83,6 @@ public class LotrExtendedMod{
 	public static HackyChairDatabase hackyChairManager;
 
 	public LotrExtendedMod() {
-		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -107,7 +107,7 @@ public class LotrExtendedMod{
 		// Mod bus
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
-		ExtendedDataSerializers.register(modBus);
+		ExtendedIDataSerializerSerializers.register(modBus);
 		ExtendedServerConfig.register();
 		ExtendedBlocks.register(modBus);
 		ExtendedItems.register(modBus);
@@ -157,6 +157,7 @@ public class LotrExtendedMod{
 		event.addListener(ExtendedCaptainProfileManager.INSTANCE);
 		event.addListener(ExtendedSignTextProcessorManager.INSTANCE);
 		event.addListener(ExtendedTraderProfileManager.INSTANCE);
+		event.addListener(ExtendedBiomeInformationManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

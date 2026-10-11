@@ -30,7 +30,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCSelectHornPacket.class, ExtendedCSelectHornPacket::encode, ExtendedCSelectHornPacket::decode, ExtendedCSelectHornPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCExchangeCoinsPacket.class, ExtendedCExchangeCoinsPacket::encode, ExtendedCExchangeCoinsPacket::decode, ExtendedCExchangeCoinsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCoinExchangePacket.class, ExtendedCOpenCoinExchangePacket::encode, ExtendedCOpenCoinExchangePacket::decode, ExtendedCOpenCoinExchangePacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCTalkWithTraderPacket.class, ExtendedCTalkWithTraderPacket::encode, ExtendedCTalkWithTraderPacket::decode, ExtendedCTalkWithTraderPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCTalkWithNPCPacket.class, ExtendedCTalkWithNPCPacket::encode, ExtendedCTalkWithNPCPacket::decode, ExtendedCTalkWithNPCPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenTradeMenuPacket.class, ExtendedCOpenTradeMenuPacket::encode, ExtendedCOpenTradeMenuPacket::decode, ExtendedCOpenTradeMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCTradeSellItemsPacket.class, ExtendedCTradeSellItemsPacket::encode, ExtendedCTradeSellItemsPacket::decode, ExtendedCTradeSellItemsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSUpdateTradeQuantitiesPacket.class, ExtendedSUpdateTradeQuantitiesPacket::encode, ExtendedSUpdateTradeQuantitiesPacket::decode, ExtendedSUpdateTradeQuantitiesPacket::handle);
@@ -38,9 +38,8 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSSyncServerSettingsPacket.class, ExtendedSSyncServerSettingsPacket::encode, ExtendedSSyncServerSettingsPacket::decode, ExtendedSSyncServerSettingsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCStopInteractingWithInteractablePacket.class, ExtendedCStopInteractingWithInteractablePacket::encode, ExtendedCStopInteractingWithInteractablePacket::decode, ExtendedCStopInteractingWithInteractablePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSBannerScreenPacket.class, ExtendedSBannerScreenPacket::encode, ExtendedSBannerScreenPacket::decode, ExtendedSBannerScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredOverviewMenuPacket.class, ExtendedCOpenHiredOverviewMenuPacket::encode, ExtendedCOpenHiredOverviewMenuPacket::decode, ExtendedCOpenHiredOverviewMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);
@@ -65,6 +64,13 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSNpcCaptainInfoPacket.class, ExtendedSNpcCaptainInfoPacket::encode, ExtendedSNpcCaptainInfoPacket::decode, ExtendedSNpcCaptainInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredFarmhandMenuPacket.class, ExtendedCOpenHiredFarmhandMenuPacket::encode, ExtendedCOpenHiredFarmhandMenuPacket::decode, ExtendedCOpenHiredFarmhandMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcFarmhandInfoPacket.class, ExtendedSNpcFarmhandInfoPacket::encode, ExtendedSNpcFarmhandInfoPacket::decode, ExtendedSNpcFarmhandInfoPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSConquestDataPacket.class, ExtendedSConquestDataPacket::encode, ExtendedSConquestDataPacket::decode, ExtendedSConquestDataPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCRequestConquestDataPacket.class, ExtendedCRequestConquestDataPacket::encode, ExtendedCRequestConquestDataPacket::decode, ExtendedCRequestConquestDataPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCServerControlledTeleportPacket.class, ExtendedCServerControlledTeleportPacket::encode, ExtendedCServerControlledTeleportPacket::decode, ExtendedCServerControlledTeleportPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSOpenHiredMenuPacket.class, ExtendedSOpenHiredMenuPacket::encode, ExtendedSOpenHiredMenuPacket::decode, ExtendedSOpenHiredMenuPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCUnitDismissPacket.class, ExtendedCUnitDismissPacket::encode, ExtendedCUnitDismissPacket::decode, ExtendedCUnitDismissPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSelectHornSquadPacket.class, ExtendedCSelectHornSquadPacket::encode, ExtendedCSelectHornSquadPacket::decode, ExtendedCSelectHornSquadPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitRadiusPacket.class, ExtendedCSetHiredUnitRadiusPacket::encode, ExtendedCSetHiredUnitRadiusPacket::decode, ExtendedCSetHiredUnitRadiusPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

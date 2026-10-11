@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedGsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -23,9 +23,10 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
+// Can't extend JsonReloadListener due to the need for a custom prepare method and access to private variables without accessTransformers
 public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String, JsonElement>> {
+	public static final Gson GSON = ExtendedGsonSerializers.createSignTextSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	public static final ExtendedSignTextProcessorManager INSTANCE = new ExtendedSignTextProcessorManager();
-	public static final Gson GSON = GsonSerializers.createSignTextSerializer().disableHtmlEscaping().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "structure_sign_texts";
 	private Map<String, ExtendedSignTextList> signtexts = ImmutableMap.of();
@@ -76,14 +77,18 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 
 	protected Map<String, JsonElement> loadJson(IResourceManager pResourceManager, String selectedLang){
 		Map<String, JsonElement> map = Maps.newHashMap();
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (path) -> {return path.endsWith(".json") && path.contains(selectedLang);})) {
+		int dirLength = directory.length() + 1;
+		int langLength = selectedLang.length() + 1;
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (path) -> {
+			return path.endsWith(".json") && path.contains(selectedLang);
+		})) {
 			if(!resourcelocation.getNamespace().equals((LotrExtendedMod.MODID))){
 				continue;
 			}
-			String fileName = resourcelocation.getPath().substring(directory.length()+1, resourcelocation.getPath().length() -(selectedLang.length()+1) -PATH_SUFFIX_LENGTH);
+			String fileName = resourcelocation.getPath().substring(dirLength, resourcelocation.getPath().length() -langLength -PATH_SUFFIX_LENGTH);
 			try (IResource iresource = pResourceManager.getResource(resourcelocation);
-					BufferedReader reader = new BufferedReader(new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8));
-					) {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8));
+				) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
 					map.put(fileName, jsonelement);

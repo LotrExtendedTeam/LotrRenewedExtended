@@ -213,6 +213,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 1,
       "stacks": [
         {
           "item": "minecraft:white_carpet",

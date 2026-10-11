@@ -2,10 +2,12 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSOpenStoneTextSignPacket {
@@ -32,8 +34,9 @@ public class ExtendedSOpenStoneTextSignPacket {
     }
    
     public static void handle(ExtendedSOpenStoneTextSignPacket packet, Supplier<NetworkEvent.Context> context) {
-    	ExtendedClientsideSeparatedScreenHandler.openCarvingGUI(packet);
         context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openCarvingGUI(packet));
+
     }
 
 }

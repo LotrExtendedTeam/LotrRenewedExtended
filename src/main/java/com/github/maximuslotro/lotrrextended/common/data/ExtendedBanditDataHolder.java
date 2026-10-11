@@ -5,15 +5,16 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.BanditsSpawner;
 
-import lotr.common.world.spawning.BanditsSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
-	private Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
+	private final Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
 
 	public ExtendedBanditDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -24,10 +25,10 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		ListNBT listnbt = pTag.getList("banditCooldowns", 10);
+		playerBanditSpawnCooldowns.clear();
 		if (listnbt.isEmpty()) {
-			playerBanditSpawnCooldowns = new HashMap<>();
 			return;
 		}
 
@@ -37,6 +38,11 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 			int cooldown = compoundnbt.getInt("cooldown");
 			playerBanditSpawnCooldowns.put(playerUUID, cooldown);
 		}
+	}
+
+	@Override
+	protected void clearData() {
+		playerBanditSpawnCooldowns.clear();
 	}
 
 	@Override
@@ -97,5 +103,4 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 			}
 		}
 	}
-
 }

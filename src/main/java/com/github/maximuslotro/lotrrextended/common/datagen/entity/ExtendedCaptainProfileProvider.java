@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfile;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
@@ -22,7 +22,7 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
-	public static final Gson GSON = GsonSerializers.createCaptainSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = ExtendedCaptainProfileManager.GSON;
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedCaptainProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;

@@ -15,15 +15,23 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedCombatTracker;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -33,6 +41,8 @@ import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
+import lotr.common.fac.EntityFactionHelper;
+import lotr.common.fac.Faction;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import lotr.common.init.LOTRItems;
@@ -48,11 +58,13 @@ import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -103,17 +115,17 @@ public class ExtendedWorldEventHandlers {
 	private static final Map<ResourceLocation, Supplier<Block>> MUD_TRANSFORMS = new HashMap<>();
 
 	static {
-	    MUD_TRANSFORMS.put(Blocks.DIRT.getRegistryName(), ExtendedBlocks.MUD);
-	    MUD_TRANSFORMS.put(ExtendedBlocks.DIRT_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_SLAB);
-	    MUD_TRANSFORMS.put(Blocks.GRASS_BLOCK.getRegistryName(), ExtendedBlocks.MUD_GRASS);
-	    //MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_BLOCK_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_GRASS_SLAB);
-	    MUD_TRANSFORMS.put(Blocks.GRASS_PATH.getRegistryName(), ExtendedBlocks.MUD_PATH);
-	    MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_PATH_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_PATH_SLAB);
-	    MUD_TRANSFORMS.put(Blocks.FARMLAND.getRegistryName(), ExtendedBlocks.MUD_FARMLAND);
+		MUD_TRANSFORMS.put(Blocks.DIRT.getRegistryName(), ExtendedBlocks.MUD);
+		MUD_TRANSFORMS.put(ExtendedBlocks.DIRT_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_SLAB);
+		MUD_TRANSFORMS.put(Blocks.GRASS_BLOCK.getRegistryName(), ExtendedBlocks.MUD_GRASS);
+		//MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_BLOCK_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_GRASS_SLAB);
+		MUD_TRANSFORMS.put(Blocks.GRASS_PATH.getRegistryName(), ExtendedBlocks.MUD_PATH);
+		MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_PATH_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_PATH_SLAB);
+		MUD_TRANSFORMS.put(Blocks.FARMLAND.getRegistryName(), ExtendedBlocks.MUD_FARMLAND);
 	}
 
 	@SubscribeEvent
-	public static void onServerStopping(FMLServerStoppingEvent event) {
+	public static void onServerStopping$Extended(FMLServerStoppingEvent event) {
 		// Cache player list to prevent ConcurrentModificationException
 		/* Still throws error, TODO rework code
 		List<ServerPlayerEntity> players = event.getServer().getPlayerList().getPlayers();
@@ -123,13 +135,36 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
-		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+	public static void onPlayerLogin$Extended(PlayerEvent.PlayerLoggedInEvent event) {
+		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished() 
+			&& !event.getPlayer().getUUID().equals(ExtendedWorldRegenEngineWatcher.ACTIVE_PLAYER)) {
+		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
+		    return;
+		}
+		if (event.getPlayer() instanceof ServerPlayerEntity) {
+			// Handle first to ensure data is loaded
+			ExtendedLevelData.serverInstance().getPlayerData().login(event.getPlayer().getUUID());
+			ExtendedCombatTracker.playerLoggedInEvent((ServerPlayerEntity) event.getPlayer());
+			if(ExtendedServerConfig.enableStaffServer.get()) {
+				ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
+			}
+		}
 	}
 
 	@SubscribeEvent
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+	public static void onPlayerLogout$Extended(PlayerEvent.PlayerLoggedOutEvent event) {
+		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
+		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+		if (event.getPlayer() instanceof ServerPlayerEntity) {
+			ExtendedCombatTracker.playerLoggedOutEvent((ServerPlayerEntity) event.getPlayer());
+			ExtendedModTracker.onPlayerLoggout(event.getPlayer().getUUID());
+			// Handle last to ensure data isn't lost
+			ExtendedLevelData.serverInstance().getPlayerData().logout(event.getPlayer().getUUID());
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick$Extended(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
@@ -203,114 +238,106 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleMobDeathForInvasion$Extended(LivingDeathEvent event) {
-		UUID invasionId = null;
-
-		if (event.getEntityLiving().getPersistentData().contains("lotr:invasion_id")) {
-			invasionId = event.getEntityLiving().getPersistentData().getUUID("lotr:invasion_id");
-		} else {
-			return;
-		}
-
-		ExtendedLevelData.serverInstance().getInvasionData().decrementEnemiesLeft(invasionId);
-		Entity sourceEntity = event.getSource().getEntity();
-		if (sourceEntity instanceof ServerPlayerEntity) {
-			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
-			ExtendedLevelData.serverInstance().getInvasionData().trackRecentPlayerKill(invasionId, player.getUUID());
-		}
-	}
-
-	/**
-	 * Handles special logic when {@link ExtendedIMerchantEntity} or {@link ExtendedICaptainEntity} dies.
-	 * <ul>
-	 *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
-	 *   <li>If the entity is persistent, it respawns via {@link ExtendedRespawnerEntity}.</li>
-	 *   <li>Otherwise, the entity is allowed to die normally.</li>
-	 * </ul>
-	 *
-	 * @param event the living entity death event
-	 */
-	@SubscribeEvent
-	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
-		Entity sourceEntity = event.getSource().getEntity();
-		if (sourceEntity instanceof NPCEntity && ((ExtendedINPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
-			// base amount of xp off kill alignment bonus
-			float xpPoints = 0;
-			if (event.getEntity() instanceof NPCEntity) {
-				NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
-				if (settings != null && settings.getKillAlignmentBonus() > 0) {
-					xpPoints = (int) settings.getKillAlignmentBonus();
+	public static void handleEntityDeath$Extended(LivingDeathEvent event) {
+		LivingEntity deadEntity = event.getEntityLiving();
+		Entity killerEntity = event.getSource().getEntity();
+		if(!deadEntity.level.isClientSide()) {
+			if(killerEntity==null) {
+				killerEntity = deadEntity.getKillCredit();
+			}
+			// Handle invasion kills
+			if(deadEntity.getPersistentData().hasUUID("lotr:invasion_id")||deadEntity.getPersistentData().contains("ExtInvasion")) {
+				//TODO remove old ID after a year or two from 1.11.0, by this point it should be out of use
+				UUID invasionId = deadEntity.getPersistentData().contains("lotr:invasion_id") ? 
+					event.getEntityLiving().getPersistentData().getUUID("lotr:invasion_id") : event.getEntityLiving().getPersistentData().getUUID("ExtInvasion");
+				ExtendedLevelData.serverInstance().getInvasionData().decrementEnemiesLeft(invasionId);
+				if (killerEntity instanceof ServerPlayerEntity) {
+					ExtendedLevelData.serverInstance().getInvasionData().trackRecentPlayerKill(invasionId, killerEntity.getUUID());
+				}
+			}
+			// Handle hired unit level ups
+			if(killerEntity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+				// base amount of xp off kill alignment bonus
+				float xpPoints = 0;
+				if(deadEntity instanceof NPCEntity) {
+					NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(deadEntity);
+					xpPoints = (settings != null && settings.getKillAlignmentBonus() > 0) ? settings.getKillAlignmentBonus() : 1;
 				} else {
-					xpPoints = 1;
+					if(deadEntity instanceof PigEntity ||
+						deadEntity instanceof ChickenEntity ||
+						deadEntity instanceof CowEntity ||
+						deadEntity instanceof SheepEntity ||
+						deadEntity instanceof ExtendedHorseBoarEntity ||
+						deadEntity instanceof ExtendedDuckEntity) {
+						xpPoints = 0.25f;
+					}
 				}
-			} else {
-				if (event.getEntity() instanceof PigEntity ||
-						event.getEntity() instanceof ChickenEntity ||
-						event.getEntity() instanceof CowEntity ||
-						event.getEntity() instanceof ExtendedDuckEntity) {
-					xpPoints = 0.25f;
-				}
+				((ExtendedINPCEntity)killerEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+				((ExtendedINPCEntity)killerEntity).getUnitInfo().incrementMobKills();
+				((ExtendedINPCEntity)killerEntity).getUnitInfo().markDirty();
 			}
-
-			((ExtendedINPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
-			((ExtendedINPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedINPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
-			((ExtendedINPCEntity)sourceEntity).getUnitInfo().markDirty();
-		}
-		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedIMerchantEntity && ((ExtendedINPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
-			ExtendedIWanderingTraderEntity trader = (ExtendedIWanderingTraderEntity) event.getEntity();
-			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
-				return;
-			}
-
-			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
-			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
-
-			for (NPCEntity entity : potentialEscorts) {
-				if (trader.getEscortUUIDs().contains(entity.getUUID())) {
-					entity.remove();
+			// If an NPC is a wandering trader, no respawns, even it is a captain
+			if(deadEntity instanceof ExtendedIMerchantEntity && ((ExtendedINPCEntity) deadEntity).getTraderInfo().isTraderCurrentlyWandering()) {
+				ExtendedIWanderingTraderEntity trader = (ExtendedIWanderingTraderEntity) deadEntity;
+				if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+					return;
 				}
-			}
 
-			// notify all players that the wandering trader has died
-			for (PlayerEntity player : event.getEntity().level.players()) {
-				ITextComponent text = event.getSource().getLocalizedDeathMessage(event.getEntityLiving());
-				player.sendMessage(text, Util.NIL_UUID);
-			}
-			return;
-		}
-		if(event.getEntity() instanceof MobEntity) {
-			MobEntity mob = (MobEntity) event.getEntity();
-			if((mob.isPersistenceRequired() && (mob instanceof ExtendedIMerchantEntity || mob instanceof ExtendedICaptainEntity || mob instanceof ExtendedLoreEntity))
-					|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn")) 
-					|| (mob.getPersistentData().contains("ExtendedRespawnOnDeath") && mob.getPersistentData().getBoolean("ExtendedRespawnOnDeath"))) {
-				// Make entity respawner
-				ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(mob.level);
-				//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
-				respawnerEntity.moveTo(mob.getX(), mob.getY()+mob.getBbHeight(), mob.getZ());
+				List<NPCEntity> escorts = deadEntity.level.getEntitiesOfClass(NPCEntity.class, 
+					new AxisAlignedBB(deadEntity.blockPosition()).inflate(256), (e) -> trader.getEscortUUIDs().contains(e.getUUID()));
+				escorts.forEach(NPCEntity::remove);
 
-				//Set entity Type
-				respawnerEntity.setEntityType(mob.getType());
-
-				//Save trader trades
-				CompoundNBT compound =  new CompoundNBT();
-				if(mob instanceof ExtendedIMerchantEntity) {
-					((ExtendedIMerchantEntity) mob).getTraderData().writeToNbt(compound);
+				// notify all players that the wandering trader has died
+				for (PlayerEntity player : deadEntity.level.players()) {
+					ITextComponent text = event.getSource().getLocalizedDeathMessage(event.getEntityLiving());
+					player.sendMessage(text, Util.NIL_UUID);
 				}
-				if(mob instanceof ExtendedICaptainEntity) {
-					// IDK maybe captains have data to save in the future
-				}
-				respawnerEntity.setEntityData(compound);
-
-				//Save Trader Home info
-				if(mob.hasRestriction()){
-					respawnerEntity.setHomeInfo(mob.getRestrictCenter(), (int)mob.getRestrictRadius());
-				}
-				if(mob.level instanceof ServerWorld) {
+			}else if(deadEntity instanceof MobEntity) {
+				// If not wandering, determine if it should respawn
+				MobEntity mob = (MobEntity) deadEntity;
+				if((mob.isPersistenceRequired() && (mob instanceof ExtendedIMerchantEntity || mob instanceof ExtendedICaptainEntity || mob instanceof ExtendedLoreEntity))
+					|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn"))) {
+					// Make entity respawner
+					ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(mob.level);
+					//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+					respawnerEntity.moveTo(mob.getX(), mob.getY()+mob.getBbHeight(), mob.getZ());
+					//Set entity Type
+					respawnerEntity.setEntityType(mob.getType());
+					//Save trader trades
+					CompoundNBT compound =  new CompoundNBT();
+					if(mob instanceof ExtendedIMerchantEntity) {
+						((ExtendedIMerchantEntity) mob).getTraderData().writeToNbt(compound);
+					}
+					if(mob instanceof ExtendedICaptainEntity) {
+						// IDK maybe captains have data to save in the future
+					}
+					respawnerEntity.setEntityData(compound);
+					//Save Trader Home info
+					if(mob.hasRestriction()){
+						respawnerEntity.setHomeInfo(mob.getRestrictCenter(), (int)mob.getRestrictRadius());
+					}
+					// Should be server world at this code since can only execute on server
 					((ServerWorld)mob.level).addFreshEntityWithPassengers(respawnerEntity);
-				}else {
-					mob.level.addFreshEntity(respawnerEntity);
+				}
+			}
+			// Handle Conquest points
+			PlayerEntity conquestPlayer = null;
+			boolean fromHiredUnit = false;
+			if(killerEntity instanceof PlayerEntity) {
+				conquestPlayer = (PlayerEntity) killerEntity;
+			}else if(killerEntity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+				if(((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner()!=null) {
+					conquestPlayer = ((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner();
+					fromHiredUnit = true;
+				}
+			}
+			if(conquestPlayer!=null) {
+				float conquestAmount = NPCEntitySettingsManager.getEntityTypeSettings(deadEntity).getKillAlignmentBonus();
+				LOTRPlayerData playerData = LOTRLevelData.getSidedData(conquestPlayer);
+				Faction deadFaction = EntityFactionHelper.getFaction(deadEntity);
+				Faction pedegeFaction = playerData.getAlignmentData().getPledgeFaction();
+				if(pedegeFaction!=null && pedegeFaction.isBadRelation(deadFaction) && conquestAmount>0) {
+					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction, deadEntity.blockPosition(), fromHiredUnit);
 				}
 			}
 		}
@@ -342,11 +369,11 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onEntityLeave(EntityLeaveWorldEvent event) {
-	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity && ExtendedLevelData.serverInstance().getInvasionData().hasInvasion(event.getEntity().getUUID())) {
-	    	// Un-register invasion when spawner is unloaded or deleted.
+	public static void onEntityLeave$Extended(EntityLeaveWorldEvent event) {
+		if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity && ExtendedLevelData.serverInstance().getInvasionData().hasInvasion(event.getEntity().getUUID())) {
+			// Un-register invasion when spawner is unloaded or deleted.
 			ExtendedLevelData.serverInstance().getInvasionData().unregisterInvasion(event.getEntity().getUUID());
-	    }
+		}
 	}
 
 	@SubscribeEvent
@@ -378,21 +405,22 @@ public class ExtendedWorldEventHandlers {
 			if(newBlock instanceof SlabBlock) {
 				newBlockState = ExtendedBlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(newBlockState, clickedState);
 			}
-		    level.setBlock(event.getPos(), newBlockState, 3);
+			level.setBlock(event.getPos(), newBlockState, 3);
 			player.swing(event.getHand(), true);
 			ItemStack stack = event.getItemStack();
 			if (!player.abilities.instabuild) {
-                ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
-                stack.shrink(1);
-                if (stack.isEmpty()) {
-                	player.setItemInHand(event.getHand(), emptyBottle);
-                } else if (!player.inventory.add(emptyBottle)) {
-                	player.drop(emptyBottle, false);
-                } else if (player instanceof ServerPlayerEntity) {
-                   ((ServerPlayerEntity)player).refreshContainer(player.inventoryMenu);
-                }
-             }
+				ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
+				stack.shrink(1);
+				if (stack.isEmpty()) {
+					player.setItemInHand(event.getHand(), emptyBottle);
+				} else if (!player.inventory.add(emptyBottle)) {
+					player.drop(emptyBottle, false);
+				} else if (player instanceof ServerPlayerEntity) {
+					((ServerPlayerEntity)player).refreshContainer(player.inventoryMenu);
+				}
+			}
 			level.playSound((PlayerEntity)null, event.getPos(), SoundEvents.BOTTLE_EMPTY, SoundCategory.BLOCKS, 0.5F, 7.0F);
+			return;
 		}
 		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
 			BlockPos checkPos = event.getPos().above();
@@ -440,12 +468,13 @@ public class ExtendedWorldEventHandlers {
 					player.swing(event.getHand(), true);
 				}
 				ExtendedDaggerItem.removePoison(event.getItemStack());
+				return;
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
+	public static void handleExtendedFastTravelWaypointEventPost$Extended(ExtendedFastTravelWaypointEvent.Post pEvent) {
 		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
 	}
 
@@ -453,7 +482,7 @@ public class ExtendedWorldEventHandlers {
 	public static void onLivingAttacked$Extended(LivingAttackEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get() && event.getSource().getEntity() instanceof ServerPlayerEntity && event.getEntityLiving() instanceof ServerPlayerEntity) {
 			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
-					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true, false)) {
+				event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true, false)) {
 				event.setCanceled(true);
 				return;
 			}

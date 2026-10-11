@@ -1,29 +1,32 @@
-# eclipse
-bin
+# OS / System clutter
+.DS_Store
+Thumbs.db
+
+# Eclipse
+bin/
 *.launch
-.settings
-.metadata
+.settings/
+.metadata/
 .classpath
 .project
 .factorypath
+/.apt_generated/
+/.apt_generated_tests/
 
-# idea
-out
+# IntelliJ IDEA
+out/
 *.ipr
 *.iws
 *.iml
-.idea
+.idea/
 
-# gradle
-build
-.gradle
+# Gradle
+build/
+.gradle/
 
-# other
-eclipse
-run
-
-# Files from Forge MDK
-forge*changelog.txt
-/.apt_generated/
-/.apt_generated_tests/
-/run-data
+# Runtime directories and logs
+run/
+run*/
+*.log
+hs_err_pid*.log
+crash-reports/

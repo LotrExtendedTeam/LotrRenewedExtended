@@ -1,0 +1,9 @@
+{
+  "id": "lotr:lothlorien_eaves",
+  "conquest_rate": 0.2,
+  "bandit_chance": "NONE",
+  "invasion_data": {
+    "lotr:northern_orcs": "RARE",
+    "lotr:northern_orcs_wargs": "RARE"
+  }
+}

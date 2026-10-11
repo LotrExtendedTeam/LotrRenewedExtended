@@ -13,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
@@ -27,7 +27,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedStructureSpawnersProvider implements IDataProvider {
-	public static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = ExtendedStructureEntitySpawnManager.GSON;
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;

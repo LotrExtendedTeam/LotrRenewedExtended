@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/gundabad_shield",
+	"parent": "lotrextended:item/gundabad_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/gundabad_shield_blocking"
+			"model": "lotrextended:item/gundabad_shield_blocking"
 		}
 	],
 	"display": {

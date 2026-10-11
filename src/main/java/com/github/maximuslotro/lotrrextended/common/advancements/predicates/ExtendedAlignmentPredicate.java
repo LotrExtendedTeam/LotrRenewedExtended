@@ -14,17 +14,17 @@ import net.minecraft.util.JSONUtils;
 public class ExtendedAlignmentPredicate {
 	public static final ExtendedAlignmentPredicate ANY = new ExtendedAlignmentPredicate(MinMaxBounds.FloatBound.ANY, null);
 	private final MinMaxBounds.FloatBound alignment;
-	private final String factionDString;
+	private final String factionName;
 
 	public ExtendedAlignmentPredicate(MinMaxBounds.FloatBound p_i225753_1_, @Nullable String factionDString) {
 		this.alignment = p_i225753_1_;
-		this.factionDString = factionDString;
+		this.factionName = factionDString;
 	}
 
-	public boolean matches(PlayerEntity player, Faction faction, Float level) {
+	public boolean matches(PlayerEntity player, Faction faction, float level) {
 		if (this == ANY) {
 			return true;
-		}else if(factionDString!=null && !factionDString.equals(faction.getName().toString())){
+		}else if(factionName!=null && (faction == null || !factionName.equals(faction.getName().toString()))){
 			return false;
 		}
 		return alignment.matches(level);
@@ -35,8 +35,8 @@ public class ExtendedAlignmentPredicate {
 			return JsonNull.INSTANCE;
 		} else {
 			JsonObject jsonobject = new JsonObject();
-			if(factionDString!=null) {
-				jsonobject.addProperty("faction", this.factionDString);
+			if(factionName!=null) {
+				jsonobject.addProperty("faction", this.factionName);
 			}
 			jsonobject.add("level", this.alignment.serializeToJson());
 			return jsonobject;

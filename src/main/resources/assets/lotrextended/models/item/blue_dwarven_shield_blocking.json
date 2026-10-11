@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/blue_dwarven_shield",
+	"parent": "lotrextended:item/blue_dwarven_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/blue_dwarven_shield_blocking"
+			"model": "lotrextended:item/blue_dwarven_shield_blocking"
 		}
 	],
 	"display": {

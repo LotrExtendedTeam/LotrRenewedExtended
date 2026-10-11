@@ -27,7 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 public class ExtendedServerModifierEventHandlers {
 
 	@SubscribeEvent
-	public static void onLivingHurt(LivingHurtEvent event) {
+	public static void onLivingHurt$Extended(LivingHurtEvent event) {
 		if (event.getSource() == null || event.getSource().getEntity() == null) {
 			return;
 		}
@@ -50,7 +50,7 @@ public class ExtendedServerModifierEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onLivingDeath(LivingDeathEvent event) {
+	public static void onLivingDeath$Extended(LivingDeathEvent event) {
 		if (event.getEntityLiving() instanceof NPCEntity && !event.getEntityLiving().level.isClientSide()) {
 			// Check for invalid and null death sources (null instanceof LivingEntity)==false
 			if (!(event.getSource().getEntity() instanceof LivingEntity)) { // Reworked logic to catch NPE
@@ -77,7 +77,7 @@ public class ExtendedServerModifierEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onBreakSpeed(BreakSpeed event) {
+	public static void onBreakSpeed$Extended(BreakSpeed event) {
 		float currentOtherModModifiableSpeed = event.getNewSpeed();
 		float f = event.getPlayer().inventory.getDestroySpeed(event.getState());
 		float modifierSpeed = ExtendedModifierUtils.getEnchantmentLevelFloat(Enchantments.BLOCK_EFFICIENCY, event.getPlayer());
@@ -135,7 +135,7 @@ public class ExtendedServerModifierEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
+	public static void handleItemAttributeChanges$Extended(ItemAttributeModifierEvent pEvent) {
 		ExtendedModifierUtils.processItemAttributes(pEvent);
 	}
 }

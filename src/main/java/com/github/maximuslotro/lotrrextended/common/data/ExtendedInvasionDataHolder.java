@@ -1,21 +1,22 @@
 package com.github.maximuslotro.lotrrextended.common.data;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.concurrent.ConcurrentHashMap;
 
-import lotr.common.world.spawning.InvasionSpawner;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.InvasionSpawner;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder {
 
-	private Map<UUID, Integer> invasionEnemiesLeft = new HashMap<>();
+	private final Map<UUID, Integer> invasionEnemiesLeft = new ConcurrentHashMap<>();
 
 	/**
 	 * This variable stores a map of invasion UUIDs to players who have contributed to the invasion's UUIDs along with
@@ -24,23 +25,23 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	 * <p>
 	 * Does not need to be saved on server restart, as even if restart takes less than 5 minutes, we should not need to save the data here anyway
 	 */
-	private Map<UUID, Map<UUID, Integer>> recentPlayersByInvasion = new HashMap<>();
+	private final Map<UUID, ConcurrentHashMap<UUID, Integer>> recentPlayersByInvasion = new ConcurrentHashMap<>();
 
 	public ExtendedInvasionDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
 	}
 
 	public Set<UUID> getPlayersWhoFoughtInvasion(UUID invasionUUID) {
-		Set<UUID> returnSet = new HashSet<>();
-		if (recentPlayersByInvasion.containsKey(invasionUUID)) {
-			Map<UUID, Integer> playerTimes = recentPlayersByInvasion.get(invasionUUID);
-			returnSet = playerTimes.entrySet()
-				.stream()
-				.filter(entry -> entry.getValue() > 0)
-				.map(Map.Entry::getKey)
-				.collect(Collectors.toSet());
+		Map<UUID, Integer> playerTimes = recentPlayersByInvasion.get(invasionUUID);
+		if (playerTimes == null || playerTimes.isEmpty()) {
+			return Collections.emptySet();
 		}
-
+		Set<UUID> returnSet = new HashSet<>();
+		playerTimes.forEach((playerUUID, ticksLeft) -> {
+			if (ticksLeft > 0) {
+				returnSet.add(playerUUID);
+			}
+		});
 		return returnSet;
 	}
 
@@ -49,21 +50,12 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	 * times.
 	 */
 	public void reducePlayerInteractedWithInvasionTimes() {
-		Iterator<Map<UUID, Integer>> playerTimesIterator = recentPlayersByInvasion.values().iterator();
-		while (playerTimesIterator.hasNext()) {
-			Map<UUID, Integer> playerTimes = playerTimesIterator.next();
-			Iterator<Map.Entry<UUID, Integer>> iterator = playerTimes.entrySet().iterator();
-			while (iterator.hasNext()) {
-				Map.Entry<UUID, Integer> entry = iterator.next();
-				int newTime = entry.getValue() - 20;
-				if (newTime > 0) {
-					entry.setValue(newTime);
-				} else {
-					iterator.remove();
-					if (playerTimes.isEmpty()) playerTimesIterator.remove();
-				}
-			}
-		}
+		recentPlayersByInvasion.values().forEach(playerTimes -> {
+	        playerTimes.entrySet().removeIf(entry -> entry.setValue(entry.getValue() - 20) <= 0);
+	    });
+
+	    // Clean empty invasions
+	    recentPlayersByInvasion.entrySet().removeIf(entry -> entry.getValue().isEmpty());
 	}
 
 	/**
@@ -107,26 +99,25 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	 * @param invasionId The unique id of the invasion
 	 */
 	public void decrementEnemiesLeft(UUID invasionId) {
-		if(hasInvasion(invasionId) && getEnemiesLeft(invasionId) > 0) {
-			invasionEnemiesLeft.put(invasionId, Math.max(0, getEnemiesLeft(invasionId) - 1));
-		}
+		invasionEnemiesLeft.computeIfPresent(invasionId, (id, count) -> count > 0 ? count - 1 : count);
 	}
 
 	public void trackRecentPlayerKill(UUID invasionId, UUID playerId) {
-		if (recentPlayersByInvasion.containsKey(invasionId)) {
-			Map<UUID, Integer> timeLeftByPlayer = recentPlayersByInvasion.get(invasionId);
-			timeLeftByPlayer.put(playerId, 5000);
-			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
-		} else {
-			Map<UUID, Integer> timeLeftByPlayer = new HashMap<>();
-			timeLeftByPlayer.put(playerId, 5000);
-			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
-		}
-		markDirty();
+		recentPlayersByInvasion.computeIfAbsent(invasionId, id -> new ConcurrentHashMap<>()).put(playerId, 6000);
+		// markDirty(); don't mark dirty since this data does not persist world reload anyways
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {}
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
+		invasionEnemiesLeft.clear();
+		recentPlayersByInvasion.clear();
+	}
+
+	@Override
+	protected void clearData() {
+		invasionEnemiesLeft.clear();
+		recentPlayersByInvasion.clear();
+	}
 
 	@Override
 	public void saveData(CompoundNBT pTag) {}

@@ -1,0 +1,10 @@
+{
+  "id": "lotr:grey_mountains_foothills",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:northern_orcs": "RARE",
+    "lotr:northern_orcs_wargs": "UNCOMMON",
+    "lotrextended:durins_folk": "RARE"
+  }
+}
