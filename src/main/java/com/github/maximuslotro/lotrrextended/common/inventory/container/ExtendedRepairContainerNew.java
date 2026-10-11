@@ -298,11 +298,6 @@ public class ExtendedRepairContainerNew extends Container {
 				canCombineItemModifiers= true;
 			}
 		}
-		if(mergableItem.getItem() instanceof ExtendedModifierReforgeTomeItem) {
-			this.resultSlots.setItem(0, ItemStack.EMPTY);
-			this.cost.set(0);
-			return;
-		}
 		if(isEnchantingItem && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
 			this.cost.set(0);
@@ -603,6 +598,15 @@ public class ExtendedRepairContainerNew extends Container {
 				}
 			}
 		}
+		// Reforge Tomes are only used by the Reforge action.
+		// Keep the calculated reforgeCost, but prevent normal anvil
+		// operations from consuming the Tome.
+		if (mergableItem.getItem() instanceof ExtendedModifierReforgeTomeItem) {
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+			return;
+		}
+
 		boolean isGemColoring = false;
 		if(!mergableItem.isEmpty() && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
 			info("P7: Valid gem item");
@@ -723,6 +727,18 @@ public class ExtendedRepairContainerNew extends Container {
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
 			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
+
+				// Do not consume materials if no modifiers can be generated.
+				if (ExtendedModifierUtils.getAvailableModifiersResults(
+						true,
+						inputItem,
+						true,
+						false,
+						modifierItem
+				).isEmpty()) {
+					return;
+				}
+
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
