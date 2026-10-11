@@ -40,7 +40,7 @@ cd LotrRenewedExtended
 
 ## Forking & Branching Strategy
 
-We do **not** accept pull requests directly into the `main` branch. All pull requests, bug fixes, and feature additions must be submitted against our **`development`** branch.
+~~We do **not** accept pull requests directly into the `main` branch. All pull requests, bug fixes, and feature additions must be submitted against our **`development`** branch.~~
 
 ### How to Fork and Branch:
 1. **Fork the repository:** Click the **Fork** button at the top right of the main repository page on GitHub to create a copy under your own account.
