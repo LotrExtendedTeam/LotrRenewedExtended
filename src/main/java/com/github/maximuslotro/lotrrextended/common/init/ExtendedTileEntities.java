@@ -5,18 +5,7 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.*;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
@@ -68,6 +57,7 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedChimneyTileEntity>> CHIMNEY_POT = register("chimney_pot", () -> Builder.of(ExtendedChimneyTileEntity::new, ExtendedBlocks.CHIMNEYPOT.get()));
 	public static RegistryObject<TileEntityType<ExtendedHighElvenBedTileEntity>> HIGH_ELVEN_BED = register("high_elven_bed", () -> Builder.of(ExtendedHighElvenBedTileEntity::new, ExtendedBlocks.HIGH_ELVEN_BED.get()));
 	public static RegistryObject<TileEntityType<ExtendedCrucibleTileEntity>> CRUCIBLE = register("crucible", () -> Builder.of(ExtendedCrucibleTileEntity::new, ExtendedBlocks.CRUCIBLE.get()));
+	public static RegistryObject<TileEntityType<ExtendedBronzeBirdcageTileEntity>> BRONZE_BIRD_CAGE = register("bronze_birdcage", () -> Builder.of(ExtendedBronzeBirdcageTileEntity::new, ExtendedBlocks.BRONZE_BIRDCAGE.get()));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ENTITIES.register(bus);
