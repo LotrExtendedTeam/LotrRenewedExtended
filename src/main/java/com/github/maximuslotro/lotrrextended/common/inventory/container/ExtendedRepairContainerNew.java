@@ -729,13 +729,7 @@ public class ExtendedRepairContainerNew extends Container {
 			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
 
 				// Do not consume materials if no modifiers can be generated.
-				if (ExtendedModifierUtils.getAvailableModifiersResults(
-						true,
-						inputItem,
-						true,
-						false,
-						modifierItem
-				).isEmpty()) {
+				if(ExtendedModifierUtils.getAvailableModifiersResults(true, inputItem, true, false, modifierItem).isEmpty()) {
 					return;
 				}
 

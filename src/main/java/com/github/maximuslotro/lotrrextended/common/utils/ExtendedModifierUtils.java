@@ -611,126 +611,61 @@ public class ExtendedModifierUtils {
 	 * @param modifierTweaker additional stack passed for further modifier customization
 	 * @return a {@link List} of {@link ExtendedModifier} instances that can be applied to the item
 	 */
-	public static List<ExtendedModifier> selectModifiers(
-			Random pRandom,
-			ItemStack pItemStack,
-			boolean reforging,
-			boolean noNegatives,
-			ItemStack modifierTweaker) {
-
+	public static List<ExtendedModifier> selectModifiers(Random pRandom, ItemStack pItemStack, boolean reforging, boolean noNegatives, ItemStack modifierTweaker) {
 		List<ExtendedModifier> newModifiers = Lists.newArrayList();
-
 		boolean isScroll = pItemStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get();
-
-		if (isScroll) {
-			noNegatives = true;
-		}
-
-		List<ExtendedModifier> applicableModifiers =
-				getAvailableModifiersResults(
-						reforging,
-						pItemStack,
-						noNegatives,
-						isScroll,
-						modifierTweaker
-				);
-
+		if(isScroll) noNegatives = true;
+		List<ExtendedModifier> applicableModifiers = getAvailableModifiersResults(reforging, pItemStack, noNegatives, isScroll, modifierTweaker);
 		if (!applicableModifiers.isEmpty()) {
-
-			// Keep modifier scroll generation unchanged.
-			if (isScroll) {
-				newModifiers.add(
-						WeightedRandom.getRandomItem(pRandom, applicableModifiers)
-				);
+			if(isScroll) {
+				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				return newModifiers;
 			}
-
 			int chance = pRandom.nextInt(100);
-
-			// Guarantee the first modifier during reforging.
-			// Preserve the original 60% chance outside reforging.
-			if (reforging || chance < 60) {
-
-				newModifiers.add(
-						selectWeightedModifier(pRandom, applicableModifiers, reforging)
-				);
-
-				filterCompatibleModifiers(
-						applicableModifiers,
-						Util.lastOf(newModifiers)
-				);
-
-				// Preserve the original chances for extra modifiers.
-				if (chance < 15 && !applicableModifiers.isEmpty()) {
-
-					newModifiers.add(
-							selectWeightedModifier(pRandom, applicableModifiers, reforging)
-					);
-
-					filterCompatibleModifiers(
-							applicableModifiers,
-							Util.lastOf(newModifiers)
-					);
-
-					if (pRandom.nextInt(100) == 0 && !applicableModifiers.isEmpty()) {
-
-						newModifiers.add(
-								selectWeightedModifier(pRandom, applicableModifiers, reforging)
-						);
+			if(reforging || chance < 60) {
+				newModifiers.add(selectWeightedModifier(pRandom, applicableModifiers, reforging));
+				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
+				if(chance < 15 && !applicableModifiers.isEmpty()) {
+					newModifiers.add(selectWeightedModifier(pRandom, applicableModifiers, reforging));
+					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
+					if(pRandom.nextInt(100) == 0 && !applicableModifiers.isEmpty()) {
+						newModifiers.add(selectWeightedModifier(pRandom, applicableModifiers, reforging));
 					}
 				}
 			}
 		}
-
 		return newModifiers;
 	}
 
 	private static int getReforgeWeight(ExtendedModifier modifier) {
-
-		// Boost only Skillful modifiers with an original weight of 1.
-		if (modifier.weight == 1
-				&& modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) {
+		// Boost only SKILLFUL modifiers with an original weight of 1.
+		if(modifier.weight == 1 && modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) {
 			return 3;
 		}
-
 		return modifier.weight;
 	}
 
-	private static ExtendedModifier selectWeightedModifier(
-			Random random,
-			List<ExtendedModifier> modifiers,
-			boolean reforging) {
-
-		// Preserve vanilla weighted selection outside reforging.
-		if (!reforging) {
+	private static ExtendedModifier selectWeightedModifier(Random random, List<ExtendedModifier> modifiers, boolean reforging) {
+		if(!reforging) {
 			return WeightedRandom.getRandomItem(random, modifiers);
 		}
 
 		int totalWeight = 0;
-
-		for (ExtendedModifier modifier : modifiers) {
+		for(ExtendedModifier modifier : modifiers) {
 			totalWeight += getReforgeWeight(modifier);
 		}
-
-		if (totalWeight <= 0) {
-			throw new IllegalArgumentException(
-					"No eligible modifiers with positive weight"
-			);
+		if(totalWeight <= 0) {
+			throw new IllegalArgumentException("No eligible modifiers with positive weight");
 		}
 
 		int roll = random.nextInt(totalWeight);
-
-		for (ExtendedModifier modifier : modifiers) {
+		for(ExtendedModifier modifier : modifiers) {
 			roll -= getReforgeWeight(modifier);
-
-			if (roll < 0) {
+			if(roll < 0) {
 				return modifier;
 			}
 		}
-
-		throw new IllegalStateException(
-				"Failed to select a reforge modifier"
-		);
+		throw new IllegalStateException("Failed to select a reforge modifier");
 	}
 	/**
 	 * Removes modifiers from the given list that are not compatible with the specified modifier.
