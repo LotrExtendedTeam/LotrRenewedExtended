@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import javax.annotation.Nullable;
 
 import lotr.common.block.FactionCraftingTableBlock;
@@ -88,6 +92,15 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 		}
 		return false;
 	}
+	@Override
+	protected Optional<Supplier<BlockPos>> getCacheGetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedCraftingTable);
+	}
+
+	@Override
+	protected Optional<Consumer<BlockPos>> getCacheSetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedCraftingTable);
+	}
 	/**
 	 * Assigns a target block position for this task, utilizing cached coordinates if still within valid distance.
 	 *
@@ -96,8 +109,9 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			taskPosition.set(cachedWorkBlockPos);
+		BlockPos cachedCraftingTablePos = getCacheGetter().get().get();
+		if(cachedCraftingTablePos != null) {
+			taskPosition.set(cachedCraftingTablePos);
 			return;
 		}
 		BlockPos entityPos = this.goalHolder.getEntity().blockPosition();
@@ -160,37 +174,37 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
 		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_CRAFTING, false);
 		int currentGoalTick = goalHolder.tickTime;
-		if (currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
+		if(currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the crafting table
 		}
 		ItemStack targetSeedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		Item cropItem = getCraftCropFromSeeds(targetSeedsStack.getItem());
-		if (cropItem == null) {
+		if(cropItem == null) {
 			return true; // No valid recipe, mark task as complete
 		}
 		Inventory outputInventory = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
 		int cropSlot = -1;
-		for (int i = 0; i < outputInventory.getContainerSize(); i++) {
+		for(int i = 0; i < outputInventory.getContainerSize(); i++) {
 			ItemStack stack = outputInventory.getItem(i);
 			if (!stack.isEmpty() && stack.getItem() == cropItem) {
 				cropSlot = i;
 				break;
 			}
 		}
-		if (cropSlot == -1) {
+		if(cropSlot == -1) {
 			return true; // No slot found, exit task
 		}
 		outputInventory.removeItem(cropSlot, 1);
 		ItemStack createdSeeds = getCraftFromCrop(cropItem);
-		if (createdSeeds != null) {
+		if(createdSeeds != null) {
 			int seedsProduced = createdSeeds.getCount();
 			int spaceInMainStack = CRAFTING_MAX - targetSeedsStack.getCount();
-			if (spaceInMainStack > 0) {
+			if(spaceInMainStack > 0) {
 				int toAdd = Math.min(seedsProduced, spaceInMainStack);
 				targetSeedsStack.grow(toAdd);
 				seedsProduced -= toAdd;
 			}
-			if (seedsProduced > 0) {
+			if(seedsProduced > 0) {
 				ItemStack dropStack = new ItemStack(targetSeedsStack.getItem(), seedsProduced);
 				dropSeeds(pServerLevel.getBlockState(pComposterPos), pServerLevel, pComposterPos, goalHolder.getEntity(), dropStack);
 			}
@@ -211,7 +225,7 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 * @param dropStack   the item stack of seeds to drop
 	 */
 	public static void dropSeeds(BlockState pState, World pLevel, BlockPos pCrafterPos, Entity pEntity, ItemStack dropStack) {
-		if (!pLevel.isClientSide) {
+		if(!pLevel.isClientSide) {
 			float f = 0.7F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;

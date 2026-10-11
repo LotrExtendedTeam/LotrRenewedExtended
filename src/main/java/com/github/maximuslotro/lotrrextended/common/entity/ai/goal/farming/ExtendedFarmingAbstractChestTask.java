@@ -3,6 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -100,6 +103,15 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
 	}
+	@Override
+	protected Optional<Supplier<BlockPos>> getCacheGetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedChest);
+	}
+
+	@Override
+	protected Optional<Consumer<BlockPos>> getCacheSetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedChest);
+	}
 	/**
 	 * Scans nearby loaded tile entities within distance and elevation limits to select a valid chest target.
 	 * <p>
@@ -112,8 +124,9 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			taskPosition.set(cachedWorkBlockPos);
+		BlockPos cachedChestPos = getCacheGetter().get().get();
+		if(cachedChestPos != null) {
+			taskPosition.set(cachedChestPos);
 			return;
 		}
 		BlockPos farmhandPos = goalHolder.getEntity().blockPosition();
@@ -138,7 +151,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 				}
 			}
 		}
-		if (!validChests.isEmpty()) {
+		if(!validChests.isEmpty()) {
 			Collections.shuffle(validChests);
 			taskPosition.set(validChests.get(0));
 		}else {
@@ -162,15 +175,15 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	 * @return {@code true} if an item frame holding a {@link HoeItem} is mounted on the front face of this chest or its connected half; {@code false} otherwise
 	 */
 	private boolean hasHoeItemFrameOnFront(BlockPos pos, ServerWorld pServerLevel) {
-		if (checkSingleChestFront(pos, pServerLevel)) {
+		if(checkSingleChestFront(pos, pServerLevel)) {
 			return true;
 		}
 		BlockState state = pServerLevel.getBlockState(pos);
-		if (state.getValue(ChestBlock.TYPE) != ChestType.SINGLE) {
+		if(state.getValue(ChestBlock.TYPE) != ChestType.SINGLE) {
 			BlockPos otherHalfPos = pos.relative(ChestBlock.getConnectedDirection(state));
 			if(pServerLevel.getBlockEntity(otherHalfPos) instanceof ChestTileEntity) {
-				if (pServerLevel.getBlockState(otherHalfPos).getValue(ChestBlock.FACING) == state.getValue(ChestBlock.FACING)) {
-					if (checkSingleChestFront(otherHalfPos, pServerLevel)) {
+				if(pServerLevel.getBlockState(otherHalfPos).getValue(ChestBlock.FACING) == state.getValue(ChestBlock.FACING)) {
+					if(checkSingleChestFront(otherHalfPos, pServerLevel)) {
 						return true;
 					}
 				}
@@ -189,14 +202,14 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	 */
 	private boolean checkSingleChestFront(BlockPos pos, ServerWorld pServerLevel) {
 		BlockState state = pServerLevel.getBlockState(pos);
-		
+
 		Direction chestFacing = state.getValue(ChestBlock.FACING);
 		BlockPos frontPos = pos.relative(chestFacing);
 		List<ItemFrameEntity> itemFrames = pServerLevel.getEntitiesOfClass(ItemFrameEntity.class, new AxisAlignedBB(frontPos));
-		for (ItemFrameEntity frame : itemFrames) {
-			if (frame.getDirection() == chestFacing) {
+		for(ItemFrameEntity frame : itemFrames) {
+			if(frame.getDirection() == chestFacing) {
 				ItemStack displayedItem = frame.getItem();
-				if (!displayedItem.isEmpty() && displayedItem.getItem() instanceof HoeItem) {
+				if(!displayedItem.isEmpty() && displayedItem.getItem() instanceof HoeItem) {
 					return true;
 				}
 			}
