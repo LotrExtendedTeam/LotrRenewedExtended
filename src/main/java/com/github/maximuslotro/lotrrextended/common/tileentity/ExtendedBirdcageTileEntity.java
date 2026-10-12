@@ -10,16 +10,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class ExtendedBronzeBirdcageTileEntity extends TileEntity {
+public class ExtendedBirdcageTileEntity extends TileEntity {
 
     private Entity birdEntity = null;
 
-    public ExtendedBronzeBirdcageTileEntity(TileEntityType<?> p_i48289_1_) {
+    public ExtendedBirdcageTileEntity(TileEntityType<?> p_i48289_1_) {
         super(p_i48289_1_);
     }
 
-    public ExtendedBronzeBirdcageTileEntity() {
-        super(ExtendedTileEntities.BRONZE_BIRD_CAGE.get());
+    public ExtendedBirdcageTileEntity() {
+        super(ExtendedTileEntities.BIRD_CAGE.get());
     }
 
     @Nullable

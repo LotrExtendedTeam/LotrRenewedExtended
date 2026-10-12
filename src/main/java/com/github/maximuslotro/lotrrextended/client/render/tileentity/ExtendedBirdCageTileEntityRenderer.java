@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBronzeBirdcageTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -10,14 +10,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<ExtendedBronzeBirdcageTileEntity> {
+public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<ExtendedBirdcageTileEntity> {
 
     public ExtendedBirdCageTileEntityRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
     }
 
     @Override
-    public void render(ExtendedBronzeBirdcageTileEntity tileEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
+    public void render(ExtendedBirdcageTileEntity tileEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
         pMatrixStack.pushPose();
         pMatrixStack.translate(0.5D, 0.0D, 0.5D);
 
