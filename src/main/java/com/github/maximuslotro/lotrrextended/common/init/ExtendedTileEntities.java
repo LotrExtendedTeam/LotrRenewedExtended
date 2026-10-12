@@ -57,7 +57,8 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedChimneyTileEntity>> CHIMNEY_POT = register("chimney_pot", () -> Builder.of(ExtendedChimneyTileEntity::new, ExtendedBlocks.CHIMNEYPOT.get()));
 	public static RegistryObject<TileEntityType<ExtendedHighElvenBedTileEntity>> HIGH_ELVEN_BED = register("high_elven_bed", () -> Builder.of(ExtendedHighElvenBedTileEntity::new, ExtendedBlocks.HIGH_ELVEN_BED.get()));
 	public static RegistryObject<TileEntityType<ExtendedCrucibleTileEntity>> CRUCIBLE = register("crucible", () -> Builder.of(ExtendedCrucibleTileEntity::new, ExtendedBlocks.CRUCIBLE.get()));
-	public static RegistryObject<TileEntityType<ExtendedBronzeBirdcageTileEntity>> BRONZE_BIRD_CAGE = register("bronze_birdcage", () -> Builder.of(ExtendedBronzeBirdcageTileEntity::new, ExtendedBlocks.BRONZE_BIRDCAGE.get()));
+	public static RegistryObject<TileEntityType<ExtendedBirdcageTileEntity>> BIRD_CAGE = register("birdcage", () -> Builder.of(ExtendedBirdcageTileEntity::new, ExtendedBlocks.WOODEN_BIRDCAGE.get(),
+		ExtendedBlocks.BRONZE_BIRDCAGE.get(), ExtendedBlocks.IRON_BIRDCAGE.get(), ExtendedBlocks.SILVER_BIRDCAGE.get(), ExtendedBlocks.GOLDEN_BIRDCAGE.get(), ExtendedBlocks.MITHRIL_BIRDCAGE.get()));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ENTITIES.register(bus);

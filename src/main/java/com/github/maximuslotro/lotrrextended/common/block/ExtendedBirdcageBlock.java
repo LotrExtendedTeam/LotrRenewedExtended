@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBronzeBirdcageTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -43,7 +43,7 @@ public class ExtendedBirdcageBlock extends ContainerBlock {
 	@Nullable
 	@Override
 	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		return new ExtendedBronzeBirdcageTileEntity();
+		return new ExtendedBirdcageTileEntity();
 	}
 
 	@Override

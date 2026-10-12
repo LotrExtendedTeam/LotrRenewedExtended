@@ -19,6 +19,6 @@ public class ExtendedTileEntityRenderers {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_SIGN.get(), ExtendedStoneTextSignTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.HIGH_ELVEN_BED.get(), ExtendedBedTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_GRINDER.get(), ExtendedStoneGrinderTileEntityRenderer::new);
-		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.BRONZE_BIRD_CAGE.get(), ExtendedBirdCageTileEntityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.BIRD_CAGE.get(), ExtendedBirdCageTileEntityRenderer::new);
 	}
 }
