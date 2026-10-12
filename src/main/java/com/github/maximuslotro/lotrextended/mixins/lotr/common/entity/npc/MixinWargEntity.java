@@ -11,9 +11,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitGoal;
@@ -38,7 +37,6 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -74,8 +72,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -123,6 +119,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Shadow(remap = false)
 	public void startLeaping() {}
+
+	@Shadow(remap = false)
+	protected abstract NPCEntity createWargRider();
 
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveDataExtended(CompoundNBT pCompound, CallbackInfo ci) {
@@ -199,7 +198,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Overwrite(remap = false)
 	public static MutableAttribute regAttrs() {
 		return NPCEntity.registerBaseNPCAttributes().add(Attributes.FOLLOW_RANGE, 32.0D)
-			.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
+				.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
 	}
 
 	/**
@@ -311,15 +310,20 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.setTemper(i);
 		return i;
 	}
-	@Inject(method = "addWargRider(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;)V",
-		at = @At(value = "INVOKE", target = "Llotr/common/entity/npc/WargEntity;createWargRider()Llotr/common/entity/npc/NPCEntity;", 
-		shift = At.Shift.BY, by=2, remap=false), 
-		remap=false, locals = LocalCapture.CAPTURE_FAILHARD
-		)
-	private void beforeNullCheckRiderLogic(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, CallbackInfo ci, NPCEntity rider) {
+	@Redirect(
+			method = "addWargRider(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;)V",
+			at = @At(
+					value = "INVOKE",
+					target = "Llotr/common/entity/npc/WargEntity;createWargRider()Llotr/common/entity/npc/NPCEntity;"
+					),
+			remap = false
+			)
+	private NPCEntity interceptWargRiderCreation(WargEntity warg) {
+		NPCEntity rider = createWargRider();
 		if (rider != null) {
-			equipSaddle(null);
+			this.equipSaddle(null);
 		}
+		return rider;
 	}
 
 	@Override

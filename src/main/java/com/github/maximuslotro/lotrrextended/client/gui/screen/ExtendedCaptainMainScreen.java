@@ -59,7 +59,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void init() {
 		super.init();		
-		hireButton = this.addButton(new ExtendedImageButtonButton(this.leftPos + 118, this.topPos + 134, 20, 20, 0, 160, 20, SCREEN_BACKGROUND, button -> hireFromNPC()) {
+		hireButton = this.addButton(new ExtendedImageButtonButton(this.leftPos + 99, this.topPos + 132, 20, 20, 0, 160, 20, SCREEN_BACKGROUND, button -> hireFromNPC()) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
 				ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
@@ -80,18 +80,18 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 				}
 			}
 		});
-		leftArrowButton = this.addButton(new Button(this.leftPos + 98 , this.topPos + 134, 20, 20, new StringTextComponent("<<"), button -> {
+		leftArrowButton = this.addButton(new Button(this.leftPos + 79 , this.topPos + 132, 20, 20, new StringTextComponent("<<"), button -> {
 			switchToPrevious();
 		}));
-		rightArrowButton = this.addButton(new Button(this.leftPos + 138, this.topPos + 134, 20, 20, new StringTextComponent(">>"), button -> {
+		rightArrowButton = this.addButton(new Button(this.leftPos + 119, this.topPos + 132, 20, 20, new StringTextComponent(">>"), button -> {
 			switchToNext();
 		}));
 		if(unitProfiles.size() <= 1) {
 			leftArrowButton.active=false;
 			rightArrowButton.active=false;
 		}
-		squadTextField = this.addButton(new ExtendedEmptyTextFieldWidget(this.font, this.leftPos + 6, this.topPos + 130, 90, 20, 
-			new TranslationTextComponent("gui.lotrextended.horn_select.squad.textfield"), new TranslationTextComponent("gui.lotrextended.hiring.squad_assign")));
+		squadTextField = this.addButton(new ExtendedEmptyTextFieldWidget(this.font, this.leftPos + 158, this.topPos + 132, 90, 20, 
+				new TranslationTextComponent("gui.lotrextended.horn_select.squad.textfield"), new TranslationTextComponent("gui.lotrextended.hiring.squad_assign")));
 		this.squadTextField.setMaxLength(20);
 		this.squadTextField.setValue(squadName);
 		this.squadTextField.setResponder((newValue) -> {
@@ -193,19 +193,21 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 		if (currentProfile != null) {
 			String unitTypeName = currentProfile.getEntityUnitTypeName();
 			TextComponent unitTypeText = currentProfile.stringsAreTranslated() ? new TranslationTextComponent(unitTypeName) : new StringTextComponent(unitTypeName);
-			this.font.draw(pMatrixStack, unitTypeText, this.leftPos + 93 - (font.width(unitTypeText) / 2), this.topPos + 37, 4210752);
+			this.font.draw(pMatrixStack, unitTypeText, this.leftPos + 128 - (font.width(unitTypeText) / 2), this.topPos + 37, 4210752);
 
-			this.font.draw(pMatrixStack, new StringTextComponent(currentProfile.getHiringCost() + "c"), this.leftPos + 90, this.topPos + 53, 4210752);
-			this.font.draw(pMatrixStack, new StringTextComponent("+"+currentProfile.getHiringAlignmentRequired()), this.leftPos + 90, this.topPos + 74, 4210752);
-			if(currentProfile.isHiringRequiresPledge()) {
-				this.font.draw(pMatrixStack, new TranslationTextComponent("gui.lotrextended.hiring.pledge_required"), this.leftPos + 76, this.topPos + 92, 4210752);
-			}else {
-				this.font.draw(pMatrixStack, new StringTextComponent("..."), this.leftPos + 76, this.topPos + 92, 4210752);
-			}
+			Faction fac = npcEntity.getFaction();
+			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
+			TextComponent coinCost  = new StringTextComponent(currentProfile.getHiringCost() + "c");
+			TextComponent alighmentNeeded  = new StringTextComponent("+"+currentProfile.getHiringAlignmentRequired());
+			TextComponent pledgeRequired  = currentProfile.isHiringRequiresPledge() ? new TranslationTextComponent("gui.lotrextended.hiring.pledge_required") : new StringTextComponent("...");
+			this.font.draw(pMatrixStack, coinCost, this.leftPos + 90, this.topPos + 53, currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory) ? 16736352 : 4210752);
+			this.font.draw(pMatrixStack, alighmentNeeded, this.leftPos + 90, this.topPos + 74, currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac) ? 16736352 : 4210752);
+			this.font.draw(pMatrixStack, pledgeRequired, this.leftPos + 76, this.topPos + 92, currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac) ? 16736352 : 4210752);
+
 			if (unitProfiles.size() > 1) {
 				String pageIndicator = "(" + (currentProfileIndex + 1) + "/" + unitProfiles.size() + ")";
 				TextComponent pageText = new StringTextComponent(pageIndicator);
-				this.font.draw(pMatrixStack, pageText, this.leftPos + 128 - (font.width(pageText) / 2), this.topPos + 125, 4210752);
+				this.font.draw(pMatrixStack, pageText, this.leftPos + 109 - (font.width(pageText) / 2), this.topPos + 123, 4210752);
 			}
 		}
 		if(hiringEntity!=null) {

@@ -2257,6 +2257,7 @@
   "gui.lotrextended.hired_unit.range.farming": "Farming Range: %1$s",
   "gui.lotrextended.hired_unit.range.guard": "Guard Range: %1$s",
   "gui.lotrextended.hired_unit.range.tooltip": "The maximum range this unit can travel.",
+  "gui.lotrextended.hired_unit.squad_button.tooltip": "Change unit squadron.",
   "gui.lotrextended.hired_unit.transfer_button": "Transfer",
   "gui.lotrextended.hired_unit.transfer_button.tooltip": "Transfer unit to another online player.",
   "gui.lotrextended.hired_unit.transfer_button_confirm": "Confirm Transfer",
