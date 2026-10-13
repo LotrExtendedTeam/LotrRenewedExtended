@@ -24,7 +24,6 @@ public abstract class MixinBiomeNPCSpawnList {
         if (!(world instanceof ServerWorld) || world.dimension() != LOTRDimensions.MIDDLE_EARTH_WORLD_KEY || !ExtendedServerConfig.enableConquest.get()) return original;
         ExtendedLevelData levelData = ExtendedLevelData.serverInstance();
         if (levelData.needsLoad()) return original;
-        float conquest = levelData.getConquestData().getConquestSquare(pos).getConquest(cont.getFaction().getName());
         return levelData.getConquestData().getConquestSquare(pos).getConquest(cont.getFaction().getName());
     }
 }
