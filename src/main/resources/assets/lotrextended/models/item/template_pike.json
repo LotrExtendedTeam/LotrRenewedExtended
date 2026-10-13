@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "_comment": "Based on minecraft:item/handheld, but with textures scaled by 3 (16x3=48), for 48x48 pike textures 16x3=480.68x3=2.04",
+  "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 2.04, 2.04, 0.85 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 2.04, 2.04, 0.85 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 2.04, 2.04, 0.68 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 2.04, 2.04, 0.68 ]
+        }
+    }
+}

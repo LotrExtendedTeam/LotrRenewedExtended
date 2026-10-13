@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:lindon",
+  "pattern": [
+    "  #",
+    " X#",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/wooden"
+    },
+    "#": {
+      "tag": "forge:ingots/elven_steel"
+    }
+  },
+  "result": {
+    "item": "lotrextended:lindon_longspear"
+  }
+}

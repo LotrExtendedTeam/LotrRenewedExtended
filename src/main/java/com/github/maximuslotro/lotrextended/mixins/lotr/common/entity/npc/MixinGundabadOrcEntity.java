@@ -36,7 +36,7 @@ public class MixinGundabadOrcEntity{
 			LOTRItems.IRON_SPEAR, LOTRItems.BRONZE_SWORD, LOTRItems.BRONZE_AXE, LOTRItems.BRONZE_PICKAXE, LOTRItems.BRONZE_DAGGER,
 			LOTRItems.BRONZE_SPEAR, LOTRItems.MORDOR_SCIMITAR, LOTRItems.MORDOR_AXE, LOTRItems.MORDOR_PICKAXE, LOTRItems.MORDOR_DAGGER,
 			LOTRItems.MORDOR_SPEAR, ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER,
-			ExtendedItems.BONE_SPEAR);
+			ExtendedItems.BONE_SPEAR, ExtendedItems.GUNDABAD_URUK_PIKE);
 	/**
 	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)

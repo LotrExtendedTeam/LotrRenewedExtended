@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:uruk_pike"
+    ]
+  },
+  "criteria": {
+    "has_uruk_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/uruk_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:uruk_pike"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_uruk_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -234,6 +234,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:blue_dwarven_pike",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotrextended:blue_mountains_banner",
         "averageCost": 50
       }

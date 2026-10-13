@@ -107,6 +107,27 @@
               }
             }
           ],
+          "name": "lotrextended:bronze_pike"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
           "name": "minecraft:iron_sword"
         },
         {
@@ -171,6 +192,27 @@
             }
           ],
           "name": "lotr:iron_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
+          "name": "lotrextended:iron_pike"
         },
         {
           "type": "minecraft:item",

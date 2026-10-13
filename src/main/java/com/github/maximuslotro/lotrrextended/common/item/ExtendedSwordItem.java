@@ -46,6 +46,7 @@ public class ExtendedSwordItem extends SwordItem {
 				Multimap<Attribute, AttributeModifier> defaultModifiers = super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
 				builder.putAll(defaultModifiers);
 				builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", reachModifier, Operation.ADDITION));
+				addAdditionalAttributes(builder);
 				additionalDefaultModifiers = builder.build();
 			}
 			return this.additionalDefaultModifiers;
@@ -54,4 +55,6 @@ public class ExtendedSwordItem extends SwordItem {
 			return super.getDefaultAttributeModifiers(slot);
 		}
 	}
+
+	public void addAdditionalAttributes(Builder<Attribute, AttributeModifier> builder) {}
 }
