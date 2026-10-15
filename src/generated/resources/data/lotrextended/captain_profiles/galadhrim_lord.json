@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:galadhrim_lord",
+  "alignmentRequired": 300,
+  "unitProfileIDs": [
+    "lotrextended:galadhrim_elf",
+    "lotrextended:galadhrim_warrior"
+  ]
+}

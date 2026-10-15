@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.gundabad_orc"
   },
   "hiring": {
-    "hiringCost": 15,
+    "hiringCost": 30,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
   },

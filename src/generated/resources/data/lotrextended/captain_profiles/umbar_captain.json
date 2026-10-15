@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:umbar_captain",
+  "alignmentRequired": 150,
+  "unitProfileIDs": [
+    "lotrextended:umbar_soldier",
+    "lotrextended:umbar_archer"
+  ]
+}

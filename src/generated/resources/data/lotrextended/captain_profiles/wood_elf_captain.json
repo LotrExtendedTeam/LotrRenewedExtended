@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:wood_elf_captain",
+  "alignmentRequired": 250,
+  "unitProfileIDs": [
+    "lotrextended:wood_elf",
+    "lotrextended:wood_elf_warrior"
+  ]
+}

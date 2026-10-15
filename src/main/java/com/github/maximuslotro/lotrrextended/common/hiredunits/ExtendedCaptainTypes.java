@@ -27,6 +27,16 @@ public class ExtendedCaptainTypes {
 	public static final ResourceLocation BREE_FARMER = make("bree_farmer");
 	public static final ResourceLocation DUNLENDING_FARMER = make("dunlending_farmer");
 
+	public static final ResourceLocation UMBAR_CAPTAIN = make("umbar_captain");
+	public static final ResourceLocation MORDOR_COMMANDER = make("mordor_commander");
+	public static final ResourceLocation COAST_SOUTHRON_WARLORD = make("coast_southron_warlord");
+	public static final ResourceLocation HARNENNOR_WARLORD = make("harnennor_warlord");
+	public static final ResourceLocation DALISH_CAPTAIN = make("dalish_captain");
+	public static final ResourceLocation WOOD_ELF_CAPTAIN = make("wood_elf_captain");
+	public static final ResourceLocation GALADHRIM_LORD = make("galadhrim_lord");
+	public static final ResourceLocation GONDORIAN_CAPTAIN = make("gondor_captain");
+	public static final ResourceLocation ROHAN_MARSHAL = make("rohan_marshal");
+
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));
 	}

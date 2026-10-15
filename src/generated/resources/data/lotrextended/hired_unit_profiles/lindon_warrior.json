@@ -8,8 +8,8 @@
     "entity_unit_type": "entity.lotr.lindon_warrior"
   },
   "hiring": {
-    "hiringCost": 45,
-    "hiringRequiresPledge": false,
+    "hiringCost": 100,
+    "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 400
   },
   "attack_type": "ranged",

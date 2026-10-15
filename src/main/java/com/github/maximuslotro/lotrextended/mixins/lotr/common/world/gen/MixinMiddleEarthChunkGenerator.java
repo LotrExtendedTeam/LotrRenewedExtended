@@ -105,9 +105,9 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 	 * Calculates the density modulation weight/contribution of a structure piece at a given distance offset.
 	 * Used to flatten or adjust terrain around structures.
 	 *
-	 * @param p_222556_0_ The absolute distance offset on the X axis.
-	 * @param p_222556_1_ The absolute distance offset on the Y axis.
-	 * @param p_222556_2_ The absolute distance offset on the Z axis.
+	 * @param x The absolute distance offset on the X axis.
+	 * @param y The absolute distance offset on the Y axis.
+	 * @param z The absolute distance offset on the Z axis.
 	 * @return The weight multiplier for modifying base noise density.
 	 */
 	@Shadow(remap = false, aliases = {"func_222556_a"})
