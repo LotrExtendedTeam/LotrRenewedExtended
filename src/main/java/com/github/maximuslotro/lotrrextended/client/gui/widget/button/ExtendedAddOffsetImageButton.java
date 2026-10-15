@@ -10,7 +10,7 @@ import net.minecraft.util.text.StringTextComponent;
  * Copied from ImageButton to add four states for the button, pressed/un-pressed + hovered/un-hovered
  * @see ImageButton
  * */
-public class ExtendedAddOffsetImageButton extends ExtendedDisableableImageButton {
+public class ExtendedAddOffsetImageButton extends ExtendedImageButtonButton {
 
 	public ExtendedAddOffsetImageButton(int pX, int pY, int pWidth, int pHeight, int pXTexStart, int pYTexStart, int pYDiffTex, ResourceLocation pResourceLocation, Button.IPressable pOnPress) {
 		super(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffTex, pResourceLocation, 256, 256, pOnPress);

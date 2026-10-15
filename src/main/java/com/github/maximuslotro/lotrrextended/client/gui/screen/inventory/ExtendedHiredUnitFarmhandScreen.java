@@ -17,7 +17,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitFarmhandContainer> {
+public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitContainerScreen<ExtendedHiredUnitFarmhandContainer> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/unit_farmhand_menu.png");
 	private ExtendedTextureOffsetButton warningButton;
 

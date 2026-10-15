@@ -13,13 +13,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContainer> extends ExtendedContainerScreen<T>{
+public abstract class ExtendedHiredUnitContainerScreen<T extends ExtendedHiredUnitContainer> extends ExtendedContainerScreen<T>{
 	protected Button statsbuton;
 	protected Button equipmentbuton;
 	protected Button farmhandbuton;
 	private static int index = 0;
 
-	public ExtendedHiredUnitScreen(T pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
+	public ExtendedHiredUnitContainerScreen(T pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pMenu, pPlayerInventory, pTitle);
 		this.passEvents = false;
 		this.imageWidth = 176;
@@ -27,6 +27,14 @@ public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContain
 		this.titleLabelY = 4;
 		this.inventoryLabelY = 128;
 		this.titleLabelX = (imageWidth/2);
+	}
+
+	@Override
+	protected boolean hasClickedOutside(double pMouseX, double pMouseY, int pGuiLeft, int pGuiTop, int pMouseButton) {      
+		if(pMouseX >= (pGuiLeft - 57) && pMouseX < pGuiLeft && pMouseY >= (pGuiTop + 6) && pMouseY < (pGuiTop + 66)) {
+			return false;
+		}
+		return super.hasClickedOutside(pMouseX, pMouseY, pGuiLeft, pGuiTop, pMouseButton);
 	}
 
 	protected void openOverviewMenu(int companionID) {
@@ -53,19 +61,19 @@ public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContain
 		statsbuton = addButton(new ExtendedColorChangingButton(this.leftPos -57, this.topPos+6, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.overview"), button -> openOverviewMenu(getMenu().getEntityId()), 0.13f, 0.92f, 0.71f){
 			@Override
 			public boolean setColor(){
-				return ExtendedHiredUnitScreen.index==0;
+				return ExtendedHiredUnitContainerScreen.index==0;
 			}
 		});
 		equipmentbuton = addButton(new ExtendedColorChangingButton(this.leftPos -57, this.topPos+26, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.equipment"), button -> openEquipmentMenu(getMenu().getEntityId()), 0.13f, 0.92f, 0.71f){
 			@Override
 			public boolean setColor(){
-				return ExtendedHiredUnitScreen.index==1;
+				return ExtendedHiredUnitContainerScreen.index==1;
 			}
 		});
 		farmhandbuton = addButton(new ExtendedColorChangingButton(this.leftPos -57, this.topPos+46, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.farmhand"), button -> openFarmhandMenu(getMenu().getEntityId()), 0.13f, 0.92f, 0.71f){
 			@Override
 			public boolean setColor(){
-				return ExtendedHiredUnitScreen.index==2;
+				return ExtendedHiredUnitContainerScreen.index==2;
 			}
 		});
 		if(!(getMenu().getCompanion() instanceof ExtendedIFarmhand)) {
@@ -74,6 +82,6 @@ public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContain
 	}
 
 	protected static void setIndex(int index) {
-		ExtendedHiredUnitScreen.index = index;
+		ExtendedHiredUnitContainerScreen.index = index;
 	}
 }

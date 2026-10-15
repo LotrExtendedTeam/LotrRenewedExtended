@@ -23,7 +23,6 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -53,15 +52,6 @@ public class ExtendedTraderHelper {
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player) {
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openTraderMainMenuGui(entity, player));
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
-    }
-
-    public static String getTraderName(ITextComponent displayName) {
-        String result = displayName.getString();
-        if (result.split(",").length > 0) {
-            return result.split(",")[0];
-        } else {
-            return result;
-        }
     }
 
     public static int[] getBoughtPrices(List<ExtendedTrade> bought) {

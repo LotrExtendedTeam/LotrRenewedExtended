@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 
 import lotr.common.entity.npc.ExtendedICaptainEntity;
 
@@ -49,15 +49,14 @@ public class ExtendedCOpenCaptainPacket {
 			return;
 		}
 
-		List<ExtendedServerHiredUnitProfile> serverProfiles = ExtendedCaptainProfileManager.INSTANCE.get(trader.getCaptainProfile()).getUnitProfiles();
+		List<ExtendedHiredUnitProfile> profiles = ExtendedCaptainProfileManager.INSTANCE.get(trader.getCaptainProfile()).getUnitProfiles();
 
-		if(serverProfiles.isEmpty()) {
+		if(profiles.isEmpty()) {
 			ExtendedLog.error("No valid unit profiles found for captain entity! " + entity.getClass().getName());
 			context.get().setPacketHandled(true);
 			return;
 		}
-		// The client profiles list will be null here - it gets populated during packet encoding from serverProfiles
-		ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, null, serverProfiles);
+		ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, profiles);
 		ExtendedPacketHandler.sendToClient(clientBoundPacket, context.get().getSender());
 		context.get().setPacketHandled(true);
 	}

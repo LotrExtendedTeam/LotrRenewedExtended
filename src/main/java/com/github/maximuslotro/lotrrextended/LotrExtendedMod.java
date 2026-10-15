@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMa
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.*;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
@@ -153,7 +153,7 @@ public class LotrExtendedMod{
 
 	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
-		event.addListener(ExtendedServerHiredUnitProfileManager.INSTANCE);
+		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
 		event.addListener(ExtendedCaptainProfileManager.INSTANCE);
 		event.addListener(ExtendedSignTextProcessorManager.INSTANCE);
 		event.addListener(ExtendedTraderProfileManager.INSTANCE);

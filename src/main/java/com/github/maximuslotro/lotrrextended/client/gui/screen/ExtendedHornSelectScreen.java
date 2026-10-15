@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedDisableableImageButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageButtonButton;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -32,7 +32,7 @@ public class ExtendedHornSelectScreen extends ExtendedAbstractWindowedScreen {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.SUMMON));
 			this.onClose();
 		}));
-		this.addButton(new ExtendedDisableableImageButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
+		this.addButton(new ExtendedImageButtonButton(0, this.height -20, 20, 20, 20, 0, 20, ExtendedAbstractWindowedScreen.EXTENDED_WIDGETS, button -> {
 			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
 		}) {
 			@Override
