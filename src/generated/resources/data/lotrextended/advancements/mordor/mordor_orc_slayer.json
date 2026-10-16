@@ -44,12 +44,27 @@
           }
         ]
       }
+    },
+    "kill_mordor_orc_commander": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:mordor_orc_commander"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_mordor_orc",
-      "kill_mordor_orc_archer"
+      "kill_mordor_orc_archer",
+      "kill_mordor_orc_commander"
     ]
   ]
 }

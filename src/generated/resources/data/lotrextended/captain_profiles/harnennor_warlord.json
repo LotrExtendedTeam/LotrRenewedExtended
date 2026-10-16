@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:harnennor_warlord",
+  "alignmentRequired": 150,
+  "unitProfileIDs": [
+    "lotrextended:harnennor_warrior",
+    "lotrextended:harnennor_archer"
+  ]
+}

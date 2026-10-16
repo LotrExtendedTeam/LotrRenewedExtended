@@ -8,8 +8,8 @@
     "entity_unit_type": "entity.lotr.dwarf_archer"
   },
   "hiring": {
-    "hiringCost": 50,
-    "hiringRequiresPledge": false,
+    "hiringCost": 100,
+    "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 300
   },
   "attack_type": "ranged",

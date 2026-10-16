@@ -44,12 +44,27 @@
           }
         ]
       }
+    },
+    "kill_wood_elf_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:wood_elf_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_wood_elf",
-      "kill_wood_elf_warrior"
+      "kill_wood_elf_warrior",
+      "kill_wood_elf_captain"
     ]
   ]
 }

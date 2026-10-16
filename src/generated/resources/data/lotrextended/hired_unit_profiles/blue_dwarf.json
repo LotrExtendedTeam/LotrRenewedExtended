@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.blue_mountains_dwarf"
   },
   "hiring": {
-    "hiringCost": 20,
+    "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },

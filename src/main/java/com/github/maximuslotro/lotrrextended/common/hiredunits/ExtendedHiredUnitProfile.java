@@ -292,6 +292,18 @@ public class ExtendedHiredUnitProfile {
 			return this;
 		}
 		/**
+		 * Removes all armor.
+		 *
+		 * @return This builder instance for chaining
+		 */
+		public ExtendedHiredUnitProfile.Builder noArmor() {
+			addHelmetPoolItem(ItemStack.EMPTY, 1);
+			addChestplatePoolItem(ItemStack.EMPTY, 1);
+			addLeggingPoolItem(ItemStack.EMPTY, 1);
+			addBootsPoolItem(ItemStack.EMPTY, 1);
+			return this;
+		}
+		/**
 		 * Add a helmet item to the equipment pool with weight.
 		 *
 		 * @param stack The item stack representing the helmet
@@ -467,7 +479,7 @@ public class ExtendedHiredUnitProfile {
 		 *
 		 * @return This builder instance for chaining
 		 */
-		public ExtendedHiredUnitProfile.Builder disableIdleWeaponUsingOtherPools() {
+		public ExtendedHiredUnitProfile.Builder disableIdleWeapon() {
 			equipmentPools.disableIdleWeaponUsingOtherPools();
 			return this;
 		}

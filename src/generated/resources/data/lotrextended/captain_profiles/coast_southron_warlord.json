@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:coast_southron_warlord",
+  "alignmentRequired": 150,
+  "unitProfileIDs": [
+    "lotrextended:coast_southron_warrior",
+    "lotrextended:coast_southron_archer"
+  ]
+}

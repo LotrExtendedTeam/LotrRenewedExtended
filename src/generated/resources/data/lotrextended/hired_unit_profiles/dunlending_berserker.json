@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunlending_berserker"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 100,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 300
   },

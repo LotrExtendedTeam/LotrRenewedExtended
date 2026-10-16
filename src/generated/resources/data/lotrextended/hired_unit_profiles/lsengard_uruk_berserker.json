@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.uruk_berserker"
   },
   "hiring": {
-    "hiringCost": 60,
+    "hiringCost": 120,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 300
   },

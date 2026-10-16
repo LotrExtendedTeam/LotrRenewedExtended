@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunlending_axe_thrower"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 100,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },

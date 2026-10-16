@@ -8,8 +8,8 @@
     "entity_unit_type": "entity.lotr.dwarf_warrior"
   },
   "hiring": {
-    "hiringCost": 30,
-    "hiringRequiresPledge": false,
+    "hiringCost": 60,
+    "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 250
   },
   "attack_type": "melee",

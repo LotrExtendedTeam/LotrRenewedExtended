@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -28,8 +29,8 @@ public class AdvancementsProviderDale extends ExtendedBaseAdvancementType{
 
 		Advancement dale_slayer = build(true, data(Items.BONE, "dale_slayer", FrameType.TASK)
 				.setTitle("Dalishman Slayer").setDescription("Kill a Man of Dale."),
-				addKillEntityTriggers(make(), LOTREntities.DALE_MAN.get(), LOTREntities.DALE_BOWMAN.get(), LOTREntities.DALE_SOLDIER.get())
-				.parent(dale));
+				addKillEntityTriggers(make(), LOTREntities.DALE_MAN.get(), LOTREntities.DALE_BOWMAN.get(), LOTREntities.DALE_SOLDIER.get(), 
+					ExtendedEntities.DALE_CAPTAIN.get()).parent(dale));
 
 		Advancement dale_10 = build(true, data(LOTRItems.GOLD_RING.get(), "dale_guest", FrameType.TASK)
 				.setTitle("Barding Guest").setDescription("Reach +10.0 alignment with Dale."),
@@ -61,6 +62,10 @@ public class AdvancementsProviderDale extends ExtendedBaseAdvancementType{
 			.setTitle("For the North!").setDescription("Equip a full suit of Dalish armor."),
 			addArmorTrigger(make(), "dale", LOTRItems.DALE_HELMET.get(), LOTRItems.DALE_CHESTPLATE.get(),
 					LOTRItems.DALE_LEGGINGS.get(), LOTRItems.DALE_BOOTS.get()).parent(dale));
+
+		Advancement hire_dale = build(true, data(LOTRItems.DALE_SWORD.get(), "dalishmen_at_arms", FrameType.TASK)
+			.setTitle("Dalishmen at Arms").setDescription("Hire a unit from a Dalish Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.DALE_CAPTAIN.get()).parent(dale));
 	}
 
 	@Override

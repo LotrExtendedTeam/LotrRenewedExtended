@@ -11,7 +11,7 @@ import net.minecraftforge.fml.DatagenModLoader;
 /**
  * Stores IDs for built-in hired unit profiles.
  */
-public class ExtendedHiredUnitTypes {
+public class ExtendedUnitTypes {
 	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 	// HOBBIT
 	public static final ResourceLocation HOBBIT_FARMHAND = make("hobbit_farmhand");
@@ -56,6 +56,33 @@ public class ExtendedHiredUnitTypes {
 	public static final ResourceLocation DUNLENDING_AXE_THROWER = make("dunlending_axe_thrower");
 	public static final ResourceLocation DUNLENDING_BERSERKER = make("dunlending_berserker");
 	public static final ResourceLocation DUNLENDING_FARMHAND = make("dunlending_farmhand");
+	// UMBAR
+	public static final ResourceLocation UMBAR_SOLDIER = make("umbar_soldier");
+	public static final ResourceLocation UMBAR_ARCHER = make("umbar_archer");
+	// MORDOR
+	public static final ResourceLocation MORDOR_ORC = make("mordor_orc");
+	public static final ResourceLocation MORDOR_ORC_ARCHER = make("mordor_orc_archer");
+	// DALE
+	public static final ResourceLocation DALE_SOLDIER = make("dale_soldier");
+	public static final ResourceLocation DALE_BOWMAN= make("dale_bowman");
+	// GONDOR
+	public static final ResourceLocation GONDOR_SOLDIER = make("gondor_soldier");
+	public static final ResourceLocation GONDOR_ARCHER = make("gondor_archer");
+	// WOOD-ELF
+	public static final ResourceLocation WOOD_ELF = make("wood_elf");
+	public static final ResourceLocation WOOD_ELF_WARRIOR = make("wood_elf_warrior");
+	// WOOD-ELF
+	public static final ResourceLocation GALADHRIM_ELF = make("galadhrim_elf");
+	public static final ResourceLocation GALADHRIM_WARRIOR = make("galadhrim_warrior");
+	// COAST SOUTHRON
+	public static final ResourceLocation COAST_SOUTHRON_WARRIOR = make("coast_southron_warrior");
+	public static final ResourceLocation COAST_SOUTHRON_ARCHER = make("coast_southron_archer");
+	// HARNENNOR
+	public static final ResourceLocation HARNENNOR_WARRIOR = make("harnennor_warrior");
+	public static final ResourceLocation HARNENNOR_ARCHER = make("harnennor_archer");
+	// ROHAN
+	public static final ResourceLocation ROHAN_WARRIOR = make("rohirrim_warrior");
+	public static final ResourceLocation ROHAN_BOWMAN = make("rohirrim_bowman");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

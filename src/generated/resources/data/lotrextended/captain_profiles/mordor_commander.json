@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:mordor_commander",
+  "alignmentRequired": 150,
+  "unitProfileIDs": [
+    "lotrextended:mordor_orc",
+    "lotrextended:mordor_orc_archer"
+  ]
+}

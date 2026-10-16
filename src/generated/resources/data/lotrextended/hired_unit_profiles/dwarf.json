@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dwarf"
   },
   "hiring": {
-    "hiringCost": 20,
+    "hiringCost": 50,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },

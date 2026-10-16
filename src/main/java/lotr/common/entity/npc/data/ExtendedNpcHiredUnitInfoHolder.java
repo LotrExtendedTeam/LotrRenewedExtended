@@ -11,7 +11,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
@@ -267,11 +267,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				this.setOwnerUUID(uuid);
 				// Handle profiles of pre-1.8.0 hired units
 				if(thisEntity instanceof BreeGuardEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.BREE_GUARD;
+					this.unitProfile = ExtendedUnitTypes.BREE_GUARD;
 				}else if(thisEntity instanceof ExtendedDunedainRangerEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
+					this.unitProfile = ExtendedUnitTypes.DUNEDAIN_RANGER;
 				}else if(thisEntity instanceof GundabadOrcEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.GUNDABAD_ORC;
+					this.unitProfile = ExtendedUnitTypes.GUNDABAD_ORC;
 				}else if(thisEntity instanceof GondorSoldierEntity) {
 					// Handle migrating lotr-companions entity
 					this.unitProfile = new ResourceLocation("lotrcompanions", "gondor_soldier");

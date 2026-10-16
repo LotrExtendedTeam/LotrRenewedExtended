@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:dalish_captain",
+  "alignmentRequired": 100,
+  "unitProfileIDs": [
+    "lotrextended:dale_soldier",
+    "lotrextended:dale_bowman"
+  ]
+}
