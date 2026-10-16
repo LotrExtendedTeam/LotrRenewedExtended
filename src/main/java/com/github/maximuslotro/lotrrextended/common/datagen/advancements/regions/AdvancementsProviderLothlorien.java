@@ -29,7 +29,8 @@ public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
 
 		Advancement elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "elf_slayer", FrameType.TASK)
 				.setTitle("Elf Slayer").setDescription("Kill a Galadhrim elf."),
-				addKillEntityTriggers(make(), LOTREntities.GALADHRIM_ELF.get(), LOTREntities.GALADHRIM_WARRIOR.get()).parent(lothlorien));
+				addKillEntityTriggers(make(), LOTREntities.GALADHRIM_ELF.get(), LOTREntities.GALADHRIM_WARRIOR.get(), 
+					ExtendedEntities.GALADHRIM_LORD.get()).parent(lothlorien));
 
 		Advancement galadhrim_armor = build(true, data(LOTRItems.GALADHRIM_CHESTPLATE.get(), "galadhrim_armor", FrameType.TASK)
 				.setTitle("Golden Wood Warrior").setDescription("Equip a full suit of Galadhrim armor."),
@@ -72,6 +73,10 @@ public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
 		Advancement elven_crafter = build(true, data(LOTRItems.GALADHRIM_CRAFTING_TABLE.get(), "elven_crafter", FrameType.TASK)
 			.setTitle("Elven Crafter").setDescription("Craft an item on the Galadhrim Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.GALADHRIM_CRAFTING_TABLE.get()).parent(lothlorien));
+
+		Advancement hire_lothlorian = build(true, data(LOTRItems.MALLORN_SWORD.get(), "loriens_finest", FrameType.TASK)
+			.setTitle("Lórien's Finest").setDescription("Hire a unit from a Galadhrim Lord."),
+			addUnitHireTrigger(make(), ExtendedEntities.GALADHRIM_LORD.get()).parent(lothlorien));
 	}
 
 	@Override

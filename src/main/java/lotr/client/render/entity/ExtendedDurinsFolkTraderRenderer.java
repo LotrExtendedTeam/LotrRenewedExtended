@@ -5,7 +5,7 @@ import lotr.client.render.entity.model.DwarfModel;
 import lotr.common.entity.npc.DwarfEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 
-public class ExtendedDurinsFolkTraderRenderer extends DurinsFolkRenderer{
+public class ExtendedDurinsFolkTraderRenderer extends DurinsFolkRenderer {
 
 	public ExtendedDurinsFolkTraderRenderer(EntityRendererManager mgr) {
 		super(mgr);

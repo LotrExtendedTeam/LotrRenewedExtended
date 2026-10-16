@@ -1,0 +1,5 @@
+{
+  "faction": "lotr:gondor",
+  "kill_bonus": 1,
+  "speechbank": "lotr:gondor/man"
+}

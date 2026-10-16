@@ -210,7 +210,7 @@ public class ExtendedStructureSpawnerGenerator extends ExtendedStructureSpawners
 		single(ExtendedEntities.LINDON_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_SMITH);
 		single(ExtendedEntities.LINDON_LORD.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
-				.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_AREA);
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_AREA);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
 			.build(), 2, 5, true, 15, 8).setBoundaries(70, -8, 15, 60, -3, 4).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS_TOWER);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
@@ -227,9 +227,9 @@ public class ExtendedStructureSpawnerGenerator extends ExtendedStructureSpawners
 		single(ExtendedEntities.URUK_SUPPLIER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.ISENGARD_SUPPLIER);
 		single(ExtendedEntities.URUK_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.ISENGARD_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_SNAGA.get(), 5).addPool(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), 5)
-				.addPool(LOTREntities.URUK.get(), 5).addPool(LOTREntities.URUK_ARCHER.get(), 3)
-				.addPool(LOTREntities.ISENGARD_WARG.get(), 3).addPool(ExtendedEntities.URUK_BERSERKER.get(), 1)
-				.build(), 2, 6, false, 30, 15).setBoundaries(15, -8, 30, 10, -2, 12).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.ISENGARD_AREA);
+			.addPool(LOTREntities.URUK.get(), 5).addPool(LOTREntities.URUK_ARCHER.get(), 3)
+			.addPool(LOTREntities.ISENGARD_WARG.get(), 3).addPool(ExtendedEntities.URUK_BERSERKER.get(), 1)
+			.build(), 2, 6, false, 30, 15).setBoundaries(15, -8, 30, 10, -2, 12).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.ISENGARD_AREA);
 		single(ExtendedEntities.URUK_SMITH.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.SARUMAN);
 		single(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.HOBBIT.get(), 10).addPool(LOTREntities.BREE_HOBBIT.get(), 10)
@@ -241,8 +241,8 @@ public class ExtendedStructureSpawnerGenerator extends ExtendedStructureSpawners
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_WARG.get(), 100).build(), 2, 3, false, 26, 8)
 		.setBoundaries(12, -8, 16, 4, -4, 6).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
 		// DUNLENDING
-		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
-		single(ExtendedEntities.DUNLENDING_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_BARTENDER);		
+		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);
+		single(ExtendedEntities.DUNLENDING_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_BARTENDER);
 		single(ExtendedEntities.DUNLENDING_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_SMITH);
 		single(LOTREntities.DUNLENDING.get()).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_HOUSE);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 10).addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 3).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
@@ -256,5 +256,24 @@ public class ExtendedStructureSpawnerGenerator extends ExtendedStructureSpawners
 		single(ExtendedEntities.DUNLENDING_FARMHAND.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMHAND);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.DUNLENDING_FARMER_ANIMALS);
+		// ROHAN
+		single(ExtendedEntities.ROHIRRIM_MARSHAL.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.ROHAN_MARSHAL);
+		// UMBAR
+		single(ExtendedEntities.UMBAR_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.UMBAR_CAPTAIN);
+		// MORDOR
+		single(ExtendedEntities.MORDOR_ORC_COMMANDER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.MORDOR_COMMANDER);
+		// GONDOR
+		single(ExtendedEntities.GONDOR_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.GONDORIAN_CAPTAIN);
+		// COAST SOUTHRON
+		single(ExtendedEntities.COAST_SOUTHRON_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.COAST_SOUTHRON_WARLORD);
+		// HARNENNOR
+		single(ExtendedEntities.HARNENNOR_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.HARNENNOR_WARLORD);
+		// DALISH
+		single(ExtendedEntities.DALE_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DALISH_CAPTAIN);
+		// GALADHRIM
+		single(ExtendedEntities.GALADHRIM_LORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.GALADHRIM_LORD);
+		// WOODLAND REALM
+		single(ExtendedEntities.WOOD_ELF_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.WOOD_ELF_CAPTAIN);
+
 	}
 }

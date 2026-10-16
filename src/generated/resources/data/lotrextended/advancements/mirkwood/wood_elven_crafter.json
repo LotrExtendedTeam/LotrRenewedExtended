@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:mirkwood/stay_on_the_path",
+  "parent": "lotrextended:mirkwood/guest_of_the_elvenking",
   "display": {
     "icon": {
       "item": "lotr:wood_elven_crafting_table"

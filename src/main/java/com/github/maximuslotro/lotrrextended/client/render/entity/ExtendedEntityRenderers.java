@@ -12,10 +12,11 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class ExtendedEntityRenderers {
 	public static void registerEntityRenderers() {
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GALADHRIM_WANDERER.get(), ExtendedGaladhrimWandererRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedOddmentCollectorRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_WANDERER.get(), ExtendedRivendellWandererRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BARROW_WIGHT.get(), ExtendedBarrowWightRenderer::new);
+		// Galadhrim
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GALADHRIM_WANDERER.get(), ExtendedGaladhrimWandererRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GALADHRIM_LORD.get(), ExtendedGaladhrimElfTraderRenderer::new);
 		// Animals
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK.get(), ExtendedDuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HORSE_BOAR.get(), ExtendedBoarRenderer::new);
@@ -88,6 +89,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_WEAVER.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IMLADRIS_GUARD.get(), HighElfRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), ExtendedElrondRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_WANDERER.get(), ExtendedRivendellWandererRenderer::new);
 		// Lindon
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_LORD.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_SMITH.get(), ExtendedHighElfTraderRenderer::new);
@@ -110,5 +112,21 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_SMITH.get(), ExtendedDunlendingTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMER.get(), ExtendedDunlendingTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMHAND.get(), DunlendingRenderer::new);
+		// Dale
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DALE_CAPTAIN.get(), ExtendedDaleSoldierTraderRenderer::new);
+		// Coast Southrons
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.COAST_SOUTHRON_WARLORD.get(), ExtendedCoastSouthronWarriorTraderRenderer::new);
+		// Gondor
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GONDOR_CAPTAIN.get(), ExtendedGondorSoldierTraderRenderer::new);
+		// Mordor
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.MORDOR_ORC_COMMANDER.get(), LargeOrcRenderer::new);
+		// Rohan
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ROHIRRIM_MARSHAL.get(), ExtendedRohanWarriorTraderRenderer::new);
+		// Wood Elves
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.WOOD_ELF_CAPTAIN.get(), ExtendedWoodElfTraderRenderer::new);
+		// Umbar
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.UMBAR_CAPTAIN.get(), ExtendedCoastSouthronWarriorTraderRenderer::new);
+		// Harnennor
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HARNENNOR_WARLORD.get(), ExtendedHarnennorWarriorTraderRenderer::new);
 	}
 }

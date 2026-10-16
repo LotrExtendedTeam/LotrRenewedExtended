@@ -59,13 +59,28 @@
           }
         ]
       }
+    },
+    "kill_rohirrim_marshal": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:rohirrim_marshal"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_rohan_man",
       "kill_rohirrim_bowman",
-      "kill_rohirrim_warrior"
+      "kill_rohirrim_warrior",
+      "kill_rohirrim_marshal"
     ]
   ]
 }

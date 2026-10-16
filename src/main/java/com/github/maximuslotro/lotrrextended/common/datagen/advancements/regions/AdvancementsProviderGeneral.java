@@ -71,8 +71,9 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "orc_slayer", FrameType.TASK)
 			.setTitle("Orc Slayer").setDescription("Kill an Orc."),
-			addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get(),
-				LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get(),
+			addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get(), ExtendedEntities.GUNDABAD_CAMP_TRADER.get(),
+				ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedEntities.GUNDABAD_URUK.get(), ExtendedEntities.GUNDABAD_URUK_ARCHER.get(),
+				LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get(), ExtendedEntities.MORDOR_ORC_COMMANDER.get(),
 				LOTREntities.ISENGARD_SNAGA.get(), LOTREntities.ISENGARD_SNAGA_ARCHER.get()).parent(base));
 
 		Advancement athelas = build(true, data(LOTRItems.ATHELAS.get(), "kingsfoil", FrameType.TASK)
