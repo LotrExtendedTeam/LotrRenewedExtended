@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/ranger_bow_held",
+  "textures": {
+    "layer0": "lotrextended:item/ranger_bow_large_pulling_1"
+  }
+}

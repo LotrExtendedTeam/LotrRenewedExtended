@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "lotrextended:item/staff_gandalf_the_white"
+  }
+}

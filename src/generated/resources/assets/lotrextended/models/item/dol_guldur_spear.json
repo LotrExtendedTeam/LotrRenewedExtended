@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "lotrextended:item/dol_guldur_spear"
-  }
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/dol_guldur_spear_gui",
+  "held_model": "lotrextended:item/dol_guldur_spear_held"
 }

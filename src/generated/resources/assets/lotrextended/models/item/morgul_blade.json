@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "lotrextended:item/morgul_blade"
-  }
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/morgul_blade_gui",
+  "held_model": "lotrextended:item/morgul_blade_held"
 }
