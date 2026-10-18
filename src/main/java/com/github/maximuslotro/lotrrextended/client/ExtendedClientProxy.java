@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockItemColo
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.client.render.model.ExtendedTransformWrapperModelLoader;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSignTypes;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
@@ -26,6 +27,7 @@ import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackInfo.Priority;
 import net.minecraft.resources.ResourcePackList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
@@ -34,6 +36,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientChatEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -68,8 +72,8 @@ public class ExtendedClientProxy {
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		// Forge bus
-		forgeBus.addListener(this::login);
-		forgeBus.addListener(this::commandevent);
+		forgeBus.addListener(this::onLogin);
+		forgeBus.addListener(this::onCommandevent);
 		forgeBus.addListener(ExtendedRendererEventHandler::renderHpBar);
 		forgeBus.addListener(ExtendedRendererEventHandler::onPreRenderGameOverlay);
 		forgeBus.addListener(ExtendedRendererEventHandler::addTooltipsForModifiers);
@@ -77,7 +81,8 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderEntity);
 		// Mod bus
 		modBus.addListener(ExtendedClientParticles::register);
-		modBus.addListener(this::clientStartupEvent);
+		modBus.addListener(this::onClientStartup);
+		modBus.addListener(this::onModelRegistry);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedBlockItemColors::makeBlockColors);
 		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
@@ -97,7 +102,7 @@ public class ExtendedClientProxy {
      * A fix since forge does not have client commands in 1.16.5
      * @param event The chat event on the client
      */
-    public void commandevent(ClientChatEvent event)
+    public void onCommandevent(ClientChatEvent event)
     {
         if (event.getOriginalMessage().equals("!lotrExtendedInfoClient"))
         {
@@ -122,7 +127,7 @@ public class ExtendedClientProxy {
 				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
-	public void clientStartupEvent(final FMLClientSetupEvent event) {
+	public void onClientStartup(final FMLClientSetupEvent event) {
 		ExtendedBlockRenderer.setupBlockRenderers();
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(Atlases::addWoodType);
@@ -136,7 +141,11 @@ public class ExtendedClientProxy {
 		startVersionChecks();
     }
 
-    public void login(EntityJoinWorldEvent event)
+	public void onModelRegistry(ModelRegistryEvent event) {
+		ModelLoaderRegistry.registerLoader(new ResourceLocation("lotrextended", "transform_wrapper"), ExtendedTransformWrapperModelLoader.INSTANCE);
+	}
+
+    public void onLogin(EntityJoinWorldEvent event)
     {
         if (event.getEntity() instanceof ClientPlayerEntity && ExtendedClientConfig.enableClientVersionCheck.get())
         {
