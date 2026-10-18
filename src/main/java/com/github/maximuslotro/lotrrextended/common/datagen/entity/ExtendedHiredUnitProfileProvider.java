@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
@@ -56,7 +56,7 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		makeHiredUnitProfiles(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
 		if(modId.equals(LotrExtendedMod.MODID)) {
-			for(ResourceLocation key : ExtendedHiredUnitTypes.UNIT_TYPES) {
+			for(ResourceLocation key : ExtendedUnitTypes.UNIT_TYPES) {
 				if(!dataHere.containsKey(key)) {
 					LOGGER.warn("Didn't make expected unit profile type: "+key.toString());
 				}

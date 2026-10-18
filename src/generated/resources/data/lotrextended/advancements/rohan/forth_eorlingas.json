@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:rohan/horse_lords",
+  "display": {
+    "icon": {
+      "item": "lotr:mallorn_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rohan.forth_eorlingas.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.forth_eorlingas.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_rohirrim_marshal": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:rohirrim_marshal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_rohirrim_marshal"
+    ]
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:near_harad/beyond_harnen",
+  "display": {
+    "icon": {
+      "item": "lotr:harad_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.sons_of_the_harnen.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.sons_of_the_harnen.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_harnennor_warlord": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:harnennor_warlord"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_harnennor_warlord"
+    ]
+  ]
+}

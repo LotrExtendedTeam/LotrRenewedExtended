@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.rivendell_elf"
   },
   "hiring": {
-    "hiringCost": 30,
+    "hiringCost": 60,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 300
   },

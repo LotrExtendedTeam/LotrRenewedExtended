@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -39,14 +40,15 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 
 		Advancement wood_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "wood_elf_slayer", FrameType.TASK)
 				.setTitle("Wood-Elf Slayer").setDescription("Kill a Wood-Elf."),
-				addKillEntityTriggers(make(), LOTREntities.WOOD_ELF.get(), LOTREntities.WOOD_ELF_WARRIOR.get()).parent(woodland_realm));
+				addKillEntityTriggers(make(), LOTREntities.WOOD_ELF.get(), LOTREntities.WOOD_ELF_WARRIOR.get(), 
+					ExtendedEntities.WOOD_ELF_CAPTAIN.get()).parent(woodland_realm));
 
-		Advancement ranger_armor = build(true, data(LOTRItems.WOOD_ELVEN_CHESTPLATE.get(), "captain_of_the_guard", FrameType.TASK)
+		Advancement wood_elf_armor = build(true, data(LOTRItems.WOOD_ELVEN_CHESTPLATE.get(), "captain_of_the_guard", FrameType.TASK)
 				.setTitle("Captain of the Guard").setDescription("Acquire a full set of Wood-Elven armor."),
 				addArmorTrigger(make(), "wood_elven", LOTRItems.WOOD_ELVEN_HELMET.get(), LOTRItems.WOOD_ELVEN_CHESTPLATE.get(),
 						LOTRItems.WOOD_ELVEN_LEGGINGS.get(), LOTRItems.WOOD_ELVEN_BOOTS.get()).parent(woodland_realm));
 
-		Advancement arnor_armor = build(true, data(ExtendedItems.DOL_GULDUR_CHESTPLATE.get(), "the_corrupt", FrameType.TASK)
+		Advancement dol_guldur_armor = build(true, data(ExtendedItems.DOL_GULDUR_CHESTPLATE.get(), "the_corrupt", FrameType.TASK)
 				.setTitle("The Corrupt").setDescription( "Acquire a full set of Dol Guldur armor."),
 				addArmorTrigger(make(), "arnor", ExtendedItems.DOL_GULDUR_HELMET.get(), ExtendedItems.DOL_GULDUR_CHESTPLATE.get(),
 						ExtendedItems.DOL_GULDUR_LEGGINGS.get(), ExtendedItems.DOL_GULDUR_BOOTS.get()).parent(mirkwoodBase));
@@ -81,7 +83,7 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 
 		Advancement wood_elf_50 = build(true, data(LOTRItems.GOLD_RING.get(), "wood_elf_guest", FrameType.TASK)
 				.setTitle("Woodland Guest").setDescription("Reach +50.0 alignment with the Wood-elves of Mirkwood."),
-				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 50).parent(mirkwoodBase));
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 50).parent(woodland_realm));
 
 		Advancement wood_elf_100 = build(true, data(LOTRItems.GOLD_RING.get(), "wood_elf_friend", FrameType.TASK)
 				.setTitle("Woodland Friend").setDescription("Reach +100.0 alignment with the Wood-elves of Mirkwood."),
@@ -109,11 +111,15 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 
 		Advancement wood_elven_crafter = build(true, data(LOTRItems.WOOD_ELVEN_CRAFTING_TABLE.get(), "wood_elven_crafter", FrameType.TASK)
 			.setTitle("Wood-elven Crafter").setDescription("Craft an item on the Wood-elven Crafting Table."),
-			addCraftingTrigger(make(), LOTRBlocks.WOOD_ELVEN_CRAFTING_TABLE.get()).parent(mirkwoodBase));
+			addCraftingTrigger(make(), LOTRBlocks.WOOD_ELVEN_CRAFTING_TABLE.get()).parent(woodland_realm));
 
 		Advancement dol_guldur_crafter = build(true, data(ExtendedItems.DOL_GULDUR_CRAFTING_TABLE.get(), "dol_guldur_crafter", FrameType.TASK)
 			.setTitle("Necromancer").setDescription("Craft an item on the Dol Guldur Crafting Table."),
 			addCraftingTrigger(make(), ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE.get()).parent(mirkwoodBase));
+
+		Advancement hire_wood_elf = build(true, data(LOTRItems.WOOD_ELVEN_SWORD.get(), "defender_of_mirkwood", FrameType.TASK)
+			.setTitle("Defender of Mirkwood").setDescription("Hire a unit from a Wood-elf Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.WOOD_ELF_CAPTAIN.get()).parent(woodland_realm));
 	}
 
 	@Override

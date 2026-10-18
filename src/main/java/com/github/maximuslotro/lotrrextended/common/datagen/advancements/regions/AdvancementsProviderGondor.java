@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -21,6 +22,9 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 					LOTRBiomes.WHITE_MOUNTAINS, LOTRBiomes.WHITE_MOUNTAINS_FOOTHILLS, LOTRBiomes.ETHIR_ANDUIN, LOTRBiomes.LEBENNIN, LOTRBiomes.ITHILIEN, 
 					LOTRBiomes.DOR_EN_ERNIL, LOTRBiomes.PINNATH_GELIN, LOTRBiomes.TOLFALAS, LOTRBiomes.PELARGIR, 
 					LOTRBiomes.LOSSARNACH, LOTRBiomes.LAMEDON, LOTRBiomes.LAMEDON_HILLS));
+		Advancement hire_gondor = build(true, data(LOTRItems.GONDOR_SWORD.get(), "knight_of_gondor", FrameType.TASK)
+			.setTitle("Knights of Gondor").setDescription("Hire a unit from a Gondorian Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.GONDOR_CAPTAIN.get()).parent(kingdom_of_men));
 
 		Advancement bows_and_blackroots = build(true, data(LOTRItems.BLACKROOT.get(), "bows_and_blackroots", FrameType.TASK)
 				.setTitle("Bows and Blackroots").setDescription("Enter the fiefdom of Blackroot Vale."),
@@ -45,11 +49,22 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 		Advancement land_of_the_moon = build(true, data(LOTRItems.CRACKED_NUMENOREAN_BRICK.get(), "land_of_the_moon", FrameType.TASK)
 			.setTitle("Land of the Moon").setDescription("Enter the fiefdom of Ithilien."),
 			addBiomeTrigger(make(), LOTRBiomes.ITHILIEN).parent(kingdom_of_men));
+		Advancement ithilien_ranger_armor = build(true, data(LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(), "ithilien_ranger_armor", FrameType.TASK)
+			.setTitle("Beneath the Moon").setDescription("Equip a full suit of Ithilien Ranger armor."),
+			addArmorTrigger(make(), "ithilien_ranger", LOTRItems.RANGER_ITHILIEN_HELMET.get(), LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(),
+					LOTRItems.RANGER_ITHILIEN_LEGGINGS.get(), LOTRItems.RANGER_ITHILIEN_BOOTS.get()).parent(land_of_the_moon));
 
 		Advancement land_of_the_prince = build(true, data(Items.FEATHER, "land_of_the_prince", FrameType.TASK)
 			.setTitle("Land of the Prince").setDescription("Enter the fiefdom of Dor-en-Ernil."),
 			addBiomeTrigger(make(), LOTRBiomes.DOR_EN_ERNIL).parent(kingdom_of_men));
-
+		Advancement dol_amroth_crafter = build(true, data(LOTRItems.DOL_AMROTH_CRAFTING_TABLE.get(), "dol_amroth_crafter", FrameType.TASK)
+			.setTitle("Dol Amroth Crafter").setDescription("Craft an item on the Dol Amroth Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.DOL_AMROTH_CRAFTING_TABLE.get()).parent(land_of_the_prince));
+		Advancement dol_amroth_armor = build(true, data(LOTRItems.DOL_AMROTH_CHESTPLATE.get(), "dol_amroth_armor", FrameType.TASK)
+			.setTitle("Swan Knight").setDescription("Acquire a full set of Dol Amroth armor."),
+			addArmorTrigger(make(), "dol_amroth", LOTRItems.DOL_AMROTH_HELMET.get(), LOTRItems.DOL_AMROTH_CHESTPLATE.get(),
+					LOTRItems.DOL_AMROTH_LEGGINGS.get(), LOTRItems.DOL_AMROTH_BOOTS.get()).parent(land_of_the_prince));
+	
 		Advancement the_green_hills = build(true, data(Items.GRASS_BLOCK, "the_green_hills", FrameType.TASK)
 			.setTitle("The Green Hills").setDescription("Enter the fiefdom of Pinnath Gelin."),
 			addBiomeTrigger(make(), LOTRBiomes.PINNATH_GELIN).parent(kingdom_of_men));
@@ -107,29 +122,15 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 			.setTitle("Gondorian Crafter").setDescription("Craft an item on the Gondorian Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.GONDOR_CRAFTING_TABLE.get()).parent(kingdom_of_men));
 
-		Advancement dol_amroth_crafter = build(true, data(LOTRItems.DOL_AMROTH_CRAFTING_TABLE.get(), "dol_amroth_crafter", FrameType.TASK)
-			.setTitle("Dol Amroth Crafter").setDescription("Craft an item on the Dol Amroth Crafting Table."),
-			addCraftingTrigger(make(), LOTRBlocks.DOL_AMROTH_CRAFTING_TABLE.get()).parent(land_of_the_prince));
-
-		Advancement dol_amroth_armor = build(true, data(LOTRItems.DOL_AMROTH_CHESTPLATE.get(), "dol_amroth_armor", FrameType.TASK)
-			.setTitle("Swan Knight").setDescription("Acquire a full set of Dol Amroth armor."),
-			addArmorTrigger(make(), "dol_amroth", LOTRItems.DOL_AMROTH_HELMET.get(), LOTRItems.DOL_AMROTH_CHESTPLATE.get(),
-					LOTRItems.DOL_AMROTH_LEGGINGS.get(), LOTRItems.DOL_AMROTH_BOOTS.get()).parent(land_of_the_prince));
-
 		Advancement gondor_armor = build(true, data(LOTRItems.GONDOR_CHESTPLATE.get(), "gondor_armor", FrameType.TASK)
 			.setTitle("For Gondor!").setDescription("Equip a full suit of Gondorian armour."),
 			addArmorTrigger(make(), "gondow", LOTRItems.GONDOR_HELMET.get(), LOTRItems.GONDOR_CHESTPLATE.get(),
 					LOTRItems.GONDOR_LEGGINGS.get(), LOTRItems.GONDOR_BOOTS.get()).parent(kingdom_of_men));
 
-		Advancement ithilien_ranger_armor = build(true, data(LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(), "ithilien_ranger_armor", FrameType.TASK)
-			.setTitle("Beneath the Moon").setDescription("Equip a full suit of Ithilien Ranger armor."),
-			addArmorTrigger(make(), "ithilien_ranger", LOTRItems.RANGER_ITHILIEN_HELMET.get(), LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(),
-					LOTRItems.RANGER_ITHILIEN_LEGGINGS.get(), LOTRItems.RANGER_ITHILIEN_BOOTS.get()).parent(land_of_the_moon));
-
 		Advancement gondorian_slayer = build(true, data(LOTRItems.GONDOR_SWORD.get(), "gondorian_slayer", FrameType.TASK)
 			.setTitle("Gondorian Slayer").setDescription("Kill a Man of Gondor."),
-			addKillEntityTriggers(make(), LOTREntities.GONDOR_MAN.get(), LOTREntities.GONDOR_ARCHER.get(), LOTREntities.GONDOR_SOLDIER.get()).parent(kingdom_of_men));
-
+			addKillEntityTriggers(make(), LOTREntities.GONDOR_MAN.get(), LOTREntities.GONDOR_ARCHER.get(), 
+				LOTREntities.GONDOR_SOLDIER.get(), ExtendedEntities.GONDOR_CAPTAIN.get()).parent(kingdom_of_men));
 	}
 
 	@Override
