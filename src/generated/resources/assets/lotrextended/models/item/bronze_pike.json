@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "lotrextended:item/bronze_pike"
-  }
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/bronze_pike_gui",
+  "held_model": "lotrextended:item/bronze_pike_held"
 }

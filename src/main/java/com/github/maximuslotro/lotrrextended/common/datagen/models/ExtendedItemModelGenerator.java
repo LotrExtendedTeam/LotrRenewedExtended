@@ -255,10 +255,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				}
 				continue;
 			}
-			if(item.get() instanceof ExtendedPikeItem) {
-				genPike(item.get());
-				continue;
-			}
 			if(item.get() instanceof ExtendedDaggerItem) {
 				genDagger(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_poisoned"), false);
 				continue;
@@ -266,7 +262,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.get() instanceof SpearItem ||item.get() instanceof ExtendedStaffItem || item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
 				ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", lotrExtendedLoc("item/"+item.getId().getPath()));
 				ItemModelBuilder heldModel = null;
-				if(item.get() instanceof SpearItem){
+				if(item.get() instanceof ExtendedPikeItem) {
+					heldModel = genPikeHeld(item.get());
+				}else if(item.get() instanceof SpearItem){
 					heldModel = genSpearHeld(item.get());
 				}else if(item.get() instanceof ExtendedStaffItem) {
 					heldModel = genStaffHeld(item.get());
@@ -391,6 +389,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
+	private ItemModelBuilder genPikeHeld(Item item) {
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotrextended:item/template_pike");
+		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
+	}
+
 	private ItemModelBuilder genStaffHeld(Item item) {
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_spear");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
@@ -400,12 +403,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_spear");
 		ItemModelBuilder builderPulling = withExistingParent(item.getRegistryName().toString()+"_held_pulling", "lotr:item/handheld_spear_pulling");
 		builder.override().model(builderPulling).predicate(mcLoc("pulling"), 1);
-		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
-	}
-
-	private ItemModelBuilder genPike(Item item) {
-		genHandheld(item,  new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
-		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotrextended:item/template_pike");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 

@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "lotrextended:item/blue_dwarven_pike"
-  }
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/blue_dwarven_pike_gui",
+  "held_model": "lotrextended:item/blue_dwarven_pike_held"
 }
