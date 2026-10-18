@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.client.render.model.ExtendedTransformWrapperModelBuilder;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -184,7 +185,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
-					genSwordLarge(item.get());
+					ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", lotrExtendedLoc("item/"+item.getId().getPath()));
+					ItemModelBuilder heldModel = genSwordHeld(item.get());
+					genTransformWrapper(item.get(), guiModel, heldModel);
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof CropsBlock) {
@@ -256,20 +259,23 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genPike(item.get());
 				continue;
 			}
-			if(item.get() instanceof SpearItem) {
-				genSpear(item.get());
-				continue;
-			}
-			if(item.get() instanceof ExtendedStaffItem) {
-				genStaff(item.get());
-				continue;
-			}
 			if(item.get() instanceof ExtendedDaggerItem) {
 				genDagger(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_poisoned"), false);
 				continue;
 			}
-			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
-				genSwordLarge(item.get());
+			if(item.get() instanceof SpearItem ||item.get() instanceof ExtendedStaffItem || item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
+				ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", lotrExtendedLoc("item/"+item.getId().getPath()));
+				ItemModelBuilder heldModel = null;
+				if(item.get() instanceof SpearItem){
+					heldModel = genSpearHeld(item.get());
+				}else if(item.get() instanceof ExtendedStaffItem) {
+					heldModel = genStaffHeld(item.get());
+				}else if(item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
+					heldModel = genSwordHeld(item.get());
+				}
+				if(heldModel!=null) {
+					genTransformWrapper(item.get(), guiModel, heldModel);
+				}
 				continue;
 			}
 			if(item.get() instanceof LOTRShieldItem) {
@@ -354,25 +360,23 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	// TODO fix bows not being drawn in the inventory 
 	private void genBow(Item item) {
-		//		String bowPulling0 = name+"_pulling_0";
-		//		String bowPulling1 = name+"_pulling_1";
-		//		String bowPulling2 = name+"_pulling_2";
-		
-		String bowhandheld = item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_handheld";
-		ItemModelBuilder builder_bow_handleld = gen(withExistingParent(bowhandheld, "lotrextended:item/template_bow"), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_handheld"));
-		ItemModelBuilder builder_bow_handleld_p0 = gen(withExistingParent(item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_handheld_pulling_0", bowhandheld), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_handheld_pulling_0"));
-		ItemModelBuilder builder_bow_handleld_p1 = gen(withExistingParent(item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_handheld_pulling_1", bowhandheld), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_handheld_pulling_1"));
-		ItemModelBuilder builder_bow_handleld_p2 = gen(withExistingParent(item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_handheld_pulling_2", bowhandheld), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_handheld_pulling_2"));
-		ItemModelBuilder builder_bow = gen(withExistingParent(item.getRegistryName().toString(), "lotrextended:item/template_bow"), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
-		//		ItemModelBuilder builder_bow_p0 = gen(withExistingParent("lotr:item/"+bowPulling0, bow), false, lotrExtendedLoc("item/"+name+"_pulling_0"));
-		//		ItemModelBuilder builder_bow_p1 = gen(withExistingParent("lotr:item/"+bowPulling1, bow), false, lotrExtendedLoc("item/"+name+"_pulling_1"));
-		//		ItemModelBuilder builder_bow_p2 = gen(withExistingParent("lotr:item/"+bowPulling2, bow), false, lotrExtendedLoc("item/"+name+"_pulling_2"));
-		builder_bow_handleld.override().model(builder_bow_handleld_p0).predicate(ExtendedItemModelsProperties.pulling, 1);
-		builder_bow_handleld.override().model(builder_bow_handleld_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
-		builder_bow_handleld.override().model(builder_bow_handleld_p2).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
-		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling0))).predicate(ExtendedItemModelsProperties.pulling, 1);
-		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling1))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
-		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling2))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		String bowhandheldFileName = item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_held";
+		ItemModelBuilder builder_bow_held = gen(withExistingParent(bowhandheldFileName, "lotrextended:item/template_bow"), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_large"));
+		ItemModelBuilder builder_bow_held_p0 = gen(withExistingParent(bowhandheldFileName+"_pulling_0", bowhandheldFileName), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_large_pulling_0"));
+		ItemModelBuilder builder_bow_held_p1 = gen(withExistingParent(bowhandheldFileName+"_pulling_1", bowhandheldFileName), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_large_pulling_1"));
+		ItemModelBuilder builder_bow_held_p2 = gen(withExistingParent(bowhandheldFileName+"_pulling_2", bowhandheldFileName), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_large_pulling_2"));
+		builder_bow_held.override().model(builder_bow_held_p0).predicate(ExtendedItemModelsProperties.pulling, 1);
+		builder_bow_held.override().model(builder_bow_held_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
+		builder_bow_held.override().model(builder_bow_held_p2).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		String bowFileName = item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_gui";
+		ItemModelBuilder builder_bow_gui = gen(withExistingParent(bowFileName, "lotrextended:item/template_bow"), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
+		ItemModelBuilder builder_bow_gui_p0 = gen(withExistingParent(bowFileName+"_pulling_0", bowFileName), false, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_pulling_0"));
+		ItemModelBuilder builder_bow_gui_p1 = gen(withExistingParent(bowFileName+"_pulling_1", bowFileName), false, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_pulling_1"));
+		ItemModelBuilder builder_bow_gui_p2 = gen(withExistingParent(bowFileName+"_pulling_2", bowFileName), false, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_pulling_2"));
+		builder_bow_gui.override().model(builder_bow_gui_p0).predicate(ExtendedItemModelsProperties.pulling, 1);
+		builder_bow_gui.override().model(builder_bow_gui_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
+		builder_bow_gui.override().model(builder_bow_gui_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		genTransformWrapper(item, builder_bow_gui, builder_bow_held);
 	}
 
 	private ItemModelBuilder genDrink(Item item, String location) {
@@ -382,22 +386,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder genSwordLarge(Item item) {
-		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
-		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_large");
+	private ItemModelBuilder genSwordHeld(Item item) {
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_large");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
-	private ItemModelBuilder genStaff(Item item) {
-		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
-		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_spear");
+	private ItemModelBuilder genStaffHeld(Item item) {
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_spear");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
-	private ItemModelBuilder genSpear(Item item) {
-		genHandheld(item, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()));
-		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_handheld", "lotr:item/handheld_spear");
-		ItemModelBuilder builderPulling = withExistingParent(item.getRegistryName().toString()+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
+	private ItemModelBuilder genSpearHeld(Item item) {
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_spear");
+		ItemModelBuilder builderPulling = withExistingParent(item.getRegistryName().toString()+"_held_pulling", "lotr:item/handheld_spear_pulling");
 		builder.override().model(builderPulling).predicate(mcLoc("pulling"), 1);
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
@@ -542,6 +543,12 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				throw e;
 			}
 		}
+		return builder;
+	}
+
+	private ItemModelBuilder genTransformWrapper(Item item, ItemModelBuilder guiModel, ItemModelBuilder heldModel) {
+		ItemModelBuilder builder = getBuilder(item.getRegistryName().toString());
+		builder.customLoader(ExtendedTransformWrapperModelBuilder::begin).guiModel(guiModel).heldModel(heldModel);
 		return builder;
 	}
 }

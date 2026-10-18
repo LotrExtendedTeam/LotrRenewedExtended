@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 
 import lotr.common.data.LOTRLevelData;
@@ -63,7 +63,7 @@ public class ExtendedCHireUnitPacket {
         NPCEntity captainNpc = (NPCEntity)entityCaptain;
         ServerPlayerEntity player = context.get().getSender();
 
-        ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(packet.unitProfileID);
+        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(packet.unitProfileID);
         LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
 
         if(unitProfile.isEmptyUnitType()) {

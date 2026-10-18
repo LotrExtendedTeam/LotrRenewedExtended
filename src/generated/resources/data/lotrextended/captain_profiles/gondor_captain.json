@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:gondor_captain",
+  "alignmentRequired": 200,
+  "unitProfileIDs": [
+    "lotrextended:gondor_soldier",
+    "lotrextended:gondor_archer"
+  ]
+}

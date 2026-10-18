@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunlending_farmhand"
   },
   "hiring": {
-    "hiringCost": 40,
+    "hiringCost": 60,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 50
   },

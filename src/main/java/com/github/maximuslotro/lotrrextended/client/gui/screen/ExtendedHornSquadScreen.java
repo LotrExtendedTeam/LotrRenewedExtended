@@ -31,7 +31,7 @@ public class ExtendedHornSquadScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void init() {
 		super.init();
-		this.addButton(squadTextField = new ExtendedEmptyTextFieldWidget(this.font, this.leftPos + 30, this.topPos + 37, 116, 20, 
+		squadTextField = this.addButton(new ExtendedEmptyTextFieldWidget(this.font, this.leftPos + 30, this.topPos + 37, 116, 20, 
 			new TranslationTextComponent("gui.lotrextended.horn_select.squad.textfield"), new TranslationTextComponent("gui.lotrextended.base.unset")));
 		this.squadTextField.setMaxLength(20);
 		this.squadTextField.setValue(newSquadName);

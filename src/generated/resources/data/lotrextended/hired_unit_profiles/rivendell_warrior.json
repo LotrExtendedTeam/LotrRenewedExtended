@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.rivendell_warrior"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 100,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 400
   },

@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.gundabad_uruk"
   },
   "hiring": {
-    "hiringCost": 40,
+    "hiringCost": 80,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 350
   },

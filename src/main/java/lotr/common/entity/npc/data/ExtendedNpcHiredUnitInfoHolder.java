@@ -11,9 +11,9 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedUnitInventory;
@@ -71,7 +71,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private static final int HEAL_RATE = 80;
 	// Unit meta data
 	private final NPCEntity thisEntity;
-	private ExtendedServerHiredUnitProfile hiredUnitProfileHolder;
+	private ExtendedHiredUnitProfile hiredUnitProfileHolder;
 	private ResourceLocation unitProfile = LotrExtendedMod.EMPTY;
 	// Entity Settings
 	private UUID ownerUUID = null;
@@ -100,13 +100,13 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	/**
 	 * SHOULD ONLY BE CALLED ON THE SERVER, UNIT PROFILES ARE NOT AVAILABLE CLIENT SIDE!
 	 * IM LOOKING AT YOU MAX! (MYSELF) (I keep making the mistake)
-	 * @return The {@link ExtendedServerHiredUnitProfile} instance associated with this unit
+	 * @return The {@link ExtendedHiredUnitProfile} instance associated with this unit
 	 * */
-	public ExtendedServerHiredUnitProfile getUnitProfile() {
+	public ExtendedHiredUnitProfile getUnitProfile() {
 		if(hiredUnitProfileHolder!=null) {
 			return hiredUnitProfileHolder;
 		}
-		ExtendedServerHiredUnitProfile loaded = ExtendedServerHiredUnitProfileManager.INSTANCE.get(unitProfile);
+		ExtendedHiredUnitProfile loaded = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfile);
 		if(!loaded.isEmptyUnitType()) {
 			return hiredUnitProfileHolder = loaded;
 		}
@@ -267,11 +267,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				this.setOwnerUUID(uuid);
 				// Handle profiles of pre-1.8.0 hired units
 				if(thisEntity instanceof BreeGuardEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.BREE_GUARD;
+					this.unitProfile = ExtendedUnitTypes.BREE_GUARD;
 				}else if(thisEntity instanceof ExtendedDunedainRangerEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
+					this.unitProfile = ExtendedUnitTypes.DUNEDAIN_RANGER;
 				}else if(thisEntity instanceof GundabadOrcEntity) {
-					this.unitProfile = ExtendedHiredUnitTypes.GUNDABAD_ORC;
+					this.unitProfile = ExtendedUnitTypes.GUNDABAD_ORC;
 				}else if(thisEntity instanceof GondorSoldierEntity) {
 					// Handle migrating lotr-companions entity
 					this.unitProfile = new ResourceLocation("lotrcompanions", "gondor_soldier");

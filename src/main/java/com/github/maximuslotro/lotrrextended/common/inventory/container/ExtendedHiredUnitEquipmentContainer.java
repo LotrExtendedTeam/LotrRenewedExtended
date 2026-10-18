@@ -6,9 +6,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.OffhandSlot;
@@ -39,7 +38,7 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
 	private ExtendedHiredUnitEquipmentSlot meleeSlot;
 	private OffhandSlot offhandSlot;
 	private RangedSlot rangedSlot;
-	public final ExtendedClientHiredUnitProfile profile;
+	public final ExtendedHiredUnitProfile profile;
 
 	public static final ResourceLocation EMPTY_SLOT_BOW = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_bow");
 	public static final ResourceLocation EMPTY_SLOT_SWORD = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_sword");
@@ -56,7 +55,7 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
 
 		// Read in packet data
 		CompoundNBT nbt = extraData.readAnySizeNbt();
-		this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
+		this.profile = ExtendedHiredUnitProfile.fromNetwork(nbt);
 
 		// Read equipment from NBT
 		List<ItemStack> items = new ArrayList<>();
@@ -167,10 +166,10 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
 		return true;
 	}
 
-	public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, List<ItemStack> equipment) {
+	public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedHiredUnitProfile serverUnitProfile, List<ItemStack> equipment) {
 		ExtendedHiredUnitContainer.writeContainerInitData(extraData, entityId);
 		CompoundNBT nbt = new CompoundNBT();
-		ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
+		ExtendedHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write unit profile to client
 
 		// write their equipment including empty slots
 		ListNBT listnbt = new ListNBT();

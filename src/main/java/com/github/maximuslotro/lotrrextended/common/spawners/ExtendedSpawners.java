@@ -159,6 +159,24 @@ public class ExtendedSpawners {
 	public static final ResourceLocation DUNLENDING_FARMER = register("dunlending_farmer");
 	public static final ResourceLocation DUNLENDING_FARMHAND = register("dunlending_farmhand");
 	public static final ResourceLocation DUNLENDING_FARMER_ANIMALS = register("dunlending_animals");
+	// UMBAR
+	public static final ResourceLocation UMBAR_CAPTAIN = register("umbar_captain");
+	// MORDOR
+	public static final ResourceLocation MORDOR_COMMANDER = register("mordor_commander");
+	// GONDOR
+	public static final ResourceLocation COAST_SOUTHRON_WARLORD = register("coast_southron_warlord");
+	// ROHAN
+	public static final ResourceLocation HARNENNOR_WARLORD = register("harnennor_warlord");
+	// COAST SOUTHRON
+	public static final ResourceLocation DALISH_CAPTAIN = register("dale_captain");
+	// HARNENNOR
+	public static final ResourceLocation WOOD_ELF_CAPTAIN = register("wood_elf_captain");
+	// DALISH
+	public static final ResourceLocation GALADHRIM_LORD = register("galadhrim_lord");
+	// GALADHRIM
+	public static final ResourceLocation GONDORIAN_CAPTAIN = register("gondor_captain");
+	// WOODLAND REALM
+	public static final ResourceLocation ROHAN_MARSHAL = register("rohan_marshal");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);

@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:rohan_marshal",
+  "alignmentRequired": 150,
+  "unitProfileIDs": [
+    "lotrextended:rohirrim_warrior",
+    "lotrextended:rohirrim_bowman"
+  ]
+}

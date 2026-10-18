@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:mordor/enter_mordor",
+  "display": {
+    "icon": {
+      "item": "lotr:mordor_scimitar",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.to_war.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.to_war.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_mordor_orc_commander": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:mordor_orc_commander"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_mordor_orc_commander"
+    ]
+  ]
+}

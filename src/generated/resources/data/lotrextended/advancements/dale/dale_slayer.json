@@ -58,13 +58,28 @@
           }
         ]
       }
+    },
+    "kill_dale_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dale_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_dale_man",
       "kill_dale_bowman",
-      "kill_dale_soldier"
+      "kill_dale_soldier",
+      "kill_dale_captain"
     ]
   ]
 }

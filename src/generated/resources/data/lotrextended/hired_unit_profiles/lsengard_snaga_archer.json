@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.isengard_snaga_archer"
   },
   "hiring": {
-    "hiringCost": 40,
+    "hiringCost": 80,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },

@@ -59,13 +59,28 @@
           }
         ]
       }
+    },
+    "kill_gondor_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gondor_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_gondor_man",
       "kill_gondor_archer",
-      "kill_gondor_soldier"
+      "kill_gondor_soldier",
+      "kill_gondor_captain"
     ]
   ]
 }

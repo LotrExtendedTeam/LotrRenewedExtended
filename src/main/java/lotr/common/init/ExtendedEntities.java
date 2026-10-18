@@ -106,4 +106,13 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandFarmhandEntity>> BREE_FARMHAND;
 	public static RegistryObject<EntityType<ExtendedDunlendingFarmerEntity>> DUNLENDING_FARMER;
 	public static RegistryObject<EntityType<ExtendedDunlendingFarmhandEntity>> DUNLENDING_FARMHAND;
+	public static RegistryObject<EntityType<ExtendedUmbarCaptainEntity>> UMBAR_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedDaleCaptainEntity>> DALE_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedGaladhrimLordEntity>> GALADHRIM_LORD;
+	public static RegistryObject<EntityType<ExtendedGondorCaptainEntity>> GONDOR_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedHarnennorWarlordEntity>> HARNENNOR_WARLORD;
+	public static RegistryObject<EntityType<ExtendedMordorOrcCommanderEntity>> MORDOR_ORC_COMMANDER;
+	public static RegistryObject<EntityType<ExtendedRohirrimMarshalEntity>> ROHIRRIM_MARSHAL;
+	public static RegistryObject<EntityType<ExtendedWoodElfCaptainEntity>> WOOD_ELF_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedCoastSouthronWarlordEntity>> COAST_SOUTHRON_WARLORD;
 }

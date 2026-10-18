@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitEquipmentContainer> {
+public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitContainerScreen<ExtendedHiredUnitEquipmentContainer> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/unit_equipment_menu.png");
 	/** The mouse x-position recorded during the last rendered frame. */
 	private float xMouse;
