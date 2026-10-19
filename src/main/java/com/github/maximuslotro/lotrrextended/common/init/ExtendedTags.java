@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
+import lotr.common.init.LOTRTags;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
@@ -10,6 +11,9 @@ public class ExtendedTags {
 	public static void init() {
 		Blocks.init();
 		Items.init();
+		// Bootstrap start Renewed's tags, to prevent "tag lotr:pipe_magic_smoke_ingredients was used before it was bound" like errors
+		LOTRTags.Blocks.APPLE_LOGS.getClass();
+		LOTRTags.Items.APPLE_LOGS.getClass();
 	}
 
 	public static class Blocks {
