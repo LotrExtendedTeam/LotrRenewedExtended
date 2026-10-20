@@ -219,10 +219,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit.dismiss_button_confirm", "Confirm Dismissal");
 		addD("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip", "This operation is irreversible!");
 		addD("gui.lotrextended.hired_unit.transfer_button", "Transfer");
+		addD("gui.lotrextended.hired_unit.transfer_button.player", "Transfer to: %s");
 		addD("gui.lotrextended.hired_unit.transfer_button.tooltip", "Transfer unit to another online player.");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm", "Confirm Transfer");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible!");
 		addD("gui.lotrextended.hired_unit.error.old_hiring_tooltip_1_11", "Operation not available for unit hired before 1.11.0");
+		addD("gui.lotrextended.hired_unit.transfer_field.unset", "Player Name?");
+		addD("message.lotrextended.hired_unit.transfer.no_player", "Player not found for transfer!");
+		addD("message.lotrextended.hired_unit.transfer.invalid_stats", "Player does not fulfill hiring requirements!");
+		addD("message.lotrextended.hired_unit.transfer.completed", "Unit transfered to %1$s");
+		addD("message.lotrextended.hired_unit.transfer.completed_new_unit", "%1$s transfered a unit to your command");
+
 		addD("gui.lotrextended.hired_unit.range.guard", "Guard Range: %1$s");
 		addD("gui.lotrextended.hired_unit.range.farming", "Farming Range: %1$s");
 		addD("gui.lotrextended.hired_unit.range.tooltip", "The maximum range this unit can travel.");

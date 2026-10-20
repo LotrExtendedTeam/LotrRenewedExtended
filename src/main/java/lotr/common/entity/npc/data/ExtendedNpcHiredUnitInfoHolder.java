@@ -182,14 +182,18 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			return false;
 		}
 		thisEntity.setPersistenceRequired();
+		hiringInfomation = pHiringInfo;
+		setupUnitEquipment();
+		transferUnitToPlayer(setOwner);
+		return true;
+	}
+
+	public void transferUnitToPlayer(PlayerEntity setOwner) {
 		this.setOwnerUUID(setOwner.getUUID());
 		isHired = true;
 		wasHired = true;
-		hiringInfomation = pHiringInfo;
-		setupUnitEquipment();
 		setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 		markDirty();
-		return true;
 	}
 
 	@Override
@@ -593,7 +597,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return hiringInfomation!=null;
 	}
 
-	public UnitHiredInformation getHireInfo() {
+	public @Nullable UnitHiredInformation getHireInfo() {
 		return hiringInfomation;
 	}
 

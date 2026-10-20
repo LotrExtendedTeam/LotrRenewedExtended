@@ -1,14 +1,17 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedEmptyTextFieldWidget;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithNPCPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCUnitDismissPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCUnitTransferPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -23,8 +26,10 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 	private Button transferButton;
 	private Button dismissConfirmButton;
 	private Button transferConfirmButton;
-
 	private final boolean hasHireData;
+	private ExtendedEmptyTextFieldWidget transferPlayerName;
+	private String playerName = "";
+	
 	public ExtendedUnitMainScreen(NPCEntity entity, PlayerEntity player, boolean hasHireData) {
 		super(entity.getName(), 176, 256);
 		this.entity = entity;
@@ -74,7 +79,12 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 			}
 		});
 		dismissConfirmButton.visible = false;
-		transferConfirmButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 190, 120, 20, new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button_confirm").withStyle(TextFormatting.RED), button -> transferUnitConfirmed()) {
+		transferPlayerName = this.addButton(new ExtendedEmptyTextFieldWidget(this.font, this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 190, 120, 20, StringTextComponent.EMPTY, new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_field.unset")));
+		transferPlayerName.setMaxLength(16);
+		transferPlayerName.setValue(playerName);
+		transferPlayerName.setResponder(this::handlePlayerNameInput);
+		transferPlayerName.visible=false;
+		transferConfirmButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 215, 120, 20, new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button_confirm").withStyle(TextFormatting.RED), button -> transferUnitConfirmed()) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
 				ExtendedUnitMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
@@ -85,18 +95,32 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 		dismissButton.active = hasHireData;
 		transferButton.active = hasHireData;
 		dismissConfirmButton.active = hasHireData;
-		transferConfirmButton.active = hasHireData;
+		transferConfirmButton.active = false;
+		transferPlayerName.active = hasHireData;
+	}
 
-
+	public void handlePlayerNameInput(String pName) {
+		this.playerName = pName;
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
+		transferPlayerName.tick();
 		if(dismissConfirmButton.visible && transferConfirmButton.visible) {
 			//Disable both buttons if for some reason both are rendering
 			dismissConfirmButton.visible = false;
 			transferConfirmButton.visible = false;
+			transferPlayerName.visible = false;
+		}
+		if(hasHireData && transferConfirmButton.visible) {
+			if(playerName==null || playerName.isEmpty()) {
+				transferConfirmButton.setMessage(new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button"));
+				transferConfirmButton.active=false;
+			}else {
+				transferConfirmButton.setMessage(new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button.player", playerName));
+				transferConfirmButton.active=true;
+			}
 		}
 	}
 
@@ -113,6 +137,7 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 		if (hasHireData) {
 			dismissConfirmButton.visible=true;
 			transferConfirmButton.visible=false;
+			transferPlayerName.visible=false;
 		}
 	}
 
@@ -127,12 +152,13 @@ public class ExtendedUnitMainScreen extends ExtendedAbstractWindowedScreen {
 		if (hasHireData) {
 			dismissConfirmButton.visible=false;
 			transferConfirmButton.visible=true;
+			transferPlayerName.visible=true;
 		}
 	}
 
 	private void transferUnitConfirmed() {
-		if (hasHireData) {
-			//ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
+		if (hasHireData && playerName!=null && !playerName.isEmpty()) {
+			ExtendedPacketHandler.sendToServer(new ExtendedCUnitTransferPacket(entity.getId(), playerName));
 			this.onClose();
 		}
 	}
