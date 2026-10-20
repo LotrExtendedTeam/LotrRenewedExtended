@@ -61,7 +61,12 @@ public class ExtendedItemModelsProperties {
 		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
 		// DAGGERS
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
-			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
+			if(item.get() instanceof DaggerItem) {
+				registerDaggerItemModelProperties(item.get());
+			}
+		}
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof ExtendedDaggerItem) {
 				registerDaggerItemModelProperties(item.get());
 			}
 		}
