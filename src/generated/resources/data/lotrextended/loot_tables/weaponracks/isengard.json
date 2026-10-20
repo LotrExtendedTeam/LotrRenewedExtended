@@ -192,6 +192,27 @@
             }
           ],
           "name": "lotrextended:orc_bow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
+          "name": "lotrextended:uruk_pike"
         }
       ]
     }
