@@ -689,7 +689,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DOL_GULDUR_AXE = regItem("dol_guldur_axe", () -> new AxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 	public static RegistryObject<Item> DOL_GULDUR_HOE = regItem("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
-	public static RegistryObject<Item> BRANDING_IRON = regItem("branding_iron", ExtendedBrandingIronItem::new);
+	public static RegistryObject<Item> BRANDING_IRON = regItem("branding_iron", () -> new ExtendedBrandingIronItem(new Properties().stacksTo(1).tab(LOTRItemGroups.TOOLS).durability(100)));
 	public static RegistryObject<Item> CHISEL = regItem("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 
 	public static RegistryObject<Item> DWARVEN_MATTOCK = regItem("dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));

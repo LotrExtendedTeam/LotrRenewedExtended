@@ -590,6 +590,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.bow.range", "Range: %s");
 		//Dagger values
 		addD("gui.lotrextended.dagger.poisoned", "Inflicts poison");
+		//Branding Irons
+		addD("gui.lotrextended.branding_iron.heat_level", "Heat Level: %s");
+		addD("gui.lotrextended.branding_iron.hot", "Hot");
+		addD("gui.lotrextended.branding_iron.warm", "Warm");
+		addD("gui.lotrextended.branding_iron.cold", "Cold");
+		addD("gui.lotrextended.branding_iron.named", "Branded Name: %s");
 
 		// Generic command strings
 		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
