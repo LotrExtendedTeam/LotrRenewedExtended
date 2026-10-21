@@ -93,7 +93,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
 					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
 					if(player!=null && player.containerMenu instanceof ExtendedHiredUnitFarmhandContainer) {
-							player.closeContainer();
+						player.closeContainer();
 					}
 
 				}

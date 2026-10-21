@@ -1,4 +1,4 @@
- package com.github.maximuslotro.lotrrextended.common.eventhandlers;
+package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
@@ -52,6 +52,7 @@ import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.LilyPadItem;
+import net.minecraft.network.play.server.SChangeBlockPacket;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -108,10 +109,11 @@ public class ExtendedBannerEventHandlers {
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
 			if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);
-				BlockState state = world.getBlockState(pos);
-				world.sendBlockUpdated(pos, state, state, 2);
 				if (event.getPlayer() instanceof ServerPlayerEntity) {
-					((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
+					ServerPlayerEntity serverPlayer = (ServerPlayerEntity) event.getPlayer();
+					BlockState actualState = world.getBlockState(pos);
+					serverPlayer.connection.send(new SChangeBlockPacket(pos, actualState));
+					serverPlayer.refreshContainer(serverPlayer.inventoryMenu);
 				}
 			}
 		}
@@ -163,9 +165,18 @@ public class ExtendedBannerEventHandlers {
 					event.setCanceled(true);
 					if(itemstack.getItem() instanceof LilyPadItem) {
 						BlockRayTraceResult blockraytraceresult = Item.getPlayerPOVHitResult(world, event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
-						BlockPos lilyPos = blockraytraceresult.getBlockPos().above();
-						BlockState state = world.getBlockState(lilyPos);
-						world.sendBlockUpdated(lilyPos, state, state, 2);
+						if (blockraytraceresult.getType() == BlockRayTraceResult.Type.BLOCK) {
+							BlockPos waterPos = blockraytraceresult.getBlockPos();
+							BlockPos lilyPos = waterPos.above();
+							// Ensure the position is within build height and the chunk is loaded
+							if (World.isInWorldBounds(lilyPos) && world.hasChunkAt(lilyPos) && event.getPlayer() instanceof ServerPlayerEntity) {
+								ServerPlayerEntity serverPlayer = (ServerPlayerEntity) event.getPlayer();
+								BlockState actualStateWater = world.getBlockState(waterPos);
+								serverPlayer.connection.send(new SChangeBlockPacket(waterPos, actualStateWater));
+								BlockState actualState = world.getBlockState(lilyPos);
+								serverPlayer.connection.send(new SChangeBlockPacket(lilyPos, actualState));
+							}
+						}
 					}
 					if (event.getPlayer() instanceof ServerPlayerEntity) {
 						((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
@@ -212,15 +223,16 @@ public class ExtendedBannerEventHandlers {
 			}
 			if (ExtendedBannerProtectionManager.getProtectionStatus(world, eventPos, new ProtectionInstance.PlayerProtection(event.getPlayer(), perm)).isNotAllowed()) {
 				event.setCanceled(true);
-				BlockState state = world.getBlockState(eventPos);
-				world.sendBlockUpdated(eventPos, state, state, 10);
-				BlockPos above = eventPos.above();
-				BlockState stateAbove = world.getBlockState(above);
-				world.sendBlockUpdated(above, stateAbove, stateAbove, 10);
-				BlockState stateTop = world.getBlockState(above.above());
-				world.sendBlockUpdated(above.above(), stateTop, stateTop, 10);
 				if (event.getPlayer() instanceof ServerPlayerEntity) {
-					((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
+					ServerPlayerEntity serverPlayer = (ServerPlayerEntity) event.getPlayer();
+					BlockState state = world.getBlockState(eventPos);
+					BlockPos above = eventPos.above();
+					BlockState stateAbove = world.getBlockState(above);
+					BlockState stateTop = world.getBlockState(above.above());
+					serverPlayer.connection.send(new SChangeBlockPacket(eventPos, state));
+					serverPlayer.connection.send(new SChangeBlockPacket(above, stateAbove));
+					serverPlayer.connection.send(new SChangeBlockPacket(above.above(), stateTop));
+					serverPlayer.refreshContainer(serverPlayer.inventoryMenu);
 				}
 				return;
 			}

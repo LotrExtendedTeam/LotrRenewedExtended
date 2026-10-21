@@ -107,7 +107,6 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
         TileEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof ExtendedWeaponRackTileEntity) {
             tileentity.onLoad();
-            worldIn.setBlockEntity(pos, tileentity);
         }
     }
 
