@@ -35,6 +35,7 @@ public class ExtendedOrcBombItem extends BlockItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		int strength = ((ExtendedOrcBombBlock)this.getBlock()).getBombStrength();
 		pTooltip.add(1, (new TranslationTextComponent("gui.lotrextended.orc_bomb.strength_"+strength)).withStyle(TextFormatting.GRAY));
 		if(((ExtendedOrcBombBlock)this.getBlock()).isBombFire()) {

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:chisel"
+    },
+    {
+      "item": "lotrextended:ithildin"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:moon_chisel"
+  }
+}

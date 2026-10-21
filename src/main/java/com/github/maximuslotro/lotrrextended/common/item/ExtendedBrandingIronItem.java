@@ -88,6 +88,7 @@ public class ExtendedBrandingIronItem extends Item {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		int heatLevel = getHeated(pStack);
 		String heatString = heatLevel >= 5 ? "hot" : heatLevel > 0 ? "warm" : "cold";
 		TextFormatting format = heatLevel >= 5 ? TextFormatting.RED : heatLevel > 0 ? TextFormatting.DARK_RED : TextFormatting.BLUE;

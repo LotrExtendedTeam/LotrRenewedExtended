@@ -49,7 +49,7 @@ public class ExtendedEditStoneTextSignScreen extends Screen {
 	@Override
 	protected void init() {
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 120, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> {
+		this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 144, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> {
 			this.onClose();
 		}));
 		this.sign.setEditable(false);

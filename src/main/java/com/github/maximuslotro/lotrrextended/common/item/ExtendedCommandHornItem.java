@@ -134,6 +134,7 @@ public class ExtendedCommandHornItem extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		IFormattableTextComponent modeName;
 		if(!getType(pStack).isUnset()) {
 			modeName = getType(pStack).getText().withStyle(getType(pStack).getFormatting());

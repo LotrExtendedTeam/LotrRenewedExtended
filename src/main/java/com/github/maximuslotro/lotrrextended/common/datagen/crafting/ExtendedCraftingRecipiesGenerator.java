@@ -983,6 +983,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, ExtendedItems.CHISEL);
+		GENERATEDRECIPES.add(ExtendedItems.MOON_CHISEL.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.MOON_CHISEL.get())
+		.requires(ExtendedItems.CHISEL.get())
+		.requires(ExtendedItems.ITHILDIN.get())
+		.unlockedBy("has_"+ExtendedItems.ITHILDIN.get().getRegistryName().getPath(), has(ExtendedItems.ITHILDIN.get()))
+		.save(consumer, ExtendedItems.MOON_CHISEL.get().getRegistryName());
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
 		.pattern("  #")

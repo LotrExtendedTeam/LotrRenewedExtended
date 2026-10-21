@@ -30,6 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -125,8 +126,8 @@ public class ExtendedLargeFlowerPotBlock extends Block {
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public ItemStack getCloneItemStack(IBlockReader pLevel, BlockPos pPos, BlockState pState) {
-		return this.flowerDelegate.get().equals(Blocks.AIR) ? super.getCloneItemStack(pLevel, pPos, pState) : new ItemStack(this.flowerDelegate.get());
+	public ItemStack getPickBlock(BlockState pState, RayTraceResult target, IBlockReader pLevel, BlockPos pPos, PlayerEntity player) {
+		return this.flowerDelegate.get().equals(Blocks.AIR) ? super.getPickBlock(pState, target, pLevel, pPos, player): new ItemStack(this.flowerDelegate.get());
 	}
 
 	/**

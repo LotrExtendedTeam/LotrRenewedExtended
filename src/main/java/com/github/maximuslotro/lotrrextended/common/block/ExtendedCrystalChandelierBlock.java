@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -54,7 +54,7 @@ public class ExtendedCrystalChandelierBlock extends Block {
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand pHand, BlockRayTraceResult p_225533_6_) {
 		ItemStack itemstack = player.getItemInHand(pHand);
-		if(itemstack.getItem()!=ExtendedItems.CHISEL.get()) {
+		if(!(itemstack.getItem() instanceof ExtendedChiselItem)) {
 			return ActionResultType.PASS;
 		}
 		int newType = state.getValue(TYPE) + 1;

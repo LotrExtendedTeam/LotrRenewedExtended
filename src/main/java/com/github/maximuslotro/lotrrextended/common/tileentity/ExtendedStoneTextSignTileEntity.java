@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
@@ -39,6 +40,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	private PlayerEntity playerWhoMayEdit;
 	private final IReorderingProcessor[] renderMessages = new IReorderingProcessor[8];
 	private DyeColor color = DyeColor.BLACK;
+	private boolean hasGlowingText = true;
 
 	public ExtendedStoneTextSignTileEntity() {
 		super(ExtendedTileEntities.STONE_SIGN.get());
@@ -54,17 +56,18 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		}
 
 		pCompound.putString("Color", this.color.getName());
+		pCompound.putBoolean("GlowingText", this.hasGlowingText);
 		return pCompound;
 	}
 
 	@Override
-	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
+	public void load(BlockState p_230337_1_, CompoundNBT pCompound) {
 		this.isEditable = false;
-		super.load(p_230337_1_, p_230337_2_);
-		this.color = DyeColor.byName(p_230337_2_.getString("Color"), DyeColor.BLACK);
+		super.load(p_230337_1_, pCompound);
+		this.color = DyeColor.byName(pCompound.getString("Color"), DyeColor.BLACK);
 
 		for(int i = 0; i < 8; ++i) {
-			String s = p_230337_2_.getString("Text" + (i + 1));
+			String s = pCompound.getString("Text" + (i + 1));
 			ITextComponent itextcomponent = ITextComponent.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerWorld) {
 				try {
@@ -78,7 +81,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 
 			this.renderMessages[i] = null;
 		}
-
+		this.hasGlowingText = pCompound.getBoolean("GlowingText");
 	}
 
 	public ITextComponent getMessage(int p_212366_1_) {
@@ -100,7 +103,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 
 	@Nullable
 	public IReorderingProcessor getRenderMessage(int p_242686_1_, Function<ITextComponent, IReorderingProcessor> p_242686_2_) {
-		if (this.renderMessages[p_242686_1_] == null && this.messages[p_242686_1_] != null) {
+		if(this.renderMessages[p_242686_1_] == null && this.messages[p_242686_1_] != null) {
 			this.renderMessages[p_242686_1_] = p_242686_2_.apply(this.messages[p_242686_1_]);
 		}
 
@@ -123,7 +126,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		super.onDataPacket(net, pkt);
 		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
 	}
-	
+
 	/**
 	 * Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when
 	 * many blocks change at once. This compound comes back to you clientside in {@link #onDataPacket}
@@ -158,7 +161,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	@OnlyIn(Dist.CLIENT)
 	public void setEditable(boolean pIsEditable) {
 		this.isEditable = pIsEditable;
-		if (!pIsEditable) {
+		if(!pIsEditable) {
 			this.playerWhoMayEdit = null;
 		}
 	}
@@ -174,7 +177,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	public boolean executeClickCommands(PlayerEntity p_174882_1_) {
 		for(ITextComponent itextcomponent : this.messages) {
 			Style style = itextcomponent == null ? null : itextcomponent.getStyle();
-			if (style != null && style.getClickEvent() != null) {
+			if(style != null && style.getClickEvent() != null) {
 				ClickEvent clickevent = style.getClickEvent();
 				if (clickevent.getAction() == ClickEvent.Action.RUN_COMMAND) {
 					p_174882_1_.getServer().getCommands().performCommand(this.createCommandSourceStack((ServerPlayerEntity)p_174882_1_), clickevent.getValue());
@@ -192,17 +195,46 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	}
 
 	public DyeColor getColor() {
+		if (this.isWaterlogged()) {
+            return DyeColor.BLACK;
+        }
 		return this.color;
 	}
 
 	public boolean setColor(DyeColor pColor) {
-		if (pColor != this.getColor()) {
+		if(pColor != this.getColor()) {
 			this.color = pColor;
-			this.setChanged();
-			this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+			this.markUpdated();
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+	public boolean hasGlowingText() {
+		return this.hasGlowingText;
+	}
+
+	public boolean setHasGlowingText(boolean glowing) {
+		if(this.hasGlowingText != glowing) {
+			this.hasGlowingText = glowing;
+			this.markUpdated();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private void markUpdated() {
+		this.setChanged();
+		this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+	}
+
+	public boolean isWaterlogged() {
+		   BlockState state = this.getBlockState();
+		   if (state.hasProperty(ExtendedStoneTextSignBlock.WATERLOGGED)) {
+		      return state.getValue(ExtendedStoneTextSignBlock.WATERLOGGED);
+		   }
+		   return false;
+		}
 }
