@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 
@@ -92,6 +93,9 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 	@Final
 	@Shadow(remap=false)
 	private int noiseSizeZ;
+	@Final
+	@Shadow(remap=false)
+	private static float[] CUBIC_SAMPLE;
 	/**
 	 * Fills a double array buffer with terrain noise values for a single vertical column.
 	 *
@@ -101,17 +105,6 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 	 */
 	@Shadow(remap=false)
 	private void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ) {}
-	/**
-	 * Calculates the density modulation weight/contribution of a structure piece at a given distance offset.
-	 * Used to flatten or adjust terrain around structures.
-	 *
-	 * @param x The absolute distance offset on the X axis.
-	 * @param y The absolute distance offset on the Y axis.
-	 * @param z The absolute distance offset on the Z axis.
-	 * @return The weight multiplier for modifying base noise density.
-	 */
-	@Shadow(remap = false, aliases = {"func_222556_a"})
-	private static double getContribution(int x, int y, int z) {return 0.0D;}
 	/**
 	 * Determines the appropriate block state (e.g., Stone, Dirt, Air) for a specific height based on noise.
 	 * Formerly known as {@code generateBaseState} in vanilla contexts.
@@ -163,10 +156,10 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 							AbstractVillagePiece abstractvillagepiece = (AbstractVillagePiece)piece;
 							// Extended Start
 							if (abstractvillagepiece.getElement() instanceof ExtendedSingleJigsawPiece) {
-						        if (((ExtendedSingleJigsawPiece) abstractvillagepiece.getElement()).isUndergroundPiece()) {
-						            continue; // Skip adding this piece to land flattening lists entirely
-						        }
-						    }
+								if (((ExtendedSingleJigsawPiece) abstractvillagepiece.getElement()).isUndergroundPiece()) {
+									continue; // Skip adding this piece to land flattening lists entirely
+								}
+							}
 							// Extended End
 							JigsawPattern.PlacementBehaviour placementbehaviour = abstractvillagepiece.getElement().getProjection();
 							if (placementbehaviour == JigsawPattern.PlacementBehaviour.RIGID) {
@@ -308,6 +301,35 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 			noiseBuffer[0] = noiseBuffer[1];
 			noiseBuffer[1] = temporarySlice;
 		}
-
+	}
+	/**
+	 * Calculates the density modulation weight/contribution of a structure piece at a given distance offset.
+	 * Used to flatten or adjust terrain around structures.
+	 *
+	 * <p>
+	 * This method is directly copied from {@code NoiseChunkGenerator} but with fields renamed to match Renewed's naming:
+	 * <ul>
+	 * <li>{@code CUBIC_SAMPLE} -> {@link #BEARD_KERNEL}</li>
+	 * </ul>
+	 * 
+	 * @param x The absolute distance offset on the X axis.
+	 * @param y The absolute distance offset on the Y axis.
+	 * @param z The absolute distance offset on the Z axis.
+	 * @return The weight multiplier for modifying base noise density.
+	 */
+	@Unique
+	private static double getContribution(int x, int y, int z) {
+		int i = x + 12;
+		int j = y + 12;
+		int k = z + 12;
+		if (i >= 0 && i < 24) {
+			if (j >= 0 && j < 24) {
+				return k >= 0 && k < 24 ? (double)CUBIC_SAMPLE[k * 24 * 24 + i * 24 + j] : 0.0D;
+			} else {
+				return 0.0D;
+			}
+		} else {
+			return 0.0D;
+		}
 	}
 }
