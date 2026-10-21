@@ -142,6 +142,7 @@
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
 		"lotr.common.world.gen.MixinMiddleEarthChunkGenerator",
 		"lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch",
+		"lotr.common.world.spawning.MixinBiomeNPCSpawnList",
 		"lotr.common.world.spawning.MixinRenewedNPCSpawner",
 		"net.minecraft.advancements.criterion.MixinItemPredicate",
 		"net.minecraft.block.MixinAnvilBlock",
