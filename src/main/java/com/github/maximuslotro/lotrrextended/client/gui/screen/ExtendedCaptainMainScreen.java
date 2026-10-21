@@ -175,7 +175,7 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", currentProfile.getHiringCost()), Util.NIL_UUID);
 				onClose();
 			}else {
-				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), currentProfile.getId(), squadName));
+				ExtendedPacketHandler.sendToServer(new ExtendedCUnitHirePacket(npcEntity.getId(), currentProfile.getId(), squadName));
 			}
 		}
 	}
