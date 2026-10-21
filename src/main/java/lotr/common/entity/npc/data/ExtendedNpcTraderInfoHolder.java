@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -21,13 +23,13 @@ import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Util;
 import net.minecraft.util.WeightedRandom;
@@ -132,7 +134,19 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public Inventory getDisplayInventory() {
-		return TradeUtils.generateDisplayInventory(getSells(), getBuys());
+		Inventory result = new Inventory(18);
+
+		int max = Math.min(getBuys().size(), 9);
+		for (int i = 0; i < max; i++) {
+			result.setItem(i, getBuys().get(i).getStack());
+		}
+
+		max = Math.min(getSells().size(), 9);
+		for (int i = 0; i < max; i++) {
+			result.setItem(9 + i, getSells().get(i).getStack());
+		}
+
+		return result;
 	}
 
 	public int[] getBoughtPrices() {
@@ -282,8 +296,8 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		if(nbt.contains("TraderInfo")) {
 			CompoundNBT holder = nbt.getCompound("TraderInfo");
 			loadedData = holder.getBoolean("HasLoaded");
-			List<ExtendedTrade> buys = TradeUtils.loadAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, holder);
-			List<ExtendedTrade> sells = TradeUtils.loadAllTrades(ExtendedTradeType.SELL_TO_PLAYER, holder);
+			List<ExtendedTrade> buys = loadAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, holder);
+			List<ExtendedTrade> sells = loadAllTrades(ExtendedTradeType.SELL_TO_PLAYER, holder);
 			tradingAlignmentRequired = holder.contains("TradingAlignmentRequired") ? holder.getInt("TradingAlignmentRequired") : 1659;
 			shouldRefreshTrades = holder.contains("ShouldLockTrades") ? holder.getBoolean("ShouldLockTrades") : true;
 			refreshTradesAtValue = holder.getInt("LockTradeAtValue");
@@ -338,13 +352,39 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
 			holder.putBoolean("IsWanderingTrader", isWanderingTrader);
 			holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
-			TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
-			TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
+			saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
+			saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
 			nbt.put("TraderInfo", holder);
 		} catch (NullPointerException e) {
 			// The only place a NPE can come from is saving the trader pools when they don't exist.
 			// As they are the most important part of the trader information, as they can't save just reset the trader data.
 		}
+	}
+
+	@Nonnull
+	public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeType type, CompoundNBT tag) {
+		ListNBT listnbt = tag.getList(type.name(), 10);
+		if (listnbt.isEmpty()) {
+			return new ArrayList<>(); // Return empty list if invalid
+		}
+
+		ArrayList<ExtendedTrade> result = new ArrayList<>();
+
+		for (int i = 0; i < listnbt.size(); ++i) {
+			result.add(ExtendedTrade.load(listnbt.getCompound(i)));
+		}
+
+		return result;
+	}
+
+	public static void saveAllTrades(ExtendedTradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
+		ListNBT listnbt = new ListNBT();
+
+		for (ExtendedTrade trade : trades) {
+			listnbt.add(trade.save(new CompoundNBT()));
+		}
+
+		tag.put(type.name(), listnbt);
 	}
 
 	/**

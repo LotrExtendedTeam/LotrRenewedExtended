@@ -116,7 +116,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:wooden_birdcage"
+          "name": "lotrextended:wooden_birdcage"
         },
         {
           "type": "minecraft:item",
@@ -127,7 +127,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bronze_birdcage"
+          "name": "lotrextended:bronze_birdcage"
         },
         {
           "type": "minecraft:item",
@@ -138,7 +138,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:iron_birdcage"
+          "name": "lotrextended:iron_birdcage"
         },
         {
           "type": "minecraft:item",
@@ -149,12 +149,12 @@
               "count": 1
             }
           ],
-          "name": "lotr:wooden_birdcage"
+          "name": "lotrextended:wooden_birdcage"
         }
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",

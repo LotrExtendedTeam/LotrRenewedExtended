@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/bronze"
+    },
+    "X": {
+      "tag": "forge:horns"
+    }
+  },
+  "result": {
+    "item": "lotrextended:horn_of_command"
+  }
+}

@@ -88,49 +88,49 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:galvorn_ingot",
+        "item": "lotrextended:galvorn_ingot",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dead_coral",
+        "item": "lotrextended:dead_coral",
         "averageCost": 2
       }
     },
@@ -278,7 +278,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lindon_bow",
+        "item": "lotrextended:lindon_bow",
         "averageCost": 20,
         "nbt": "{Damage:0}"
       }
@@ -297,22 +297,22 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedKnockback2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedStrong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSilk\"}"
         }
@@ -324,17 +324,17 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"protectRanged2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"strong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed3\"}"
         }
@@ -345,7 +345,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:modifier_scroll",
+        "item": "lotrextended:modifier_scroll",
         "averageCost": 150,
         "nbt": "{REScrollMod:\"toughness1\"}"
       }
@@ -353,14 +353,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lindon_banner_pattern",
+        "item": "lotrextended:lindon_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lindon_shield",
+        "item": "lotrextended:lindon_shield",
         "averageCost": 20,
         "nbt": "{Damage:0}"
       }
@@ -368,21 +368,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:combat_tome",
+        "item": "lotrextended:combat_tome",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:artisan_tome",
+        "item": "lotrextended:artisan_tome",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:smith_tome",
+        "item": "lotrextended:smith_tome",
         "averageCost": 100
       }
     }

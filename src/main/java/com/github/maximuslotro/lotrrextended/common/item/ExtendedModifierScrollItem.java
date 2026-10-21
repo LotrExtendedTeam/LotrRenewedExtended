@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.item;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 
-import lotr.common.init.ExtendedItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

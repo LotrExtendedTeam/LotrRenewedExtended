@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunedain_ranger"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 100,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 350
   },
@@ -69,7 +69,7 @@
       {
         "weight": 2,
         "equipmentItem": {
-          "item": "lotr:barrow_blade",
+          "item": "lotrextended:barrow_blade",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -92,21 +92,21 @@
       {
         "weight": 4,
         "equipmentItem": {
-          "item": "lotr:dunedain_bow",
+          "item": "lotrextended:dunedain_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:ranger_bow",
+          "item": "lotrextended:ranger_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -115,7 +115,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:dunedain_shield",
+          "item": "lotrextended:dunedain_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       },

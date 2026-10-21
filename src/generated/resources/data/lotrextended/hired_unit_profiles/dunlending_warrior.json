@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunlending_warrior"
   },
   "hiring": {
-    "hiringCost": 30,
+    "hiringCost": 60,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 150
   },
@@ -119,7 +119,7 @@
       {
         "weight": 4,
         "equipmentItem": {
-          "item": "lotr:dunlending_shield",
+          "item": "lotrextended:dunlending_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       },

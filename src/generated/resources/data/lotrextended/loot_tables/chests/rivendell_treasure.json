@@ -137,7 +137,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner"
+          "name": "lotrextended:rivendell_banner"
         },
         {
           "type": "minecraft:item",
@@ -148,7 +148,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner_pattern"
+          "name": "lotrextended:rivendell_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -196,7 +196,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_helmet"
+          "name": "lotrextended:imladris_guard_helmet"
         },
         {
           "type": "minecraft:item",
@@ -222,7 +222,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_chestplate"
+          "name": "lotrextended:imladris_guard_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -248,7 +248,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_leggings"
+          "name": "lotrextended:imladris_guard_leggings"
         },
         {
           "type": "minecraft:item",
@@ -274,7 +274,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_boots"
+          "name": "lotrextended:imladris_guard_boots"
         },
         {
           "type": "minecraft:item",
@@ -284,7 +284,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -294,7 +294,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -304,7 +304,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         }
       ],
       "functions": [

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:willow_boat"
+    ]
+  },
+  "criteria": {
+    "has_willow_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:willow_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:willow_boat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_willow_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

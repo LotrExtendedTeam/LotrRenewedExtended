@@ -105,13 +105,13 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 	 * Calculates the density modulation weight/contribution of a structure piece at a given distance offset.
 	 * Used to flatten or adjust terrain around structures.
 	 *
-	 * @param p_222556_0_ The absolute distance offset on the X axis.
-	 * @param p_222556_1_ The absolute distance offset on the Y axis.
-	 * @param p_222556_2_ The absolute distance offset on the Z axis.
+	 * @param x The absolute distance offset on the X axis.
+	 * @param y The absolute distance offset on the Y axis.
+	 * @param z The absolute distance offset on the Z axis.
 	 * @return The weight multiplier for modifying base noise density.
 	 */
-	@Shadow(remap=false, aliases = {"func_222556_a", "getContribution"})
-	private static double func_222556_a(int p_222556_0_, int p_222556_1_, int p_222556_2_) {return 0.0D;}
+	@Shadow(remap = false, aliases = {"func_222556_a"})
+	private static double getContribution(int x, int y, int z) {return 0.0D;}
 	/**
 	 * Determines the appropriate block state (e.g., Stone, Dirt, Air) for a specific height based on noise.
 	 * Formerly known as {@code generateBaseState} in vanilla contexts.
@@ -267,7 +267,7 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 									int distanceZ = Math.max(0, Math.max(box.z0 - absoluteZ, absoluteZ - box.z1));
 
 									// Add structure weight to push density higher (solid ground) or lower (air)
-									clampedNoise += func_222556_a(distanceX, distanceY, distanceZ) * 0.8D;
+									clampedNoise += getContribution(distanceX, distanceY, distanceZ) * 0.8D;
 									// Extended End
 								}
 								structureIterator.back(intersectingStructures.size());
@@ -280,7 +280,7 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 									int distanceY = absoluteY - junction.getSourceGroundY();
 									int distanceZ = absoluteZ - junction.getSourceZ();
 									// Extended End
-									clampedNoise += func_222556_a(distanceX, distanceY, distanceZ) * 0.4D;
+									clampedNoise += getContribution(distanceX, distanceY, distanceZ) * 0.4D;
 								}
 								junctionIterator.back(intersectingJunctions.size());
 

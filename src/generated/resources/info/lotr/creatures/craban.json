@@ -1,0 +1,10 @@
+{
+  "entity": "lotr:craban",
+  "biomes": [
+    "lotr:dunland",
+    "lotr:fangorn",
+    "lotr:fangorn_wasteland",
+    "lotr:nan_curunir",
+    "lotr:uruk_highlands"
+  ]
+}

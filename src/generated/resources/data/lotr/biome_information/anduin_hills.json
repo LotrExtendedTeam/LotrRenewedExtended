@@ -1,0 +1,9 @@
+{
+  "id": "lotr:anduin_hills",
+  "conquest_rate": 1.0,
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:northern_orcs": "RARE",
+    "lotr:lothlorien": "UNCOMMON"
+  }
+}

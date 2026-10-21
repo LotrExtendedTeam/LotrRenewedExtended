@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:sapphire_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:sapphire",
+    "count": 9
+  }
+}

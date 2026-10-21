@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:elderberry_pie"
+    ]
+  },
+  "criteria": {
+    "has_elderberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:elderberry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:elderberry_pie"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_elderberry",
+      "has_the_recipe"
+    ]
+  ]
+}

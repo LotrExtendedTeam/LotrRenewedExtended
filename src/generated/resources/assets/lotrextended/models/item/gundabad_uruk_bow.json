@@ -1,0 +1,5 @@
+{
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/gundabad_uruk_bow_gui",
+  "held_model": "lotrextended:item/gundabad_uruk_bow_held"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:smooth_gondor_rock_stairs_cut_from_smooth_gondor_rock"
+    ]
+  },
+  "criteria": {
+    "has_smooth_gondor_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:smooth_gondor_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:smooth_gondor_rock_stairs_cut_from_smooth_gondor_rock"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_gondor_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

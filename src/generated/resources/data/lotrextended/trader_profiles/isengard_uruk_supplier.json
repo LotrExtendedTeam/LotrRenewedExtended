@@ -120,28 +120,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 5
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:white_fur",
+        "item": "lotrextended:white_fur",
         "averageCost": 25
       }
     }
@@ -165,7 +165,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bone_sword",
+        "item": "lotrextended:bone_sword",
         "averageCost": 5,
         "nbt": "{Damage:0}"
       }
@@ -181,7 +181,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bone_spear",
+        "item": "lotrextended:bone_spear",
         "averageCost": 4,
         "nbt": "{Damage:0}"
       }
@@ -197,7 +197,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bone_dagger",
+        "item": "lotrextended:bone_dagger",
         "averageCost": 3,
         "nbt": "{Damage:0}"
       }
@@ -213,7 +213,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:uruk_crossbow",
+        "item": "lotrextended:uruk_crossbow",
         "averageCost": 18,
         "nbt": "{Damage:0}"
       }
@@ -229,7 +229,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:orc_bomb",
+        "item": "lotrextended:orc_bomb",
         "averageCost": 30
       }
     },
@@ -274,7 +274,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:warg_fur_boots",
+        "item": "lotrextended:warg_fur_boots",
         "averageCost": 16,
         "nbt": "{Damage:0}"
       }
@@ -282,7 +282,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:warg_fur_leggings",
+        "item": "lotrextended:warg_fur_leggings",
         "averageCost": 28,
         "nbt": "{Damage:0}"
       }
@@ -290,7 +290,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:warg_fur_chestplate",
+        "item": "lotrextended:warg_fur_chestplate",
         "averageCost": 32,
         "nbt": "{Damage:0}"
       }
@@ -298,7 +298,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_warg_fur_boots",
+        "item": "lotrextended:gray_warg_fur_boots",
         "averageCost": 16,
         "nbt": "{Damage:0}"
       }
@@ -306,7 +306,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_warg_fur_leggings",
+        "item": "lotrextended:gray_warg_fur_leggings",
         "averageCost": 28,
         "nbt": "{Damage:0}"
       }
@@ -314,7 +314,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_warg_fur_chestplate",
+        "item": "lotrextended:gray_warg_fur_chestplate",
         "averageCost": 32,
         "nbt": "{Damage:0}"
       }
@@ -322,7 +322,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_warg_fur_boots",
+        "item": "lotrextended:black_warg_fur_boots",
         "averageCost": 16,
         "nbt": "{Damage:0}"
       }
@@ -330,7 +330,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_warg_fur_leggings",
+        "item": "lotrextended:black_warg_fur_leggings",
         "averageCost": 28,
         "nbt": "{Damage:0}"
       }
@@ -338,7 +338,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_warg_fur_chestplate",
+        "item": "lotrextended:black_warg_fur_chestplate",
         "averageCost": 32,
         "nbt": "{Damage:0}"
       }
@@ -348,7 +348,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:gray_warg_fur_helmet",
+        "item": "lotrextended:gray_warg_fur_helmet",
         "averageCost": 150,
         "nbt": "{Damage:0}"
       }
@@ -358,16 +358,17 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:warg_fur_helmet",
+        "item": "lotrextended:warg_fur_helmet",
         "averageCost": 100,
         "nbt": "{Damage:0}"
       }
     },
     {
+      "weight": 1,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:black_warg_fur_helmet",
+        "item": "lotrextended:black_warg_fur_helmet",
         "averageCost": 250,
         "nbt": "{Damage:0}"
       }
@@ -375,35 +376,35 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:isengard_banner_pattern",
+        "item": "lotrextended:isengard_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:isengard_banner",
+        "item": "lotrextended:isengard_banner",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:leather_warg_armor",
+        "item": "lotrextended:leather_warg_armor",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:mail_warg_armor",
+        "item": "lotrextended:mail_warg_armor",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:uruk_shield",
+        "item": "lotrextended:uruk_shield",
         "averageCost": 30,
         "nbt": "{Damage:0}"
       }

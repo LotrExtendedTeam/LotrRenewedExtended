@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:numenorean_pillar_slab_cut_from_numenorean_pillar"
+    ]
+  },
+  "criteria": {
+    "has_numenorean_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:numenorean_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:numenorean_pillar_slab_cut_from_numenorean_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_numenorean_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

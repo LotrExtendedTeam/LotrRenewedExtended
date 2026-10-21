@@ -3,11 +3,11 @@ package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedStoneGrinderModel;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.util.CalendarUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

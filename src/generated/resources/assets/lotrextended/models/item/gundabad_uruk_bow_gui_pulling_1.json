@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/gundabad_uruk_bow_gui",
+  "textures": {
+    "layer0": "lotrextended:item/gundabad_uruk_bow_pulling_1"
+  }
+}

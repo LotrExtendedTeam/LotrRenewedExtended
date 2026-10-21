@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:red_angmar_brick"
+  },
+  "result": "lotrextended:red_angmar_brick_stairs",
+  "count": 1
+}

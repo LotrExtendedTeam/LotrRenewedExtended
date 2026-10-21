@@ -191,6 +191,9 @@ public class ExtendedCServerSettingsPacket {
 				case FIXED_STRUCTURE_TOWER_HILLS:
 					setBoolean(ExtendedServerConfig.enableFixedStructureTowerHills, packet.getBoolean());
 					break;
+				case CONQUEST:
+					setBoolean(ExtendedServerConfig.enableConquest, packet.getBoolean());
+					break;
 				default:
 					ExtendedLog.warn("Forgot to make handler for setting: "+packet.getType());
 					break;
@@ -262,6 +265,7 @@ public class ExtendedCServerSettingsPacket {
 		FEAST_MODE(ValueType.BOOLEAN),
 		DECREASED_HUNGER(ValueType.BOOLEAN),
 		GOBAL_NPC_SPAWN_DAMPING(ValueType.DOUBLE),
+		CONQUEST(ValueType.DOUBLE),
 		// Entity
 		BANDIT_ENCOUNTERS(ValueType.BOOLEAN),
 		TOLKIEN_ENCOUNTER(ValueType.BOOLEAN),

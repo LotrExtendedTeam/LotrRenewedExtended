@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotrextended:red_rhunic_brick_slab"
+  },
+  "result": "lotrextended:cracked_red_rhunic_brick_slab",
+  "experience": 1.0
+}

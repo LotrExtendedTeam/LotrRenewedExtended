@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.lindon_elf"
   },
   "hiring": {
-    "hiringCost": 30,
+    "hiringCost": 60,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 300
   },
@@ -87,14 +87,14 @@
       {
         "weight": 5,
         "equipmentItem": {
-          "item": "lotr:lindon_bow",
+          "item": "lotrextended:lindon_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

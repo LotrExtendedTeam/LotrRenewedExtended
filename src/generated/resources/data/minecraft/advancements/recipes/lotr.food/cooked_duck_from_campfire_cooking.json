@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:raw_duck"
+            "item": "lotrextended:raw_duck"
           }
         ]
       }

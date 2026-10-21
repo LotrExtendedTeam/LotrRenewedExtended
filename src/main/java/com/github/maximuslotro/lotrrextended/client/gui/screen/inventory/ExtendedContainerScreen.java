@@ -5,9 +5,11 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class ExtendedContainerScreen<T extends Container> extends ContainerScreen<T>{
+	public static final ResourceLocation EXTENDED_WIDGETS = new ResourceLocation("lotrextended:textures/gui/extended_widgets.png");
 
 	public ExtendedContainerScreen(T pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pMenu, pPlayerInventory, pTitle);

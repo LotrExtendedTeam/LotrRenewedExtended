@@ -1,6 +1,0 @@
-{
-  "parent": "lotr:item/handheld_spear_pulling",
-  "textures": {
-    "layer0": "lotrextended:item/taurethrim_spear_large"
-  }
-}

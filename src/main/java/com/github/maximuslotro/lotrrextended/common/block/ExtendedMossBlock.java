@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
-import lotr.common.event.CompostingHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
@@ -17,7 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedMossBlock extends Block implements IGrowable {
 	public ExtendedMossBlock(Properties p_153790_) {
 		super(p_153790_);
-		CompostingHelper.prepareCompostable(this, 0.65f);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.65f);
 	}
 
 	@SuppressWarnings("deprecation")

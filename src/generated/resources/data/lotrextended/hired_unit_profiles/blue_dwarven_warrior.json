@@ -8,8 +8,8 @@
     "entity_unit_type": "entity.lotr.blue_mountains_warrior"
   },
   "hiring": {
-    "hiringCost": 30,
-    "hiringRequiresPledge": false,
+    "hiringCost": 60,
+    "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 250
   },
   "attack_type": "melee",
@@ -76,7 +76,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:blue_dwarven_mattock",
+          "item": "lotrextended:blue_dwarven_mattock",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -85,7 +85,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:blue_dwarven_shield",
+          "item": "lotrextended:blue_dwarven_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       },

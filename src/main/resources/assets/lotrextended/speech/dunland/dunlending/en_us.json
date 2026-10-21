@@ -4,7 +4,7 @@
       "conditions": {
         "relation": "friendly",
         "in_combat": false,
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
           },
@@ -43,7 +43,7 @@
         "relation": "friendly",
         "day_or_night": "day",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=warrior"
@@ -56,9 +56,9 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "morning",
+        "daytime": "morning",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=warrior"
@@ -73,9 +73,9 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "afternoon",
+        "daytime": "afternoon",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=warrior"
@@ -88,9 +88,9 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "evening",
+        "daytime": "evening",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=warrior"
@@ -107,7 +107,7 @@
         "relation": "friendly",
         "day_or_night": "night",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=warrior"
@@ -125,7 +125,7 @@
         "relation": "friendly",
         "rank": "<warrior",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },
@@ -149,7 +149,7 @@
         "relation": "friendly",
         "rank": ">=warrior",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },
@@ -172,7 +172,7 @@
         "relation": "friendly",
         "rank": ">=warlord",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },
@@ -194,7 +194,7 @@
       "conditions": {
         "relation": "friendly",
         "in_combat": "false",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none",
         "rank": ">=chieftain"
@@ -208,7 +208,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "other",
         "rank": "<warlord"
@@ -231,7 +231,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "other",
         "rank": ">=warlord",
@@ -247,7 +247,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "other",
         "rank": ">=warlord"
@@ -262,7 +262,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "other",
         "rank": ">=chieftain",
@@ -275,7 +275,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge_relation": "this",
         "in_combat": "false",
@@ -290,7 +290,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "weather": "rain",
         "in_combat": "false",
@@ -308,7 +308,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "weather": "rain",
         "in_combat": "false",
@@ -325,7 +325,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "weather": "rain",
         "in_combat": "false",
@@ -340,7 +340,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "lunar_eclipse": "true",
         "in_conversation": "other"
@@ -353,7 +353,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "same"
       },
@@ -369,7 +369,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "biome": "#home",
         "in_combat": "false",
@@ -384,7 +384,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "rank": "<warrior",
         "biome": "#home",
@@ -402,7 +402,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "rank": ">=warrior",
         "biome": "#home",
@@ -488,7 +488,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "drunk ": "true",
         "in_combat": "true",
@@ -508,7 +508,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "biome": "lotr:fangorn",
         "in_combat": "false",
@@ -527,7 +527,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "biome": "lotr:isengard",
         "in_combat": "false",
@@ -551,7 +551,7 @@
     {
       "conditions": {
         "biome": "lotr:rohan",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },
@@ -571,7 +571,7 @@
       "conditions": {
         "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil",
         "in_conversation": "none",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false
       },
       "lines": [
@@ -590,7 +590,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:durins_folk",
         "in_combat": "false",
@@ -607,7 +607,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:harad",
         "in_combat": "false",
@@ -626,7 +626,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:isengard",
         "in_combat": "false",
@@ -643,7 +643,7 @@
     {
       "conditions": {
         "relation": "hostile",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:rohan",
         "in_conversation": "none"
@@ -664,7 +664,7 @@
     {
       "conditions": {
         "relation": "hostile",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:gondor",
         "in_conversation": "none"
@@ -681,7 +681,7 @@
     {
       "conditions": {
         "relation": "hostile",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "pledge": "lotr:dunedain_north",
         "in_conversation": "none"
@@ -697,7 +697,7 @@
     {
       "conditions": {
         "relation": "hostile",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "biome": "#home",
         "in_conversation": "none"
@@ -717,7 +717,7 @@
     {
       "conditions": {
         "in_combat": "true",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "biome": "#home",
         "in_conversation": "none"
@@ -735,7 +735,7 @@
     {
       "conditions": {
         "in_combat": "true",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },
@@ -756,7 +756,7 @@
     {
       "conditions": {
         "relation": "hostile",
-        "dunk": false,
+        "drunk": false,
         "player_drunk": false,
         "in_conversation": "none"
       },

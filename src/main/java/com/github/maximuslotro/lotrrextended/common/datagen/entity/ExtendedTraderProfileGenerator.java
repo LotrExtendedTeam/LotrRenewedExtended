@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem.Potency;
 import net.minecraft.data.DataGenerator;
@@ -36,6 +36,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(LOTRItems.CLAY_MUG, 1)
 		.addSBuy(LOTRItems.PIPEWEED_LEAF, 1)
 		.addSBuy(new ItemStack(Items.POTATO, 2), 1)
+		.addSBuy(new ItemStack(ExtendedItems.LEEK.get(), 2), 1)
 		.addSBuy(Items.COD, 2)
 		.addSBuy(Items.SALMON, 2)
 		.addSBuy(Items.WATER_BUCKET, 4)
@@ -63,6 +64,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.GAMMON, 7)
 		.addSSell(Items.RABBIT_STEW, 10)
 		.addSSell(Items.MUSHROOM_STEW, 10)
+		.addSSell(ExtendedItems.LEEK_SOUP, 10)
 		.addSSell(ExtendedItems.BUTTER, 10)
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE, 10)
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE_SYRUP, 13)
@@ -86,7 +88,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.IRON_HOE, 8)
 		.addSBuy(Items.BUCKET, 3)
 		.addSBuy(Items.WATER_BUCKET, 4)
-		//TODO add corn, corn stalk, leak
+		//TODO add corn, corn stalk
 		.addSSell(Items.HAY_BLOCK, 12)
 		.addSSell(Items.LEAD, 8)
 		.addSSell(LOTRItems.LETTUCE, 3)
@@ -96,6 +98,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.POTATO, 2)
 		.addSSell(Items.WHEAT_SEEDS, 1)
 		.addSSell(Items.WHEAT, 2)
+		.addSSell(ExtendedItems.LEEK, 3)
 		.addMSell(2, Items.WHITE_WOOL,Items.BLACK_WOOL,
 			Items.BLUE_WOOL, Items.BROWN_WOOL,
 			Items.CYAN_WOOL, Items.GRAY_WOOL,
@@ -250,6 +253,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.CARROT, 3)
 		.addSSell(LOTRItems.LETTUCE, 3)
 		.addSSell(Items.POTATO, 2)
+		.addSSell(ExtendedItems.LEEK, 3)
 		.addSSell(Items.WHEAT_SEEDS, 1)
 		.addSSell(Items.WHEAT, 2)
 		.addSSell(LOTRItems.PIPEWEED_LEAF, 4)
@@ -307,13 +311,14 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.save(pConsumer, ExtendedTraderTypes.BREE_FLORIST);
 
 		make(0)
-		// TODO add raw venison, leek
+		// TODO add raw venison
 		.addSBuy(Items.BEEF, 3)
 		.addSBuy(Items.CHICKEN, 3)
 		.addSBuy(ExtendedItems.RAW_DUCK, 3)
 		.addSBuy(Items.MUTTON, 3)
 		.addSBuy(Items.RABBIT, 3)
-		.addSBuy(Items.POTATO, 1)
+		.addSBuy(new ItemStack(Items.POTATO, 2), 1)
+		.addSBuy(new ItemStack(ExtendedItems.LEEK.get(), 2), 1)
 		.addSBuy(Items.SALMON, 2)
 		.addSBuy(Items.COD, 2)
 		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
@@ -326,7 +331,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COD_BUCKET, 6)
 		.addSBuy(Items.SALMON_BUCKET, 6)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
-		// TODO add cooked venison, mushroom pie, leek soup
+		// TODO add cooked venison, mushroom pie
 		.addSSell(Items.COOKED_BEEF, 7)
 		.addSSell(Items.COOKED_PORKCHOP, 7)
 		.addSSell(Items.COOKED_MUTTON, 7)
@@ -334,6 +339,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.COOKED_DUCK, 6)
 		.addSSell(Items.COOKED_RABBIT, 6)
 		.addSSell(Items.BREAD, 5)
+		.addSSell(ExtendedItems.LEEK_SOUP, 10)
 		.addSSell(new ItemStack(Items.BAKED_POTATO, 2), 7)
 		.addSSell(Items.COOKED_SALMON, 6)
 		.addSSell(Items.COOKED_COD, 6)
@@ -1234,13 +1240,14 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
-		// TODO add raw venison, leek
+		// TODO add raw venison
 		.addSBuy(Items.BEEF, 3)
 		.addSBuy(Items.CHICKEN, 3)
 		.addSBuy(ExtendedItems.RAW_DUCK, 3)
 		.addSBuy(Items.MUTTON, 3)
 		.addSBuy(Items.RABBIT, 3)
-		.addSBuy(Items.POTATO, 1)
+		.addSBuy(new ItemStack(Items.POTATO, 2), 1)
+		.addSBuy(new ItemStack(ExtendedItems.LEEK.get(), 2), 1)
 		.addSBuy(Items.SALMON, 2)
 		.addSBuy(Items.COD, 2)
 		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
@@ -1251,7 +1258,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COD_BUCKET, 6)
 		.addSBuy(Items.SALMON_BUCKET, 6)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
-		// TODO add cooked venison, mushroom pie, leek soup
+		// TODO add cooked venison, mushroom pie
 		.addSSell(Items.COOKED_BEEF, 7)
 		.addSSell(Items.COOKED_PORKCHOP, 7)
 		.addSSell(Items.COOKED_MUTTON, 7)
@@ -1259,6 +1266,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.COOKED_DUCK, 6)
 		.addSSell(Items.COOKED_RABBIT, 6)
 		.addSSell(Items.BREAD, 5)
+		.addSSell(ExtendedItems.LEEK_SOUP, 10)
 		.addSSell(new ItemStack(Items.BAKED_POTATO, 2), 7)
 		.addSSell(Items.COOKED_SALMON, 6)
 		.addSSell(Items.COOKED_COD, 6)
@@ -1728,6 +1736,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(LOTRItems.CLAY_PLATE, 1)
 		.addSBuy(LOTRItems.CLAY_MUG, 1)
 		.addSBuy(new ItemStack(Items.POTATO, 2), 1)
+		.addSBuy(new ItemStack(ExtendedItems.LEEK.get(), 2), 1)
 		.addSBuy(Items.COD, 2)
 		.addSBuy(Items.SALMON, 2)
 		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
@@ -1787,7 +1796,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.TOPAZ, 8)
 		.addSBuy(LOTRItems.HORN, 2)
 		// TODO add iron battleaxe and pike, bronze battleaxe, crossbow bolts
-		.addSSell(LOTRItems.HORN, 6)
 		.addSSell(LOTRItems.DUNLENDING_HELMET, 10)
 		.addSSell(LOTRItems.DUNLENDING_CHESTPLATE, 14)
 		.addSSell(LOTRItems.DUNLENDING_LEGGINGS, 12)
@@ -1829,7 +1837,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.IRON_HOE, 8)
 		.addSBuy(Items.BUCKET, 3)
 		.addSBuy(Items.WATER_BUCKET, 4)
-		//TODO add turnips, leak
+		//TODO add turnips
 		.addSSell(ExtendedItems.BLUEBERRY, 1)
 		.addSSell(ExtendedItems.BLACKBERRY, 1)
 		.addSSell(ExtendedItems.CRANBERRY, 1)
@@ -1839,6 +1847,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.CARROT, 3)
 		.addSSell(LOTRItems.LETTUCE, 3)
 		.addSSell(Items.POTATO, 2)
+		.addSSell(ExtendedItems.LEEK, 3)
 		.addSSell(Items.HAY_BLOCK, 12)
 		.addSSell(LOTRItems.LETTUCE, 3)
 		.addSSell(Items.POTATO, 2)

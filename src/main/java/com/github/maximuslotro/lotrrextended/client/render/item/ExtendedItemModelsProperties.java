@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitFarmhandContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
@@ -9,7 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.DaggerItem;
 import net.minecraft.inventory.container.PlayerContainer;
@@ -43,7 +43,7 @@ public class ExtendedItemModelsProperties {
 
 	public static void registerAlternativeHandheldTextures() {
 		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.getType(itemStack).isHalt() ? 1 : ExtendedCommandHornItem.getType(itemStack).isReady() ? 2 : ExtendedCommandHornItem.getType(itemStack).isSummon() ? 3 : 0);
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1 : 0);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isHeated(itemStack) ? 1 : 0);
 		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
 		// BOWS
 		registerBowItemModelProperties(ExtendedItems.DUNEDAIN_BOW.get());
@@ -53,6 +53,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RIVENDELL_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.LINDON_BOW.get());
+		registerBowItemModelProperties(ExtendedItems.ROHAN_BOW.get());
 		// CROSSBOWS
 		registerCrossbowItemModelProperties(ExtendedItems.BRONZE_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.IRON_CROSSBOW.get());
@@ -60,7 +61,12 @@ public class ExtendedItemModelsProperties {
 		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
 		// DAGGERS
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
-			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
+			if(item.get() instanceof DaggerItem) {
+				registerDaggerItemModelProperties(item.get());
+			}
+		}
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof ExtendedDaggerItem) {
 				registerDaggerItemModelProperties(item.get());
 			}
 		}

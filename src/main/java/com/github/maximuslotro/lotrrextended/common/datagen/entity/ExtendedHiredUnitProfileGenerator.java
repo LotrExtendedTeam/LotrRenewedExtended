@@ -2,13 +2,13 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitTypes;
 
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.DataGenerator;
@@ -22,38 +22,29 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 	}
 
 	@Override
-	public void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
+	public void makeHiredUnitProfiles(Consumer<ExtendedHiredUnitProfile> pConsumer) {
 		make(ExtendedEntities.HOBBIT_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.noArmor()
 		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 5)
 		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.HOBBIT_FARMHAND);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.HOBBIT_FARMHAND);
 		// Bree Units
 		make(LOTREntities.BREE_MAN.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(20, false, 100)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 3)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 4)
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
 		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BREE_MAN);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.BREE_MAN);
 
 		make(LOTREntities.BREE_HOBBIT.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(20, false, 100)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 3)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 4)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BREE_HOBBIT);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.BREE_HOBBIT);
 
 		make(LOTREntities.BREE_GUARD.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, false, 250)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
@@ -72,20 +63,17 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.BREE_SHIELD.get()), 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.BREE_GUARD);
 
-		make(ExtendedEntities.BREE_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		make(ExtendedEntities.BREE_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(80, false, 50)
+		.noArmor()
 		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 5)
 		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_FARMHAND);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.BREE_FARMHAND);
 
 		// Gundabad Units
-		make(LOTREntities.GUNDABAD_ORC.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(15, false, 100)
+		make(LOTREntities.GUNDABAD_ORC.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -126,9 +114,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addShieldItem(new ItemStack(LOTRItems.MORDOR_SHIELD.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.GUNDABAD_SHIELD.get()), 3)
 		.addShieldItem(ItemStack.EMPTY, 10)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.GUNDABAD_ORC);
 
-		make(LOTREntities.GUNDABAD_ORC_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(35, false, 150)
+		make(LOTREntities.GUNDABAD_ORC_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(75, false, 150)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -162,9 +150,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.GUNDABAD_ORC_ARCHER);
 
-		make(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, true, 350)
+		make(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(80, true, 350)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()), 1)
@@ -180,9 +168,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_DAGGER.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.GUNDABAD_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 5)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_URUK);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.GUNDABAD_URUK);
 
-		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, true, 400)
+		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(120, true, 400)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()), 1)
@@ -192,10 +180,10 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.ORC_BOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_URUK_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.GUNDABAD_URUK_ARCHER);
 
 		// Dunedain Units
-		make(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 350)
+		make(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 350)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)
@@ -210,23 +198,20 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 2)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNEDAIN_RANGER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.DUNEDAIN_RANGER);
 
 		// Blue Mountain Units
-		make(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(20, false, 200)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		make(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, false, 200)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()), 7)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_MATTOCK.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.BLUE_DWARF);
 
-		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(30, false, 250)
+		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, true, 250)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
@@ -237,9 +222,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_MATTOCK.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.BLUE_DWARF_WARRIOR);
 
-		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 300)
+		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
@@ -248,9 +233,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.BLUE_DWARF_ARCHER);
 
-		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 300)
+		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
@@ -258,23 +243,20 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.BLUE_DWARF_AXE_THROWER);
 
 		// Dwarven Units
-		make(LOTREntities.DWARF.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(20, false, 200)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		make(LOTREntities.DWARF.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(50, false, 200)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_DAGGER.get()), 7)
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SWORD.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(ExtendedItems.DWARVEN_MATTOCK.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.DWARF);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.DWARF);
 
-		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(30, false, 250)
+		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, true, 250)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
@@ -285,9 +267,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(ExtendedItems.DWARVEN_MATTOCK.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_WARRIOR);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DWARF_WARRIOR);
 
-		make(LOTREntities.DWARF_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 300)
+		make(LOTREntities.DWARF_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
@@ -296,14 +278,11 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.DWARF_ARCHER);
 
 		// Rivendell units
-		make(LOTREntities.RIVENDELL_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(30, false, 300)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		make(LOTREntities.RIVENDELL_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, false, 300)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()), 6)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SHOVEL.get()), 1)
@@ -312,9 +291,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_ELF);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.RIVENDELL_ELF);
 
-		make(LOTREntities.RIVENDELL_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 400)
+		make(LOTREntities.RIVENDELL_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 400)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.RIVENDELL_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RIVENDELL_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RIVENDELL_LEGGINGS.get()), 1)
@@ -325,7 +304,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()), 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.RIVENDELL_WARRIOR);
 
 		make(ExtendedEntities.IMLADRIS_GUARD.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(200, true, 500)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_HELMET.get()), 1)
@@ -336,14 +315,11 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_SHIELD.get()), 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.IMLADRIS_GUARD);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.IMLADRIS_GUARD);
 
 		// Lindon units
-		make(LOTREntities.LINDON_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(30, false, 300)
-		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 1)
-		.addLeggingPoolItem(ItemStack.EMPTY, 1)
-		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		make(LOTREntities.LINDON_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, false, 300)
+		.noArmor()
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_DAGGER.get()), 6)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SHOVEL.get()), 1)
@@ -352,9 +328,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.LINDON_ELF);
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.LINDON_ELF);
 
-		make(LOTREntities.LINDON_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(45, false, 400)
+		make(LOTREntities.LINDON_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 400)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.LINDON_HELMET.get()), 1000)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GALVORN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()), 1000)
@@ -369,10 +345,10 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.LINDON_SHIELD.get()), 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.LINDON_WARRIOR);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.LINDON_WARRIOR);
 
 		// Isengard units
-		make(LOTREntities.ISENGARD_SNAGA.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(20, false, 150)
+		make(LOTREntities.ISENGARD_SNAGA.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, false, 150)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 5)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 5)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 5)
@@ -431,9 +407,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.URUK_SPEAR.get()), 1)
 		.addShieldItem(new ItemStack(Items.SHIELD), 1)
 		.addShieldItem(ItemStack.EMPTY, 2)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_SNAGA);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.ISENGARD_SNAGA);
 
-		make(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(40, false, 200)
+		make(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(80, false, 200)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 5)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 5)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 5)
@@ -474,9 +450,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_SNAGA_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.ISENGARD_SNAGA_ARCHER);
 
-		make(LOTREntities.URUK.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, false, 150)
+		make(LOTREntities.URUK.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(80, false, 150)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.URUK_LEGGINGS.get()), 1)
@@ -486,9 +462,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.URUK_SPEAR.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.URUK_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 5)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_URUK);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.ISENGARD_URUK);
 
-		make(LOTREntities.URUK_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, false, 200)
+		make(LOTREntities.URUK_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(120, false, 200)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.URUK_LEGGINGS.get()), 1)
@@ -496,19 +472,19 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_DAGGER.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.ORC_BOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_URUK_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.ISENGARD_URUK_ARCHER);
 
-		make(ExtendedEntities.URUK_BERSERKER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, true, 300)
+		make(ExtendedEntities.URUK_BERSERKER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(120, true, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.URUK_BERSERKER_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()), 1)
 		.addBootsPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.URUK_BERSERKER_CLEAVER.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_URUK_BERSERKER);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.ISENGARD_URUK_BERSERKER);
 
 		// Dunland Units
-		make(LOTREntities.DUNLENDING.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(15, false, 100)
+		make(LOTREntities.DUNLENDING.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.FUR_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 3)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)
@@ -526,9 +502,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DUNLENDING);
 
-		make(LOTREntities.DUNLENDING_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(30, false, 150)
+		make(LOTREntities.DUNLENDING_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 9)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()), 1)
@@ -544,9 +520,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.DUNLENDING_SHIELD.get()), 4)
 		.addShieldItem(ItemStack.EMPTY, 6)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_WARRIOR);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DUNLENDING_WARRIOR);
 
-		make(LOTREntities.DUNLENDING_BOWMAN.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 200)
+		make(LOTREntities.DUNLENDING_BOWMAN.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 9)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()), 1)
@@ -556,9 +532,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BOWMAN);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.DUNLENDING_BOWMAN);
 
-		make(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(50, false, 200)
+		make(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 9)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()), 1)
@@ -569,9 +545,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addRangedPoolItem(new ItemStack(ExtendedItems.BRONZE_THROWABLE_AXE.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.IRON_THROWABLE_AXE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.DUNLENDING_AXE_THROWER);
 
-		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(50, true, 300)
+		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(100, true, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.FUR_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.FUR_LEGGINGS.get()), 1)
@@ -579,9 +555,9 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BERSERKER);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DUNLENDING_BERSERKER);
 
-		make(ExtendedEntities.DUNLENDING_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
+		make(ExtendedEntities.DUNLENDING_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(60, false, 50)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.FUR_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 3)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)
@@ -590,6 +566,224 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 1)
 		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_FARMHAND);
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DUNLENDING_FARMHAND);
+
+		make(LOTREntities.UMBAR_SOLDIER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.UMBAR_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.UMBAR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.UMBAR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.UMBAR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_SCIMITAR.get()), 10)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_SPEAR.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_DAGGER.get()), 4)
+		.addShieldItem(new ItemStack(LOTRItems.UMBAR_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.UMBAR_SOLDIER);
+
+		make(LOTREntities.UMBAR_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.UMBAR_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.UMBAR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.UMBAR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.UMBAR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.UMBAR_ARCHER);
+
+		make(LOTREntities.MORDOR_ORC.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(40, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.MORDOR_HELMET.get()), 5)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_HELMET.get()), 1)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 30)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.MORDOR_CHESTPLATE.get()), 5)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.BLACK_WARG_CHESTPLATE.get()), 1)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.MORDOR_LEGGINGS.get()), 5)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get()), 1)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.MORDOR_BOOTS.get()), 5)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_BOOTS.get()), 1)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_SCIMITAR.get()), 4)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_DAGGER.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_AXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_PICKAXE.get()), 1)
+		.addShieldItem(new ItemStack(LOTRItems.MORDOR_SHIELD.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 20)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.MORDOR_ORC);
+
+		make(LOTREntities.MORDOR_ORC_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(80, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.MORDOR_HELMET.get()), 5)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_HELMET.get()), 1)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 30)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.MORDOR_CHESTPLATE.get()), 5)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.BLACK_WARG_CHESTPLATE.get()), 1)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.MORDOR_LEGGINGS.get()), 5)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get()), 1)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.MORDOR_BOOTS.get()), 5)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.BLACK_WARG_BOOTS.get()), 1)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.MORDOR_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.ORC_BOW.get()), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.MORDOR_ORC_ARCHER);
+
+		make(LOTREntities.DALE_SOLDIER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DALE_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DALE_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DALE_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DALE_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DALE_SWORD.get()), 4)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DALE_SPEAR.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DALE_DAGGER.get()), 1)
+		.addShieldItem(new ItemStack(LOTRItems.DALE_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.DALE_SOLDIER);
+
+		make(LOTREntities.DALE_BOWMAN.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DALE_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DALE_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DALE_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DALE_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DALE_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.DALE_BOWMAN);
+
+		make(LOTREntities.GONDOR_SOLDIER.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.GONDOR_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.GONDOR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.GONDOR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.GONDOR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GONDOR_SWORD.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GONDOR_SPEAR.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GONDOR_DAGGER.get()), 1)
+		.addShieldItem(new ItemStack(LOTRItems.GONDOR_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.GONDOR_SOLDIER);
+
+		make(LOTREntities.GONDOR_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.GONDOR_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.GONDOR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.GONDOR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.GONDOR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GONDOR_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.GONDOR_ARCHER);
+
+		make(LOTREntities.WOOD_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, false, 250)
+		.noArmor()
+		.addMeleePoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.WOOD_ELF);
+
+		make(LOTREntities.WOOD_ELF_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 350)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_SPEAR.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.WOOD_ELVEN_DAGGER.get()), 1)
+		.addShieldItem(new ItemStack(Items.SHIELD), 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.WOOD_ELF_WARRIOR);
+
+		make(LOTREntities.GALADHRIM_ELF.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(60, false, 300)
+		.noArmor()
+		.addMeleePoolItem(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.disableIdleWeapon().save(pConsumer, ExtendedUnitTypes.GALADHRIM_ELF);
+
+		make(LOTREntities.GALADHRIM_WARRIOR.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, true, 400)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.GALADHRIM_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 10)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.GALADHRIM_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.GALADHRIM_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.GALADHRIM_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GALADHRIM_SWORD.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GALADHRIM_SPEAR.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()), 1)
+		.addShieldItem(new ItemStack(Items.SHIELD), 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.GALADHRIM_WARRIOR);
+
+		make(LOTREntities.COAST_SOUTHRON_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.HARAD_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.HARAD_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.HARAD_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.HARAD_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_SCIMITAR.get()), 4)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_DAGGER.get()), 2)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_SWORD.get()), 12)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_DAGGER.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_SPEAR.get()), 3)
+		.addShieldItem(new ItemStack(LOTRItems.COAST_SOUTHRON_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.COAST_SOUTHRON_WARRIOR);
+
+		make(LOTREntities.COAST_SOUTHRON_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.HARAD_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.HARAD_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.HARAD_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.HARAD_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.UMBAR_DAGGER.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_DAGGER.get()), 3)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.COAST_SOUTHRON_ARCHER);
+
+		make(LOTREntities.HARNENNOR_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(80, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.HARNENNOR_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.HARNENNOR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.HARNENNOR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.HARNENNOR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_SWORD.get()), 4)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_DAGGER.get()), 2)
+		.addShieldItem(new ItemStack(LOTRItems.HARNENNOR_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.HARNENNOR_WARRIOR);
+
+		make(LOTREntities.HARNENNOR_ARCHER.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(160, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.HARNENNOR_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.HARNENNOR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.HARNENNOR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.HARNENNOR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.HARAD_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.HARNENNOR_ARCHER);
+
+		make(LOTREntities.ROHIRRIM_WARRIOR.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(60, false, 150)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.ROHAN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.ROHAN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.ROHAN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.ROHAN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.ROHAN_SWORD.get()), 1)
+		.addShieldItem(new ItemStack(LOTRItems.ROHAN_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedUnitTypes.ROHAN_WARRIOR);
+
+		make(LOTREntities.ROHIRRIM_BOWMAN.get(), ExtendedUnitCombatTypes.RANGED).setPurchaseInfo(100, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.ROHAN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.ROHAN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.ROHAN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.ROHAN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.ROHAN_DAGGER.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.ROHAN_BOW.get()), 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedUnitTypes.ROHAN_BOWMAN);
 	}
 }

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:flowery_rhunic_brick"
-  },
-  "result": "lotr:flowery_rhunic_brick_stairs",
-  "count": 1
-}

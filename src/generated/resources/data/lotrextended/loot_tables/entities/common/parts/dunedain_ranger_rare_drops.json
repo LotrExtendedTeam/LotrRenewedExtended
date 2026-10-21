@@ -16,7 +16,7 @@
               }
             }
           ],
-          "name": "lotr:barrow_blade"
+          "name": "lotrextended:barrow_blade"
         },
         {
           "type": "minecraft:item",
@@ -30,7 +30,7 @@
               }
             }
           ],
-          "name": "lotr:dunedain_bow"
+          "name": "lotrextended:dunedain_bow"
         },
         {
           "type": "minecraft:item",
@@ -44,7 +44,7 @@
               }
             }
           ],
-          "name": "lotr:ranger_bow"
+          "name": "lotrextended:ranger_bow"
         }
       ],
       "conditions": [

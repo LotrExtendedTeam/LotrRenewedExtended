@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_wall_sign",
-    "lotr:chestnut_wall_sign",
-    "lotr:ebony_wall_sign",
-    "lotr:plum_wall_sign",
-    "lotr:willow_wall_sign"
+    "lotrextended:banana_wall_sign",
+    "lotrextended:chestnut_wall_sign",
+    "lotrextended:ebony_wall_sign",
+    "lotrextended:plum_wall_sign",
+    "lotrextended:willow_wall_sign"
   ]
 }

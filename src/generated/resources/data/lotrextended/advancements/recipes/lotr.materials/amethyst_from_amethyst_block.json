@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:amethyst_from_amethyst_block"
+    ]
+  },
+  "criteria": {
+    "has_amethyst_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:amethyst_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:amethyst_from_amethyst_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst_block",
+      "has_the_recipe"
+    ]
+  ]
+}

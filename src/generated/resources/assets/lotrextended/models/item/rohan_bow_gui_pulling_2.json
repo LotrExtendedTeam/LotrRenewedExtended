@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/rohan_bow_gui",
+  "textures": {
+    "layer0": "lotrextended:item/rohan_bow_pulling_2"
+  }
+}

@@ -11,6 +11,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.fonts.TextInputUtil;
+import net.minecraft.client.gui.screen.EditSignScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -24,6 +25,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+/**
+ * Based on {@link EditSignScreen}
+ * */
 public class ExtendedExitStoneTextSignScreen extends Screen {
 	/** Reference to the sign object. */
 	private final ExtendedStoneTextSignTileEntity sign;
@@ -78,7 +82,7 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 
 	private void onDone() {
 		this.sign.setChanged();
-		this.minecraft.setScreen((Screen)null);
+		this.onClose();
 	}
 
 	@Override

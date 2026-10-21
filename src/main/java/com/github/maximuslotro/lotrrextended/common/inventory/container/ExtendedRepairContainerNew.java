@@ -10,12 +10,14 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -24,7 +26,6 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.ItemOwnership;
@@ -597,6 +598,15 @@ public class ExtendedRepairContainerNew extends Container {
 				}
 			}
 		}
+		// Reforge Tomes are only used by the Reforge action.
+		// Keep the calculated reforgeCost, but prevent normal anvil
+		// operations from consuming the Tome.
+		if (mergableItem.getItem() instanceof ExtendedModifierReforgeTomeItem) {
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+			return;
+		}
+
 		boolean isGemColoring = false;
 		if(!mergableItem.isEmpty() && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
 			info("P7: Valid gem item");
@@ -717,6 +727,12 @@ public class ExtendedRepairContainerNew extends Container {
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
 			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
+
+				// Do not consume materials if no modifiers can be generated.
+				if(ExtendedModifierUtils.getAvailableModifiersResults(true, inputItem, true, false, modifierItem).isEmpty()) {
+					return;
+				}
+
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}

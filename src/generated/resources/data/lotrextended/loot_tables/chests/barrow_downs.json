@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -36,7 +36,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -390,7 +390,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -401,7 +401,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -412,7 +412,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",
@@ -769,7 +769,7 @@
               }
             }
           ],
-          "name": "lotr:arnor_shield"
+          "name": "lotrextended:arnor_shield"
         },
         {
           "type": "minecraft:item",
@@ -949,7 +949,7 @@
               }
             }
           ],
-          "name": "lotr:mithril_mattock"
+          "name": "lotrextended:mithril_mattock"
         },
         {
           "type": "minecraft:item",
@@ -971,7 +971,7 @@
               }
             }
           ],
-          "name": "lotr:barrow_blade"
+          "name": "lotrextended:barrow_blade"
         },
         {
           "type": "minecraft:item",

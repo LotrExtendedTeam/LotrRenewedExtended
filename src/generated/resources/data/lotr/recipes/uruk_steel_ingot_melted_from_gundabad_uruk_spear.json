@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:gundabad_uruk_spear"
+  },
+  "result1": {
+    "item": "lotr:uruk_steel_ingot"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

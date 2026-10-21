@@ -2,10 +2,10 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -14,7 +14,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
@@ -42,7 +41,7 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 
 	@Override
 	protected Goal createDwarfAttackGoal() {
-		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()), ItemStack.EMPTY);
 	}
 
 	@Override
@@ -54,7 +53,7 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()));
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 

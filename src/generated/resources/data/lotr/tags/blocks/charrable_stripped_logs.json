@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:stripped_banana_log",
-    "lotr:stripped_chestnut_log",
-    "lotr:stripped_ebony_log",
-    "lotr:stripped_plum_log",
-    "lotr:stripped_willow_log"
+    "lotrextended:stripped_banana_log",
+    "lotrextended:stripped_chestnut_log",
+    "lotrextended:stripped_ebony_log",
+    "lotrextended:stripped_plum_log",
+    "lotrextended:stripped_willow_log"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:torch_converted_from_morgul_torch"
+    ]
+  },
+  "criteria": {
+    "has_morgul_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:morgul_torch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:torch_converted_from_morgul_torch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgul_torch",
+      "has_the_recipe"
+    ]
+  ]
+}

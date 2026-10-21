@@ -1,5 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
@@ -99,6 +104,15 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 		int totalSeeds = inventory.countItem(seedsStack.getItem());
 		return totalSeeds > amount;
 	}
+	@Override
+	protected Optional<Supplier<BlockPos>> getCacheGetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedComposter);
+	}
+
+	@Override
+	protected Optional<Consumer<BlockPos>> getCacheSetter() {
+		return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedComposter);
+	}
 	/**
 	 * Mutates the target block position buffer to point to a valid composter.
 	 * <p>
@@ -111,13 +125,32 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
-				return;
+		BlockPos cachedComposterPos = getCacheGetter().get().get();
+		if(cachedComposterPos != null) {
+			taskPosition.set(cachedComposterPos);
+			return;
+		}
+		BlockPos entityPos = this.goalHolder.getEntity().blockPosition();
+		int horizontalRange = 8;
+		BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+		for(int x = -horizontalRange; x <= horizontalRange; x++) {
+			for(int y = -YSPLIT; y <= YSPLIT; y++) {
+				for(int z = -horizontalRange; z <= horizontalRange; z++) {
+					mutablePos.set( entityPos.getX() + x, entityPos.getY() + y, entityPos.getZ() + z);
+					if(isValidPosForTask(mutablePos, pServerLevel) && this.goalHolder.isWithinBounds(mutablePos)) {
+						taskPosition.set(mutablePos);
+						return;
+					}
+				}
 			}
 		}
-		super.setRandomBlockByTask(taskPosition, pServerLevel);
+		taskPosition.set(BlockPos.ZERO);
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_COMPOSTER, true);
+	}
+
+	@Override
+	public boolean shouldCheckOnce() {
+		return true;
 	}
 	/**
 	 * Determines whether the NPC is close enough to interact with the target composter block.
@@ -156,8 +189,9 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
+		goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.NO_COMPOSTER, false);
 		int currentGoalTick = goalHolder.tickTime;
-		if (currentGoalTick - lastCompostTime < INTERACTION_COOLDOWN_TICKS) {
+		if(currentGoalTick - lastCompostTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the composter
 		}
 		BlockState workingState = pServerLevel.getBlockState(pComposterPos);
@@ -165,14 +199,14 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		int totalSeedsAvailable = inventory.countItem(seedsStack.getItem());
 
-		if (workingState.getValue(ComposterBlock.LEVEL) == 8) {
+		if(workingState.getValue(ComposterBlock.LEVEL) == 8) {
 			workingState = extractProduce(workingState, pServerLevel, pComposterPos, goalHolder.getEntity());
 			lastCompostTime = currentGoalTick;
 			goalHolder.getEntity().swing(Hand.MAIN_HAND);
 			return totalSeedsAvailable <= MIN_KEEP; //Exit the task since there no seeds left
 		}
-		if (totalSeedsAvailable > MIN_KEEP) {
-			for (int slot = inventory.getContainerSize() - 1; slot >= 0; slot--) {
+		if(totalSeedsAvailable > MIN_KEEP) {
+			for(int slot = inventory.getContainerSize() - 1; slot >= 0; slot--) {
 				ItemStack itemstack = inventory.getItem(slot);
 				if (!itemstack.isEmpty() && itemstack.sameItem(seedsStack)) {
 					BlockState initialComposterState = workingState;
@@ -181,7 +215,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 					lastCompostTime = currentGoalTick;
 					pServerLevel.levelEvent(1500, pComposterPos, workingState != initialComposterState ? 1 : 0);
 					// If the composter ends at level 7 after insertItem, minecraft waits a second to level 8, bypass here
-					if (workingState.getValue(ComposterBlock.LEVEL) == 7) {
+					if(workingState.getValue(ComposterBlock.LEVEL) == 7) {
 						workingState = workingState.setValue(ComposterBlock.LEVEL, 8);
 						pServerLevel.setBlock(pComposterPos, workingState, 3);
 						// Usually called on composter tick, but move here since we are bypassing the tick
@@ -192,7 +226,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 				}
 			}
 		}
-		if (totalSeedsAvailable <= MIN_KEEP && workingState.getValue(ComposterBlock.LEVEL) != 8) {
+		if(totalSeedsAvailable <= MIN_KEEP && workingState.getValue(ComposterBlock.LEVEL) != 8) {
 			return true; // Exit task if no seeds left, and there isn't a bonemeal to pop from composter
 		}
 		return false; // Keep returning to process remaining surplus items on upcoming cooldown ticks
@@ -212,7 +246,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 * @return updated block state reflecting the now-emptied composter
 	 */
 	public static BlockState extractProduce(BlockState pState, World pLevel, BlockPos pComposterPos, Entity pEntity) {
-		if (!pLevel.isClientSide) {
+		if(!pLevel.isClientSide) {
 			float f = 0.7F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;

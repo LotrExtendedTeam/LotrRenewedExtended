@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:smooth_morgond"
+  },
+  "result": "lotrextended:smooth_morgond_slab",
+  "count": 2
+}

@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_trapdoor",
-    "lotr:chestnut_trapdoor",
-    "lotr:ebony_trapdoor",
-    "lotr:plum_trapdoor",
-    "lotr:willow_trapdoor"
+    "lotrextended:banana_trapdoor",
+    "lotrextended:chestnut_trapdoor",
+    "lotrextended:ebony_trapdoor",
+    "lotrextended:plum_trapdoor",
+    "lotrextended:willow_trapdoor"
   ]
 }

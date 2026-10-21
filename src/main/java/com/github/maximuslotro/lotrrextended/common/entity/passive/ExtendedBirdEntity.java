@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.BirdEntityRandomFlyGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.BirdEntityRandomWalkingAvoidWaterGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -9,7 +10,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -21,11 +21,10 @@ import net.minecraft.world.World;
 public class ExtendedBirdEntity extends CreatureEntity {
 
     private static final DataParameter<Boolean> DATA_FLYING = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> DATA_FLYING_COOLDOWN = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.INT);
+    private static final int FLYING_COOLDOWN = 400;
+    private static final int BLOCKED_TAKEOFF_COOLDOWN = 80;
 
     private final FlyingPathNavigator flyingNavigator;
-    private final FlyingMovementController flyingController;
-    private final MovementController walkingController;
     private final GroundPathNavigator groundNavigator;
 
     public float wingRotation = 0.0F;
@@ -34,24 +33,23 @@ public class ExtendedBirdEntity extends CreatureEntity {
     public float wingSpeed = 0.0F;
     public float prevWingSpeed = 0.0F;
 
+    private boolean groundedMovementRequested;
+    private int flyingCooldown;
+
     public ExtendedBirdEntity(EntityType<? extends ExtendedBirdEntity> type, World world) {
         super(type, world);
 
         this.flyingNavigator = new FlyingPathNavigator(this, world);
         this.groundNavigator = new GroundPathNavigator(this, world);
-        this.flyingController = new FlyingMovementController(this, 20, true);
-        this.walkingController = new  MovementController(this);
 
-        // start as walking
-        this.navigation = groundNavigator;
-        this.moveControl = walkingController;
+        this.navigation = this.groundNavigator;
+        this.moveControl = new MovementController(this);
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_FLYING, false);
-        this.entityData.define(DATA_FLYING_COOLDOWN, 0);
     }
 
     @Override
@@ -69,25 +67,23 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
         wingRotation += wingSpeed * 0.8F;
 
-        if (!level.isClientSide) {
-            if (this.entityData.get(DATA_FLYING_COOLDOWN) > 0) {
-                this.entityData.set(DATA_FLYING_COOLDOWN, this.entityData.get(DATA_FLYING_COOLDOWN) - 1);
-            }
+        if (!this.level.isClientSide && this.flyingCooldown > 0) {
+            this.flyingCooldown--;
         }
     }
 
     public boolean flyingOnCooldown() {
-        return this.entityData.get(DATA_FLYING_COOLDOWN) > 0;
+        return this.flyingCooldown > 0;
     }
 
     @Override
     public boolean isPersistenceRequired() {
-    	return false; // Ensure not keeping around as this is an ambient creature and should despawn
+        return false; // Ensure not keeping around as this is an ambient creature and should despawn
     }
    
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new BirdEntityRandomWalkingAvoidWaterGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new BirdEntityRandomFlyGoal(this));
     }
 
@@ -114,14 +110,41 @@ public class ExtendedBirdEntity extends CreatureEntity {
     }
 
     public void startFlyingCooldown() {
-        this.entityData.set(DATA_FLYING_COOLDOWN, 400);
+        startFlyingCooldown(FLYING_COOLDOWN);
+    }
+
+    public void startBlockedTakeoffCooldown() {
+        startFlyingCooldown(BLOCKED_TAKEOFF_COOLDOWN);
+    }
+
+    private void startFlyingCooldown(int ticks) {
+        this.flyingCooldown = ticks;
+    }
+
+    public void requestGroundedMovement() {
+        this.groundedMovementRequested = true;
+    }
+
+    public boolean consumeGroundedMovementRequest() {
+        if (!this.groundedMovementRequested) {
+            return false;
+        }
+
+        this.groundedMovementRequested = false;
+        return true;
     }
 
     private void applyFlyingState(boolean flying) {
-        this.navigation.stop();
-        this.moveControl = flying ? flyingController : walkingController;
-        this.navigation = flying ? flyingNavigator : groundNavigator;
+        this.flyingNavigator.stop();
+        this.groundNavigator.stop();
+
+        this.moveControl = flying ? new FlyingMovementController(this, 20, true) : new MovementController(this);
+        this.navigation = flying ? this.flyingNavigator : this.groundNavigator;
         this.setNoGravity(flying);
+
+        if (flying) {
+            this.groundedMovementRequested = false;
+        }
     }
 
     @Override
@@ -143,10 +166,5 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
     public boolean isFlying() {
         return this.entityData.get(DATA_FLYING);
-    }
-
-    @Override
-	public boolean isOnGround() {
-        return onGround;
     }
 }

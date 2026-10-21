@@ -1,10 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -53,6 +54,9 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 		Advancement mordor_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_3000", FrameType.CHALLENGE)
 				.setTitle("Commander of Lugbúrz").setDescription("Reach +3000.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 3000).parent(mordor_1500));
+		Advancement hire_mordor = build(true, data(LOTRItems.MORDOR_SCIMITAR.get(), "to_war", FrameType.TASK)
+			.setTitle("To War!").setDescription("Hire a unit from a Mordor Orc Commander."),
+			addUnitHireTrigger(make(), ExtendedEntities.MORDOR_ORC_COMMANDER.get()).parent(enter_mordor));
 
 		Advancement morgul_crafter = build(true, data(LOTRItems.MORDOR_CRAFTING_TABLE.get(), "morgul_crafter", FrameType.TASK)
 			.setTitle("Morgul Crafter").setDescription("Craft an item on the Morgul Crafting Table."),
@@ -97,7 +101,8 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 
 		Advancement mordor_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "mordor_orc_slayer", FrameType.TASK)
 			.setTitle("Mordor Orc Slayer").setDescription("Kill a Mordor Orc."),
-			addKillEntityTriggers(make(), LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get()).parent(enter_mordor));
+			addKillEntityTriggers(make(), LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get(),
+				ExtendedEntities.MORDOR_ORC_COMMANDER.get()).parent(enter_mordor));
 
 		Advancement survivalist = build(true, data(LOTRItems.MORGUL_SHROOM.get(), "survivalist", FrameType.GOAL)
 			.setTitle("Survivalist").setDescription("Eat a Morgul-shroom"),

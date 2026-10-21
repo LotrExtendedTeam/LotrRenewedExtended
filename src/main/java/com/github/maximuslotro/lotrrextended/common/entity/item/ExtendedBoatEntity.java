@@ -3,10 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.entity.item;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.BoatEntity;

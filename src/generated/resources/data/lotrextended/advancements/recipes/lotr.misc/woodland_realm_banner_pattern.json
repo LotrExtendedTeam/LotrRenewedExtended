@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:woodland_realm_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_woodland_realm_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:woodland_realm_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:woodland_realm_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_woodland_realm_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -2,9 +2,9 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -47,10 +47,12 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedINP
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.URUK_SPEAR.get()));
+		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
 		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.URUK_BOOTS.get()));
 		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.URUK_LEGGINGS.get()));
 		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.URUK_CHESTPLATE.get()));
-		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
 		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}

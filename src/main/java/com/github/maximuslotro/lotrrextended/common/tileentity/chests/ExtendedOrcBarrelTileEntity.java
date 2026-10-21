@@ -1,7 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedTileEntities;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
+
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;

@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
 import net.minecraft.block.BlockState;
@@ -36,17 +40,9 @@ import net.minecraft.world.server.ServerWorld;
  */
 public abstract class ExtendedFarmingAbstractTask {
 	/**
-	 * Cached location of a validated work block to avoid repeated spatial searches while in range.
-	 */
-	protected BlockPos cachedWorkBlockPos = null;
-	/**
 	 * Vertical search offset radius around the NPC when selecting candidate target blocks.
 	 */
 	protected static final int YSPLIT = 1;
-	/**
-	 * Maximum allowable squared distance from the NPC to its cached block before forcing target re-validation.
-	 */
-	protected static final double MAX_DISTANCE_SQ = Math.pow(12, 2);
 	/**
 	 * Parent goal instance holding references to the entity, world, and inventory data.
 	 */
@@ -76,7 +72,19 @@ public abstract class ExtendedFarmingAbstractTask {
 		return isTaskValidForNPC(pServerLevel);
 	}
 	/**
+	 * Validates the mutated {taskPosition} value is within bounds
+	 *
+	 * @param taskPosition {@link net.minecraft.util.math.BlockPos.Mutable} to mutate in place
+	 * @param pServerLevel world where task is being executed
+	 * @return True if within entity restrictions
+	 */
+	public boolean setRandomBlockInBounds(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
+		setRandomBlockByTask(taskPosition, pServerLevel);
+		return !taskPosition.equals(BlockPos.ZERO) && this.goalHolder.isWithinBounds(taskPosition);
+	}
+	/**
 	 * Mutates {@code taskPosition} to either a random block in bounds, or via overrides to a specific position.
+	 * Do not check for bounds restrictions in this method, unless checking entities or other non-random range positions.
 	 *
 	 * @param taskPosition {@link net.minecraft.util.math.BlockPos.Mutable} to mutate in place
 	 * @param pServerLevel world where task is being executed
@@ -120,10 +128,27 @@ public abstract class ExtendedFarmingAbstractTask {
 	 */
 	public void stopTask() {}
 	/**
+     * Subclasses override this to supply a getter for their target cache if they require one.
+     *
+     * @return an {@link Optional} containing the getter, or {@link Optional#empty()} if unneeded.
+     */
+    protected Optional<Supplier<BlockPos>> getCacheGetter() {
+        return Optional.empty();
+    }
+
+    /**
+     * Subclasses override this to supply a setter for their target cache if they require one.
+     *
+     * @return an {@link Optional} containing the setter, or {@link Optional#empty()} if unneeded.
+     */
+    protected Optional<Consumer<BlockPos>> getCacheSetter() {
+        return Optional.empty();
+    }
+	/**
 	 * Invalidate any position caches or internal state when target search fails.
 	 */
 	public void invalidateCache() {
-		cachedWorkBlockPos=null;
+		getCacheSetter().ifPresent(setter -> setter.accept(null));
 	}
 	/**
 	 * Determines whether the NPC entity is within range to execute the action on the target block position.
@@ -136,9 +161,15 @@ public abstract class ExtendedFarmingAbstractTask {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
 	public boolean executeTaskBase(BlockPos pChosenBlockPos, ServerWorld pServerLevel) {
-		if(cachedWorkBlockPos==null) {
-			cachedWorkBlockPos = pChosenBlockPos.immutable();
-		}
+		Optional<Supplier<BlockPos>> getterOpt = getCacheGetter();
+        Optional<Consumer<BlockPos>> setterOpt = getCacheSetter();
+        if (getterOpt.isPresent() && setterOpt.isPresent()) {
+            Supplier<BlockPos> getter = getterOpt.get();
+            Consumer<BlockPos> setter = setterOpt.get();
+            if (getter.get() == null && pChosenBlockPos != null) {
+                setter.accept(pChosenBlockPos.immutable());
+            }
+        }
 		return executeTask(pChosenBlockPos, pServerLevel);
 	}
 
@@ -150,6 +181,10 @@ public abstract class ExtendedFarmingAbstractTask {
 	 * @return {@code true} if the task action is completed, or {@code false} to defer exiting and keep ticking
 	 */
 	public abstract boolean executeTask(BlockPos pChosenBlockPos, ServerWorld pServerLevel);
+
+	public boolean shouldCheckOnce() {
+		return false;
+	}
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
 	 * and that no liquid is present, as well as another block above it are replaceable materials.

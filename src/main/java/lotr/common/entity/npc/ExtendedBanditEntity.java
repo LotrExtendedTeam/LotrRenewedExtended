@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
@@ -10,7 +11,6 @@ import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;

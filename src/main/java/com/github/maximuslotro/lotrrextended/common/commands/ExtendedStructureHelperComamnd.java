@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
@@ -18,7 +19,6 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
@@ -125,6 +125,24 @@ public class ExtendedStructureHelperComamnd {
 					state.putString("Name", newId.toString());
 					changed = true;
 				}
+	        }
+	    }
+		if (root.contains("blocks", 9)) {
+	        ListNBT blocks = root.getList("blocks", 10);
+	        for (int i = 0; i < blocks.size(); i++) {
+	            CompoundNBT entry = blocks.getCompound(i);
+	            if (!entry.contains("nbt", 10)) continue;
+	            CompoundNBT tileNbt = entry.getCompound("nbt");
+	            if (tileNbt.contains("id", 8)) {
+	                String oldId = tileNbt.getString("id");
+	                if (ExtendedMissingMappings.BLOCK_ENTITIES.containsKey(oldId)) {
+	                    ResourceLocation newId = new ResourceLocation(ExtendedMissingMappings.BLOCK_ENTITIES.get(oldId));
+	                    if (newId != null) {
+	                        tileNbt.putString("id", newId.toString());
+	                        changed = true;
+	                    }
+	                }
+	            }
 	        }
 	    }
 		if (root.contains("entities", 9)) {

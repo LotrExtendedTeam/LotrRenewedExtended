@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/blacksmith",
   "display": {
     "icon": {
-      "item": "lotr:chisel",
+      "item": "lotrextended:chisel",
       "nbt": "{Damage:0}"
     },
     "title": {

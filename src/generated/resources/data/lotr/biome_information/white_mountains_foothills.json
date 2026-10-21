@@ -1,0 +1,8 @@
+{
+  "id": "lotr:white_mountains_foothills",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:mordor": "RARE"
+  }
+}

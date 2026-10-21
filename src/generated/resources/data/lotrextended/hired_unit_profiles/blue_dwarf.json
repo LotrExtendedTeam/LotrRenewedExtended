@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.blue_mountains_dwarf"
   },
   "hiring": {
-    "hiringCost": 20,
+    "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
@@ -78,7 +78,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:blue_dwarven_mattock",
+          "item": "lotrextended:blue_dwarven_mattock",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }

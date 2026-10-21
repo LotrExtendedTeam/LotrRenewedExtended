@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:banana_planks_from_banana_branch"
+    ]
+  },
+  "criteria": {
+    "has_banana_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:banana_branch"
+          }
+        ]
+      }
+    },
+    "has_stripped_banana_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_banana_branch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:banana_planks_from_banana_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_branch",
+      "has_stripped_banana_branch",
+      "has_the_recipe"
+    ]
+  ]
+}

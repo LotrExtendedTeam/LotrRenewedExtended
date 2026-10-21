@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:plum_planks"
+    ]
+  },
+  "criteria": {
+    "has_plum_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "lotrextended:plum_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:plum_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_log",
+      "has_the_recipe"
+    ]
+  ]
+}

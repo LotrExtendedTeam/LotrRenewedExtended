@@ -133,7 +133,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:hobbit_banner_pattern"
+          "name": "lotrextended:hobbit_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -184,7 +184,7 @@
               }
             }
           ],
-          "name": "lotr:conker"
+          "name": "lotrextended:conker"
         },
         {
           "type": "minecraft:item",

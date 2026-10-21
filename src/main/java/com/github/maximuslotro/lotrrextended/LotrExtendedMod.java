@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedDeferredComposterInjector;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -9,17 +10,20 @@ import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMa
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.*;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedTapestryType;
 import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedLootConditions;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
@@ -28,12 +32,13 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedIDataSerializerSerializers;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedServerData;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedStructureProcessors;
@@ -78,16 +83,15 @@ public class LotrExtendedMod{
 	public static HackyChairDatabase hackyChairManager;
 
 	public LotrExtendedMod() {
-		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		forgeBus.addGenericListener(Block.class, ExtendedMissingMappings::fixBlockMappings);
-		forgeBus.addGenericListener(Item.class, ExtendedMissingMappings::fixItemMappings);
-		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::fixEntityMappings);
-		modBus.addListener(this::extendedCommonSetup);
-		modBus.addListener(DataGeneratorExtended::gatherData);
+		// Forge bus
+		forgeBus.addGenericListener(Block.class, ExtendedMissingMappings::onMissingBlockMappings);
+		forgeBus.addGenericListener(Item.class, ExtendedMissingMappings::onMissingItemMappings);
+		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::onMissingEntityMappings);
+		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::onMissingEntityMappings);
 		forgeBus.addListener(EventPriority.LOW, this::extendedRegisterCommands);
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
@@ -95,19 +99,24 @@ public class LotrExtendedMod{
 		forgeBus.addListener(this::extendedServerStarting);
 		forgeBus.addListener(this::extendedServerStarted);
 		forgeBus.addListener(this::extendedServerStopping);
-
-		ExtendedDataSerializers.register(modBus);
-		ExtendedServerConfig.register();
-		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ExtendedBannerEventHandlers.class);
-		ExtendedDevServerEventHandlers.registerDevListender(modBus, forgeBus);
+		ExtendedDevServerEventHandlers.registerDevListenders(forgeBus);
 		forgeBus.register(ExtendedServerModifierEventHandlers.class);
 		forgeBus.register(ExtendedForgeInventoryEvents.class);
 		forgeBus.register(ExtendedWorldEventHandlers.class);
+		// Mod bus
+		modBus.addListener(this::extendedCommonSetup);
+		modBus.addListener(DataGeneratorExtended::gatherData);
+		ExtendedIDataSerializerSerializers.register(modBus);
+		ExtendedServerConfig.register();
+		ExtendedBlocks.register(modBus);
+		ExtendedItems.register(modBus);
+		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedEntitiesNew.register(modBus);
+		ExtendedTileEntities.register(modBus);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedRecipeTypes.register();
 		ExtendedRecipeSerializers.register(modBus);
@@ -134,6 +143,7 @@ public class LotrExtendedMod{
 			ExtendedStructureProcessors.init();
 			ExtendedStructuresV5.setupStructures();
 			ExtendedConfiguredStructuresV5.registerConfiguredStructures();
+			ExtendedDeferredComposterInjector.registerCompostables();
 		});
 	}
 
@@ -143,10 +153,11 @@ public class LotrExtendedMod{
 
 	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
-		event.addListener(ExtendedServerHiredUnitProfileManager.INSTANCE);
+		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
 		event.addListener(ExtendedCaptainProfileManager.INSTANCE);
 		event.addListener(ExtendedSignTextProcessorManager.INSTANCE);
 		event.addListener(ExtendedTraderProfileManager.INSTANCE);
+		event.addListener(ExtendedBiomeInformationManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

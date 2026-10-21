@@ -1,17 +1,28 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
-public enum ExtendedUnitHornTypes {
-	NOTSET(0, ""),
-	HALT(1, ".halt"),
-	READY(2, ".reddy"),
-	SUMMON(3, ".summon");
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedColoredText;
+
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+
+public enum ExtendedUnitHornTypes implements ExtendedColoredText {
+	NOTSET(0, "", TextFormatting.WHITE),
+	HALT(1, "halt", TextFormatting.RED),
+	READY(2, "reddy", TextFormatting.GREEN),
+	SUMMON(3, "summon", TextFormatting.BLUE);
 
 	private final int unchangingIndex;
 	private final String disc;
-	
-	private ExtendedUnitHornTypes(int pIndex, String pDisc) {
+	private final TextFormatting formatting;
+	private ExtendedUnitHornTypes(int pIndex, String pDisc, TextFormatting pColor) {
 		this.unchangingIndex = pIndex;
 		this.disc = pDisc;
+		this.formatting = pColor;
 	}
 
 	public int getUnchangingIndex() {
@@ -34,8 +45,18 @@ public enum ExtendedUnitHornTypes {
 		return this==NOTSET;
 	}
 
-	public String getDisc() {
-		return disc;
+	@Override
+	public IFormattableTextComponent getText() {
+		return new TranslationTextComponent("gui.lotrextended.horn_of_command.type."+disc);
+	}
+
+	@Override
+	public Integer getColor() {
+		return formatting.getColor();
+	}
+
+	public TextFormatting getFormatting() {
+		return formatting;
 	}
 
 	public static ExtendedUnitHornTypes getByUnchangingIndex(int pIndex) {
@@ -45,5 +66,11 @@ public enum ExtendedUnitHornTypes {
 			}
 		}
 		return NOTSET;
+	}
+
+	public static List<ExtendedUnitHornTypes> getSelectableHornTypes() {
+		return Arrays.stream(values())
+			.filter(type -> type.getUnchangingIndex() > 0)
+			.collect(Collectors.toList());
 	}
 }

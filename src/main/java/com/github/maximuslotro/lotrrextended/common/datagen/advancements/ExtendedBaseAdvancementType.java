@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
@@ -64,7 +63,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		ExtendedAdvancementProvider.advancementsLegacyNumTotal+=getLegacyCount();
 		generateAdvancements();
 		if(legacyMade!=getLegacyCount()) {
-			ExtendedLog.info("Made "+legacyMade+"/"+getLegacyCount()+" of "+getFolder()+" advancements");
+			//ExtendedLog.info("Made "+legacyMade+"/"+getLegacyCount()+" of "+getFolder()+" advancements");
 		}
 		ExtendedAdvancementProvider.advancementsLegacyNum += legacyMade;
 	}

@@ -9,7 +9,8 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedIDataSerializerSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
@@ -21,7 +22,6 @@ import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.PushReaction;
@@ -63,11 +63,11 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ExtendedStructureSpawnerEntity extends Entity{
 	private static Vector3d ZERO = new Vector3d(0.0f, 0.0f, 0.0f);
 	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.STRING);
-	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
-	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedIDataSerializerSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedIDataSerializerSerializers.VECTOR3D_POS);
 
-	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
-	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedIDataSerializerSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedIDataSerializerSerializers.VECTOR3D_POS);
 
 	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 	// Should be the same as spawnerInstance.getId()

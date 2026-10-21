@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.tileentity;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

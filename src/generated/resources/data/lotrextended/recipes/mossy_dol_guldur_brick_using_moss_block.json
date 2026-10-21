@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dol_guldur",
+  "ingredients": [
+    {
+      "item": "lotrextended:dol_guldur_brick"
+    },
+    {
+      "item": "lotrextended:moss_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_dol_guldur_brick"
+  }
+}

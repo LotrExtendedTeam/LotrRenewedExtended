@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
+
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +47,7 @@ public class ExtendedFellowship {
 		return needsSaving;
 	}
 	public void createAndRegister(ServerWorld level) {
-		ExtendedFellowshipHolderServer.addFellowship(this);
+		ExtendedLevelData.serverInstance().getFellowshipData().addFellowship(this);
 		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(level, fellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
@@ -86,7 +88,8 @@ public class ExtendedFellowship {
 			showMap = pCompound.getBoolean("showMap");
 	}
 
-	public void save(CompoundNBT pCompound) {
+	public CompoundNBT save() {
+		CompoundNBT pCompound = new CompoundNBT();
 		pCompound.putBoolean("Disbanded", disbanded);
 		if(fellowshipOwner != null)
 			pCompound.putString("Owner", fellowshipOwner.toString());
@@ -113,6 +116,7 @@ public class ExtendedFellowship {
 		pCompound.putBoolean("preventHiredFF", preventHiredFF);
 		pCompound.putBoolean("showMap", showMap);
 		needsSaving = false;
+		return pCompound;
 	}
 	public String getFellowshipName() {
 		return fellowshipName;

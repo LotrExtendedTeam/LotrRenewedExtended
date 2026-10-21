@@ -8,8 +8,8 @@
     "entity_unit_type": "entity.lotr.blue_mountains_archer"
   },
   "hiring": {
-    "hiringCost": 50,
-    "hiringRequiresPledge": false,
+    "hiringCost": 100,
+    "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 300
   },
   "attack_type": "ranged",
@@ -64,7 +64,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },

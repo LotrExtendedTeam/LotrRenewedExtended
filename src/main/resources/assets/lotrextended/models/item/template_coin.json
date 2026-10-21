@@ -1,8 +1,5 @@
 {
   "parent": "item/generated",
-  "textures": {
-    "layer0": "lotrextended:item/silver_coin_ten"
-  },
   "display": {
     "thirdperson": {
       "rotation": [ -90, 0, 0 ],

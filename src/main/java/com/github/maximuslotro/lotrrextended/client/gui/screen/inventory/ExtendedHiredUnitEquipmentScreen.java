@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitEquipmentContainer> {
+public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitContainerScreen<ExtendedHiredUnitEquipmentContainer> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/unit_equipment_menu.png");
 	/** The mouse x-position recorded during the last rendered frame. */
 	private float xMouse;
@@ -85,11 +85,11 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 			double armorT = getMenu().getCompanion().getAttributeValue(Attributes.ARMOR_TOUGHNESS);
 			//double attackD = entity.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			//double attackS = entity.getAttributeValue(Attributes.ATTACK_SPEED);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor").withStyle(TextFormatting.ITALIC), 6, 23, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 6, 34, 15790320);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 6, 46, 15790320);
-			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
-			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor").withStyle(TextFormatting.ITALIC), 6, 23, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_points", df.format(armor)), 6, 34, 15790320);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_toughness", df.format(armorT)), 6, 46, 15790320);
+			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
+			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
 		}
 	}
 

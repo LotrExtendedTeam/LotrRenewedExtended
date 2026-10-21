@@ -28,6 +28,7 @@ public class ExtendedVineBlock extends VineBlock {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(UP, false).setValue(NORTH, false).setValue(EAST, false)
 			.setValue(SOUTH, false).setValue(WEST, false).setValue(CLIPPED, false));
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.5F);
 	}
 
 	@Override

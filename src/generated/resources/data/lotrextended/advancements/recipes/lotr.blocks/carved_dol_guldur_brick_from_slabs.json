@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:carved_dol_guldur_brick_from_slabs"
+    ]
+  },
+  "criteria": {
+    "has_dol_guldur_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:dol_guldur_brick_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:carved_dol_guldur_brick_from_slabs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_guldur_brick_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

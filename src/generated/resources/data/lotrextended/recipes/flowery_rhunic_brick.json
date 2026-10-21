@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rhunic",
+  "ingredients": [
+    {
+      "item": "lotrextended:rhunic_brick"
+    },
+    {
+      "item": "lotr:orange_chrysanthemum"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:flowery_rhunic_brick"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:amethyst_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:amethyst",
+    "count": 9
+  }
+}

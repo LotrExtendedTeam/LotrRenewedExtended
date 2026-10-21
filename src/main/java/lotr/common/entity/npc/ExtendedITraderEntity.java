@@ -13,14 +13,6 @@ public interface ExtendedITraderEntity extends ExtendedIInteractableEntity {
 		ExtendedTraderHelper.openCoinExchange(getNPC(), player);
 	};
 	/**
-     * Gets the trader's display name.
-     *
-     * @return The trader's name as a String.
-     */
-	default String getTraderName() {
-		return ExtendedTraderHelper.getTraderName(getNPC().getDisplayName());
-	}
-	/**
      * Checks if the given player can exchange coins with this trader, handles friendly and alignment checks.
      *
      * @param player The player to check.

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:warg_fur_leggings"
+    ]
+  },
+  "criteria": {
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:warg_fur_leggings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

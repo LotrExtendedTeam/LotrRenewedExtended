@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:cobblestone"
   },
-  "result": "lotr:scorched_cobblestone",
+  "result": "lotrextended:scorched_cobblestone",
   "experience": 0.1,
   "cookingtime": 100
 }

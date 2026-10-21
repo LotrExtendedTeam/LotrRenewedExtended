@@ -18,7 +18,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:imladris_guard_helmet",
+          "item": "lotrextended:imladris_guard_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -27,7 +27,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:imladris_guard_chestplate",
+          "item": "lotrextended:imladris_guard_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -36,7 +36,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:imladris_guard_leggings",
+          "item": "lotrextended:imladris_guard_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -45,7 +45,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:imladris_guard_boots",
+          "item": "lotrextended:imladris_guard_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -71,7 +71,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:rivendell_bow",
+          "item": "lotrextended:rivendell_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -80,7 +80,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:imladris_guard_shield",
+          "item": "lotrextended:imladris_guard_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       }

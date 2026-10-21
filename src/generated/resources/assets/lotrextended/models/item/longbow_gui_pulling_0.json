@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/longbow_gui",
+  "textures": {
+    "layer0": "lotrextended:item/longbow_pulling_0"
+  }
+}

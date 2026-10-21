@@ -1,0 +1,5 @@
+{
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/rohan_bow_gui",
+  "held_model": "lotrextended:item/rohan_bow_held"
+}

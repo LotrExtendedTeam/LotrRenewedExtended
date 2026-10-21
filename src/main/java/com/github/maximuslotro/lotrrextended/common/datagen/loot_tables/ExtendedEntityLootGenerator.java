@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveFromUnitDrops;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollSetter;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
 
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
@@ -327,68 +327,91 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	}
 
 	private void makeEntities() {
+		// Shire
 		makeEntity(LOTREntities.HOBBIT, hobbit);
-		makeEntity(LOTREntities.MORDOR_ORC, orcMordor);
-		makeEntity(LOTREntities.GONDOR_MAN, manGondor);
-		makeEntity(LOTREntities.GALADHRIM_ELF, elfGaladhrim);
-		makeEntity(LOTREntities.GONDOR_SOLDIER, manGondor);
-		makeEntity(LOTREntities.DWARF, dwarfDurinsFolk);
-		makeEntity(LOTREntities.DWARF_WARRIOR, dwarfDurinsFolk);
-		makeEntity(LOTREntities.GALADHRIM_WARRIOR, elfGaladhrim);
-		makeEntity(LOTREntities.URUK, orcUruk);
-		makeEntity(LOTREntities.ROHAN_MAN, manRohan);
-		makeEntity(LOTREntities.ROHIRRIM_WARRIOR, manRohan);
-		makeEntity(LOTREntities.GUNDABAD_ORC, orcGundabad);
-		makeEntity(LOTREntities.DALE_MAN, manDale);
-		makeEntity(LOTREntities.DALE_SOLDIER, manDale);
-		makeEntity(LOTREntities.DUNLENDING, manDunlending);
-		makeEntity(LOTREntities.DUNLENDING_WARRIOR, manDunlending);
-		makeEntity(LOTREntities.LINDON_ELF, elfLindon);
-		makeEntity(LOTREntities.LINDON_WARRIOR, elfLindon);
-		makeEntity(LOTREntities.RIVENDELL_ELF, elfRivendell);
-		makeEntity(LOTREntities.RIVENDELL_WARRIOR, elfRivendell);
-		makeEntity(LOTREntities.COAST_SOUTHRON, manCoastSouthron);
-		makeEntity(LOTREntities.COAST_SOUTHRON_WARRIOR, manCoastSouthron);
-		makeEntity(LOTREntities.HARNEDHRIM, manHarnedhrim);
-		makeEntity(LOTREntities.HARNENNOR_WARRIOR, manHarnedhrim);
-		makeEntity(LOTREntities.BLUE_MOUNTAINS_DWARF, dwarfBlueMountians);
-		makeEntity(LOTREntities.BLUE_MOUNTAINS_WARRIOR, dwarfBlueMountians);
-		makeEntity(LOTREntities.UMBAR_MAN, manUmbar);
-		makeEntity(LOTREntities.UMBAR_SOLDIER, manUmbar);
-		makeEntity(LOTREntities.GONDOR_ARCHER, manGondor, arrows);
-		makeEntity(LOTREntities.ROHIRRIM_BOWMAN, manRohan, arrows);
-		makeEntity(LOTREntities.DALE_BOWMAN, manDale, arrows);
-		makeEntity(LOTREntities.DUNLENDING_BOWMAN, manDunlending, arrows);
-		makeEntity(LOTREntities.COAST_SOUTHRON_ARCHER, manCoastSouthron, arrows);
-		makeEntity(LOTREntities.HARNENNOR_ARCHER, manHarnedhrim, arrows);
-		makeEntity(LOTREntities.UMBAR_ARCHER, manUmbar, arrows);
-		makeEntity(LOTREntities.MORDOR_ORC_ARCHER, orcMordor, arrows);
-		makeEntity(LOTREntities.GUNDABAD_ORC_ARCHER, orcGundabad, arrows);
-		makeEntity(LOTREntities.URUK_ARCHER, orcUruk, arrows);
-		makeEntity(LOTREntities.DWARF_ARCHER, dwarfDurinsFolk, arrows);
-		makeEntity(LOTREntities.BLUE_MOUNTAINS_ARCHER, dwarfBlueMountians, arrows);
-		makeEntity(LOTREntities.WOOD_ELF, elfWoodElf);
-		makeEntity(LOTREntities.WOOD_ELF_WARRIOR, elfWoodElf);
-		makeEntity(LOTREntities.BREE_MAN, manBree);
-		makeEntity(LOTREntities.BREE_HOBBIT, hobbitBree);
-		makeEntity(LOTREntities.BREE_GUARD, manBree);
-		makeEntity(LOTREntities.GUNDABAD_WARG, wargBase);
-		makeEntity(LOTREntities.ISENGARD_WARG, wargBase);
-		makeEntity(LOTREntities.MORDOR_WARG, wargBase);
-		makeEntity(LOTREntities.ISENGARD_SNAGA, orcIsengard);
-		makeEntity(LOTREntities.ISENGARD_SNAGA_ARCHER, orcIsengard, arrows);
-		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit, coinsRare);
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit, coinsRare);
 		makeEntity(ExtendedEntities.HOBBIT_FARMHAND, hobbit);
-		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
-		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
-		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
+		// Mordor
+		makeEntity(LOTREntities.MORDOR_ORC, orcMordor);
+		makeEntity(LOTREntities.MORDOR_ORC_ARCHER, orcMordor, arrows);
+		makeEntity(ExtendedEntities.MORDOR_ORC_COMMANDER, orcMordor);
+		makeEntity(LOTREntities.MORDOR_WARG, wargBase);
+		// Gondor
+		makeEntity(LOTREntities.GONDOR_MAN, manGondor);
+		makeEntity(LOTREntities.GONDOR_SOLDIER, manGondor);
+		makeEntity(LOTREntities.GONDOR_ARCHER, manGondor, arrows);
+		makeEntity(ExtendedEntities.GONDOR_CAPTAIN, manGondor);
+		// Galadhrim
+		makeEntity(LOTREntities.GALADHRIM_ELF, elfGaladhrim);
+		makeEntity(LOTREntities.GALADHRIM_WARRIOR, elfGaladhrim);
+		makeEntity(ExtendedEntities.GALADHRIM_LORD, elfGaladhrim);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
-		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
-		makeEntity(ExtendedEntities.DWARVEN_MINER, dwarfDurinsFolk, foodItems);
-		makeEntity(ExtendedEntities.DWARVEN_SMITH, dwarfDurinsFolk, foodItems);
-		makeEntity(ExtendedEntities.DWARVEN_COMMANDER, dwarfDurinsFolk, foodItems);
+		// Isengard
+		makeEntity(LOTREntities.URUK, orcUruk);
+		makeEntity(LOTREntities.URUK_ARCHER, orcUruk, arrows);
+		makeEntity(ExtendedEntities.URUK_BERSERKER, orcUruk);
+		makeEntity(ExtendedEntities.URUK_CAPTAIN, orcUruk);
+		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
+		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
+		makeEntity(LOTREntities.ISENGARD_WARG, wargBase);
+		makeEntity(LOTREntities.ISENGARD_SNAGA, orcIsengard);
+		makeEntity(LOTREntities.ISENGARD_SNAGA_ARCHER, orcIsengard, arrows);
+		// Rohan
+		makeEntity(LOTREntities.ROHAN_MAN, manRohan);
+		makeEntity(LOTREntities.ROHIRRIM_WARRIOR, manRohan);
+		makeEntity(LOTREntities.ROHIRRIM_BOWMAN, manRohan, arrows);
+		makeEntity(ExtendedEntities.ROHIRRIM_MARSHAL, manRohan);
+		// Dunland
+		makeEntity(LOTREntities.DUNLENDING, manDunlending);
+		makeEntity(LOTREntities.DUNLENDING_WARRIOR, manDunlending);
+		makeEntity(LOTREntities.DUNLENDING_BOWMAN, manDunlending, arrows);
+		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_AXE_THROWER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
+		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMHAND, manDunlending);
+		// Lindon
+		makeEntity(LOTREntities.LINDON_ELF, elfLindon);
+		makeEntity(LOTREntities.LINDON_WARRIOR, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_LORD, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_SMITH, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_WEAVER, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_FLORIST, elfLindon);
+		// Rivendell
+		makeEntity(LOTREntities.RIVENDELL_ELF, elfRivendell);
+		makeEntity(LOTREntities.RIVENDELL_WARRIOR, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
+		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
+		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
+				.withPool(addPoolRefrence(elfRivendell))
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
+								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
+								.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
+								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
+								.apply(SetCount.setCount(ConstantRange.exactly(1))))));
+		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
+		// Coast Southrons
+		makeEntity(LOTREntities.COAST_SOUTHRON, manCoastSouthron);
+		makeEntity(LOTREntities.COAST_SOUTHRON_WARRIOR, manCoastSouthron);
+		makeEntity(LOTREntities.COAST_SOUTHRON_ARCHER, manCoastSouthron, arrows);
+		makeEntity(ExtendedEntities.COAST_SOUTHRON_WARLORD, manCoastSouthron);
+		// Harnedhrim
+		makeEntity(LOTREntities.HARNEDHRIM, manHarnedhrim);
+		makeEntity(LOTREntities.HARNENNOR_WARRIOR, manHarnedhrim);
+		makeEntity(LOTREntities.HARNENNOR_ARCHER, manHarnedhrim, arrows);
+		makeEntity(ExtendedEntities.HARNENNOR_WARLORD, manHarnedhrim);
+		// Blue Mountains
+		makeEntity(LOTREntities.BLUE_MOUNTAINS_DWARF, dwarfBlueMountians);
+		makeEntity(LOTREntities.BLUE_MOUNTAINS_WARRIOR, dwarfBlueMountians);
+		makeEntity(LOTREntities.BLUE_MOUNTAINS_ARCHER, dwarfBlueMountians, arrows);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_SMITH, dwarfBlueMountians, foodItems);
@@ -396,10 +419,69 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_STONEMASON, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
-		makeEntity(ExtendedEntities.BANDIT, coinsBandit, manBones, pouch);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER, dwarfBlueMountians);
+		// Umbar
+		makeEntity(LOTREntities.UMBAR_MAN, manUmbar);
+		makeEntity(LOTREntities.UMBAR_SOLDIER, manUmbar);
+		makeEntity(LOTREntities.UMBAR_ARCHER, manUmbar, arrows);
+		makeEntity(ExtendedEntities.UMBAR_CAPTAIN, manUmbar);
+		// Dale
+		makeEntity(LOTREntities.DALE_MAN, manDale);
+		makeEntity(LOTREntities.DALE_SOLDIER, manDale);
+		makeEntity(LOTREntities.DALE_BOWMAN, manDale, arrows);
+		makeEntity(ExtendedEntities.DALE_CAPTAIN, manDale);
+		// Gundabad
+		makeEntity(LOTREntities.GUNDABAD_ORC, orcGundabad);
+		makeEntity(LOTREntities.GUNDABAD_ORC_ARCHER, orcGundabad, arrows);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
+		makeEntity(LOTREntities.GUNDABAD_WARG, wargBase);
+		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
+		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
+		// Durin's Folk
+		makeEntity(LOTREntities.DWARF, dwarfDurinsFolk);
+		makeEntity(LOTREntities.DWARF_WARRIOR, dwarfDurinsFolk);
+		makeEntity(LOTREntities.DWARF_ARCHER, dwarfDurinsFolk, arrows);
+		makeEntity(ExtendedEntities.DWARVEN_MINER, dwarfDurinsFolk, foodItems);
+		makeEntity(ExtendedEntities.DWARVEN_SMITH, dwarfDurinsFolk, foodItems);
+		makeEntity(ExtendedEntities.DWARVEN_COMMANDER, dwarfDurinsFolk, foodItems);
+		// Wood Elves
+		makeEntity(LOTREntities.WOOD_ELF, elfWoodElf);
+		makeEntity(LOTREntities.WOOD_ELF_WARRIOR, elfWoodElf);
+		makeEntity(ExtendedEntities.WOOD_ELF_CAPTAIN, elfWoodElf);
+		// Bree
+		makeEntity(LOTREntities.BREE_MAN, manBree);
+		makeEntity(LOTREntities.BREE_HOBBIT, hobbitBree);
+		makeEntity(LOTREntities.BREE_GUARD, manBree);
+		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
+		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
+		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
+		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
+		makeEntity(ExtendedEntities.BREE_LUMBERMAN, manBree);
+		makeEntity(ExtendedEntities.BREE_STONEMASON, manBree);
+		makeEntity(ExtendedEntities.BREE_INNKEEPER, manBree);
+		makeEntity(ExtendedEntities.BREE_FLORIST, manBree);
+		makeEntity(ExtendedEntities.BREE_CHEESEMONGER, manBree);
+		makeEntity(ExtendedEntities.BREE_LEATHERWORKER, manBree);
+		makeEntity(ExtendedEntities.BREE_BREWER, manBree);
+		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
+		makeEntity(ExtendedEntities.BREE_STABLEMASTER, manBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_POTTER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BAKER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BUTCHER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_INNKEEPER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_FLORIST, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BREWER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
+		// Ranger of the North
+		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
+		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
+		// Utumno
+		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
+		// Animals
+		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.DUCK, makeLootCommon("duck", LootTable.lootTable()
 				.withPool(makePool(1).add(genSingleItemLooting(Items.FEATHER, 0.0F, 2.0F)))
 				.withPool(makePool(1)
@@ -407,8 +489,17 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 								.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 								.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
 		add(ExtendedEntities.HEDGEHOG.get(), LootTable.lootTable());
-		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
-		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
+		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(EItemLootEntry.lootItem(Items.PORKCHOP)
+							.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+							.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+		add(ExtendedEntities.CRABAN.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(EItemLootEntry.lootItem(Items.FEATHER)
+							.apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
+		// Miscellaneous
+		makeEntity(ExtendedEntities.BANDIT, coinsBandit, manBones, pouch);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(ConstantRange.exactly(1))
@@ -465,28 +556,6 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
-		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
-		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
-		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
-		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
-		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
-		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
-		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
-		makeEntity(ExtendedEntities.BREE_LUMBERMAN, manBree);
-		makeEntity(ExtendedEntities.BREE_STONEMASON, manBree);
-		makeEntity(ExtendedEntities.BREE_INNKEEPER, manBree);
-		makeEntity(ExtendedEntities.BREE_FLORIST, manBree);
-		makeEntity(ExtendedEntities.BREE_CHEESEMONGER, manBree);
-		makeEntity(ExtendedEntities.BREE_LEATHERWORKER, manBree);
-		makeEntity(ExtendedEntities.BREE_BREWER, manBree);
-		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
-		makeEntity(ExtendedEntities.BREE_STABLEMASTER, manBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_POTTER, hobbitBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_BAKER, hobbitBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_BUTCHER, hobbitBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_INNKEEPER, hobbitBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_FLORIST, hobbitBree);
-		makeEntity(ExtendedEntities.BREE_HOBBIT_BREWER, hobbitBree);
 		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(0, 3))
@@ -495,44 +564,6 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(0, 1))
 						.add(EItemLootEntry.lootItem(Items.FEATHER).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
-		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
-				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-						.add(EItemLootEntry.lootItem(Items.PORKCHOP)
-								.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
-								.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
-		add(ExtendedEntities.CRABAN.get(), LootTable.lootTable()
-				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-						.add(EItemLootEntry.lootItem(Items.FEATHER)
-								.apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
-		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
-		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
-		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
-		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
-		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
-				.withPool(addPoolRefrence(elfRivendell))
-				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
-								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
-								.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
-				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-						.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
-								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
-								.apply(SetCount.setCount(ConstantRange.exactly(1))))));
-		makeEntity(ExtendedEntities.LINDON_LORD, elfLindon);
-		makeEntity(ExtendedEntities.LINDON_SMITH, elfLindon);
-		makeEntity(ExtendedEntities.LINDON_WEAVER, elfLindon);
-		makeEntity(ExtendedEntities.LINDON_FLORIST, elfLindon);
-		makeEntity(ExtendedEntities.URUK_BERSERKER, orcUruk);
-		makeEntity(ExtendedEntities.URUK_CAPTAIN, orcUruk);
-		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
-		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
-		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
-		makeEntity(ExtendedEntities.DUNLENDING_AXE_THROWER, manDunlending);
-		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
-		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
-		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
-		makeEntity(ExtendedEntities.DUNLENDING_FARMER, manDunlending);
-		makeEntity(ExtendedEntities.DUNLENDING_FARMHAND, manDunlending);
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

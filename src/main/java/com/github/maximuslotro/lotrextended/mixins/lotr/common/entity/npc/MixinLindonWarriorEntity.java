@@ -5,9 +5,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.LindonElfEntity;
 import lotr.common.entity.npc.LindonWarriorEntity;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -63,6 +64,6 @@ public class MixinLindonWarriorEntity extends LindonElfEntity{
 			at = @At("TAIL"))
 	public void finalizeSpawn$Extended(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag, CallbackInfoReturnable<ILivingEntityData> cir) {
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.LINDON_SHIELD.get()));
-		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.LINDON_BOW.get()));
 	}
 }

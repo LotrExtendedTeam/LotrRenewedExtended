@@ -170,28 +170,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:white_fur",
+        "item": "lotrextended:white_fur",
         "averageCost": 25
       }
     },
@@ -213,6 +213,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 1,
       "stacks": [
         {
           "item": "minecraft:white_carpet",
@@ -283,7 +284,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:leather_hat",
+        "item": "lotrextended:leather_hat",
         "averageCost": 10
       }
     },
@@ -329,7 +330,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bree_banner_pattern",
+        "item": "lotrextended:bree_banner_pattern",
         "averageCost": 25
       }
     }

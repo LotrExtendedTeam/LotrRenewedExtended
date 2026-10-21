@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:stripped_banana_wood",
-    "lotr:stripped_chestnut_wood",
-    "lotr:stripped_ebony_wood",
-    "lotr:stripped_plum_wood",
-    "lotr:stripped_willow_wood"
+    "lotrextended:stripped_banana_wood",
+    "lotrextended:stripped_chestnut_wood",
+    "lotrextended:stripped_ebony_wood",
+    "lotrextended:stripped_plum_wood",
+    "lotrextended:stripped_willow_wood"
   ]
 }

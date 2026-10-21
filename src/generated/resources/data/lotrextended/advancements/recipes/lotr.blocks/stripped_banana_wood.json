@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:stripped_banana_wood"
+    ]
+  },
+  "criteria": {
+    "has_stripped_banana_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_banana_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:stripped_banana_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_banana_log",
+      "has_the_recipe"
+    ]
+  ]
+}

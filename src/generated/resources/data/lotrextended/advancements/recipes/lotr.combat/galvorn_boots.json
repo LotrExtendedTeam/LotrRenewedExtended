@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:galvorn_boots"
+    ]
+  },
+  "criteria": {
+    "has_galvorn_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:galvorn_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:galvorn_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_galvorn_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

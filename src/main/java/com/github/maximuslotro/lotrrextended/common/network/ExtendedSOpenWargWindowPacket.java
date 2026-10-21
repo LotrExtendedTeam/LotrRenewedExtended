@@ -2,9 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSOpenWargWindowPacket {
@@ -36,8 +38,9 @@ public class ExtendedSOpenWargWindowPacket {
 	}
 
 	public static void handle(ExtendedSOpenWargWindowPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		ExtendedClientsideSeparatedScreenHandler.handleWargScreenOpen(pPacket);
 		context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.handleWargScreenOpen(pPacket));
+
 	}
 
 	public int getContainerId() {

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:red_rhunic_brick"
+  },
+  "result": "lotrextended:red_rhunic_brick_wall",
+  "count": 1
+}

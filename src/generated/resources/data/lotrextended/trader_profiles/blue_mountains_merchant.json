@@ -46,28 +46,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
@@ -124,7 +124,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 3
       }
     },
@@ -234,21 +234,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blue_mountains_banner",
+        "item": "lotrextended:blue_mountains_banner",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blue_mountains_banner_pattern",
+        "item": "lotrextended:blue_mountains_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blue_dwarven_throwing_axe",
+        "item": "lotrextended:blue_dwarven_throwing_axe",
         "averageCost": 15,
         "nbt": "{Damage:0}"
       }
@@ -271,7 +271,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dwarven_marriage_ring",
+        "item": "lotrextended:dwarven_marriage_ring",
         "averageCost": 16
       }
     },
@@ -292,28 +292,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:ruby",
+        "item": "lotrextended:ruby",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:topaz",
+        "item": "lotrextended:topaz",
         "averageCost": 12
       }
     },
@@ -326,26 +326,27 @@
       }
     },
     {
+      "weight": 1,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"strong4\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"protect2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"looting3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         }
@@ -410,7 +411,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blue_dwarven_mattock",
+        "item": "lotrextended:blue_dwarven_mattock",
         "averageCost": 18,
         "nbt": "{Damage:0}"
       }
@@ -418,7 +419,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blue_dwarven_shield",
+        "item": "lotrextended:blue_dwarven_shield",
         "averageCost": 30,
         "nbt": "{Damage:0}"
       }

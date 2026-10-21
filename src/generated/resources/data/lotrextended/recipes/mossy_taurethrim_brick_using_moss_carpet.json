@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:taurethrim",
+  "ingredients": [
+    {
+      "item": "lotrextended:taurethrim_brick"
+    },
+    {
+      "item": "lotrextended:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_taurethrim_brick"
+  }
+}

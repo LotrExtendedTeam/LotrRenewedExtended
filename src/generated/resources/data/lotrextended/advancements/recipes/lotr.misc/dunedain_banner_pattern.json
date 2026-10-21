@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:dunedain_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_dunedain_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:dunedain_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:dunedain_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dunedain_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

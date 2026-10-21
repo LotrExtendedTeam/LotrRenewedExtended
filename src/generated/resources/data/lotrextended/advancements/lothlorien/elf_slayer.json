@@ -44,12 +44,27 @@
           }
         ]
       }
+    },
+    "kill_galadhrim_lord": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:galadhrim_lord"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_galadhrim_elf",
-      "kill_galadhrim_warrior"
+      "kill_galadhrim_warrior",
+      "kill_galadhrim_lord"
     ]
   ]
 }

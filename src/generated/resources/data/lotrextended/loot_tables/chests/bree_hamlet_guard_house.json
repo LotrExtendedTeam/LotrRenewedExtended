@@ -303,6 +303,32 @@
               }
             }
           ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:leek_soup"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
           "name": "minecraft:carrot"
         },
         {
@@ -385,7 +411,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -456,7 +482,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bree_banner_pattern"
+          "name": "lotrextended:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -598,7 +624,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -808,7 +834,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -1082,7 +1108,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:leather_hat"
+          "name": "lotrextended:leather_hat"
         },
         {
           "type": "minecraft:item",

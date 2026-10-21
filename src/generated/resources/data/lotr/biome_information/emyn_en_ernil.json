@@ -1,0 +1,9 @@
+{
+  "id": "lotr:emyn_en_ernil",
+  "conquest_rate": 1.0,
+  "bandit_chance": "RARE",
+  "invasion_data": {
+    "lotr:mordor": "RARE",
+    "lotrextended:near_harad_umbar": "RARE"
+  }
+}

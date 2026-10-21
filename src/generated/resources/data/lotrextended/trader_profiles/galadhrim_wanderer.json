@@ -69,42 +69,42 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:coral",
+        "item": "lotrextended:coral",
         "averageCost": 6
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dead_coral",
+        "item": "lotrextended:dead_coral",
         "averageCost": 2
       }
     }
@@ -254,7 +254,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hithlain",
+        "item": "lotrextended:hithlain",
         "averageCost": 4
       }
     },
@@ -279,21 +279,22 @@
       ]
     },
     {
+      "weight": 1,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedKnockback2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedStrong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         }
@@ -302,14 +303,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lothlorien_banner",
+        "item": "lotrextended:lothlorien_banner",
         "averageCost": 75
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lothlorien_banner_pattern",
+        "item": "lotrextended:lothlorien_banner_pattern",
         "averageCost": 25
       }
     }

@@ -133,7 +133,7 @@ public class ExtendedAnvilScreen extends ExtendedContainerScreen<ExtendedRepairC
 	@Override
 	public void resize(Minecraft pMinecraft, int pWidth, int pHeight) {
 		String s = this.name.getValue();
-		this.init(pMinecraft, pWidth, pHeight);
+		super.resize(pMinecraft, pWidth, pHeight);
 		this.name.setValue(s);
 	}
 
@@ -201,7 +201,7 @@ public class ExtendedAnvilScreen extends ExtendedContainerScreen<ExtendedRepairC
 				}else {
 					ItemStack inputItem = this.menu.getSlot(0).getItem();
 					ItemStack resourceItem = this.menu.getSlot(2).getItem();
-					if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
+					if(ExtendedRepairContainerNew.isValidRepairMaterial(inputItem, resourceItem)) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.engrave.cost", this.menu.getEngraveCost());
 						if(resourceItem.getCount()<this.menu.getEngraveCost()) {
 							textColor = ERRORTEXTCOLOR;

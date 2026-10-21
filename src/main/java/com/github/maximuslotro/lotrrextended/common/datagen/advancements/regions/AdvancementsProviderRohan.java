@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -38,7 +38,7 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 		Advancement rohan_slayer = build(true, data(LOTRItems.ROHAN_SWORD.get(), "rohan_slayer", FrameType.TASK)
 				.setTitle("Rohirrim Slayer").setDescription("Kill one of the Rohirrim."),
 				addKillEntityTriggers(make(), LOTREntities.ROHAN_MAN.get(), LOTREntities.ROHIRRIM_BOWMAN.get(),
-						LOTREntities.ROHIRRIM_WARRIOR.get()).parent(horse_lords));
+						LOTREntities.ROHIRRIM_WARRIOR.get(), ExtendedEntities.ROHIRRIM_MARSHAL.get()).parent(horse_lords));
 
 		Advancement rohan_armor = build(true, data(LOTRItems.ROHAN_CHESTPLATE.get(), "rohan_armor", FrameType.TASK)
 				.setTitle("Rider of Rohan").setDescription("Equip a full suit of Rohirric armor."),
@@ -71,6 +71,9 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 		Advancement rohan_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "rohan_2000", FrameType.CHALLENGE)
 				.setTitle("Eorling Marshal").setDescription("Reach +2000.0 alignment with the Rohirrim."),
 				addAlignmentTrigger(make(), FactionPointers.ROHAN, 2000).parent(rohan_1000));
+		Advancement hire_rohan = build(true, data(LOTRItems.MALLORN_SWORD.get(), "forth_eorlingas", FrameType.TASK)
+			.setTitle("Forth Eorlingas!").setDescription("Hire a unit from a Marshal of the Rohirrim."),
+			addUnitHireTrigger(make(), ExtendedEntities.ROHIRRIM_MARSHAL.get()).parent(horse_lords));
 
 		Advancement isengard_10 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_10", FrameType.TASK)
 				.setTitle("Isengard Thrall").setDescription("Reach +10.0 alignment with Isengard."),

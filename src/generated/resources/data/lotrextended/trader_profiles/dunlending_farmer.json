@@ -58,35 +58,35 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blueberry",
+        "item": "lotrextended:blueberry",
         "averageCost": 1
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blackberry",
+        "item": "lotrextended:blackberry",
         "averageCost": 1
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cranberry",
+        "item": "lotrextended:cranberry",
         "averageCost": 1
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:elderberry",
+        "item": "lotrextended:elderberry",
         "averageCost": 1
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:raspberry",
+        "item": "lotrextended:raspberry",
         "averageCost": 1
       }
     },
@@ -116,6 +116,13 @@
       "stack": {
         "item": "minecraft:potato",
         "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 3
       }
     },
     {
@@ -177,21 +184,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:conker",
+        "item": "lotrextended:conker",
         "averageCost": 1
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:roasted_chestnut",
+        "item": "lotrextended:roasted_chestnut",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:branding_iron",
+        "item": "lotrextended:branding_iron",
         "averageCost": 25,
         "nbt": "{Damage:0}"
       }

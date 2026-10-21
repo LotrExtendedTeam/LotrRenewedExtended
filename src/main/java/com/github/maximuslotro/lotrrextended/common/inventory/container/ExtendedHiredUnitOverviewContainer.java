@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
-import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -17,7 +17,7 @@ import net.minecraft.network.PacketBuffer;
 public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContainer {
 	private final IInventory container;
 
-	public final ExtendedClientHiredUnitProfile profile;
+	public final ExtendedHiredUnitProfile profile;
 
 	public final ExtendedUnitOrders initialOrders;
 
@@ -26,10 +26,16 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 
 		// read in packet data
 		CompoundNBT nbt = extraData.readAnySizeNbt();
-		this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
+		this.profile = ExtendedHiredUnitProfile.fromNetwork(nbt);
 		this.initialOrders = ExtendedUnitOrders.getByUnchangingIndex(nbt.getInt("orders_id"));
-
-		IInventory companionInv = ((ExtendedINPCEntity)getCompanion()).getUnitInfo().getInternalUnitInventory();
+		ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity)getCompanion()).getUnitInfo();
+		unitInfo.setUnitLevel(nbt.getInt("level"));
+		unitInfo.setCurrentXp(nbt.getInt("cxp"));
+		unitInfo.setMaxXp(nbt.getInt("mxp"));
+		unitInfo.setMobKills(nbt.getInt("kills"));
+		unitInfo.setGuardRadius(nbt.getInt("radius"));
+		unitInfo.setSquad(nbt.getString("squad"));
+		IInventory companionInv = unitInfo.getInternalUnitInventory();
 		this.container = companionInv;
 		companionInv.startOpen(pPlayerInventory.player);
 
@@ -89,11 +95,17 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 		this.container.stopOpen(pPlayer);
 	}
 
-	public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, ExtendedUnitOrders currentOrders) {
+	public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedNpcHiredUnitInfoHolder info) {
 		ExtendedHiredUnitContainer.writeContainerInitData(extraData, entityId);
 		CompoundNBT nbt = new CompoundNBT();
-		ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
-		nbt.putInt("orders_id", currentOrders.getUnchangingIndex()); // write initial entity orders
+		ExtendedHiredUnitProfile.toNetwork(info.getUnitProfile(), nbt); // Write unit profile to client
+		nbt.putInt("orders_id", info.getOrders().getUnchangingIndex()); // write initial entity orders
+		nbt.putInt("level", info.getUnitLevel());
+		nbt.putFloat("cxp", info.getCurrentXp());
+		nbt.putFloat("mxp", info.getMaxXp());
+		nbt.putInt("kills", info.getMobKills());
+		nbt.putInt("radius", info.getGuardRadius());
+		nbt.putString("squad", (info.getSquad()!=null && !info.getSquad().isEmpty()) ? info.getSquad() : "");
 		extraData.writeNbt(nbt);
 	}
 }

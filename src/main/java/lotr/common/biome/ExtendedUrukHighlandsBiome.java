@@ -1,8 +1,8 @@
 package lotr.common.biome;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
@@ -30,7 +30,7 @@ public class ExtendedUrukHighlandsBiome extends RohanBiome {
 	@Override
 	protected void addAnimals(net.minecraft.world.biome.MobSpawnInfo.Builder builder) {
 		super.addAnimals(builder);
-		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 1, 1, 1));
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 10, 2, 6));
 	}
 
 	@Override

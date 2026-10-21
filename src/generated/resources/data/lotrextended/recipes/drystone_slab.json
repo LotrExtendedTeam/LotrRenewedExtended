@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:drystone"
+    }
+  },
+  "result": {
+    "item": "lotrextended:drystone_slab",
+    "count": 6
+  }
+}

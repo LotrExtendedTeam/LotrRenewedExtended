@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:scorched_brick_wall_cut_from_scorched_brick"
+    ]
+  },
+  "criteria": {
+    "has_scorched_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:scorched_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:scorched_brick_wall_cut_from_scorched_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scorched_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

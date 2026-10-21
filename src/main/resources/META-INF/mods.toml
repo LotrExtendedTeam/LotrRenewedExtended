@@ -3,7 +3,8 @@
 
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
-license="All Rights Reserved, except for the names, characters, races, locations, or any other item that is owned by J.R.R. Tolkien and his estate"
+license="LGPL-3.0-or-later (Code), GPL-3.0-or-later (Langs), ARR (Assets). See LICENSE.txt for details."
+issueTrackerURL="https://github.com/LotrExtendedTeam/LotrRenewedExtended/issues"
 
 [[mods]]
 modId="lotrextended"
@@ -11,12 +12,17 @@ version="${mod_version}"
 displayName="LOTR Renewed Extended"
 logoFile="logo.png"
 updateJSONURL="https://raw.githubusercontent.com/maximuslotro/ModUpdateChecker/main/RenewedExtendedVersions.json"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/lotr-renewed-extended"
+displayURL="https://curseforge.com/minecraft/mc-mods/lotr-renewed-extended"
+credits="I'd like to thank everyone who made this mod possable."
 authors="Maximuslotro/MaximustheMiner, WeirdBob, ServantofMelkor, Hails, and others"
 description='''
 Extending Lotr Renewed's functionality to include all* 1.7.10 features
 
-* Pending work'''
+* Pending work
+
+Note: Code is licensed under LGPL-3.0-or-later and assets are All Rights Reserved. Names, characters, races, and locations are property of J.R.R. Tolkien and his estate.
+Note: This mod included third-party code. See LICENSE.txt for details.
+'''
 
 [[dependencies.lotrextended]]
 modId="minecraft"

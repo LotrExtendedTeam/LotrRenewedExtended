@@ -1,0 +1,143 @@
+{
+  "id": "lotrextended:mordor_orc_archer",
+  "entity_type": "lotr:mordor_orc_archer",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.mordor_orc_archer"
+  },
+  "hiring": {
+    "hiringCost": 80,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 200
+  },
+  "attack_type": "ranged",
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:mordor_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:black_warg_fur_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:warg_fur_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 30,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:mordor_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:black_warg_fur_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:warg_fur_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:mordor_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:black_warg_fur_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:warg_fur_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:mordor_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:black_warg_fur_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:warg_fur_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromRanged": true,
+    "melee": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:mordor_dagger",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "ranged": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:orc_bow",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ]
+  }
+}

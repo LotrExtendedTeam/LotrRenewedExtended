@@ -18,7 +18,7 @@ import net.minecraft.util.text.LanguageMap;
 public class MixinLOTRSpeechbankEngine {
 
 	@ModifyReturnValue(method = "createEngine()Llotr/curuquesta/SpeechbankEngine;", at = @At("RETURN"), remap=false)
-	private static SpeechbankEngine<NPCSpeechbankContext> exampleModifyReturnValue(SpeechbankEngine<NPCSpeechbankContext> engine) {
+	private static SpeechbankEngine<NPCSpeechbankContext> modifyReturnValue(SpeechbankEngine<NPCSpeechbankContext> engine) {
 		engine.registerCondition(new BooleanSpeechbankCondition<>("covered", context -> !context.getWorld().canSeeSky(context.getNPCPosition())));
 		engine.registerReplaceableVariable(new ReplaceableSpeechVariable<>("s", "self", context -> context.getNPC().getName().getString()));
 		engine.registerReplaceableVariable(new ReplaceableSpeechVariable<>("b", "biome", context -> generateBiomeString(context.getNPCBiome().getRegistryName())));

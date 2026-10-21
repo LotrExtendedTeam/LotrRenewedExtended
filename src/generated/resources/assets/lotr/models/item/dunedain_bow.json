@@ -1,6 +1,0 @@
-{
-  "parent": "lotrextended:item/template_bow",
-  "textures": {
-    "layer0": "lotrextended:item/dunedain_bow"
-  }
-}

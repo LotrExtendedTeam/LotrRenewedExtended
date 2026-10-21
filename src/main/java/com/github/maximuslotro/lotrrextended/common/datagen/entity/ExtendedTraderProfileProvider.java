@@ -16,8 +16,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
@@ -30,7 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedTraderProfileProvider implements IDataProvider {
-	public static final Gson GSON = GsonSerializers.createTraderSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = ExtendedTraderProfileManager.GSON;
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedTraderProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;

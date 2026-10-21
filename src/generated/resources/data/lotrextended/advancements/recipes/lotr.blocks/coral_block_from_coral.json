@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:coral_block_from_coral"
+    ]
+  },
+  "criteria": {
+    "has_coral": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:coral"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:coral_block_from_coral"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coral",
+      "has_the_recipe"
+    ]
+  ]
+}

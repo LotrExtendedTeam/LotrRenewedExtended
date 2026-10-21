@@ -2,7 +2,7 @@
   "parent": "lotrextended:dunland/land_of_the_wild_men",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.dunland.dunlending_bartender_trade.title"

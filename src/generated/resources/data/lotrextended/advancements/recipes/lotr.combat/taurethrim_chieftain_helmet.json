@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:taurethrim_chieftain_helmet"
+    ]
+  },
+  "criteria": {
+    "has_flame_of_harad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:flame_of_harad"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:taurethrim_chieftain_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flame_of_harad",
+      "has_the_recipe"
+    ]
+  ]
+}

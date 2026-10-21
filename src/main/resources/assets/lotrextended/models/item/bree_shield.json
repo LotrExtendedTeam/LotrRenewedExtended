@@ -1,0 +1,152 @@
+{
+	"parent": "lotr:item/template_shield",
+	"textures": {
+		"straps": "lotrextended:item/bree_shield_straps",
+		"front": "lotrextended:item/bree_shield_front",
+		"back": "lotrextended:item/bree_shield_back",
+		"particle": "lotrextended:item/bree_shield_front"
+	},
+	"elements": [
+		{
+			"from": [5, -11, 6.5],
+			"to": [11, 11, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [6.5, 2.5, 9.5, 13.5], "texture": "#front"},
+				"east": {"uv": [6.5, 2.5, 7, 13.5], "texture": "#front"},
+				"south": {"uv": [6.5, 2.5, 9.5, 13.5], "texture": "#back"},
+				"west": {"uv": [9, 2.5, 9.5, 13.5], "texture": "#front"},
+				"up": {"uv": [9.5, 2.5, 6.5, 3], "texture": "#front"},
+				"down": {"uv": [9.5, 13, 6.5, 13.5], "texture": "#front"}
+			}
+		},
+		{
+			"from": [3, -10, 6.5],
+			"to": [13, 10, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [5.5, 3, 10.5, 13], "texture": "#front"},
+				"east": {"uv": [5.5, 3, 6, 13], "texture": "#front"},
+				"south": {"uv": [5.5, 3, 10.5, 13], "texture": "#back"},
+				"west": {"uv": [10, 3, 10.5, 13], "texture": "#front"},
+				"up": {"uv": [10.5, 3, 5.5, 3.5], "texture": "#front"},
+				"down": {"uv": [10.5, 12.5, 5.5, 13], "texture": "#front"}
+			}
+		},
+		{
+			"from": [1, -9, 6.5],
+			"to": [15, 9, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [4.5, 3.5, 11.5, 12.5], "texture": "#front"},
+				"east": {"uv": [4.5, 3.5, 5, 12.5], "texture": "#front"},
+				"south": {"uv": [4.5, 3.5, 11.5, 12.5], "texture": "#back"},
+				"west": {"uv": [11, 3.5, 11.5, 12.5], "texture": "#front"},
+				"up": {"uv": [11.5, 3.5, 4.5, 4], "texture": "#front"},
+				"down": {"uv": [11.5, 12, 4.5, 12.5], "texture": "#front"}
+			}
+		},
+		{
+			"from": [0, -8, 6.5],
+			"to": [16, 8, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [4, 4, 12, 12], "texture": "#front"},
+				"east": {"uv": [4, 4, 4.5, 12], "texture": "#front"},
+				"south": {"uv": [4, 4, 12, 12], "texture": "#back"},
+				"west": {"uv": [11.5, 4, 12, 12], "texture": "#front"},
+				"up": {"uv": [12, 4, 4, 4.5], "texture": "#front"},
+				"down": {"uv": [12, 11.5, 4, 12], "texture": "#front"}
+			}
+		},
+		{
+			"from": [-1, -7, 6.5],
+			"to": [17, 7, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [3.5, 4.5, 12.5, 11.5], "texture": "#front"},
+				"east": {"uv": [3.5, 4.5, 4, 11.5], "texture": "#front"},
+				"south": {"uv": [3.5, 4.5, 12.5, 11.5], "texture": "#back"},
+				"west": {"uv": [12, 4.5, 12.5, 11.5], "texture": "#front"},
+				"up": {"uv": [12.5, 4.5, 3.5, 5], "texture": "#front"},
+				"down": {"uv": [12.5, 11, 3.5, 11.5], "texture": "#front"}
+			}
+		},
+		{
+			"from": [-3, -3, 6.5],
+			"to": [19, 3, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [2.5, 6.5, 13.5, 9.5], "texture": "#front"},
+				"east": {"uv": [2.5, 6.5, 3, 9.5], "texture": "#front"},
+				"south": {"uv": [2.5, 6.5, 13.5, 9.5], "texture": "#back"},
+				"west": {"uv": [13, 6.5, 13.5, 9.5], "texture": "#front"},
+				"up": {"uv": [13.5, 6.5, 2.5, 7], "texture": "#front"},
+				"down": {"uv": [13.5, 9, 2.5, 9.5], "texture": "#front"}
+			}
+		},
+		{
+			"from": [-2, -5, 6.5],
+			"to": [18, 5, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [3, 5.5, 13, 10.5], "texture": "#front"},
+				"east": {"uv": [3, 5.5, 3.5, 10.5], "texture": "#front"},
+				"south": {"uv": [3, 5.5, 13, 10.5], "texture": "#back"},
+				"west": {"uv": [12.5, 5.5, 13, 10.5], "texture": "#front"},
+				"up": {"uv": [13, 5.5, 3, 6], "texture": "#front"},
+				"down": {"uv": [13, 10, 3, 10.5], "texture": "#front"}
+			}
+		},
+		{
+			"from": [10, -3, 8],
+			"to": [12, 4, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"east": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"south": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"west": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"up": {"uv": [1, 0, 8, 2], "rotation": 90, "texture": "#straps"},
+				"down": {"uv": [1, 7, 8, 9], "rotation": 90, "texture": "#straps"}
+			}
+		},
+		{
+			"from": [4, -3, 8],
+			"to": [6, 4, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"east": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"south": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"west": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"up": {"uv": [1, 0, 8, 2], "rotation": 90, "texture": "#straps"},
+				"down": {"uv": [1, 7, 8, 9], "rotation": 90, "texture": "#straps"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "lotrextended:item/bree_shield_blocking"
+		}
+	],
+	"display": {
+		"firstperson_righthand": {
+			"rotation": [0, -25, 1],
+			"translation": [3, 1.25, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -25, 1],
+			"translation": [3, 1.25, 1]
+		}
+	}
+}

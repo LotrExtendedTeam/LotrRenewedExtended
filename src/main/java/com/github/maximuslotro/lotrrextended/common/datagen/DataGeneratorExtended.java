@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.aggregation.ExtendedBiomeInfoGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.aggregation.ExtendedBiomeDataAggregator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCrucibleRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedCaptainProfileGenerator;
@@ -21,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedEntit
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.structures.ExtendedStructureProcessorListGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedTagRelatedGenerators;
+import com.github.maximuslotro.lotrrextended.common.datagen.world.ExtendedBiomeInformationGenerator;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
 import lotr.common.world.ExtendedInvasions;
@@ -50,8 +51,9 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedEntitySettingsGenerator(generator, existingFileHelper));
 			generator.addProvider(new ExtendedMapWaypointGenerator(generator, existingFileHelper, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedStructureProcessorListGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedBiomeInformationGenerator(generator, LotrExtendedMod.MODID));
 			// Make Data from Data
-			generator.addProvider(new ExtendedBiomeInfoGenerator(generator, existingFileHelper));
+			generator.addProvider(new ExtendedBiomeDataAggregator(generator, existingFileHelper));
 			// Validate Data
 			generator.addProvider(new ExtendedEntitySettingsMissingValidator(existingFileHelper));
 			generator.addProvider(new ExtendedItemsValidator());
@@ -66,7 +68,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedEntityTextureValidator(LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
-			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
+			generator.addProvider(new ExtendedLanguageGenerator(generator, existingFileHelper, LotrExtendedMod.MODID,"en_us"));
 		}
 	}
 }

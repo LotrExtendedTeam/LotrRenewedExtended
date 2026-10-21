@@ -109,7 +109,7 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:leather_hat"
+          "name": "lotrextended:leather_hat"
         },
         {
           "type": "minecraft:item",
@@ -291,7 +291,7 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:obsidian_shard"
+          "name": "lotrextended:obsidian_shard"
         },
         {
           "type": "minecraft:item",

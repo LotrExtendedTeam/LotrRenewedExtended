@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.knight_of_gondor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.knight_of_gondor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_gondor_captain": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:gondor_captain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_gondor_captain"
+    ]
+  ]
+}

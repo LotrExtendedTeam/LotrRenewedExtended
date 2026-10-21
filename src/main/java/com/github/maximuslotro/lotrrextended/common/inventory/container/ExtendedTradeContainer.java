@@ -7,17 +7,17 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,9 +37,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-/**
- * @author RichardB122
- */
+//TODO re-write entire container to directly access the trade inventory instead of using network packet changing
 public class ExtendedTradeContainer extends Container {
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.trading");
 
@@ -259,10 +257,7 @@ public class ExtendedTradeContainer extends Container {
                 }
                 player.inventory.setChanged();
 
-                if (!tradedYet) {
-                    player.awardStat(ExtendedStats.TRADERS_TRADED);
-                    tradedYet = true;
-                }
+                awardTradeStats();
                 if (!player.level.isClientSide()) {
                 	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade, price);
                 	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
@@ -390,10 +385,7 @@ public class ExtendedTradeContainer extends Container {
     					return ItemStack.EMPTY;
     				}
 
-    				if (!tradedYet) {
-    					player.awardStat(ExtendedStats.TRADERS_TRADED);
-    					tradedYet = true;
-    				}
+    				awardTradeStats();
 
     				// actually perform buy
     				stack.setCount(baseStackCount * tradesToPerform);
@@ -433,7 +425,7 @@ public class ExtendedTradeContainer extends Container {
     				return ItemStack.EMPTY;
     			}
     		// attempt to move items to sell slots
-    		}else if (!level.isClientSide && TradeUtils.isValidSellItem(slotItem, trader.getTraderData().getBuys()) && sellInventory.canAddItem(slotItem)) {
+    		}else if (!level.isClientSide && isValidSellItem(slotItem, trader.getTraderData().getBuys()) && sellInventory.canAddItem(slotItem)) {
     			ItemStack remaining = sellInventory.addItem(slotItem);
     			sellInventory.setChanged();
     			slot.set(remaining);
@@ -461,6 +453,14 @@ public class ExtendedTradeContainer extends Container {
     	return itemstack;
     }
 
+    public void awardTradeStats() {
+        if (!tradedYet) {
+            player.awardStat(ExtendedStats.TRADERS_TRADED);
+            LOTRLevelData.getSidedData(player).getFactionStatsData().getFactionStats(traderNPC.getFaction()).addTrade();
+            tradedYet = true;
+        }
+    }
+   
     /*
      * ONLY CALL SERVER SIDE!
      * */
@@ -499,9 +499,8 @@ public class ExtendedTradeContainer extends Container {
             }
         }
 
-        if (coinsGiven > 0 && !tradedYet) {
-            player.awardStat(ExtendedStats.TRADERS_TRADED, 1);
-            tradedYet = true;
+        if (coinsGiven > 0 ) {
+        	awardTradeStats();
         }
 
         if (!player.level.isClientSide()) {
@@ -549,4 +548,14 @@ public class ExtendedTradeContainer extends Container {
     public void setBoughtQuantities(int[] boughtQuantities) {
         this.boughtQuantities = boughtQuantities;
     }
+   
+	public static boolean isValidSellItem(ItemStack stack, List<ExtendedTrade> itemsBought) {
+		for (ExtendedTrade trade : itemsBought) {
+			ItemStack itemBought = trade.getStack();
+			if (itemBought.getItem().equals(stack.getItem())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

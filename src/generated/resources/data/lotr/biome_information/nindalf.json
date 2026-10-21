@@ -1,0 +1,8 @@
+{
+  "id": "lotr:nindalf",
+  "conquest_rate": 1.0,
+  "bandit_chance": "UNCOMMON",
+  "invasion_data": {
+    "lotr:mordor": "RARE"
+  }
+}

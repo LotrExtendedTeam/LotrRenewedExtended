@@ -1,0 +1,87 @@
+{
+  "id": "lotrextended:gondor_soldier",
+  "entity_type": "lotr:gondor_soldier",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.gondor_soldier"
+  },
+  "hiring": {
+    "hiringCost": 60,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 150
+  },
+  "attack_type": "melee",
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 6,
+        "equipmentItem": {
+          "item": "lotr:gondor_sword",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "lotr:gondor_spear",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_dagger",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gondor_shield",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ]
+  }
+}

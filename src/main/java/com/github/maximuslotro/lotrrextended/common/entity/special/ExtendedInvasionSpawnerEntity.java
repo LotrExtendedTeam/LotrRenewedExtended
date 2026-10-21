@@ -3,12 +3,12 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedIDataSerializerSerializers;
 
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
-import lotr.common.data.ExtendedLevelData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.NPCEntity;
@@ -44,10 +44,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
-
 public class ExtendedInvasionSpawnerEntity extends Entity {
-    private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
+    private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedIDataSerializerSerializers.RESOURCE_LOCATION);
 
     private static final float ROTATION_SPEED = 0.5F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
@@ -90,7 +88,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         bossBar.setVisible(getEnemiesLeft()>0);
     }
 
-    @Nonnull
     private Optional<Faction> attemptToGetFactionFromKey(FactionPointer factionPointer) {
         if (FactionSettingsManager.serverInstance() == null) {
         	return Optional.empty();
@@ -119,7 +116,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         	setInvasionSize(compoundNBT.getInt("invasion_size"));
         }
         invasionEnemiesLeft = compoundNBT.getInt("enemies_left");
-        ExtendedLevelData.serverInstance().registerInvasion(getUUID(), invasionEnemiesLeft);
+        ExtendedLevelData.serverInstance().getInvasionData().registerInvasion(getUUID(), invasionEnemiesLeft);
     }
 
     @Override
@@ -140,13 +137,13 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         	return;
         }
         // Sanity check to ensure the invasion is registered (should never be called in practice)
-        if(!ExtendedLevelData.serverInstance().hasInvasion(getUUID()) && invasionEnemiesLeft>0) {
+        if(!ExtendedLevelData.serverInstance().getInvasionData().hasInvasion(getUUID()) && invasionEnemiesLeft>0) {
         	ExtendedLog.warn("Had to sanity check register invasion! This should not happen.");
-        	ExtendedLevelData.serverInstance().registerInvasion(uuid, invasionEnemiesLeft);
+        	ExtendedLevelData.serverInstance().getInvasionData().registerInvasion(uuid, invasionEnemiesLeft);
         }
         // Gets how many enemies are left as tracked by the server
         // Will can return -1 if invalid or >=0 otherwise
-        setEnemiesLeft(ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID()));
+        setEnemiesLeft(ExtendedLevelData.serverInstance().getInvasionData().getEnemiesLeft(getUUID()));
         updateBossBar();
 
         // only attempt to spawn a mob every second
@@ -212,7 +209,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             Optional<Faction> invasionFaction = invasion.isPresent() ? attemptToGetFactionFromKey(invasion.get().getFactionPointer()) : Optional.empty();
 
             if (!level.isClientSide && invasionFaction.isPresent()) {
-                Set<UUID> playersWhoFought = ExtendedLevelData.serverInstance().getPlayersWhoFoughtInvasion(getUUID());
+                Set<UUID> playersWhoFought = ExtendedLevelData.serverInstance().getInvasionData().getPlayersWhoFoughtInvasion(getUUID());
                 for (UUID uuid : playersWhoFought) {
                     PlayerEntity playerEntity = level.getPlayerByUUID(uuid);
                     if (playerEntity == null) continue;
@@ -258,7 +255,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
                 entity.setPersistenceRequired();
                 // set NBT data for invasion
-                entity.getPersistentData().putUUID("lotr:invasion_id", this.getUUID());
+                entity.getPersistentData().putUUID("ExtInvasion", this.getUUID());
 
                 world.addFreshEntityWithPassengers(entity);
                 return true;
@@ -356,7 +353,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     	if (!level.isClientSide) {
     		// Pass null so entities don't try to target this spawner
             level.explode(null, this.getX(), this.getY(), this.getZ(), 2F, Explosion.Mode.NONE);
-            ExtendedLevelData.serverInstance().unregisterInvasion(getUUID());
+            ExtendedLevelData.serverInstance().getInvasionData().unregisterInvasion(getUUID());
             // Sanity check remove bossbar in the instance a creative player breaks the invasion with their hand
             if (bossBar != null) {
             	bossBar.removeAllPlayers();
@@ -463,7 +460,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         setInvasionSize(pInvasionSize);
         setEnemiesLeft(pInvasionSize);
         setBossBarText();
-        ExtendedLevelData.serverInstance().registerInvasion(getUUID(), pInvasionSize);
+        ExtendedLevelData.serverInstance().getInvasionData().registerInvasion(getUUID(), pInvasionSize);
         return true;
     }
 

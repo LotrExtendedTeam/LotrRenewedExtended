@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
-import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -49,9 +48,9 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 			.harvestTool(ToolType.HOE)
 			.noCollission()
 			.noOcclusion()
-			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
-			.isSuffocating(LOTRBlocks::posPredicateFalse)
-			.isViewBlocking(LOTRBlocks::posPredicateFalse));
+			.isRedstoneConductor(ExtendedBlockParms::never)
+			.isSuffocating(ExtendedBlockParms::never)
+			.isViewBlocking(ExtendedBlockParms::never));
 		this.berryItem = berryItem;
 		this.berryHedgeBlock = berryHedgeBlock;
 		registerDefaultState(stateDefinition.any().setValue(AGE, 0).setValue(CLIPPED, false));

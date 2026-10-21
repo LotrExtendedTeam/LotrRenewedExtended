@@ -1,0 +1,66 @@
+package com.github.maximuslotro.lotrrextended.common.serialization;
+
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformation;
+import com.google.gson.GsonBuilder;
+
+import net.minecraft.loot.BinomialRange;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.IntClamper;
+import net.minecraft.loot.RandomValueRange;
+import net.minecraft.util.ResourceLocation;
+
+public class ExtendedGsonSerializers {
+	public static GsonBuilder createConditionSerializer() {
+		return new GsonBuilder()
+			.registerTypeAdapter(RandomValueRange.class, new RandomValueRange.Serializer())
+			.registerTypeAdapter(BinomialRange.class, new BinomialRange.Serializer())
+			.registerTypeAdapter(ConstantRange.class, new ConstantRange.Serializer())
+			.registerTypeAdapter(IntClamper.class, new IntClamper.Serializer());
+	}
+
+	public static GsonBuilder createStructureSpawnerSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedStructureEntitySpawnerEntry.class, new ExtendedStructureEntitySpawnerEntry.Serializer())
+			.registerTypeAdapter(ExtendedStructureEntitySpawner.class, new ExtendedStructureEntitySpawner.Serializer())
+			.registerTypeAdapter(ExtendedSpawnerBoundsEntry.class, new ExtendedSpawnerBoundsEntry.Serializer());
+	}
+
+	public static GsonBuilder createHiredUnitSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedHiredUnitEquipmentPool.class, new ExtendedHiredUnitEquipmentPool.Serializer())
+			.registerTypeAdapter(ExtendedHiredUnitEquipmentItem.class, new ExtendedHiredUnitEquipmentItem.Serializer())
+			.registerTypeAdapter(ExtendedHiredUnitProfile.class, new ExtendedHiredUnitProfile.Serializer());
+	}
+
+	public static GsonBuilder createCaptainSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedCaptainProfile.class, new ExtendedCaptainProfile.Serializer());
+	}
+
+	public static GsonBuilder createSignTextSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer())
+			.registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer());
+	}
+
+	public static GsonBuilder createTraderSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedTraderProfile.class, new ExtendedTraderProfile.Serializer())
+			.registerTypeAdapter(ExtendedTraderPoolItem.class, new ExtendedTraderPoolItem.Serializer());
+	}
+
+	public static GsonBuilder createBiomeInformationSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedBiomeInformation.class, new ExtendedBiomeInformation.Serializer());
+	}
+}

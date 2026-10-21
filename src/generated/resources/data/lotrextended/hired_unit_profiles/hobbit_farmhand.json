@@ -46,7 +46,6 @@
         }
       }
     ],
-    "setIdleFromMelee": true,
     "melee": [
       {
         "weight": 5,

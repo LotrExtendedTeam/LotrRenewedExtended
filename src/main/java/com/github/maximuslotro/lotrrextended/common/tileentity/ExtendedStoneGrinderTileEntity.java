@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
@@ -14,7 +15,6 @@ import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import lotr.common.init.ExtendedTileEntities;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

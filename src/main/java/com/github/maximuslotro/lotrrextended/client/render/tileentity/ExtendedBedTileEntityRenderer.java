@@ -1,15 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedHighElvenBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBedType;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBedTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -114,34 +107,29 @@ public class ExtendedBedTileEntityRenderer<T extends TileEntity> extends TileEnt
 		p_228847_1_.popPose();
 	}
 
-		protected RenderMaterial getMaterial(T tileEntity) {
-			if(tileEntity instanceof ExtendedStrawBedTileEntity) {
-				return ExtendedBlockRenderer.STRAW_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedOrcBedTileEntity) {
-				return ExtendedBlockRenderer.ORC_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedBlackFurBedTileEntity) {
+	protected RenderMaterial getMaterial(T tileEntity) {
+		if(tileEntity instanceof ExtendedBedTileEntity) {
+			ExtendedBedType bedType = ((ExtendedBedTileEntity)tileEntity).getBedType();
+			if(bedType==ExtendedBedType.BLACK_FUR) {
 				return ExtendedBlockRenderer.BLACK_FUR_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedFurBedTileEntity) {
+			}else if(bedType==ExtendedBedType.BROWN_FUR) {
 				return ExtendedBlockRenderer.FUR_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedGrayFurBedTileEntity) {
+			}else if(bedType==ExtendedBedType.DWARVEN) {
+				return ExtendedBlockRenderer.DWARVEN_BED_MATERIAL;
+			}else if(bedType==ExtendedBedType.GRAY_FUR) {
 				return ExtendedBlockRenderer.GRAY_FUR_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedSilverFurBedTileEntity) {
+			}else if(bedType==ExtendedBedType.HIGH_ELVEN) {
+				return ExtendedBlockRenderer.HIGH_ELVEN_BED_MATERIAL;
+			}else if(bedType==ExtendedBedType.ORC) {
+				return ExtendedBlockRenderer.ORC_BED_MATERIAL;
+			}else if(bedType==ExtendedBedType.SILVER) {
 				return ExtendedBlockRenderer.SILVER_FUR_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
+			}else if(bedType==ExtendedBedType.STRAW) {
+				return ExtendedBlockRenderer.STRAW_BED_MATERIAL;
+			}else if(bedType==ExtendedBedType.WHITE) {
 				return ExtendedBlockRenderer.WHITE_FUR_BED_MATERIAL;
 			}
-			if(tileEntity instanceof ExtendedDwarvenBedTileEntity) {
-				return ExtendedBlockRenderer.DWARVEN_BED_MATERIAL;
-			}
-			if(tileEntity instanceof ExtendedHighElvenBedTileEntity) {
-				return ExtendedBlockRenderer.HIGH_ELVEN_BED_MATERIAL;
-			}
-			throw new IllegalArgumentException("Recieved invalid Bed Renderign Type!");
 		}
+		throw new IllegalArgumentException("Recieved Invalid Bed Rendering Type!");
+	}
 }

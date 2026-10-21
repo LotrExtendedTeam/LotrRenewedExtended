@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -53,9 +54,9 @@ public class ExtendedModTracker implements ExtendedTracker{
 		try {
 			Files.createDirectories(MODCHECKER_DIR);
 	        // Migrate old files first
-			ExtendedTracker.migrateIfNeeded(ALLOW_FILE, ALLOW_FILE_OLD);
-			ExtendedTracker.migrateIfNeeded(AUTOBAN_FILE, AUTOBAN_FILE_OLD);
-			ExtendedTracker.migrateIfNeeded(LOG_FILE, LOG_FILE_OLD);
+			ExtendedIOUtils.moveIfOldPath(ALLOW_FILE, ALLOW_FILE_OLD, false);
+			ExtendedIOUtils.moveIfOldPath(AUTOBAN_FILE, AUTOBAN_FILE_OLD, false);
+			ExtendedIOUtils.moveIfOldPath(LOG_FILE, LOG_FILE_OLD, false);
 
 			// Load allowlist
 			if (!Files.exists(ALLOW_FILE)) {

@@ -100,7 +100,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum",
+        "item": "lotrextended:plum",
         "averageCost": 1
       }
     },
@@ -318,17 +318,17 @@
       "weight": 50,
       "stacks": [
         {
-          "item": "lotr:plum_kvass",
+          "item": "lotrextended:plum_kvass",
           "averageCost": 8,
           "nbt": "{vessel:{potency:\"light\"}}"
         },
         {
-          "item": "lotr:plum_kvass",
+          "item": "lotrextended:plum_kvass",
           "averageCost": 10,
           "nbt": "{vessel:{potency:\"moderate\"}}"
         },
         {
-          "item": "lotr:plum_kvass",
+          "item": "lotrextended:plum_kvass",
           "averageCost": 12,
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
@@ -339,7 +339,7 @@
       "stack": {
         "item": "lotr:keg",
         "averageCost": 120,
-        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotrextended:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
       }
     },
     {
@@ -347,7 +347,7 @@
       "stack": {
         "item": "lotr:keg",
         "averageCost": 170,
-        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotrextended:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
       }
     },
     {

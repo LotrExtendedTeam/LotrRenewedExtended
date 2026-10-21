@@ -1,16 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.staffserver;
 
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.TickEvent;
@@ -25,7 +20,7 @@ public class ExtendedStaffEvents {
 		if (!(event.getPlayer() instanceof ServerPlayerEntity)) return;
 		if (!ExtendedServerConfig.enableStaffServer.get()) return;
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-		ExtendedTravelTracker.handlePlayerDimChange(player, event.getTo());
+		ExtendedTravelTracker.checkDimensionRestrictions(player, event.getTo().location());
 	}
 
 	private static int tickCounter = 0;
@@ -40,7 +35,7 @@ public class ExtendedStaffEvents {
 			return;
 		}
 		tickCounter = 0;
-		ExtendedTravelTracker.handleServerTravelTick();
+		ExtendedTravelTracker.handleServerTravelSecond();
 		ExtendedCombatTracker.handleServerTick();
 	}
 
@@ -58,36 +53,9 @@ public class ExtendedStaffEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
-		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished() 
-			&& !event.getPlayer().getUUID().equals(ExtendedWorldRegenEngineWatcher.ACTIVE_PLAYER)) {
-		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
-		}
-		
-		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
-			// Handle first to ensure data is loaded
-			ExtendedPlayerInfo.login(event.getPlayer().getUUID());
-			ExtendedCombatTracker.playerLoggedInEvent((ServerPlayerEntity) event.getPlayer());
-			ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
-		}
-	}
-
-	@SubscribeEvent
-	public static void playerLoggedOutEvent(PlayerEvent.PlayerLoggedOutEvent event) {
-		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedCombatTracker.playerLoggedOutEvent((ServerPlayerEntity) event.getPlayer());
-			ExtendedModTracker.onPlayerLoggout(event.getPlayer().getUUID());
-			// Handle last to ensure data isn't lost
-			ExtendedPlayerInfo.logout(event.getPlayer().getUUID());
-		}
-	}
-
 	public static void registerStaffCommands() {
 		CommandDispatcher<CommandSource> dispatcher = ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher();
 		ExtendedSpawnCommand.register(dispatcher);
 		ExtendedModControlCommand.register(dispatcher);
-		ExtendedFirstLastSeenCommand.register(dispatcher);
-		ExtendedPruneWorldCommand.register(dispatcher);
 	}
 }

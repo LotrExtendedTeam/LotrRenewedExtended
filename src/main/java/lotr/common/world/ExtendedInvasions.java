@@ -3,7 +3,6 @@ package lotr.common.world;
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -20,6 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 public enum ExtendedInvasions {
 
@@ -34,8 +34,8 @@ public enum ExtendedInvasions {
 	WOODLAND_REALM("lotr:woodland_realm", FactionPointers.WOODLAND_REALM, new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get())),
 	ROHAN("lotr:rohan", FactionPointers.ROHAN, new ItemStack(LOTRItems.ROHAN_SWORD.get())),
 	ISENGARD("lotr:isengard", FactionPointers.ISENGARD, new ItemStack(LOTRItems.URUK_CLEAVER.get())),
-	DUNLAND("lotrextended:isengard", FactionPointers.DUNLAND, new ItemStack(LOTRItems.DUNLENDING_CLUB.get())),
-	BREE("lotrextended:dunland", FactionPointers.BREE, new ItemStack(Items.IRON_SWORD)),
+	DUNLAND("lotrextended:dunland", FactionPointers.DUNLAND, new ItemStack(LOTRItems.DUNLENDING_CLUB.get())),
+	BREE("lotrextended:bree", FactionPointers.BREE, new ItemStack(Items.IRON_SWORD)),
 	BLUE_MOUNTAINS("lotrextended:blue_mountains", FactionPointers.BLUE_MOUNTAINS, new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get())),
 	DALE("lotrextended:dale", FactionPointers.DALE, new ItemStack(LOTRItems.DALE_SWORD.get())),
 	DURINS_FOLK("lotrextended:durins_folk", FactionPointers.DURINS_FOLK, new ItemStack(LOTRItems.DWARVEN_SWORD.get())),

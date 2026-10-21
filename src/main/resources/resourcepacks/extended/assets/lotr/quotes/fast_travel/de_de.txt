@@ -1,0 +1,36 @@
+# Quotes relating to travel from *The Lord of the Rings*, by J.R.R. Tolkien.
+
+"It's a dangerous business, Frodo, going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to."
+"Daheim verblasst, die Welt rückt nah, mit vielen Pfaden liegt sie da..."
+"Und lockt durch Schatten, durch Trug und Nacht, bis endlich Stern um Stern erwacht..."
+"Then world behind and home ahead, we'll wander back to home and bed..."
+"The world is indeed full of peril and in it there are many dark places."
+"That's the only place in all the lands we've ever heard of that we don't want to see any closer; and that's the one place we're trying to get to!"
+"His old life lay behind in the mists, dark adventure lay in front."
+"Then shouldering their burdens, they set off..."
+"I'll get there, if I leave everything but my bones behind."
+"Nicht jeder Verirrte verliert sich..."
+"I want to see mountains again, Gandalf – mountains; and then find somewhere where I can rest."
+"He looked at maps, and wondered what lay beyond their edges: maps made in the Shire showed mostly white spaces beyond its borders."
+"Roads go ever ever on, over rock and under tree..."
+"Roads go ever ever on, under cloud and under star..."
+"Yet feet that wandering have gone, turn at last to home afar..."
+"Die Straße gleitet fort und fort, weg von der Tür, wo sie begann..."
+"Weit überland, von Ort zu Ort, ich folge ihr, so gut ich kann..."
+"Zur Ferne hin, zum fremden Ort, ihr folge denn, wer wandern kann!"
+"End? No, the journey doesn't end here..."
+"We are plain quiet folk and have no use for adventures. Nasty disturbing uncomfortable things! Make you late for dinner!"
+"Was habe ich davon, wenn ich zurückkomme? Und werde ich überhaupt jemals zurückkommen?"
+"Über die Nebelberge weit, zu Höhlen tief aus alter Zeit..."
+"Ich komme von unterm Berg, und mein Weg hat mich auch unter den Berg und über den Berg geführt, und durch die Lüfte auch. Ich bin der Ungesehene..."
+"Faithless is he that says farewell when the road darkens."
+"Courage is found in unlikely places."
+"It's the job that's never started as takes longest to finish."
+"There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after."
+
+# This is a possible comment format.
+// This is another possible comment format. 
+// Lines starting with # or // will be ignored.
+# You can also put either type on the same line as a quote, after the quote, like this: // comment # comment
+
+# Empty lines will also be ignored.

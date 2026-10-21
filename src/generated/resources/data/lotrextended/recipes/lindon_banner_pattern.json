@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:lindon",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotrextended:lindon_banner"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:lindon_banner_pattern"
+  }
+}

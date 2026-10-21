@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.gundabad_uruk_archer"
   },
   "hiring": {
-    "hiringCost": 60,
+    "hiringCost": 120,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 400
   },
@@ -18,7 +18,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_helmet",
+          "item": "lotrextended:gundabad_uruk_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -27,7 +27,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_chestplate",
+          "item": "lotrextended:gundabad_uruk_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -36,7 +36,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_leggings",
+          "item": "lotrextended:gundabad_uruk_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -45,7 +45,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_boots",
+          "item": "lotrextended:gundabad_uruk_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -55,7 +55,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_dagger",
+          "item": "lotrextended:gundabad_uruk_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -64,21 +64,21 @@
       {
         "weight": 2,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_bow",
+          "item": "lotrextended:gundabad_uruk_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:orc_bow",
+          "item": "lotrextended:orc_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

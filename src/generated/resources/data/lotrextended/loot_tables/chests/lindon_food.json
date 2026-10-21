@@ -141,6 +141,21 @@
               }
             }
           ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
           "name": "lotr:green_apple"
         },
         {
@@ -197,7 +212,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -212,7 +227,7 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         },
         {
           "type": "minecraft:item",
@@ -237,7 +252,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",

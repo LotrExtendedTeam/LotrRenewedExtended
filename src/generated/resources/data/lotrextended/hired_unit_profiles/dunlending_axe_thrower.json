@@ -8,7 +8,7 @@
     "entity_unit_type": "entity.lotr.dunlending_axe_thrower"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 100,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
@@ -77,14 +77,14 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:bronze_throwing_axe",
+          "item": "lotrextended:bronze_throwing_axe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:iron_throwing_axe",
+          "item": "lotrextended:iron_throwing_axe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

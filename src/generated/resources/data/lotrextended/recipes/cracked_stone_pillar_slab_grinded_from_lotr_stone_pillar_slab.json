@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:stone_pillar_slab"
+  },
+  "result": "lotrextended:cracked_stone_pillar_slab",
+  "experience": 1.0
+}

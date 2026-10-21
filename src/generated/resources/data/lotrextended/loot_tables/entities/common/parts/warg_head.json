@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:warg_fur_helmet"
+          "name": "lotrextended:warg_fur_helmet"
         }
       ],
       "conditions": [

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
@@ -19,7 +20,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoila
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.gen.feature.BoulderFeatureConfig;
 import lotr.common.world.gen.feature.LOTRFeatures;
