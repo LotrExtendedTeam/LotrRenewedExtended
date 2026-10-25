@@ -309,7 +309,7 @@ public abstract class MixinMiddleEarthChunkGenerator extends ChunkGenerator {
 	 * <p>
 	 * This method is directly copied from {@code NoiseChunkGenerator} but with fields renamed to match Renewed's naming:
 	 * <ul>
-	 * <li>{@code CUBIC_SAMPLE} -> {@link #BEARD_KERNEL}</li>
+	 * <li>{@code CUBIC_SAMPLE} -> {@code BEARD_KERNEL}</li>
 	 * </ul>
 	 * 
 	 * @param x The absolute distance offset on the X axis.

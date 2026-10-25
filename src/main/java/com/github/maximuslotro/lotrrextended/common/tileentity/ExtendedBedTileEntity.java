@@ -5,10 +5,11 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBedType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.BedTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * Based on {@link} BedTileEntity}
+ * Based on {@link BedTileEntity}
  */
 public class ExtendedBedTileEntity extends TileEntity {
 	private ExtendedBedType bedType;

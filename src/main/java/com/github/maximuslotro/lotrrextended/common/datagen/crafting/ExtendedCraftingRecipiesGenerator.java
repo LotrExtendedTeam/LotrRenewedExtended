@@ -816,13 +816,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStairSlabWallRecipe(consumer, ExtendedItems.MOSSY_RED_ANGMAR_BRICK_STAIRS,
 			ExtendedItems.MOSSY_RED_ANGMAR_BRICK_SLAB,
 			ExtendedItems.MOSSY_RED_ANGMAR_BRICK_WALL,
-			()->ExtendedItems.MOSSY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->ExtendedItems.MOSSY_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		makeSnowyBlockRecipe(consumer, ExtendedItems.SNOWY_RED_ANGMAR_BRICK,
 			()->ExtendedItems.RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		makeStairSlabWallRecipe(consumer, ExtendedItems.SNOWY_RED_ANGMAR_BRICK_STAIRS,
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_SLAB,
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_WALL,
-			()->ExtendedItems.SNOWY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->ExtendedItems.SNOWY_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedItems.SMOOTH_GONDOR_ROCK_STAIRS,
 			()->LOTRItems.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING, "");

@@ -12,20 +12,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(SMultiBlockChangePacket.class)
 public class MixinSMultiBlockChangePacket {
 
-    /**
-     * Intercepts the getBlockState call inside the SMultiBlockChangePacket constructor.
-     * This safely catches null pointers or unexpected lookups, logs full diagnostic data,
-     * prints the stack trace, and provides a fallback block state to prevent server crashes.
-     * @param chunkSection 
-     * @param x 
-     * @param y 
-     * @param z 
-     * @param pSectionPos 
-     * @param pChangedBlocks 
-     * @param pLevelChunkSection 
-     * @param pSuppressLightUpdates 
-     * @return A safe blockstate or throws a NPE so the issue can be caught
-     */
     @Redirect(
         method = "<init>(Lnet/minecraft/util/math/SectionPos;Lit/unimi/dsi/fastutil/shorts/ShortSet;Lnet/minecraft/world/chunk/ChunkSection;Z)V",
         at = @At(
