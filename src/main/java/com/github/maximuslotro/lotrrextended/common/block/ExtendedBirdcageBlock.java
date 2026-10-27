@@ -1,22 +1,33 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class ExtendedBirdcageBlock extends HorizontalBlock {
+import javax.annotation.Nullable;
+
+public class ExtendedBirdcageBlock extends ContainerBlock {
+
+	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
 	public ExtendedBirdcageBlock(Properties properties) {
 		super(properties.noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+	}
+
+	public BlockState mirror(BlockState pState, Mirror pMirror) {
+		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
 	}
 
 	@Override
@@ -29,8 +40,24 @@ public class ExtendedBirdcageBlock extends HorizontalBlock {
 		return this.defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite());
 	}
 
+	@Nullable
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING);
+	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
+		return new ExtendedBirdcageTileEntity();
+	}
+
+	@Override
+	public BlockState rotate(BlockState pState, Rotation pRotation) {
+		return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+		stateBuilder.add(FACING);
+	}
+
+	@Override
+	public BlockRenderType getRenderShape(BlockState pState) {
+		return BlockRenderType.MODEL;
 	}
 }
