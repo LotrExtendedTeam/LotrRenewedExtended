@@ -1,16 +1,17 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
+import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedCrabanRenderer;
+import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedCrabanModel;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
 
 public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<ExtendedBirdcageTileEntity> {
+    private final ExtendedCrabanModel<ExtendedCrabanEntity> birdModel = new ExtendedCrabanModel<>();
 
     public ExtendedBirdCageTileEntityRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
@@ -18,27 +19,21 @@ public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<Exten
 
     @Override
     public void render(ExtendedBirdcageTileEntity tileEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
-        pMatrixStack.pushPose();
-        pMatrixStack.translate(0.5D, 0.0D, 0.5D);
-
-        Entity entity = tileEntity.getOrCreateBirdEntity();
-        if (entity != null) {
-            float f = 0.90F;
-            float f1 = Math.max(entity.getBbWidth(), entity.getBbHeight());
-            if ((double)f1 > 1.0D) {
-                f /= f1;
-            }
-
-            pMatrixStack.translate(0.0D, 0.4F, 0.0D);
-            pMatrixStack.mulPose(Vector3f.YP.rotationDegrees((float) MathHelper.lerp(pPartialTicks, 0.0D, 0.0D) * 10.0F));
-            pMatrixStack.translate(0.0D, -0.2F, 0.0D);
-            pMatrixStack.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
-            pMatrixStack.scale(f, f, f);
-            Minecraft.getInstance().getEntityRenderDispatcher().render(entity, 0.0D, 0.0D, 0.0D, 0.0F, pPartialTicks, pMatrixStack, pBuffer, pCombinedLight);
+        if (tileEntity.getLevel() == null) {
+            return;
         }
 
+        // TODO: Make a head dip animation?
+        // TODO: Figure out how to alternate between showing flapping and just normal standing and head dip animation
+        double animationTime = tileEntity.getLevel().getGameTime() + (double) pPartialTicks;
+        birdModel.setupCageAnim(animationTime);
+
+        pMatrixStack.pushPose();
+        pMatrixStack.translate(0.5D, 0.2D, 0.5D);
+        pMatrixStack.scale(0.90F, -0.90F, -0.90F);
+        pMatrixStack.translate(0.0D, -1.501D, 0.0D);
+        birdModel.renderToBuffer(pMatrixStack, pBuffer.getBuffer(birdModel.renderType(ExtendedCrabanRenderer.LOCATION)),
+                pCombinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         pMatrixStack.popPose();
-
-
     }
 }

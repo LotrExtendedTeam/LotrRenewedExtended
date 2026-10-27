@@ -75,15 +75,23 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
 
     @Override
     public void setupAnim(T e, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
-        this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
-        this.left_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
-        this.right_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
-
         float wing = 0.0F;
         if (!e.isOnGround() && e.isFlying()) {
             wing = MathHelper.sin(pAgeInTicks * 1.2F) * 0.6F +.2F;
         }
+        setupPose(pLimbSwing, pLimbSwingAmount, pNetHeadYaw, pHeadPitch, wing);
+    }
+
+    public void setupCageAnim(double ageInTicks) {
+        float wing = (float) Math.sin(ageInTicks * 1.2D) * 0.6F + 0.2F;
+        setupPose(0.0F, 0.0F, 0.0F, 0.0F, wing);
+    }
+
+    private void setupPose(float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, float wing) {
+        this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
+        this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
+        this.left_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
+        this.right_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
 
         this.right_wing.zRot = wing;
         this.left_wing.zRot = -wing;
