@@ -5,6 +5,8 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
@@ -201,6 +203,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			}
 			if(block.get() instanceof ExtendedChainBlock) {
 				tag(ExtendedTags.Blocks.CHAINS).add(block.get());
+			}
+			if(block.get() instanceof ExtendedFlowerBlock || block.get() instanceof ExtendedFlowerEffectlessBlock) {
+				tag(BlockTags.SMALL_FLOWERS).add(block.get());
 			}
 		}
 

@@ -77,6 +77,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -871,6 +872,16 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> NUMENOREAN_BARS = register("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 
 	public static RegistryObject<Block> LEEKS = register("leeks", () -> new ExtendedLeekBlock(Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP)));
+
+	public static RegistryObject<Block> SUNFRUIT = register("sunfruit", () -> new ExtendedFangornFlowerBlock(Effects.FIRE_RESISTANCE, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> SPRINGLEAF = register("springleaf", () -> new ExtendedFangornFlowerBlock(Effects.JUMP, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> RIVERWEED = register("riverweed", () -> new ExtendedFangornFlowerBlock(Effects.WATER_BREATHING, 15, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> TEARS_OF_YAVANNA = register("tears_of_yavanna", () -> new ExtendedFangornFlowerBlock(Effects.MOVEMENT_SPEED, 6, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> ELFSONG = register("elfsong", () -> new ExtendedFangornFlowerBlock(Effects.REGENERATION, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> MOONFLOWER = register("moonflower", () -> new ExtendedFangornFlowerBlock(Effects.NIGHT_VISION, 9, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> FANGORNS_BEARD = register("fangorns_beard", () -> new ExtendedFangornFlowerBlock(Effects.SATURATION, 6, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> HOURN_LEAF = register("huorn_leaf", () -> new ExtendedFangornHournLeafBlock(Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> STONEROOT = register("stone_root", () -> new ExtendedFangornStoneRootBlock(Effects.DAMAGE_RESISTANCE, 12, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
 
 	public static void register(IEventBus bus) {
 		BLOCKS.register(bus);

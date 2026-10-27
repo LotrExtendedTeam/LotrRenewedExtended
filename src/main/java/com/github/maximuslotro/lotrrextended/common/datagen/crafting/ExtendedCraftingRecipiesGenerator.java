@@ -2494,6 +2494,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.SMITH_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.LEEKS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.LEEK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SUNFRUIT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.MOONFLOWER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.FANGORNS_BEARD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.HOURN_LEAF.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RIVERWEED.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SPRINGLEAF.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STONEROOT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.TEARS_OF_YAVANNA.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ELFSONG.get().getRegistryName().getPath());
 	}
 
 	@Override

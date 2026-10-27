@@ -8,6 +8,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
@@ -156,6 +158,10 @@ public class ExtendedBlockRenderer {
 			}else if(block instanceof ExtendedBarsBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}else if(block instanceof CropsBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}else if(block instanceof ExtendedFlowerBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}else if(block instanceof ExtendedFlowerEffectlessBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}

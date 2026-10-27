@@ -633,6 +633,16 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROHAN_BANNER = regItem("rohan_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.ROHAN_BANNER.get(), ExtendedBlocks.ROHAN_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 	public static RegistryObject<Item> WOODLAND_REALM_BANNER = regItem("woodland_realm_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.WOODLAND_REALM_BANNER.get(), ExtendedBlocks.WOODLAND_REALM_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 
+	public static RegistryObject<Item> ELFSONG = regBlockItem(ExtendedBlocks.ELFSONG, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> FANGORNS_BEARD = regBlockItem(ExtendedBlocks.FANGORNS_BEARD, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> HOURN_LEAF = regBlockItem(ExtendedBlocks.HOURN_LEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> MOONFLOWER = regBlockItem(ExtendedBlocks.MOONFLOWER, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> RIVERWEED = regBlockItem(ExtendedBlocks.RIVERWEED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> SPRINGLEAF = regBlockItem(ExtendedBlocks.SPRINGLEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> STONEROOT = regBlockItem(ExtendedBlocks.STONEROOT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> SUNFRUIT = regBlockItem(ExtendedBlocks.SUNFRUIT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> TEARS_OF_YAVANNA = regBlockItem(ExtendedBlocks.TEARS_OF_YAVANNA, LOTRItemGroups.DECO);
+
 	//###################################################################MATERIALS########################################################
 	//Misc
 	public static RegistryObject<Item> OBSIDIAN_SHARD = regItem("obsidian_shard", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));

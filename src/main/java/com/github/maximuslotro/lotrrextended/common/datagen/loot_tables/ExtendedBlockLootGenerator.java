@@ -19,6 +19,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandel
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -407,6 +409,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.get() instanceof ExtendedGroundDirtBlock) {
+				dropSelf(block.get());
+				continue;
+			}
+			if(block.get() instanceof ExtendedFlowerBlock || block.get() instanceof ExtendedFlowerEffectlessBlock) {
 				dropSelf(block.get());
 				continue;
 			}
