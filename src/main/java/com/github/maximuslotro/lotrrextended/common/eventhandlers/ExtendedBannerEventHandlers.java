@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBoo
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedFangornRiverWeedItem;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 
 import lotr.common.block.FactionCraftingTableBlock;
@@ -160,10 +161,11 @@ public class ExtendedBannerEventHandlers {
 			if(!itemstack.isEmpty() && (itemstack.getItem() instanceof BoatItem 
 				|| itemstack.getItem() instanceof ExtendedBoatItem 
 				|| itemstack.getItem() instanceof LOTRBoatItem
-				|| itemstack.getItem() instanceof LilyPadItem)){
+				|| itemstack.getItem() instanceof LilyPadItem
+				|| itemstack.getItem() instanceof ExtendedFangornRiverWeedItem)){
 				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING)).isNotAllowed()) {
 					event.setCanceled(true);
-					if(itemstack.getItem() instanceof LilyPadItem) {
+					if(itemstack.getItem() instanceof LilyPadItem || itemstack.getItem() instanceof ExtendedFangornRiverWeedItem) {
 						BlockRayTraceResult blockraytraceresult = Item.getPlayerPOVHitResult(world, event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
 						if (blockraytraceresult.getType() == BlockRayTraceResult.Type.BLOCK) {
 							BlockPos waterPos = blockraytraceresult.getBlockPos();

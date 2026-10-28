@@ -2435,7 +2435,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WHITE_WARG_HELMET.get().getRegistryName().getPath());
-		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
+		for(RegistryObject<? extends Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());

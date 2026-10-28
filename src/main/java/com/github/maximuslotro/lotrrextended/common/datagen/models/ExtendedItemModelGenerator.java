@@ -77,6 +77,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class ExtendedItemModelGenerator extends ItemModelProvider {
 	private static final Set<String> DIVERTED_MODELS = ImmutableSet.of(
@@ -109,6 +110,15 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		}
 	}
 
+	public ResourceLocation blockLocation(ForgeRegistryEntry<?> object) {
+		return new ResourceLocation(object.getRegistryName().getNamespace(), "block/"+object.getRegistryName().getPath());
+	}
+	public ResourceLocation itemLocation(ForgeRegistryEntry<?> object) {
+		return itemLocation(object, "");
+	}
+	public ResourceLocation itemLocation(ForgeRegistryEntry<?> object, String suffex) {
+		return new ResourceLocation(object.getRegistryName().getNamespace(), "item/"+object.getRegistryName().getPath()+suffex);
+	}
 	public ResourceLocation lotrExtendedLoc(String name) {
 		return new ResourceLocation("lotrextended", name);
 	}
@@ -118,12 +128,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	public void registerOverrides() {
-		genGenerated(ExtendedItems.MORGUL_BRAZIER.get(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_BRAZIER.getId().getPath()));
-		genGenerated(ExtendedItems.WEAPON_RACK.get(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.get()));
+		genGenerated(ExtendedItems.MORGUL_BRAZIER.get(), itemLocation(ExtendedItems.MORGUL_BRAZIER.get()));
+		genGenerated(ExtendedItems.WEAPON_RACK.get(), itemLocation(ExtendedItems.WEAPON_RACK.get()));
 		genGenerated(ExtendedItems.ENTITY_SPAWNER.get(), lotrExtendedLoc("block/spawner_block"));
-		genGenerated(ExtendedItems.ROPE.get(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.get()));
-		genGenerated(ExtendedItems.GRASS_VOID.get(), lotrExtendedLoc("item/"+ExtendedItems.GRASS_VOID.getId().getPath()));
-		genGenerated(ExtendedItems.RIVERWEED.get(), lotrExtendedLoc("block/"+ExtendedItems.RIVERWEED.getId().getPath()));
+		genGenerated(ExtendedItems.ROPE.get(), itemLocation(ExtendedItems.ROPE.get()));
+		genGenerated(ExtendedItems.GRASS_VOID.get(), itemLocation(ExtendedItems.GRASS_VOID.get()));
+		genGenerated(ExtendedItems.RIVERWEED.get(), blockLocation(ExtendedItems.RIVERWEED.get()));
+		genGenerated(ExtendedItems.STONEROOT.get(), blockLocation(ExtendedItems.STONEROOT.get()));
 	}
 	@Override
 	protected void registerModels() {
@@ -131,85 +142,85 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.get() instanceof BlockItem) {
 				if((((BlockItem)item.get()).getBlock() instanceof LOTRDoorBlock) || (((BlockItem)item.get()).getBlock() instanceof DoorBlock)
 					|| (((BlockItem)item.get()).getBlock() instanceof ChandelierBlock)) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedSaplingBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					genGenerated(item.get(), blockLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLargePotBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLargeFlowerPotBlock && !item.getId().getPath().contains("large_pot_")) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedStandingSignBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedBirdcageBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof VesselDrinkBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedChainBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedCakeBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedCrystalChandelierBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLanternElvenBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedChainBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedBarsBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					genGenerated(item.get(), blockLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLOTRTorchBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					genGenerated(item.get(), blockLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedFlowerBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					genGenerated(item.get(), blockLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedFlowerEffectlessBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					genGenerated(item.get(), blockLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
-					ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", lotrExtendedLoc("item/"+item.getId().getPath()));
+					ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", itemLocation(item.get()));
 					ItemModelBuilder heldModel = genSwordHeld(item.get());
 					genTransformWrapper(item.get(), guiModel, heldModel);
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof CropsBlock) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedVineBlock) {
 					if(item.getId().getPath().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
-						genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()+"_hand"));
+						genGenerated(item.get(), itemLocation(item.get(), "_hand"));
 						continue;
 					}else {
-						genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+						genGenerated(item.get(), blockLocation(item.get()));
 					}
 					continue;
 				}
@@ -226,11 +237,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					continue;
 				}
 				if(item.get() instanceof ExtendedBerryItem) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				if(item.get() instanceof ExtendedChiselItem) {
-					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genGenerated(item.get(), itemLocation(item.get()));
 					continue;
 				}
 				continue;
@@ -239,15 +250,15 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.get() instanceof ExtendedLeatherHatItem) {
-				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_overlay"));
+				genGenerated(item.get(), itemLocation(item.get()), itemLocation(item.get(), "_overlay"));
 				continue;
 			}
 			if(item.getId().getPath().contains("torch")) {
-				genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+				genGenerated(item.get(), blockLocation(item.get()));
 				continue;
 			}
 			if(item.get() instanceof LOTRArmorItem) {
-				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genGenerated(item.get(), itemLocation(item.get()));
 				continue;
 			}
 			if(item.get() instanceof VesselDrinkItem) {
@@ -266,11 +277,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.get() instanceof ExtendedDaggerItem) {
-				genDagger(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_poisoned"), false);
+				genDagger(item.get(), itemLocation(item.get()), itemLocation(item.get(), "_poisoned"), false);
 				continue;
 			}
 			if(item.get() instanceof SpearItem ||item.get() instanceof ExtendedStaffItem || item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
-				ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", lotrExtendedLoc("item/"+item.getId().getPath()));
+				ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", itemLocation(item.get()));
 				ItemModelBuilder heldModel = null;
 				if(item.get() instanceof SpearItem){
 					heldModel = genSpearHeld(item.get());
@@ -286,8 +297,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.get() instanceof LOTRShieldItem) {
 				try {
-					getExistingFile(lotrExtendedLoc("item/"+item.getId().getPath()));
-					getExistingFile(lotrExtendedLoc("item/"+item.getId().getPath()+"_blocking"));
+					getExistingFile(itemLocation(item.get()));
+					getExistingFile(itemLocation(item.get(), "_blocking"));
 				}catch(IllegalStateException e) {
 					System.out.println("Missing shield model: "+item.getId().getPath());
 					System.out.println("Missing shield model: "+item.getId().getPath()+"_blocking");
@@ -305,19 +316,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				|| (item.get() instanceof LOTRHoeItem)
 				|| (item.get() instanceof ExtendedMattockItem)
 				|| (item.get() instanceof ExtendedThrowableAxeItem)) {
-				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genHandheld(item.get(), itemLocation(item.get()));
 				continue;
 			}
 			if(item.get() instanceof ExtendedCommandHornItem) {
-				genCommandHorn(item.get(), "item/"+item.getId().getPath());
+				genCommandHorn(item.get());
 				continue;
 			}
 			if(item.get() instanceof ExtendedBrandingIronItem) {
-				genBrandingIron(item.get(), "item/"+item.getId().getPath());
+				genBrandingIron(item.get());
 				continue;
 			}
 			if(item.get() instanceof ExtendedModifierScrollItem) {
-				genModifierScroll(item.get(), "item/"+item.getId().getPath());
+				genModifierScroll(item.get());
 				continue;
 			}
 			if(item.get() instanceof ExtendedCrossbowItem) {
@@ -330,7 +341,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			try {
-				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genGenerated(item.get(), itemLocation(item.get()));
 				continue;
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -472,23 +483,23 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return gen(builder, layers);
 	}
 
-	private ItemModelBuilder genCommandHorn(Item item, String location) {
-		ItemModelBuilder builder = genGenerated(item, lotrExtendedLoc(location));
-		ItemModelBuilder builder_halt = genGenerated(item, "_halt", lotrExtendedLoc(location+"_halt"));
-		ItemModelBuilder builder_reddy = genGenerated(item, "_reddy", lotrExtendedLoc(location+"_ready"));
-		ItemModelBuilder builder_summon = genGenerated(item, "_summon", lotrExtendedLoc(location+"_summon"));
+	private ItemModelBuilder genCommandHorn(Item item) {
+		ItemModelBuilder builder = genGenerated(item, itemLocation(item));
+		ItemModelBuilder builder_halt = genGenerated(item, "_halt", itemLocation(item, "_halt"));
+		ItemModelBuilder builder_reddy = genGenerated(item, "_reddy", itemLocation(item, "_ready"));
+		ItemModelBuilder builder_summon = genGenerated(item, "_summon", itemLocation(item, "_summon"));
 		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1);
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2);
 		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3);
 		return builder;
 	}
 
-	private ItemModelBuilder genModifierScroll(Item item, String location) {
-		ItemModelBuilder builder = genGenerated(item, lotrExtendedLoc(location+"_wooden"));//TODO maybe have a "basic" modifier scroll texture in the future?
-		ItemModelBuilder builder_wooden = genGenerated(item, "_wooden", lotrExtendedLoc(location+"_wooden"));
-		ItemModelBuilder builder_bronze = genGenerated(item, "_bronze", lotrExtendedLoc(location+"_bronze"));
-		ItemModelBuilder builder_silver = genGenerated(item, "_silver", lotrExtendedLoc(location+"_silver"));
-		ItemModelBuilder builder_golden = genGenerated(item, "_golden", lotrExtendedLoc(location+"_golden"));
+	private ItemModelBuilder genModifierScroll(Item item) {
+		ItemModelBuilder builder = genGenerated(item, itemLocation(item, "_wooden"));//TODO maybe have a "basic" modifier scroll texture in the future?
+		ItemModelBuilder builder_wooden = genGenerated(item, "_wooden", itemLocation(item, "_wooden"));
+		ItemModelBuilder builder_bronze = genGenerated(item, "_bronze", itemLocation(item, "_bronze"));
+		ItemModelBuilder builder_silver = genGenerated(item, "_silver", itemLocation(item, "_silver"));
+		ItemModelBuilder builder_golden = genGenerated(item, "_golden", itemLocation(item, "_golden"));
 		builder.override().model(builder_wooden).predicate(ExtendedItemModelsProperties.scroll_type, 0);
 		builder.override().model(builder_bronze).predicate(ExtendedItemModelsProperties.scroll_type, 1);
 		builder.override().model(builder_silver).predicate(ExtendedItemModelsProperties.scroll_type, 2);
@@ -511,9 +522,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder genBrandingIron(Item item, String location) {
-		ItemModelBuilder builder = genHandheld(item, lotrExtendedLoc(location));
-		ItemModelBuilder builder_iron_hot = genHandheld(item, "_hot", lotrExtendedLoc(location+"_hot"));
+	private ItemModelBuilder genBrandingIron(Item item) {
+		ItemModelBuilder builder = genHandheld(item, itemLocation(item));
+		ItemModelBuilder builder_iron_hot = genHandheld(item, "_hot", itemLocation(item, "_hot"));
 		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1);
 		return builder;
 	}

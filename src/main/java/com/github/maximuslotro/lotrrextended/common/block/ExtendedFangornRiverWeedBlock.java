@@ -15,9 +15,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.PlantType;
 
-public class ExtendedFangornRiverWeedBlock extends ExtendedFangornFlowerBlock {
+public class ExtendedFangornRiverWeedBlock extends ExtendedFlowerBlock {
 	protected static final VoxelShape AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.5D, 16.0D);
 
 	public ExtendedFangornRiverWeedBlock(Effect pSuspiciousStewEffect, int pEffectDuration, Properties pProperties) {
@@ -47,10 +46,5 @@ public class ExtendedFangornRiverWeedBlock extends ExtendedFangornFlowerBlock {
 	@Override
 	public AbstractBlock.OffsetType getOffsetType() {
 		return AbstractBlock.OffsetType.NONE;
-	}
-
-	@Override
-	public PlantType getPlantType(IBlockReader world, BlockPos pos) {
-		return PlantType.WATER;
 	}
 }

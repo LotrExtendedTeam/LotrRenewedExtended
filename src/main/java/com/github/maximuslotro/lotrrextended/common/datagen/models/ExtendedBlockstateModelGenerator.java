@@ -191,7 +191,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genCrossBlock(ExtendedBlocks.MOONFLOWER.get(), Tinted.NOT_TINTED);
 		genCrossBlock(ExtendedBlocks.FANGORNS_BEARD.get(), Tinted.NOT_TINTED);
 		genCrossBlock(ExtendedBlocks.HOURN_LEAF.get(), Tinted.NOT_TINTED);
-		genCrossBlock(ExtendedBlocks.STONEROOT.get(), Tinted.NOT_TINTED);
+		genCrossDrectionalBlock(ExtendedBlocks.STONEROOT.get(), Tinted.NOT_TINTED);
 		genWaterWeedBlock(ExtendedBlocks.RIVERWEED.get(), Tinted.NOT_TINTED);
 
 		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
@@ -2054,6 +2054,47 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(crossBlock, model);
 	}
 
+	private void genCrossDrectionalBlock(HorizontalFaceBlock crossBlock, Tinted tinted) {
+		registeredBlocks.add(crossBlock);
+		ModelFile model = models().withExistingParent(crossBlock.getRegistryName().toString(), tinted.getCross()).texture("cross", getBlockTexture(crossBlock));
+		getVariantBuilder(crossBlock)
+		.forAllStatesExcept(state -> {
+			AttachFace face = state.getValue(HorizontalFaceBlock.FACE);
+			Direction faciing = state.getValue(HorizontalBlock.FACING);
+			int yValue = 0;
+			if(faciing==Direction.EAST) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=90;
+				}
+				else {
+					yValue=270;
+				}
+			}
+			if(faciing==Direction.NORTH) {
+				if(face==AttachFace.CEILING) {
+					yValue=180;
+				}
+			}
+			if(faciing==Direction.SOUTH) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=180;
+				}
+			}
+			if(faciing==Direction.WEST) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=270;
+				}
+				else {
+					yValue=90;
+				}
+			}
+			return ConfiguredModel.builder()
+					.modelFile(model).uvLock(false)//.uvLock(face==AttachFace.WALL)
+					.rotationX(face == AttachFace.CEILING ? 180 : (face == AttachFace.WALL ? 90 : 0))
+					.rotationY(yValue)
+					.build();
+		});
+	}
 	private void genWaterWeedBlock(Block crossBlock, Tinted tinted) {
 		registeredBlocks.add(crossBlock);
 		ModelFile model = models().withExistingParent(crossBlock.getRegistryName().toString(), tinted.getWaterWeed()).texture("texture", getBlockTexture(crossBlock)).texture("particle", getBlockTexture(crossBlock));
