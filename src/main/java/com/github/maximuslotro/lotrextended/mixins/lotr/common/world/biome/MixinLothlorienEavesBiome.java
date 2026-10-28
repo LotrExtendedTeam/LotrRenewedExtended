@@ -3,7 +3,9 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import lotr.common.init.LOTRBlocks;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.biome.LothlorienBiome.Eaves;
@@ -29,6 +31,8 @@ public class MixinLothlorienEavesBiome {
 			LOTRBiomeFeatures.aspen(), 1000, LOTRBiomeFeatures.aspenLarge(), 200);
 		LOTRBiomeFeatures.addGrass((Eaves)(Object)this, builder, 10, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);
-		LOTRBiomeFeatures.addForestFlowers(builder, 2, LOTRBlocks.ELANOR.get(), 10, LOTRBlocks.NIPHREDIL.get(), 10);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN_EVES);
+		// Extended End
 	}
 }

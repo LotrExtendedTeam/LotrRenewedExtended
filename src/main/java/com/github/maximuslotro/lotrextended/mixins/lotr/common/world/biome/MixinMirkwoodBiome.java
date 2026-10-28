@@ -6,6 +6,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
@@ -42,7 +45,9 @@ public class MixinMirkwoodBiome {
 			LOTRBiomeFeatures.pine(), 2000, LOTRBiomeFeatures.pineDead(), 200);
 		LOTRBiomeFeatures.addGrass((MirkwoodBiome)(Object)this, builder, 12, GrassBlends.MUTED_WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED_WITH_FERNS);
-		LOTRBiomeFeatures.addForestFlowers(builder, 1);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
+		// Extended End
 		LOTRBiomeFeatures.addMoreMushroomsFreq(builder, 2);
 		LOTRBiomeFeatures.addMirkShroomsFreq(builder, 1);
 		LOTRBiomeFeatures.addFallenLogs(builder, 2);

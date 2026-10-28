@@ -3,6 +3,9 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.biome.MirkwoodBiome.Mountains;
@@ -29,7 +32,9 @@ public class MixinMirkwoodMountainsBiome {
 			LOTRBiomeFeatures.firShrub(), 1000, LOTRBiomeFeatures.pineShrub(), 300);
 		LOTRBiomeFeatures.addGrass((Mountains)(Object)this, builder, 8, GrassBlends.MUTED_WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 4, GrassBlends.DOUBLE_MUTED_WITH_FERNS);
-		LOTRBiomeFeatures.addForestFlowers(builder, 1);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
+		// Extended End
 		LOTRBiomeFeatures.addMoreMushroomsFreq(builder, 2);
 		LOTRBiomeFeatures.addMirkShroomsFreq(builder, 1);
 		LOTRBiomeFeatures.addFallenLogsBelowTreeline(builder, 1, treeline);

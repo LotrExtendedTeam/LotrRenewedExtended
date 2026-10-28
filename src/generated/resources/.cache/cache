@@ -8420,6 +8420,7 @@ e4c14ad98af7c84db5254a52e4ca545e4070217e data/minecraft/tags/items/planks.json
 0c9af3a6122d3b1230a86212cb964f6397c0ea98 data/minecraft/tags/items/saplings.json
 d7cf991a6147ef529c8cb8d4d3f8f1a6203453d6 data/minecraft/tags/items/signs.json
 6cd90c81b0aa1479ded0b0f42ed268f6d7efcf73 data/minecraft/tags/items/slabs.json
+c66184312ee31bd205ea5c0d7d64ec688b5a1516 data/minecraft/tags/items/small_flowers.json
 ef22e097a9ba36f6226154f0cb20b3c68dc40b25 data/minecraft/tags/items/stairs.json
 094374ede9a31b441b387eb492b6e55b6c5dacc8 data/minecraft/tags/items/trapdoors.json
 682bb84b7f9881981a1d40659cc3a3648b79e3bd data/minecraft/tags/items/walls.json

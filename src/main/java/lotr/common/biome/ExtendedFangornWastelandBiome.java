@@ -1,6 +1,8 @@
 package lotr.common.biome;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -40,7 +42,9 @@ public class ExtendedFangornWastelandBiome extends FangornBiome implements Exten
 				ExtendedBiomeFeatures.deadBirchFangorn(), 1});
 		LOTRBiomeFeatures.addGrass(this, builder, 5, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_WITH_FERNS);
-		LOTRBiomeFeatures.addForestFlowers(builder, 1, new Object[0]);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
+		// Extended End
 		LOTRBiomeFeatures.addFallenLogs(builder, 2);
 	}
 

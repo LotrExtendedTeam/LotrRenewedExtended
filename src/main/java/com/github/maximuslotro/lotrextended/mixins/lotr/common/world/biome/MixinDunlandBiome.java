@@ -6,6 +6,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.DunlandBiome;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -43,7 +46,9 @@ public class MixinDunlandBiome {
 		LOTRBiomeFeatures.addTreesAboveTreeline((DunlandBiome)(Object)this, builder, 6, 0.1F, 85, weightedTrees);
 		LOTRBiomeFeatures.addGrass((DunlandBiome)(Object)this, builder, 6, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
-		LOTRBiomeFeatures.addForestFlowers(builder, 2);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST2);
+		// Extended End
 		LOTRBiomeFeatures.addFoxBerryBushes(builder);
 	}
 }

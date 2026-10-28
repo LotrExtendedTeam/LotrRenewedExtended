@@ -3,6 +3,9 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
@@ -31,7 +34,9 @@ public class MixinLothlorienBiome {
 			LOTRBiomeFeatures.aspenLarge(), 200, LOTRBiomeFeatures.lairelosse(), 500);
 		LOTRBiomeFeatures.addGrass((LothlorienBiome)(Object)this, builder, 8, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
-		LOTRBiomeFeatures.addForestFlowers(builder, 6, LOTRBlocks.ELANOR.get(), 20, LOTRBlocks.NIPHREDIL.get(), 20);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN);
+		// Extended End
 		LOTRBiomeFeatures.addTreeTorches(builder, 120, 60, 110, LOTRBlocks.GOLD_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.BLUE_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.GREEN_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.SILVER_MALLORN_WALL_TORCH.get().defaultBlockState());
 	}
 }
