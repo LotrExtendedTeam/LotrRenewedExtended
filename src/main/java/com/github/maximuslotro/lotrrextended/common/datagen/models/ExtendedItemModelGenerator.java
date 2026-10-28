@@ -14,6 +14,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
@@ -121,6 +123,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.ENTITY_SPAWNER.get(), lotrExtendedLoc("block/spawner_block"));
 		genGenerated(ExtendedItems.ROPE.get(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.get()));
 		genGenerated(ExtendedItems.GRASS_VOID.get(), lotrExtendedLoc("item/"+ExtendedItems.GRASS_VOID.getId().getPath()));
+		genGenerated(ExtendedItems.RIVERWEED.get(), lotrExtendedLoc("block/"+ExtendedItems.RIVERWEED.getId().getPath()));
 	}
 	@Override
 	protected void registerModels() {
@@ -180,6 +183,14 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					continue;
 				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLOTRTorchBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedFlowerBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedFlowerEffectlessBlock) {
 					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
 					continue;
 				}
