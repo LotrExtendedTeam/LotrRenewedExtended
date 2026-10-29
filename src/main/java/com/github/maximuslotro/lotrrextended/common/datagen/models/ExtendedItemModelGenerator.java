@@ -135,6 +135,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.GRASS_VOID.get(), itemLocation(ExtendedItems.GRASS_VOID.get()));
 		genGenerated(ExtendedItems.RIVERWEED.get(), blockLocation(ExtendedItems.RIVERWEED.get()));
 		genGenerated(ExtendedItems.STONEROOT.get(), blockLocation(ExtendedItems.STONEROOT.get()));
+		genGenerated(ExtendedItems.SPRINGLEAF.get(), itemLocation(ExtendedItems.SPRINGLEAF.get()));
 	}
 	@Override
 	protected void registerModels() {

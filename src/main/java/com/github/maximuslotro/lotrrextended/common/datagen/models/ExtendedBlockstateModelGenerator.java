@@ -185,7 +185,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genMirroredBlockItem(Blocks.COARSE_DIRT, mcLoc("block/coarse_dirt"), false);
 		// Manual Generation
 		genCrossBlock(ExtendedBlocks.SUNFRUIT.get(), Tinted.NOT_TINTED);
-		genCrossBlock(ExtendedBlocks.SPRINGLEAF.get(), Tinted.NOT_TINTED);
+		genCrossBlock(ExtendedBlocks.SPRINGLEAF.get(), Tinted.TINTED);
 		genCrossBlock(ExtendedBlocks.TEARS_OF_YAVANNA.get(), Tinted.NOT_TINTED);
 		genCrossBlock(ExtendedBlocks.ELFSONG.get(), Tinted.NOT_TINTED);
 		genCrossBlock(ExtendedBlocks.MOONFLOWER.get(), Tinted.NOT_TINTED);
