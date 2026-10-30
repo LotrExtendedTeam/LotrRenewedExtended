@@ -559,6 +559,15 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_CROSSBOW, LOTRItems.URUK_STEEL_INGOT, 4);
 		makeCrucibleRecipe(consumer, ExtendedItems.MITHRIL_CROSSBOW, LOTRItems.MITHRIL_INGOT, 4);
 
+		// Pikes
+		makeCrucibleRecipe(consumer, ExtendedItems.BLUE_DWARVEN_PIKE, LOTRItems.DWARVEN_STEEL_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.BRONZE_PIKE, LOTRItems.BRONZE_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.GUNDABAD_URUK_PIKE, LOTRItems.URUK_STEEL_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.IRON_PIKE, ()->Items.IRON_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.LINDON_LONGSPEAR, LOTRItems.ELVEN_STEEL_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_LONGSPEAR, LOTRItems.ELVEN_STEEL_INGOT, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.URUK_PIKE, LOTRItems.URUK_STEEL_INGOT, 2);
+
 		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_FUR, 5);
 		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_CHESTPLATE, ExtendedItems.BLACK_FUR, 8);
 		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_FUR, 7);

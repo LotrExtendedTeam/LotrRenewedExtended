@@ -358,6 +358,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:uruk_pike",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotrextended:combat_tome",
         "averageCost": 50
       }

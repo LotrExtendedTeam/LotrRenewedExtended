@@ -197,6 +197,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:uruk_pike",
+        "averageCost": 25,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotrextended:bone_dagger",
         "averageCost": 3,
         "nbt": "{Damage:0}"

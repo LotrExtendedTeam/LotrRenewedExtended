@@ -301,6 +301,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:bronze_pike",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotrextended:blue_dwarven_throwing_axe",
         "averageCost": 15,
         "nbt": "{Damage:0}"

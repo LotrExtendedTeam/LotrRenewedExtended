@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -9,6 +12,8 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.LindonElfEntity;
 import lotr.common.entity.npc.LindonWarriorEntity;
+import lotr.common.entity.npc.SpawnEquipmentTable;
+import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -31,6 +36,15 @@ import net.minecraft.world.World;
 */
 @Mixin(LindonWarriorEntity.class)
 public class MixinLindonWarriorEntity extends LindonElfEntity{
+	
+	@Final
+	@Mutable
+	@Shadow(remap=false)
+	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
+			LOTRItems.LINDON_SWORD, LOTRItems.LINDON_SWORD, LOTRItems.LINDON_SWORD, LOTRItems.LINDON_SWORD,
+			LOTRItems.LINDON_SPEAR, ExtendedItems.LINDON_LONGSPEAR);
+
+
 	/**
      * Required constructor for Mixins extending classes.
      * <p>
