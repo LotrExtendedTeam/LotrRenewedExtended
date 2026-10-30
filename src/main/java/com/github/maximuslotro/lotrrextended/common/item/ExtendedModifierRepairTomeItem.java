@@ -27,6 +27,7 @@ public class ExtendedModifierRepairTomeItem extends Item {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		pTooltip.add(1, (new TranslationTextComponent("gui.lotrextended.repair_books.description",
 			new TranslationTextComponent("gui.lotrextended.repair_books.description."+functionID).withStyle(TextFormatting.GRAY),
 			new TranslationTextComponent("gui.lotrextended.repair_books."+typeID).withStyle(TextFormatting.AQUA))).withStyle(TextFormatting.GRAY));

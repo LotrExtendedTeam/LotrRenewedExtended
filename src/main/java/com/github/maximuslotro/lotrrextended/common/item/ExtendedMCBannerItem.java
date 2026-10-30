@@ -77,6 +77,7 @@ public class ExtendedMCBannerItem extends WallOrFloorItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		CompoundNBT compoundnbt = pStack.getTagElement("ProtectionData");
 		if(compoundnbt != null ) {
 			pTooltip.add((new TranslationTextComponent("gui.lotrextended.banner_item.info")).withStyle(TextFormatting.GRAY));

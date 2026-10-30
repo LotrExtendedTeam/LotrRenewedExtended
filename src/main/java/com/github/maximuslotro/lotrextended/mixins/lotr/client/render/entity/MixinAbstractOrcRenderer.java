@@ -31,7 +31,7 @@ public abstract class MixinAbstractOrcRenderer{
 	 * @return A {@link ResourceLocation} pointing to the appropriate skin texture.
 	 * @Overwrite (remap=false)
 	 */
-	@Overwrite(remap=false)
+	@Overwrite(remap=false, aliases = {"getTextureLocation"})
 	public ResourceLocation getEntityTexture(OrcEntity orc) {
 		if(CalendarUtil.isAprilFools()) {
 			return SKINS_APRIL.getRandomSkin(orc);

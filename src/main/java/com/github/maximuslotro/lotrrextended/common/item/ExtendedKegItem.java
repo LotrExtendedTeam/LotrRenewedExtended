@@ -54,6 +54,7 @@ public class ExtendedKegItem extends BlockItem {
 
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		CompoundNBT blockEntityTag = pStack.getTagElement("BlockEntityTag");
 		if (blockEntityTag != null && blockEntityTag.contains("KegDroppableData")) {
 			CompoundNBT kegData = blockEntityTag.getCompound("KegDroppableData");

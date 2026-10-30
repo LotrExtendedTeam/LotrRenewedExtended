@@ -28,7 +28,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * Based on {@link EditSignScreen}
  * */
-public class ExtendedExitStoneTextSignScreen extends Screen {
+public class ExtendedEditStoneTextSignScreen extends Screen {
 	/** Reference to the sign object. */
 	private final ExtendedStoneTextSignTileEntity sign;
 	/** Counts the number of screen updates. */
@@ -38,7 +38,7 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	private TextInputUtil signField;
 	private final String[] messages;
 
-	public ExtendedExitStoneTextSignScreen(ExtendedStoneTextSignTileEntity pStoneSign) {
+	public ExtendedEditStoneTextSignScreen(ExtendedStoneTextSignTileEntity pStoneSign) {
 		super(new TranslationTextComponent("gui.lotrextended.stone_engraving.title"));
 		this.messages = IntStream.range(0, 8).mapToObj(pStoneSign::getMessage).map(ITextComponent::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
@@ -49,8 +49,8 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	@Override
 	protected void init() {
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 120, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> {
-			this.onDone();
+		this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 144, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> {
+			this.onClose();
 		}));
 		this.sign.setEditable(false);
 		this.signField = new TextInputUtil(() -> {
@@ -67,7 +67,6 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	public void removed() {
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
 		ExtendedPacketHandler.sendToServer(new ExtendedCUpdateStoneTextSignPacket(this.sign.getBlockPos(), this.messages));
-
 		this.sign.setEditable(true);
 	}
 
@@ -75,14 +74,9 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	public void tick() {
 		++this.frame;
 		if (!this.sign.getType().isValid(this.sign.getBlockState().getBlock())) {
-			this.onDone();
+			this.onClose();
 		}
 
-	}
-
-	private void onDone() {
-		this.sign.setChanged();
-		this.onClose();
 	}
 
 	@Override
@@ -93,7 +87,8 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 
 	@Override
 	public void onClose() {
-		this.onDone();
+		this.sign.setChanged();
+		super.onClose();
 	}
 
 	@Override

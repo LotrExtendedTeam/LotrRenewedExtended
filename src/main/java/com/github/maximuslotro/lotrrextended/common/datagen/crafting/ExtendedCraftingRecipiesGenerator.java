@@ -818,13 +818,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStairSlabWallRecipe(consumer, ExtendedItems.MOSSY_RED_ANGMAR_BRICK_STAIRS,
 			ExtendedItems.MOSSY_RED_ANGMAR_BRICK_SLAB,
 			ExtendedItems.MOSSY_RED_ANGMAR_BRICK_WALL,
-			()->ExtendedItems.MOSSY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->ExtendedItems.MOSSY_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		makeSnowyBlockRecipe(consumer, ExtendedItems.SNOWY_RED_ANGMAR_BRICK,
 			()->ExtendedItems.RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		makeStairSlabWallRecipe(consumer, ExtendedItems.SNOWY_RED_ANGMAR_BRICK_STAIRS,
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_SLAB,
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_WALL,
-			()->ExtendedItems.SNOWY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->ExtendedItems.SNOWY_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedItems.SMOOTH_GONDOR_ROCK_STAIRS,
 			()->LOTRItems.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING, "");
@@ -990,6 +990,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, ExtendedItems.CHISEL);
+		GENERATEDRECIPES.add(ExtendedItems.MOON_CHISEL.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.MOON_CHISEL.get())
+		.requires(ExtendedItems.CHISEL.get())
+		.requires(ExtendedItems.ITHILDIN.get())
+		.unlockedBy("has_"+ExtendedItems.ITHILDIN.get().getRegistryName().getPath(), has(ExtendedItems.ITHILDIN.get()))
+		.save(consumer, ExtendedItems.MOON_CHISEL.get().getRegistryName());
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
 		.pattern("  #")

@@ -6,17 +6,8 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.block.*;
-
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedDwarvenBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedHighElvenBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedOrcBarrelBlock;
@@ -28,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.EbonyTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBedType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
@@ -699,16 +691,16 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ORC_BARREL = register("orc_barrel", () -> new ExtendedOrcBarrelBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 	public static RegistryObject<Block> WEAPON_RACK = register("weapon_rack", () -> new ExtendedWeaponRackBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
 
-	public static RegistryObject<Block> STRAW_BED = register("straw_bed", () -> new ExtendedStrawBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> ORC_BED = register("orc_bed", () -> new ExtendedOrcBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> BLACK_FUR_BED = register("black_fur_bed", () -> new ExtendedBlackFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> FUR_BED = register("fur_bed", () -> new ExtendedFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> GRAY_FUR_BED = register("gray_fur_bed", () -> new ExtendedGrayFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> SILVER_FUR_BED = register("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> WHITE_FUR_BED = register("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> STRAW_BED = register("straw_bed", () -> new ExtendedBedBlock(ExtendedBedType.STRAW, Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> ORC_BED = register("orc_bed", () -> new ExtendedBedBlock(ExtendedBedType.ORC, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> BLACK_FUR_BED = register("black_fur_bed", () -> new ExtendedBedBlock(ExtendedBedType.BLACK_FUR, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> FUR_BED = register("fur_bed", () -> new ExtendedBedBlock(ExtendedBedType.BROWN_FUR, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> GRAY_FUR_BED = register("gray_fur_bed", () -> new ExtendedBedBlock(ExtendedBedType.GRAY_FUR, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> SILVER_FUR_BED = register("silver_fur_bed", () -> new ExtendedBedBlock(ExtendedBedType.SILVER, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> WHITE_FUR_BED = register("white_fur_bed", () -> new ExtendedBedBlock(ExtendedBedType.WHITE, Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 	public static RegistryObject<Block> BEDROLL = register("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> DWARVEN_BED = register("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-	public static RegistryObject<Block> HIGH_ELVEN_BED = register("high_elven_bed", () -> new ExtendedHighElvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> DWARVEN_BED = register("dwarven_bed", () -> new ExtendedBedBlock(ExtendedBedType.DWARVEN, Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+	public static RegistryObject<Block> HIGH_ELVEN_BED = register("high_elven_bed", () -> new ExtendedBedBlock(ExtendedBedType.HIGH_ELVEN, Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 	public static RegistryObject<Block> ROPE = register("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
@@ -840,7 +832,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ROHAN_WALL_BANNER = register("rohan_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ROHAN));
 	public static RegistryObject<Block> WOODLAND_REALM_BANNER = register("woodland_realm_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.WOODLAND_REALM));
 	public static RegistryObject<Block> WOODLAND_REALM_WALL_BANNER = register("woodland_realm_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.WOODLAND_REALM));
-
 
 	public static RegistryObject<Block> DEAD_MOSS_VINES = register("dead_moss_vines", () -> new ExtendedVineBlock(Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 	// Birdcages

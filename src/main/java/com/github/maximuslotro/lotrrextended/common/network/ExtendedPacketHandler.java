@@ -43,7 +43,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredOverviewMenuPacket.class, ExtendedCOpenHiredOverviewMenuPacket::encode, ExtendedCOpenHiredOverviewMenuPacket::decode, ExtendedCOpenHiredOverviewMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCHireUnitPacket.class, ExtendedCHireUnitPacket::encode, ExtendedCHireUnitPacket::decode, ExtendedCHireUnitPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCUnitHirePacket.class, ExtendedCUnitHirePacket::encode, ExtendedCUnitHirePacket::decode, ExtendedCUnitHirePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedDualTogglePacket.class, ExtendedDualTogglePacket::encode, ExtendedDualTogglePacket::decode, ExtendedDualTogglePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCaptainPacket.class, ExtendedCOpenCaptainPacket::encode, ExtendedCOpenCaptainPacket::decode, ExtendedCOpenCaptainPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenCaptainPacket.class, ExtendedSOpenCaptainPacket::encode, ExtendedSOpenCaptainPacket::decode, ExtendedSOpenCaptainPacket::handle);
@@ -72,6 +72,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCSelectHornSquadPacket.class, ExtendedCSelectHornSquadPacket::encode, ExtendedCSelectHornSquadPacket::decode, ExtendedCSelectHornSquadPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitRadiusPacket.class, ExtendedCSetHiredUnitRadiusPacket::encode, ExtendedCSetHiredUnitRadiusPacket::decode, ExtendedCSetHiredUnitRadiusPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitSquadPacket.class, ExtendedCSetHiredUnitSquadPacket::encode, ExtendedCSetHiredUnitSquadPacket::decode, ExtendedCSetHiredUnitSquadPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCUnitTransferPacket.class, ExtendedCUnitTransferPacket::encode, ExtendedCUnitTransferPacket::decode, ExtendedCUnitTransferPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

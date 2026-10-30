@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import com.github.maximuslotro.lotrrextended.client.gui.banner.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedEditStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectRadialScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectScreen;
@@ -110,7 +110,7 @@ public class ExtendedClientsideSeparatedScreenHandler {
 			tileentity = new ExtendedStoneTextSignTileEntity();
 			tileentity.setLevelAndPosition(mc.level, packet.getPos());
 		}
-		mc.setScreen(new ExtendedExitStoneTextSignScreen((ExtendedStoneTextSignTileEntity)tileentity));
+		mc.setScreen(new ExtendedEditStoneTextSignScreen((ExtendedStoneTextSignTileEntity)tileentity));
 	}
 
 	public static void openHoistGUI(ExtendedHoistTileEntity te) {

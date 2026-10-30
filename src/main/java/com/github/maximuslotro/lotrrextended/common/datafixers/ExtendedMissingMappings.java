@@ -188,15 +188,8 @@ public class ExtendedMissingMappings {
 
 		//Beta 1.11.0 Renamed Large Pot Morgul Flower id path
 		addRemapBlock("large_pot_morgum_flower", "lotr", ExtendedBlocks.LARGE_FLOWER_POT_MORGUL_FLOWER);
-		//BEta 1.11.0 Remaped tile entities
+		//Beta 1.11.0 Remapped tile entities
 		addRemapBlockEntity("stone_chest_tileentity", "lotr", ExtendedTileEntities.STONE_CHEST);
-		addRemapBlockEntity("straw_bed_tileentity", "lotr", ExtendedTileEntities.STRAW_BED);
-		addRemapBlockEntity("orc_bed_tileentity", "lotr", ExtendedTileEntities.ORC_BED);
-		addRemapBlockEntity("black_fur_bed_tileentity", "lotr", ExtendedTileEntities.BLACK_FUR_BED);
-		addRemapBlockEntity("fur_bed_tileentity", "lotr", ExtendedTileEntities.FUR_BED);
-		addRemapBlockEntity("gray_fur_bed_tileentity", "lotr", ExtendedTileEntities.GRAY_FUR_BED);
-		addRemapBlockEntity("silver_fur_bed_tileentity", "lotr", ExtendedTileEntities.SILVER_FUR_BED);
-		addRemapBlockEntity("white_fur_bed_tileentity", "lotr", ExtendedTileEntities.WHITE_FUR_BED);
 		addRemapBlockEntity("no_render_tileentity", "lotr", ExtendedTileEntities.NORENDER);
 		addRemapBlockEntity("bookshelf_tileentity", "lotr", ExtendedTileEntities.BOOKSHELF);
 		addRemapBlockEntity("weapon_rack_tileentity", "lotr", ExtendedTileEntities.WEAPON_RACK);
@@ -207,12 +200,30 @@ public class ExtendedMissingMappings {
 		addRemapBlockEntity("banner_h_tileentity", "lotr", ExtendedTileEntities.BANNER_HANGING);
 		addRemapBlockEntity("grass_void_tileentity", "lotr", ExtendedTileEntities.GRASS_VOID);
 		addRemapBlockEntity("stone_engraving", "lotr", ExtendedTileEntities.STONE_SIGN);
-		addRemapBlockEntity("dwarven_bed_tileentity", "lotr", ExtendedTileEntities.DWARVEN_BED);
 		addRemapBlockEntity("hoist_tileentity", "lotr", ExtendedTileEntities.HOIST);
 		addRemapBlockEntity("large_pot_tileentity", "lotr", ExtendedTileEntities.LARGE_POT);
 		addRemapBlockEntity("chimney_pot_tileentity", "lotr", ExtendedTileEntities.CHIMNEY_POT);
-		addRemapBlockEntity("high_elven_bed_tileentity", "lotr", ExtendedTileEntities.HIGH_ELVEN_BED);
 		addRemapBlockEntity("crucible_tileentity", "lotr", ExtendedTileEntities.CRUCIBLE);
+		//Beta 1.11.0 Remapped Beds
+		addRemapBlockEntity("straw_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("orc_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("black_fur_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("fur_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("gray_fur_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("silver_fur_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("white_fur_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("dwarven_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		addRemapBlockEntity("high_elven_bed_tileentity", "lotr", ExtendedTileEntities.BED);
+		//Beta 1.11.0 Flattened beds before alpha 1
+		addRemapBlockEntity("straw_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("orc_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("black_fur_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("fur_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("gray_fur_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("silver_fur_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("white_fur_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("dwarven_bed", "lotrextended", ExtendedTileEntities.BED);
+		addRemapBlockEntity("high_elven_bed", "lotrextended", ExtendedTileEntities.BED);
 	}
 
 	private static void addIgnoreRemap(String previousMapping, String previousNamespace) {

@@ -219,10 +219,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit.dismiss_button_confirm", "Confirm Dismissal");
 		addD("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip", "This operation is irreversible!");
 		addD("gui.lotrextended.hired_unit.transfer_button", "Transfer");
+		addD("gui.lotrextended.hired_unit.transfer_button.player", "Transfer to: %s");
 		addD("gui.lotrextended.hired_unit.transfer_button.tooltip", "Transfer unit to another online player.");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm", "Confirm Transfer");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible!");
 		addD("gui.lotrextended.hired_unit.error.old_hiring_tooltip_1_11", "Operation not available for unit hired before 1.11.0");
+		addD("gui.lotrextended.hired_unit.transfer_field.unset", "Player Name?");
+		addD("message.lotrextended.hired_unit.transfer.no_player", "Player not found for transfer!");
+		addD("message.lotrextended.hired_unit.transfer.invalid_stats", "Player does not fulfill hiring requirements!");
+		addD("message.lotrextended.hired_unit.transfer.completed", "Unit transfered to %1$s");
+		addD("message.lotrextended.hired_unit.transfer.completed_new_unit", "%1$s transfered a unit to your command");
+
 		addD("gui.lotrextended.hired_unit.range.guard", "Guard Range: %1$s");
 		addD("gui.lotrextended.hired_unit.range.farming", "Farming Range: %1$s");
 		addD("gui.lotrextended.hired_unit.range.tooltip", "The maximum range this unit can travel.");
@@ -584,13 +591,20 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.repair_books.smith", "Modifier Material Cost");
 		// Banner Item Info
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
-		//Bow values
+		// Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
-		//Dagger values
+		// Dagger values
 		addD("gui.lotrextended.dagger.poisoned", "Inflicts poison");
-
+		// Branding Irons
+		addD("gui.lotrextended.branding_iron.heat_level", "Heat Level: %s");
+		addD("gui.lotrextended.branding_iron.hot", "Hot");
+		addD("gui.lotrextended.branding_iron.warm", "Warm");
+		addD("gui.lotrextended.branding_iron.cold", "Cold");
+		addD("gui.lotrextended.branding_iron.named", "Branded Name: %s");
+		// Chisels
+		addD("gui.lotrextended.chisel.moon", "Moon Runes");
 		// Generic command strings
 		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
 

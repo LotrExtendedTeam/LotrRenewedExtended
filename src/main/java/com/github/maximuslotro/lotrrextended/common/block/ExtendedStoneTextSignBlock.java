@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenStoneTextSignPacket;
@@ -24,6 +25,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -38,6 +40,7 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -50,7 +53,6 @@ import net.minecraft.world.World;
  * */
 public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0D, 0.0D, 15.0D, 16.0D, 16.0D, 16.0D), Direction.SOUTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 1.0D), Direction.EAST, Block.box(0.0D, 0.0D, 0.0D, 1.0D, 16.0D, 16.0D), Direction.WEST, Block.box(15.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)));
 
@@ -141,7 +143,7 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 			TileEntity tileentity = pLevel.getBlockEntity(pPos);
 			if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
 				ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
-				if (canBuild && itemstack.getItem() instanceof DyeItem) {
+				if (canBuild && itemstack.getItem() instanceof DyeItem && !pState.getValue(WATERLOGGED)) {
 					if (signtileentity.setColor(((DyeItem)itemstack.getItem()).getDyeColor())) {
 						if(!pPlayer.isCreative()){
 							itemstack.shrink(1);
@@ -151,6 +153,10 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 				}else if (canBuild && itemstack.getItem() instanceof ExtendedChiselItem) {
 					if (signtileentity.getPlayerWhoMayEdit()==null) {
 						signtileentity.setAllowedPlayerEditor(pPlayer);
+						signtileentity.setHasGlowingText(((ExtendedChiselItem)itemstack.getItem()).doesCauseGlowing());
+						if(((ExtendedChiselItem)itemstack.getItem()).doesCauseGlowing() && signtileentity.getColor()!=DyeColor.BLACK) {
+							signtileentity.setColor(DyeColor.LIGHT_GRAY);
+						}
 						ExtendedPacketHandler.sendToClient(new ExtendedSOpenStoneTextSignPacket(((ExtendedStoneTextSignTileEntity)pLevel.getBlockEntity(pPos)).getBlockPos()), (ServerPlayerEntity) pPlayer);
 						if (!pPlayer.isCreative()) {
 							itemstack.hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(pPlayer.getUsedItemHand()));
@@ -167,5 +173,19 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 	@Override
 	public FluidState getFluidState(BlockState pState) {
 		return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+	}
+
+	@Override
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader pLevel, BlockPos pPos, PlayerEntity player) {
+		TileEntity tileentity = pLevel.getBlockEntity(pPos);
+		if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
+			ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
+			if(signtileentity.hasGlowingText()) {
+				return new ItemStack(ExtendedItems.MOON_CHISEL.get());
+			}else {
+				return new ItemStack(ExtendedItems.CHISEL.get());
+			}
+		}
+		return super.getPickBlock(state, target, pLevel, pPos, player);
 	}
 }

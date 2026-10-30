@@ -173,6 +173,7 @@
 		"net.minecraft.network.MixinDebugPacketSender",
 		"net.minecraft.network.login.MixinServerLoginNetHandler",
 		"net.minecraft.network.play.MixinServerPlayNetHandler",
+		"net.minecraft.network.play.MixinSMultiBlockChangePacket",
 		"net.minecraft.pathfinding.MixinPath",
 		"net.minecraft.pathfinding.MixinPathAccessor",
 		"net.minecraft.pathfinding.MixinPathFinder",

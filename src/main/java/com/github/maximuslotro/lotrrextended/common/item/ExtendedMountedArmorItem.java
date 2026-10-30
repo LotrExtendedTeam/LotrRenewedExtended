@@ -92,6 +92,7 @@ public class ExtendedMountedArmorItem extends Item {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 		pTooltip.add(StringTextComponent.EMPTY);
 		pTooltip.add((new TranslationTextComponent("item.lotrextended.modifiers." + mountType.langKey)).withStyle(TextFormatting.GRAY));
 		pTooltip.add((new TranslationTextComponent("attribute.modifier.plus.0", protection, new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));

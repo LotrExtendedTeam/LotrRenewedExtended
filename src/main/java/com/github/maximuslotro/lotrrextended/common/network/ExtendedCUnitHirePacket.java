@@ -25,19 +25,19 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class ExtendedCHireUnitPacket {
+public class ExtendedCUnitHirePacket {
 
     private int captainId;
     private ResourceLocation unitProfileID;
     private String squad;
 
-    public ExtendedCHireUnitPacket(int captainId, ResourceLocation unitID, String squad) {
+    public ExtendedCUnitHirePacket(int captainId, ResourceLocation unitID, String squad) {
        this.captainId = captainId;
        this.unitProfileID = unitID;
        this.squad = squad;
     }
 
-    public static void encode(ExtendedCHireUnitPacket packet, PacketBuffer buf) {
+    public static void encode(ExtendedCUnitHirePacket packet, PacketBuffer buf) {
         buf.writeInt(packet.captainId);
         buf.writeResourceLocation(packet.unitProfileID);
         if(packet.squad!=null && !packet.squad.isEmpty()) {
@@ -48,11 +48,11 @@ public class ExtendedCHireUnitPacket {
         }
     }
 
-    public static ExtendedCHireUnitPacket decode(PacketBuffer buf) {
-        return new ExtendedCHireUnitPacket(buf.readInt(), buf.readResourceLocation(), buf.readBoolean() ? buf.readUtf() : "");
+    public static ExtendedCUnitHirePacket decode(PacketBuffer buf) {
+        return new ExtendedCUnitHirePacket(buf.readInt(), buf.readResourceLocation(), buf.readBoolean() ? buf.readUtf() : "");
     }
 
-    public static void handle(ExtendedCHireUnitPacket packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCUnitHirePacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
         Entity entityCaptain = context.get().getSender().level.getEntity(packet.captainId);
         if (!(entityCaptain instanceof ExtendedICaptainEntity)) {

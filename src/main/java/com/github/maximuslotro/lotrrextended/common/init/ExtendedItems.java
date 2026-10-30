@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
+import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemStackTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
@@ -14,15 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.*;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedHighElvenBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItems;
@@ -546,16 +537,16 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SMOOTH_STONE_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_STONE_STAIRS, LOTRItemGroups.BLOCKS);
 
 	//############################################################DECORATION##############################################################
-	public static RegistryObject<Item> STRAW_BED = regBedItem(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, ()->strawBedRenderer());
-	public static RegistryObject<Item> ORC_BED = regBedItem(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, ()->orcBedRenderer());
-	public static RegistryObject<Item> BLACK_FUR_BED = regBedItem(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, ()->blackFurBedRenderer());
-	public static RegistryObject<Item> FUR_BED = regBedItem(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, ()->furBedRenderer());
-	public static RegistryObject<Item> GRAY_FUR_BED = regBedItem(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, ()->grayFurBedRenderer());
-	public static RegistryObject<Item> SILVER_FUR_BED = regBedItem(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, ()->silverFurBedRenderer());
-	public static RegistryObject<Item> WHITE_FUR_BED = regBedItem(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, ()->whiteFurBedRenderer());
+	public static RegistryObject<Item> STRAW_BED = regBedItemTRender(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> ORC_BED = regBedItemTRender(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> BLACK_FUR_BED = regBedItemTRender(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> FUR_BED = regBedItemTRender(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> GRAY_FUR_BED = regBedItemTRender(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> SILVER_FUR_BED = regBedItemTRender(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> WHITE_FUR_BED = regBedItemTRender(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> BEDROLL = regBedItem(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> DWARVEN_BED = regBedItem(ExtendedBlocks.DWARVEN_BED, LOTRItemGroups.DECO, ()->dwarvenBedRenderer());
-	public static RegistryObject<Item> HIGH_ELVEN_BED = regBedItem(ExtendedBlocks.HIGH_ELVEN_BED, LOTRItemGroups.DECO, ()->highElvenBedRenderer());
+	public static RegistryObject<Item> DWARVEN_BED = regBedItemTRender(ExtendedBlocks.DWARVEN_BED, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> HIGH_ELVEN_BED = regBedItemTRender(ExtendedBlocks.HIGH_ELVEN_BED, LOTRItemGroups.DECO);
 	//Bushes
 	public static RegistryObject<Item> RASPBERRY_HEDGE = regBlockItem(ExtendedBlocks.RASPBERRY_HEDGE, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> BLUEBERRY_HEDGE = regBlockItem(ExtendedBlocks.BLUEBERRY_HEDGE, LOTRItemGroups.DECO);
@@ -698,8 +689,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DOL_GULDUR_AXE = regItem("dol_guldur_axe", () -> new AxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 	public static RegistryObject<Item> DOL_GULDUR_HOE = regItem("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
-	public static RegistryObject<Item> BRANDING_IRON = regItem("branding_iron", ExtendedBrandingIronItem::new);
-	public static RegistryObject<Item> CHISEL = regItem("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
+	public static RegistryObject<Item> BRANDING_IRON = regItem("branding_iron", () -> new ExtendedBrandingIronItem(new Properties().stacksTo(1).tab(LOTRItemGroups.TOOLS).durability(100)));
+	public static RegistryObject<Item> CHISEL = regItem("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100), false));
+	public static RegistryObject<Item> MOON_CHISEL = regItem("moon_chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100), true));
 
 	public static RegistryObject<Item> DWARVEN_MATTOCK = regItem("dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
 	public static RegistryObject<Item> BLUE_DWARVEN_MATTOCK = regItem("blue_dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.BLUE_DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
@@ -1034,8 +1026,12 @@ public class ExtendedItems {
 	private static RegistryObject<Item> regBedItem(RegistryObject<Block> blockSup, ItemGroup group) {
 		return regGenericBlockItem(blockSup, () -> new ExtendedBedItem(blockSup.get(), new Properties().stacksTo(1).tab(group)));
 	}
-	private static RegistryObject<Item> regBedItem(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
-		return regGenericBlockItem(blockSup, () -> new ExtendedBedItem(blockSup.get(), new Properties().stacksTo(1).tab(group).setISTER(ister)));
+	private static RegistryObject<Item> regBedItemTRender(RegistryObject<Block> blockSup, ItemGroup group) {
+		return regGenericBlockItem(blockSup, () -> new ExtendedBedItem(blockSup.get(), new Properties().stacksTo(1).tab(group).setISTER(()->bedRenderer())));
+	}
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> bedRenderer() {
+		return () -> ExtendedItemStackTileEntityRenderer.INSTANCE;
 	}
 	private static RegistryObject<Item> regFallenLeavesItem(RegistryObject<Block> blockSup, ItemGroup group) {
 		return regGenericBlockItem(blockSup, () -> new FallenLeavesItem(blockSup.get(), new Properties().tab(group)));
@@ -1051,78 +1047,5 @@ public class ExtendedItems {
 	}
 	private static RegistryObject<Item> regEmptyVesselBlockItem(RegistryObject<Block> blockSup, VesselType vesselType) {
 		return regGenericBlockItem(blockSup, () -> new EmptyVesselBlockItem(blockSup.get(), vesselType));
-	}
-
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedBlackFurBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedFurBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedGrayFurBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedSilverFurBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedWhiteFurBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> dwarvenBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedDwarvenBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedOrcBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedStrawBedTileEntity::new);
-	}
-	/**
-	 * Supplier for getting bed tileEntity renderers
-	 * @return A ItemStackTileEntityRenderer
-	 * */
-	@OnlyIn(Dist.CLIENT)
-	private static Callable<ItemStackTileEntityRenderer> highElvenBedRenderer() {
-		return () -> new ExtendedItemRenderHelper<>(ExtendedHighElvenBedTileEntity::new);
 	}
 }

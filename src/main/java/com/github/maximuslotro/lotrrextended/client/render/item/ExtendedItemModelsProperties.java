@@ -43,7 +43,7 @@ public class ExtendedItemModelsProperties {
 
 	public static void registerAlternativeHandheldTextures() {
 		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.getType(itemStack).isHalt() ? 1 : ExtendedCommandHornItem.getType(itemStack).isReady() ? 2 : ExtendedCommandHornItem.getType(itemStack).isSummon() ? 3 : 0);
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1 : 0);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isHeated(itemStack) ? 1 : 0);
 		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
 		// BOWS
 		registerBowItemModelProperties(ExtendedItems.DUNEDAIN_BOW.get());
@@ -61,7 +61,12 @@ public class ExtendedItemModelsProperties {
 		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
 		// DAGGERS
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
-			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
+			if(item.get() instanceof DaggerItem) {
+				registerDaggerItemModelProperties(item.get());
+			}
+		}
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof ExtendedDaggerItem) {
 				registerDaggerItemModelProperties(item.get());
 			}
 		}
