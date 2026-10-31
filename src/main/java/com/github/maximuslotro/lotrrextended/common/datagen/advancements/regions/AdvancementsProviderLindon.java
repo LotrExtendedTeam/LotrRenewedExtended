@@ -4,24 +4,25 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> LINDON_BIOMES = ImmutableList.of(LOTRBiomes.LINDON, LOTRBiomes.LINDON_WOODLANDS);
+	private static final List<RegistryKey<Biome>> LINDON_BIOMES = ImmutableList.of(ExtendedBiomePointers.LINDON, ExtendedBiomePointers.LINDON_WOODLANDS);
 
 	@Override
 	public void generateAdvancements() {
@@ -36,7 +37,7 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 
 		Advancement tower_hills = build(true, data(LOTRItems.CHALK_BRICK.get(), "emyn_beraid", FrameType.TASK)
 				.setTitle("Emyn Beraid").setDescription("Enter the Tower Hills."),
-				addBiomeTrigger(make(), LOTRBiomes.TOWER_HILLS).parent(lindon));
+				addBiomeTrigger(make(), ExtendedBiomePointers.TOWER_HILLS).parent(lindon));
 
 		Advancement the_white_towers = build(false, data(LOTRItems.CHALK_BRICK_STAIRS.get(), "the_white_towers", FrameType.GOAL)
 			.setTitle("The White Towers").setDescription("Discover the tower of Elostirion, Anarostirion, or Isilostirion."),

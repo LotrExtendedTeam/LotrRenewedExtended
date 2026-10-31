@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -18,7 +18,7 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement iron_hills = build(true, dataMain(LOTRItems.DWARVEN_PICKAXE.get(), "iron_hills", FrameType.TASK)
 			.setTitle("Durin's Folk").setDescription("Enter the Iron Hills."),
-			addBiomeTrigger(make(), LOTRBiomes.IRON_HILLS));
+			addBiomeTrigger(make(), ExtendedBiomePointers.IRON_HILLS));
 
 		Advancement dwarf_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "dwarf_slayer", FrameType.TASK)
 			.setTitle("Dwarf Slayer").setDescription("Kill a dwarf."),

@@ -4,25 +4,26 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> MIRKWOOD_BIOMES = ImmutableList.of(LOTRBiomes.MIRKWOOD, LOTRBiomes.MIRKWOOD_MOUNTAINS,
-			LOTRBiomes.NORTHERN_MIRKWOOD, LOTRBiomes.WOODLAND_REALM);
+	private static final List<RegistryKey<Biome>> MIRKWOOD_BIOMES = ImmutableList.of(ExtendedBiomePointers.MIRKWOOD, ExtendedBiomePointers.MIRKWOOD_MOUNTAINS,
+			ExtendedBiomePointers.NORTHERN_MIRKWOOD, ExtendedBiomePointers.WOODLAND_REALM);
 
 	@Override
 	public void generateAdvancements() {
@@ -32,11 +33,11 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 
 //		Advancement dol_guldur = build(data(ExtendedItems.DOL_GULDUR_BRICK.get(), "hill_of_sorcery", FrameType.TASK)
 //				.setTitle("Hill of Sorcery").setDescription("Enter the region of Dol Guldur."),
-//				addBiomeTrigger(make(), LOTRBiomes.DOL_GULDUR).requirements(IRequirementsStrategy.OR).parent(mirkwoodBase));
+//				addBiomeTrigger(make(), ExtendedBiomes.DOL_GULDUR).requirements(IRequirementsStrategy.OR).parent(mirkwoodBase));
 
 		Advancement woodland_realm = build(true, data(Items.BOW, "guest_of_the_elvenking", FrameType.TASK)
 		.setTitle("Guest of the Elvenking").setDescription("Enter the Woodland Realm."),
-		addBiomeTrigger(make(), LOTRBiomes.WOODLAND_REALM).parent(mirkwoodBase));
+		addBiomeTrigger(make(), ExtendedBiomePointers.WOODLAND_REALM).parent(mirkwoodBase));
 
 		Advancement wood_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "wood_elf_slayer", FrameType.TASK)
 				.setTitle("Wood-Elf Slayer").setDescription("Kill a Wood-Elf."),

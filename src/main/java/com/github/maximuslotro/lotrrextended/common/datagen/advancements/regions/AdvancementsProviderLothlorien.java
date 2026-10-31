@@ -4,22 +4,23 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> LOTHLORIEN_BIOMES = ImmutableList.of(LOTRBiomes.LOTHLORIEN, LOTRBiomes.LOTHLORIEN_EAVES);
+	private static final List<RegistryKey<Biome>> LOTHLORIEN_BIOMES = ImmutableList.of(ExtendedBiomePointers.LOTHLORIEN, ExtendedBiomePointers.LOTHLORIEN_EAVES);
 
 	@Override
 	public void generateAdvancements() {

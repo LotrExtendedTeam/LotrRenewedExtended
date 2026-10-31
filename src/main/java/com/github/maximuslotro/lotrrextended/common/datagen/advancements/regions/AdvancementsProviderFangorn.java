@@ -4,20 +4,20 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBiomes;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> FANGORN_BIOMES = ImmutableList.of(LOTRBiomes.FANGORN);
+	private static final List<RegistryKey<Biome>> FANGORN_BIOMES = ImmutableList.of(ExtendedBiomePointers.FANGORN);
 
 	@Override
 	public void generateAdvancements() {
@@ -27,7 +27,7 @@ public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
 
 		Advancement fangorn_wasteland = build(false, dataMain(LOTRItems.CHARRED_LOG.get(), "fangorn_wasteland", FrameType.TASK)
 			.setTitle("Where Once Stood Trees").setDescription("Enter the Fangorn Wasteland."),
-			addBiomeTriggers(make(), ExtendedBiomes.FANGORN_WASTELAND));
+			addBiomeTriggers(make(), ExtendedBiomePointers.FANGORN_WASTELAND));
 
 //		Advancement ent_slayer = build(true, data(Items.STICK, "ent_slayer", FrameType.TASK)
 //				.setTitle("Enemy of the Forest").setDescription("Kill an Ent."),

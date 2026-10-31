@@ -1,10 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -17,11 +17,11 @@ public class AdvancementsProviderNindalf extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement wetwang = build(true, dataMain(Items.FERN, "wetwang", FrameType.TASK)
 				.setTitle("Wetwang").setDescription("Enter the swamps of Nindalf."),
-				addBiomeTriggers(make(), LOTRBiomes.NINDALF));
+				addBiomeTriggers(make(), ExtendedBiomePointers.NINDALF));
 
 		Advancement stench_of_evil = build(true, data(LOTRItems.MORDOR_THORN.get(), "stench_of_evil", FrameType.TASK)
 			.setTitle("The Stench of Evil").setDescription("Enter the Dead Marshes."),
-			addBiomeTriggers(make(), LOTRBiomes.DEAD_MARSHES).parent(wetwang));
+			addBiomeTriggers(make(), ExtendedBiomePointers.DEAD_MARSHES).parent(wetwang));
 
 		Advancement risky_excavations = build(true, data(ExtendedItems.REMAINS_MAN.get(), "risky_excavations", FrameType.GOAL)
 			.setTitle("Worth the Risk?").setDescription("Dig up a block of remains."),

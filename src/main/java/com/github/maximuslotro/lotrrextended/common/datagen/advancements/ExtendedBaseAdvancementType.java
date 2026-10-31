@@ -17,7 +17,6 @@ import com.github.maximuslotro.lotrrextended.common.advancements.predicates.Exte
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.fac.FactionPointer;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.DisplayInfo;
@@ -79,37 +78,30 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return Advancement.Builder.advancement();
 	}
 
-	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<PreRegisteredLOTRBiome> biomes) {
-		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
+	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<RegistryKey<Biome>> eriadorBiomes) {
+		for(RegistryKey<Biome> lotrBiomeObject : eriadorBiomes) {
 			addBiomeTrigger(builder, lotrBiomeObject);
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
-
-	public static Advancement.Builder addBiomeTrigger(Advancement.Builder builder, PreRegisteredLOTRBiome biome) {
-		builder.addCriterion("enter_"+biome.getName(), inBiome(biome));
-		return builder;
-	}
-	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, PreRegisteredLOTRBiome... biomes) {
-		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
+	@SafeVarargs
+	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, RegistryKey<Biome>... biomes) {
+		for(RegistryKey<Biome> lotrBiomeObject : biomes) {
 			addBiomeTrigger(builder, lotrBiomeObject);
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
-
-	public static Advancement.Builder addBiomeAltTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
-		for(ResourceLocation lotrBiomeObject : biomes) {
-			builder.addCriterion("enter_"+lotrBiomeObject.getPath(), inBiome(lotrBiomeObject));
-		}
-		return builder.requirements(IRequirementsStrategy.OR);
-	}
-
-	public static Advancement.Builder addBiomeANDTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
-		for(ResourceLocation lotrBiomeObject : biomes) {
-			builder.addCriterion("enter_"+lotrBiomeObject.getPath(), inBiome(lotrBiomeObject));
+	public static Advancement.Builder addBiomeANDTriggers(Advancement.Builder builder, List<RegistryKey<Biome>> biomes) {
+		for(RegistryKey<Biome> lotrBiomeObject : biomes) {
+			addBiomeTrigger(builder, lotrBiomeObject);
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
 	}
+	public static Advancement.Builder addBiomeTrigger(Advancement.Builder builder, RegistryKey<Biome> biome) {
+		builder.addCriterion("enter_"+biome.location().getPath(), inBiome(biome));
+		return builder;
+	}
+
 	public static Advancement.Builder addStructureTriggers(Advancement.Builder builder, String... structures) {
 		for(String structure : structures) {
 			builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
@@ -341,16 +333,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.save(consumer, "lotrextended:"+getFolder()+"/"+data.name);
 	}
 
-	public static RegistryKey<Biome> biome(PreRegisteredLOTRBiome biome){
-		return RegistryKey.create(Registry.BIOME_REGISTRY, biome.getRegistryName());
-	}
-
-	public static PositionTrigger.Instance inBiome(PreRegisteredLOTRBiome biome){
-		return PositionTrigger.Instance.located(LocationPredicate.inBiome(biome(biome)));
-	}
-
 	public static PositionTrigger.Instance inBiome(ResourceLocation biome){
-		return PositionTrigger.Instance.located(LocationPredicate.inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome)));
+		return inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome));
+	}
+
+	public static PositionTrigger.Instance inBiome(RegistryKey<Biome> biome){
+		return PositionTrigger.Instance.located(LocationPredicate.inBiome(biome));
 	}
 
 	public static ExtendedFakePositionalTrigger.Instance inStructure(ResourceLocation structure){

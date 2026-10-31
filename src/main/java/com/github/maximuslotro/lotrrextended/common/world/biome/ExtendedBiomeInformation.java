@@ -115,10 +115,6 @@ public class ExtendedBiomeInformation {
 		private ExtendedBanditChance banditSpawnChance = ExtendedBanditChance.NONE;
 		private Map<ExtendedInvasions, ExtendedInvasionChance> invasionData = new TreeMap<>();
 
-		public Builder(Biome pBiome) {
-			this(pBiome.getRegistryName());
-		}
-
 		public Builder(ResourceLocation pBiomeID) {
 			this.biomeID = pBiomeID;
 		}

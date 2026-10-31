@@ -1,10 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -18,37 +18,37 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement kingdom_of_men = build(true, dataMain(LOTRItems.GONDOR_SPEAR.get(), "kingdom_of_men", FrameType.TASK)
 				.setTitle("The Kingdom of Men").setDescription("Enter the land of Gondor."),
-				addBiomeTriggers(make(), LOTRBiomes.FURTHER_GONDOR, LOTRBiomes.ANFALAS, LOTRBiomes.ANORIEN, LOTRBiomes.ANDRAST, LOTRBiomes.BLACKROOT_VALE, 
-					LOTRBiomes.WHITE_MOUNTAINS, LOTRBiomes.WHITE_MOUNTAINS_FOOTHILLS, LOTRBiomes.ETHIR_ANDUIN, LOTRBiomes.LEBENNIN, LOTRBiomes.ITHILIEN, 
-					LOTRBiomes.DOR_EN_ERNIL, LOTRBiomes.PINNATH_GELIN, LOTRBiomes.TOLFALAS, LOTRBiomes.PELARGIR, 
-					LOTRBiomes.LOSSARNACH, LOTRBiomes.LAMEDON, LOTRBiomes.LAMEDON_HILLS));
+				addBiomeTriggers(make(), ExtendedBiomePointers.FURTHER_GONDOR, ExtendedBiomePointers.ANFALAS, ExtendedBiomePointers.ANORIEN, ExtendedBiomePointers.ANDRAST, ExtendedBiomePointers.BLACKROOT_VALE, 
+					ExtendedBiomePointers.WHITE_MOUNTAINS, ExtendedBiomePointers.WHITE_MOUNTAINS_FOOTHILLS, ExtendedBiomePointers.ETHIR_ANDUIN, ExtendedBiomePointers.LEBENNIN, ExtendedBiomePointers.ITHILIEN, 
+					ExtendedBiomePointers.DOR_EN_ERNIL, ExtendedBiomePointers.PINNATH_GELIN, ExtendedBiomePointers.TOLFALAS, ExtendedBiomePointers.PELARGIR, 
+					ExtendedBiomePointers.LOSSARNACH, ExtendedBiomePointers.LAMEDON, ExtendedBiomePointers.LAMEDON_HILLS));
 		Advancement hire_gondor = build(true, data(LOTRItems.GONDOR_SWORD.get(), "knight_of_gondor", FrameType.TASK)
 			.setTitle("Knights of Gondor").setDescription("Hire a unit from a Gondorian Captain."),
 			addUnitHireTrigger(make(), ExtendedEntities.GONDOR_CAPTAIN.get()).parent(kingdom_of_men));
 
 		Advancement bows_and_blackroots = build(true, data(LOTRItems.BLACKROOT.get(), "bows_and_blackroots", FrameType.TASK)
 				.setTitle("Bows and Blackroots").setDescription("Enter the fiefdom of Blackroot Vale."),
-				addBiomeTrigger(make(), LOTRBiomes.BLACKROOT_VALE).parent(kingdom_of_men));
+				addBiomeTrigger(make(), ExtendedBiomePointers.BLACKROOT_VALE).parent(kingdom_of_men));
 
 		Advancement white_mountains = build(true, data(LOTRItems.GONDOR_ROCK.get(), "white_mountains", FrameType.TASK)
 			.setTitle("Ered Nimrais").setDescription("Enter the White Mountains."),
-			addBiomeTriggers(make(), LOTRBiomes.WHITE_MOUNTAINS, LOTRBiomes.WHITE_MOUNTAINS_FOOTHILLS).parent(kingdom_of_men));
+			addBiomeTriggers(make(), ExtendedBiomePointers.WHITE_MOUNTAINS, ExtendedBiomePointers.WHITE_MOUNTAINS_FOOTHILLS).parent(kingdom_of_men));
 
 		Advancement ethir_anduin = build(true, data(Items.LILY_PAD, "ethir_anduin", FrameType.TASK)
 			.setTitle("Ethir Anduin").setDescription("Enter the mouths of the Anduin."),
-			addBiomeTrigger(make(), LOTRBiomes.ETHIR_ANDUIN).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.ETHIR_ANDUIN).parent(kingdom_of_men));
 
 		Advancement five_fair_steams = build(true, data(Items.BIRCH_SAPLING, "five_fair_steams", FrameType.TASK)
 			.setTitle("Five Fair Streams").setDescription("Enter the fiefdom of Lebennin."),
-			addBiomeTrigger(make(), LOTRBiomes.LEBENNIN).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.LEBENNIN).parent(kingdom_of_men));
 
 		Advancement hills_and_vales = build(true, data(LOTRItems.BRONZE_AXE.get(), "hills_and_vales", FrameType.TASK)
 			.setTitle("Hills and Vales").setDescription("Enter the fiefdom of Lamedon."),
-			addBiomeTriggers(make(), LOTRBiomes.LAMEDON, LOTRBiomes.LAMEDON_HILLS).parent(kingdom_of_men));
+			addBiomeTriggers(make(), ExtendedBiomePointers.LAMEDON, ExtendedBiomePointers.LAMEDON_HILLS).parent(kingdom_of_men));
 
 		Advancement land_of_the_moon = build(true, data(LOTRItems.CRACKED_NUMENOREAN_BRICK.get(), "land_of_the_moon", FrameType.TASK)
 			.setTitle("Land of the Moon").setDescription("Enter the fiefdom of Ithilien."),
-			addBiomeTrigger(make(), LOTRBiomes.ITHILIEN).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.ITHILIEN).parent(kingdom_of_men));
 		Advancement ithilien_ranger_armor = build(true, data(LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(), "ithilien_ranger_armor", FrameType.TASK)
 			.setTitle("Beneath the Moon").setDescription("Equip a full suit of Ithilien Ranger armor."),
 			addArmorTrigger(make(), "ithilien_ranger", LOTRItems.RANGER_ITHILIEN_HELMET.get(), LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(),
@@ -56,7 +56,7 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 
 		Advancement land_of_the_prince = build(true, data(Items.FEATHER, "land_of_the_prince", FrameType.TASK)
 			.setTitle("Land of the Prince").setDescription("Enter the fiefdom of Dor-en-Ernil."),
-			addBiomeTrigger(make(), LOTRBiomes.DOR_EN_ERNIL).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.DOR_EN_ERNIL).parent(kingdom_of_men));
 		Advancement dol_amroth_crafter = build(true, data(LOTRItems.DOL_AMROTH_CRAFTING_TABLE.get(), "dol_amroth_crafter", FrameType.TASK)
 			.setTitle("Dol Amroth Crafter").setDescription("Craft an item on the Dol Amroth Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.DOL_AMROTH_CRAFTING_TABLE.get()).parent(land_of_the_prince));
@@ -67,31 +67,31 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 	
 		Advancement the_green_hills = build(true, data(Items.GRASS_BLOCK, "the_green_hills", FrameType.TASK)
 			.setTitle("The Green Hills").setDescription("Enter the fiefdom of Pinnath Gelin."),
-			addBiomeTrigger(make(), LOTRBiomes.PINNATH_GELIN).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.PINNATH_GELIN).parent(kingdom_of_men));
 
 		Advancement isle_in_the_bay = build(true, data(Items.STONE, "isle_in_the_bay", FrameType.TASK)
 			.setTitle("The Isle in the Bay").setDescription("Enter the island of Tolfalas."),
-			addBiomeTrigger(make(), LOTRBiomes.TOLFALAS).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.TOLFALAS).parent(kingdom_of_men));
 
 		Advancement royal_havens = build(true, data(LOTRItems.GONDOR_BRICK.get(), "royal_havens", FrameType.TASK)
 			.setTitle("The Royal Havens").setDescription("Enter the fiefdom of Pelargir."),
-			addBiomeTrigger(make(), LOTRBiomes.PELARGIR).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.PELARGIR).parent(kingdom_of_men));
 
 //		Advancement the_townlands = build(true, data(LOTRItems.GONDOR_BRICK.get(), "the_townlands", FrameType.TASK)
 //			.setTitle("The Townlands").setDescription("Enter the Pelennor Fields."),
-//			addBiomeTrigger(make(), LOTRBiomes.PELENNOR_FIELDS).parent(kingdom_of_men));
+//			addBiomeTrigger(make(), ExtendedBiomes.PELENNOR_FIELDS).parent(kingdom_of_men));
 
 		Advancement vale_of_flowers = build(true, data(LOTRItems.APPLE_SAPLING.get(), "vale_of_flowers", FrameType.TASK)
 			.setTitle("Vale of Flowers").setDescription("Enter the fiefdom of Lossarnach."),
-			addBiomeTrigger(make(), LOTRBiomes.LOSSARNACH).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.LOSSARNACH).parent(kingdom_of_men));
 		
 //		Advancement vale_of_roses = build(true, data(Items.ROSE_BUSH, "vale_of_roses", FrameType.TASK)
 //			.setTitle("Valley of Roses").setDescription("Enter the valley of Imloth Melui."),
-//			addBiomeTrigger(make(), LOTRBiomes.IMLOTH_MELUI).parent(kingdom_of_men));
+//			addBiomeTrigger(make(), ExtendedBiomes.IMLOTH_MELUI).parent(kingdom_of_men));
 
 		Advancement wild_shores = build(true, data(Items.SAND, "wild_shores", FrameType.TASK)
 			.setTitle("Wild Shores").setDescription("Enter the cape of Andrast."),
-			addBiomeTrigger(make(), LOTRBiomes.ANDRAST).parent(kingdom_of_men));
+			addBiomeTrigger(make(), ExtendedBiomePointers.ANDRAST).parent(kingdom_of_men));
 
 		Advancement gondor_10 = build(true, data(LOTRItems.GOLD_RING.get(), "gondor_10", FrameType.TASK)
 				.setTitle("Gondor Guest").setDescription("Reach +10.0 alignment with Gondor."),

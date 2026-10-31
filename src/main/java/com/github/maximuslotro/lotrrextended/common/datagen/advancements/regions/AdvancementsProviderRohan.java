@@ -1,12 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -21,19 +20,19 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement horse_lords = build(true, dataMain(LOTRItems.ROHAN_SPEAR.get(), "horse_lords", FrameType.TASK)
 				.setTitle("Home of the Horse-lords").setDescription("Enter the land of Rohan."),
-				addBiomeTriggers(make(), LOTRBiomes.ROHAN, LOTRBiomes.WOLD));
+				addBiomeTriggers(make(), ExtendedBiomePointers.ROHAN, ExtendedBiomePointers.WOLD));
 
 		Advancement vale_of_the_wizard = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", FrameType.TASK)
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."),
-				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR).parent(horse_lords));
+				addBiomeTrigger(make(), ExtendedBiomePointers.NAN_CURUNIR).parent(horse_lords));
 	
 		Advancement uruk_highlands = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "uruk_highlands", FrameType.TASK)
 			.setTitle("Place of Devastation").setDescription("Enter the Uruk Highlands."),
-			addBiomeTrigger(make(), ExtendedBiomes.URUK_HIGHLANDS).parent(vale_of_the_wizard));
+			addBiomeTrigger(make(), ExtendedBiomePointers.URUK_HIGHLANDS).parent(vale_of_the_wizard));
 
 		Advancement entwash = build(true, data(Items.FERN, "entwash", FrameType.TASK)
 		.setTitle("Last Marsh of the Ents").setDescription("Enter the Mouths of Entwash."),
-		addBiomeTrigger(make(), LOTRBiomes.MOUTHS_OF_ENTWASH).parent(horse_lords));
+		addBiomeTrigger(make(), ExtendedBiomePointers.MOUTHS_OF_ENTWASH).parent(horse_lords));
 
 		Advancement rohan_slayer = build(true, data(LOTRItems.ROHAN_SWORD.get(), "rohan_slayer", FrameType.TASK)
 				.setTitle("Rohirrim Slayer").setDescription("Kill one of the Rohirrim."),

@@ -22,6 +22,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -29,17 +30,21 @@ import net.minecraftforge.fml.RegistryObject;
 
 
 public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
-	private static final List<ResourceLocation> BIOMES_MAJOR;
-	private static final List<ResourceLocation> BIOMES_ALL;
+	private static final List<RegistryKey<Biome>> BIOMES_MAJOR;
+	private static final List<RegistryKey<Biome>> BIOMES_ALL;
 	private static final Item[] LOTR_EDIBLE_ITEMS;
 
 	static {
 		BIOMES_ALL = new ArrayList<>();
-		Collection<RegistryObject<Biome>> eeMES = LOTRBiomes.BIOMES.getEntries();
-		for(RegistryObject<Biome> b : eeMES) {
-			BIOMES_ALL.add(b.getId());
+		Collection<RegistryObject<Biome>> allBiomes = LOTRBiomes.BIOMES.getEntries();
+		for(RegistryObject<Biome> biomeObject : allBiomes) {
+			BIOMES_ALL.add(RegistryKey.create(Registry.BIOME_REGISTRY, biomeObject.getId()));
 		}
-		BIOMES_MAJOR = LOTRBiomes.listBiomeNamesForClassicGen();
+		BIOMES_MAJOR = new ArrayList<>();
+		List<ResourceLocation> majorBiomes = LOTRBiomes.listBiomeNamesForClassicGen();
+		for(ResourceLocation biomeLocation : majorBiomes) {
+			BIOMES_MAJOR.add(RegistryKey.create(Registry.BIOME_REGISTRY, biomeLocation));
+		}
 		LOTR_EDIBLE_ITEMS = new Item[]{//Vanilla Edibles
 				Items.APPLE, Items.MUSHROOM_STEW, Items.BREAD, Items.PORKCHOP, Items.COOKED_PORKCHOP,
 				Items.GOLDEN_APPLE, Items.COD, Items.SALMON, Items.TROPICAL_FISH, Items.PUFFERFISH, Items.COOKED_COD, 
@@ -67,7 +72,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement base = build(true, dataMain(LOTRItems.RED_BOOK.get(), "first_steps", FrameType.TASK)
 			.setTitle("First Steps").setDescription("Enter Middle-Earth."),
-			addBiomeAltTriggers(addDimensionTrigger(make(), LOTRDimensions.MIDDLE_EARTH_WORLD_KEY), BIOMES_ALL));
+			addBiomeTriggers(addDimensionTrigger(make(), LOTRDimensions.MIDDLE_EARTH_WORLD_KEY), BIOMES_ALL));
 
 		Advancement orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "orc_slayer", FrameType.TASK)
 			.setTitle("Orc Slayer").setDescription("Kill an Orc."),

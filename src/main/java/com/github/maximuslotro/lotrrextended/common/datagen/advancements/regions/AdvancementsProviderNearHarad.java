@@ -1,10 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -18,7 +18,7 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement southward_bound = build(true, dataMain(LOTRItems.HARAD_BRICK.get(), "southward_bound", FrameType.TASK)
 				.setTitle("Southward Bound").setDescription("Enter the region of Harondor."),
-				addBiomeTriggers(make(), LOTRBiomes.HARONDOR));
+				addBiomeTriggers(make(), ExtendedBiomePointers.HARONDOR));
 		Advancement southron_slayer = build(true, data(Items.BONE, "southron_slayer", FrameType.TASK)
 			.setTitle("Southron Slayer").setDescription("Kill a Southron of Near Harad."),
 			addKillEntityTriggers(make(), LOTREntities.COAST_SOUTHRON.get(), LOTREntities.COAST_SOUTHRON_ARCHER.get(), 
@@ -28,7 +28,7 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 		
 		Advancement beyond_harnen = build(true, data(Items.COARSE_DIRT, "beyond_harnen", FrameType.TASK)
 			.setTitle("Beyond the Harnen").setDescription("Enter the region of Harnennor."),
-			addBiomeTriggers(make(), LOTRBiomes.HARNENNOR).parent(southward_bound));
+			addBiomeTriggers(make(), ExtendedBiomePointers.HARNENNOR).parent(southward_bound));
 		Advancement harnennor_armor = build(true, data(LOTRItems.HARNENNOR_CHESTPLATE.get(), "harnennor_armor", FrameType.TASK)
 			.setTitle("Cruel Bronze Spikes").setDescription("Equip a full suit of Harnennor armor."),
 			addArmorTrigger(make(), "harnennor", LOTRItems.HARNENNOR_HELMET.get(), LOTRItems.HARNENNOR_CHESTPLATE.get(),
@@ -39,7 +39,7 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 
 		Advancement city_of_corsairs = build(true, data(LOTRItems.UMBAR_SCIMITAR.get(), "city_of_corsairs", FrameType.TASK)
 			.setTitle("City of Corsairs").setDescription("Enter the land of Umbar."),
-			addBiomeTriggers(make(), LOTRBiomes.UMBAR, LOTRBiomes.UMBAR_FOREST, LOTRBiomes.UMBAR_HILLS).parent(southward_bound));
+			addBiomeTriggers(make(), ExtendedBiomePointers.UMBAR, ExtendedBiomePointers.UMBAR_FOREST, ExtendedBiomePointers.UMBAR_HILLS).parent(southward_bound));
 		Advancement hire_umbar = build(true, data(LOTRItems.UMBAR_SCIMITAR.get(), "raiding_party", FrameType.TASK)
 			.setTitle("Raiding Party").setDescription("Hire a unit from a Corsair Captain."),
 			addUnitHireTrigger(make(), ExtendedEntities.UMBAR_CAPTAIN.get()).parent(city_of_corsairs));
@@ -53,7 +53,7 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 
 		Advancement azra_zain = build(true, data(Items.SAND, "azra_zain", FrameType.TASK)
 			.setTitle("In Azra-zâin").setDescription("Enter the coastland regions of Near Harad."),
-			addBiomeTriggers(make(), LOTRBiomes.SOUTHRON_COASTS, LOTRBiomes.SOUTHRON_COASTS_FOREST).parent(southward_bound));
+			addBiomeTriggers(make(), ExtendedBiomePointers.SOUTHRON_COASTS, ExtendedBiomePointers.SOUTHRON_COASTS_FOREST).parent(southward_bound));
 		Advancement southron_crafter = build(true, data(LOTRItems.HARAD_CRAFTING_TABLE.get(), "southron_crafter", FrameType.TASK)
 			.setTitle("Southron Crafter").setDescription("Craft an item on the Haradric crafting table."),
 			addCraftingTrigger(make(), LOTRBlocks.HARAD_CRAFTING_TABLE.get()).parent(southward_bound));
@@ -63,11 +63,11 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 	
 		Advancement the_great_desert = build(true, data(Items.SAND, "the_great_desert", FrameType.TASK)
 			.setTitle("The Great Desert").setDescription("Enter the burning sands of Near Harad."),
-			addBiomeTriggers(make(), LOTRBiomes.HARAD_DESERT, LOTRBiomes.HARAD_DESERT_HILLS, LOTRBiomes.HARAD_HALF_DESERT).parent(southward_bound));
+			addBiomeTriggers(make(), ExtendedBiomePointers.HARAD_DESERT, ExtendedBiomePointers.HARAD_DESERT_HILLS, ExtendedBiomePointers.HARAD_HALF_DESERT).parent(southward_bound));
 
 		Advancement wide_emptiness = build(true, data(Items.STONE, "wide_emptiness", FrameType.TASK)
 			.setTitle("Wide Emptiness").setDescription("Enter the desert of Lostladen."),
-			addBiomeTriggers(make(), LOTRBiomes.HARNENNOR).parent(southward_bound));
+			addBiomeTriggers(make(), ExtendedBiomePointers.HARNENNOR).parent(southward_bound));
 
 		Advancement harad_armor = build(true, data(LOTRItems.HARAD_CHESTPLATE.get(), "harad_armor", FrameType.TASK)
 			.setTitle("Coastland Soldier").setDescription("Equip a full suit of Near Harad armor."),

@@ -4,24 +4,25 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> SHIRE_BIOMES = ImmutableList.of(LOTRBiomes.SHIRE, LOTRBiomes.SHIRE_MARSHES,
-		LOTRBiomes.SHIRE_MOORS, LOTRBiomes.SHIRE_WOODLANDS, LOTRBiomes.WHITE_DOWNS);
+	private static final List<RegistryKey<Biome>> SHIRE_BIOMES = ImmutableList.of(ExtendedBiomePointers.SHIRE, ExtendedBiomePointers.SHIRE_MARSHES,
+		ExtendedBiomePointers.SHIRE_MOORS, ExtendedBiomePointers.SHIRE_WOODLANDS, ExtendedBiomePointers.WHITE_DOWNS);
 
 	@Override
 	public void generateAdvancements() {
@@ -31,7 +32,7 @@ public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
 
 		Advancement white_downs = build(true, data(LOTRItems.CHALK.get(), "chalken_delvings", FrameType.TASK)
 			.setTitle("Chalken Delvings").setDescription("Enter the White Downs."),
-			addBiomeTrigger(make(), LOTRBiomes.WHITE_DOWNS).parent(shire));
+			addBiomeTrigger(make(), ExtendedBiomePointers.WHITE_DOWNS).parent(shire));
 
 		Advancement hobbit_crafter = build(true, data(LOTRItems.HOBBIT_CRAFTING_TABLE.get(), "hobbit_crafter", FrameType.TASK)
 			.setTitle("Hobbit Crafter").setDescription("Craft an item on the Hobbit Crafting Table."),
@@ -39,7 +40,7 @@ public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
 
 		Advancement old_forest = build(true, data(Items.OAK_LOG, "unfriendly_trees", FrameType.TASK)
 			.setTitle("Unfriendly Trees").setDescription("Enter the Old Forest."),
-			addBiomeTrigger(make(), LOTRBiomes.OLD_FOREST).parent(shire));
+			addBiomeTrigger(make(), ExtendedBiomePointers.OLD_FOREST).parent(shire));
 
 		Advancement hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "hobbit_slayer", FrameType.TASK)
 			.setTitle("Hobbit Slayer").setDescription("Kill a Hobbit."),

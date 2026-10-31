@@ -4,21 +4,22 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderForodwaith extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> FORODWAITH_BIOMES = ImmutableList.of(LOTRBiomes.FORODWAITH,
-			LOTRBiomes.FORODWAITH_MOUNTAINS, LOTRBiomes.FOROCHEL);
+	private static final List<RegistryKey<Biome>> FORODWAITH_BIOMES = ImmutableList.of(ExtendedBiomePointers.FORODWAITH,
+			ExtendedBiomePointers.FORODWAITH_MOUNTAINS, ExtendedBiomePointers.FOROCHEL);
 
 	@Override
 	public void generateAdvancements() {
@@ -28,7 +29,7 @@ public class AdvancementsProviderForodwaith extends ExtendedBaseAdvancementType{
 
 		Advancement forochel = build(false, data(Items.ICE, "forochel", FrameType.TASK)
 				.setTitle("A small Respite").setDescription("Enter the icebay of Forochel."),
-				addBiomeTrigger(make(), LOTRBiomes.FOROCHEL).parent(everlasting_chill));
+				addBiomeTrigger(make(), ExtendedBiomePointers.FOROCHEL).parent(everlasting_chill));
 
 		Advancement warg_armor = build(false, data(LOTRItems.FUR_CHESTPLATE.get(), "wrapped_warmly", FrameType.TASK)
 				.setTitle("Wrapped Warmly").setDescription("Acquire a full set of Fur armor."),

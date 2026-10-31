@@ -3,22 +3,23 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> BREE_BIOMES = ImmutableList.of(LOTRBiomes.BREELAND, LOTRBiomes.CHETWOOD);
+	private static final List<RegistryKey<Biome>> BREE_BIOMES = ImmutableList.of(ExtendedBiomePointers.BREELAND, ExtendedBiomePointers.CHETWOOD);
 
 	@Override
 	public void generateAdvancements() {
@@ -28,7 +29,7 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 
 		Advancement chetwood = build(true, data(Items.OAK_SAPLING, "ruffians_haunt", FrameType.TASK)
 		.setTitle("Ruffians' Haunt").setDescription("Enter the forest of Chetwood."),
-		addBiomeTrigger(make(), LOTRBiomes.CHETWOOD).parent(bree));
+		addBiomeTrigger(make(), ExtendedBiomePointers.CHETWOOD).parent(bree));
 
 		Advancement bree_man_slayer = build(true, data(Items.BONE, "bree_man_slayer", FrameType.TASK)
 				.setTitle("Bree-Man Slayer").setDescription("Kill a Bree-Man."),

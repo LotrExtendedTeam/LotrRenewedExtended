@@ -4,9 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 
-import lotr.common.init.ExtendedBiomes;
-import lotr.common.init.LOTRBiomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -131,7 +130,7 @@ public class BiomeStructureAdder {
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null && event.getName().getNamespace().equals("lotr")) {
 			ResourceLocation biomeName = event.getName();
-			if(biomeName.equals(LOTRBiomes.SHIRE.getRegistryName())) {
+			if(biomeName.equals(ExtendedBiomePointers.SHIRE.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_LARGE);
@@ -141,18 +140,18 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_LARGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_WINDMILL);
-			}else if(biomeName.equals(LOTRBiomes.SHIRE_WOODLANDS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.SHIRE_WOODLANDS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
-			}else if(biomeName.equals(LOTRBiomes.SHIRE_MOORS.getRegistryName())||biomeName.equals(LOTRBiomes.WHITE_DOWNS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.SHIRE_MOORS.location())||biomeName.equals(ExtendedBiomePointers.WHITE_DOWNS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_WINDMILL);
-			}else if(biomeName.equals(LOTRBiomes.LONE_LANDS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.LONE_LANDS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -162,7 +161,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.LONE_LANDS_HILLS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.LONE_LANDS_HILLS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -171,7 +170,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.ERIADOR.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.ERIADOR.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -180,7 +179,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.ERIADOR_DOWNS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.ERIADOR_DOWNS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -189,7 +188,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.MINHIRIATH.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.MINHIRIATH.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -199,7 +198,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.ERYN_VORN.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.ERYN_VORN.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -208,7 +207,7 @@ public class BiomeStructureAdder {
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.TOWER_HILLS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.TOWER_HILLS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -220,7 +219,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_MIDDLE_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_NORTH_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_TOWER);
-			}else if(biomeName.equals(LOTRBiomes.SWANFLEET.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.SWANFLEET.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -229,7 +228,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.HILLS_OF_EVENDIM.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.HILLS_OF_EVENDIM.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -238,7 +237,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.ENEDWAITH.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.ENEDWAITH.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -247,7 +246,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.TROLLSHAWS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.TROLLSHAWS.location())) {
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
@@ -256,56 +255,56 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.NORTHERN_WILDERLAND.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.NORTHERN_WILDERLAND.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.LONG_MARSHES.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.LONG_MARSHES.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.ANDUIN_HILLS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.ANDUIN_HILLS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.VALES_OF_ANDUIN.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.VALES_OF_ANDUIN.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(LOTRBiomes.GLADDEN_FIELDS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.GLADDEN_FIELDS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
-			}else if(biomeName.equals(ExtendedBiomes.BARROW_DOWNS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.BARROW_DOWNS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWNS_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWN_BARROWS);
-			}else if(biomeName.equals(LOTRBiomes.BREELAND.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.BREELAND.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BREE_HAMLET);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BREE_VILLAGE);
-			}else if(biomeName.equals(LOTRBiomes.BLUE_MOUNTAINS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.BLUE_MOUNTAINS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SETTLEMENT);
-			}else if(biomeName.equals(LOTRBiomes.BLUE_MOUNTAINS_FOOTHILLS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.BLUE_MOUNTAINS_FOOTHILLS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SETTLEMENT);
-			}else if(biomeName.equals(LOTRBiomes.WESTERN_ISLES.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.WESTERN_ISLES.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_STONE_OF_HAPLESS);
-			}else if(biomeName.equals(LOTRBiomes.RIVENDELL.getRegistryName()) || biomeName.equals(ExtendedBiomes.RIVENDELL_VALLEY.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.RIVENDELL.location()) || biomeName.equals(ExtendedBiomePointers.RIVENDELL_VALLEY.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RIVENDELL_STRUCTURES);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_THE_LAST_HOMELY_HOUSE);
-			}else if(biomeName.equals(LOTRBiomes.EREGION.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.EREGION.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_EREGION_RUINS_STRUCTURES);
-			}else if(biomeName.equals(LOTRBiomes.LINDON.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.LINDON.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_VILLAGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_HALL);
-			}else if(biomeName.equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.NAN_CURUNIR.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_GATEHOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ORTHANC);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_CAMP);
-			}else if(biomeName.equals(LOTRBiomes.DUNLAND.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.DUNLAND.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_DUNLAND_HILLFORT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_DUNLAND_VILLAGE);
-			}else if(biomeName.equals(LOTRBiomes.IRON_HILLS.getRegistryName())) {
+			}else if(biomeName.equals(ExtendedBiomePointers.IRON_HILLS.location())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_IRON_HILLS_MINE);
 			}
 		}

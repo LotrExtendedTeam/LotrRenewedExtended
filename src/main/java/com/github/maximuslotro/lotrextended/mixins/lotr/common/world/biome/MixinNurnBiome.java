@@ -3,7 +3,8 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import lotr.common.init.ExtendedBiomes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
+
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeBase;
@@ -44,6 +45,6 @@ public class MixinNurnBiome extends LOTRBiomeBase  {
 
 	@Override
 	public Biome getRiver(IWorld world) {
-		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomes.NURN_RIVER.getRegistryName(), world);
+		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomePointers.NURN_RIVER.location(), world);
 	}
 }

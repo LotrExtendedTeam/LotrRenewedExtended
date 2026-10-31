@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
@@ -15,11 +15,11 @@ public class AdvancementsProviderDorwinion extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement enter_dorwinion = build(true, dataMain(LOTRItems.ALE.get(), "enter_dorwinion", FrameType.TASK)
 				.setTitle("Elves and Vineyards").setDescription("Enter the land of Dorwinion."),
-				addBiomeTriggers(make(), LOTRBiomes.DORWINION, LOTRBiomes.EMYN_WINION));
+				addBiomeTriggers(make(), ExtendedBiomePointers.DORWINION, ExtendedBiomePointers.EMYN_WINION));
 
 		Advancement chalk_land = build(true, data(LOTRItems.CHALK.get(), "chalk_land", FrameType.TASK)
 				.setTitle("The Chalkstone Hills").setDescription("Enter the hills of Emyn Winion."),
-				addBiomeTrigger(make(), LOTRBiomes.EMYN_WINION).parent(enter_dorwinion));
+				addBiomeTrigger(make(), ExtendedBiomePointers.EMYN_WINION).parent(enter_dorwinion));
 
 		Advancement dorwinion_10 = build(true, data(LOTRItems.GOLD_RING.get(), "dorwinion_10", FrameType.TASK)
 				.setTitle("Vintner Guest").setDescription("Reach +10.0 alignment with Dorwinion."),

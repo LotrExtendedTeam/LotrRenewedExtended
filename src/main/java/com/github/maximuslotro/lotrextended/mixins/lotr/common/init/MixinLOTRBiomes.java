@@ -21,7 +21,6 @@ import lotr.common.biome.ExtendedMorgulValeRiverBiome;
 import lotr.common.biome.ExtendedNurnRiverBiome;
 import lotr.common.biome.ExtendedRivendellBiome;
 import lotr.common.biome.ExtendedUrukHighlandsBiome;
-import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import lotr.common.world.biome.LOTRBiomeBase;
@@ -78,17 +77,17 @@ public class MixinLOTRBiomes {
 	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedBiomes(CallbackInfo ci) {
-		ExtendedBiomes.BARROW_DOWNS = prepareD("barrow_downs", () -> new ExtendedBarrowDownsBiome(true));
-		ExtendedBiomes.BARROW_DOWNS_RIVER = prepareD("barrow_downs_river", () -> new ExtendedBarrowDownsBiome.BarrowDownsRiverBiome());
-		ExtendedBiomes.RIVENDELL_CLIFFS = prepareD("rivendell_cliffs", () -> new ExtendedRivendellBiome.ExtendedRivendellCliffsBiome());
-		ExtendedBiomes.RIVENDELL_VALLEY = prepareD("rivendell_valley", () -> new ExtendedRivendellBiome.ExtendedRivendellValleyBiome());
-		ExtendedBiomes.RIVENDELL_RIVER = prepareD("rivendell_river", () -> new ExtendedRivendellBiome.ExtendedRivendellRiverBiome());
+		prepareD("barrow_downs", () -> new ExtendedBarrowDownsBiome(true));
+		prepareD("barrow_downs_river", () -> new ExtendedBarrowDownsBiome.BarrowDownsRiverBiome());
+		prepareD("rivendell_cliffs", () -> new ExtendedRivendellBiome.ExtendedRivendellCliffsBiome());
+		prepareD("rivendell_valley", () -> new ExtendedRivendellBiome.ExtendedRivendellValleyBiome());
+		prepareD("rivendell_river", () -> new ExtendedRivendellBiome.ExtendedRivendellRiverBiome());
 
-		ExtendedBiomes.MORDOR_RIVER = prepareD("mordor_river", () -> new ExtendedMordorRiverBiome());
-		ExtendedBiomes.GORGOROTH_RIVER = prepareD("gorgoroth_river", () -> new ExtendedGorgorothRiverBiome());
-		ExtendedBiomes.MORGUL_VALE_RIVER = prepareD("morgul_vale_river", () -> new ExtendedMorgulValeRiverBiome());
-		ExtendedBiomes.NURN_RIVER = prepareD("nurn_river", () -> new ExtendedNurnRiverBiome());
-		ExtendedBiomes.FANGORN_WASTELAND = prepareD("fangorn_wasteland", () -> new ExtendedFangornWastelandBiome(true));
-		ExtendedBiomes.URUK_HIGHLANDS = prepareD("uruk_highlands", () -> new ExtendedUrukHighlandsBiome(true));
+		prepareD("mordor_river", () -> new ExtendedMordorRiverBiome());
+		prepareD("gorgoroth_river", () -> new ExtendedGorgorothRiverBiome());
+		prepareD("morgul_vale_river", () -> new ExtendedMorgulValeRiverBiome());
+		prepareD("nurn_river", () -> new ExtendedNurnRiverBiome());
+		prepareD("fangorn_wasteland", () -> new ExtendedFangornWastelandBiome(true));
+		prepareD("uruk_highlands", () -> new ExtendedUrukHighlandsBiome(true));
 	}
 }

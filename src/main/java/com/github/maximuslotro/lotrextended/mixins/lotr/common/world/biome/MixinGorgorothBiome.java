@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-import lotr.common.init.ExtendedBiomes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
+
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.BaseMordorBiome;
 import lotr.common.world.biome.GorgorothBiome;
@@ -19,6 +20,6 @@ public abstract class MixinGorgorothBiome extends BaseMordorBiome{
 
 	@Override
 	public Biome getRiver(IWorld world) {
-		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomes.GORGOROTH_RIVER.getRegistryName(), world);
+		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomePointers.GORGOROTH_RIVER.location(), world);
 	}
 }

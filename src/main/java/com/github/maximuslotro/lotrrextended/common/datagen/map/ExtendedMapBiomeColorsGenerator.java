@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.map;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 
 import net.minecraft.data.DataGenerator;
 
@@ -12,17 +12,17 @@ public class ExtendedMapBiomeColorsGenerator extends ExtendedMapBiomeColorsProvi
 
 	@Override
 	public void makeBiomes() {
-		addBiome(ExtendedBiomes.BARROW_DOWNS, "7B8E52");
-		addBiome(ExtendedBiomes.BARROW_DOWNS_RIVER, "677A72");
-		addBiome(ExtendedBiomes.RIVENDELL, "7DA82D");
-		addBiome(ExtendedBiomes.RIVENDELL_VALLEY, "86B72A");
-		addBiome(ExtendedBiomes.RIVENDELL_HILLS, "C4C59E");
-		addBiome(ExtendedBiomes.RIVENDELL_CLIFFS, "D8D5B1");
-		addBiome(ExtendedBiomes.RIVENDELL_RIVER, "557CB5");
-		addBiome(ExtendedBiomes.NURN_RIVER, "324659");
-		addBiome(ExtendedBiomes.MORGUL_VALE_RIVER, "104622");
-		addBiome(ExtendedBiomes.MORDOR_RIVER, "22303D");
-		addBiome(ExtendedBiomes.URUK_HIGHLANDS, "7E935A");
-		addBiome(ExtendedBiomes.FANGORN_WASTELAND, "647B45");
+		addBiome(ExtendedBiomePointers.BARROW_DOWNS, "7B8E52");
+		addBiome(ExtendedBiomePointers.BARROW_DOWNS_RIVER, "677A72");
+		addBiome(ExtendedBiomePointers.RIVENDELL, "7DA82D");
+		addBiome(ExtendedBiomePointers.RIVENDELL_VALLEY, "86B72A");
+		addBiome(ExtendedBiomePointers.RIVENDELL_HILLS, "C4C59E");
+		addBiome(ExtendedBiomePointers.RIVENDELL_CLIFFS, "D8D5B1");
+		addBiome(ExtendedBiomePointers.RIVENDELL_RIVER, "557CB5");
+		addBiome(ExtendedBiomePointers.NURN_RIVER, "324659");
+		addBiome(ExtendedBiomePointers.MORGUL_VALE_RIVER, "104622");
+		addBiome(ExtendedBiomePointers.MORDOR_RIVER, "22303D");
+		addBiome(ExtendedBiomePointers.URUK_HIGHLANDS, "7E935A");
+		addBiome(ExtendedBiomePointers.FANGORN_WASTELAND, "647B45");
 	}
 }

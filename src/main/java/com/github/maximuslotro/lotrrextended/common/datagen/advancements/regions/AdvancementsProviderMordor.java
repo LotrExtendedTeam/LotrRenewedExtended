@@ -1,12 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -19,16 +19,16 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement enter_mordor = build(true, dataMain(LOTRItems.MORDOR_ROCK.get(), "enter_mordor", FrameType.TASK)
 				.setTitle("One Does Not Simply...").setDescription("Enter the land of Mordor."),
-				addBiomeTriggers(make(), LOTRBiomes.MORDOR, LOTRBiomes.MORDOR_MOUNTAINS, LOTRBiomes.MORGUL_VALE, LOTRBiomes.NURN, LOTRBiomes.NURNEN, 
-					LOTRBiomes.NURN_MARSHES));
+				addBiomeTriggers(make(), ExtendedBiomePointers.MORDOR, ExtendedBiomePointers.MORDOR_MOUNTAINS, ExtendedBiomePointers.MORGUL_VALE, ExtendedBiomePointers.NURN, ExtendedBiomePointers.NURNEN, 
+					ExtendedBiomePointers.NURN_MARSHES));
 
 		Advancement slavers = build(true, data(LOTRItems.MORDOR_HOE.get(), "slavers", FrameType.TASK)
 				.setTitle("Slaves and Slavers").setDescription("Enter the region of Núrn."),
-				addBiomeTriggers(make(), LOTRBiomes.NURN, LOTRBiomes.NURNEN,  LOTRBiomes.NURN_MARSHES).parent(enter_mordor));
+				addBiomeTriggers(make(), ExtendedBiomePointers.NURN, ExtendedBiomePointers.NURNEN,  ExtendedBiomePointers.NURN_MARSHES).parent(enter_mordor));
 
 		Advancement sickly_moon = build(true, data(LOTRItems.MORGUL_FLOWER.get(), "sickly_moon", FrameType.TASK)
 			.setTitle("The Sickly Moon").setDescription("Enter the Morgul Vale."),
-			addBiomeTriggers(make(), LOTRBiomes.MORGUL_VALE).parent(enter_mordor));
+			addBiomeTriggers(make(), ExtendedBiomePointers.MORGUL_VALE).parent(enter_mordor));
 
 		Advancement mordor_10 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_10", FrameType.TASK)
 				.setTitle("Mordor Thrall").setDescription("Reach +10.0 alignment with Mordor."),

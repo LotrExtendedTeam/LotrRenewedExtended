@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
@@ -18,7 +18,7 @@ public class AdvancementsProviderRhun extends ExtendedBaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement into_the_east = build(true, dataMain(Items.GRASS_BLOCK, "enter_rhun", FrameType.TASK)
 				.setTitle("Into the East").setDescription("Enter the wide lands of Rhûn."),
-				addBiomeTriggers(make(), LOTRBiomes.WILDERLAND));
+				addBiomeTriggers(make(), ExtendedBiomePointers.WILDERLAND));
 
 		Advancement rhudel_10 = build(true, data(LOTRItems.GOLD_RING.get(), "rhudel_10", FrameType.TASK)
 				.setTitle("Easterling Bondsman").setDescription("Reach +10.0 alignment with the Easterlings of Rhúdel."),

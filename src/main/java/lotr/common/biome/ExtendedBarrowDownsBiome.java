@@ -1,6 +1,7 @@
 package lotr.common.biome;
 
-import lotr.common.init.ExtendedBiomes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
+
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeBase;
@@ -34,7 +35,7 @@ public class ExtendedBarrowDownsBiome extends LOTRBiomeBase {
 
 	@Override
 	public Biome getRiver(IWorld world) {
-		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomes.BARROW_DOWNS_RIVER.getRegistryName(), world);
+		return LOTRBiomes.getBiomeByRegistryName(ExtendedBiomePointers.BARROW_DOWNS_RIVER.location(), world);
 	}
 
 	@Override

@@ -3,18 +3,19 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.google.common.collect.ImmutableList;
 
-import lotr.common.init.LOTRBiomes;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 
 public class AdvancementsProviderMistyMountains extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(LOTRBiomes.MISTY_MOUNTAINS,
-			LOTRBiomes.MISTY_MOUNTAINS_FOOTHILLS);
+	private static final List<RegistryKey<Biome>> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(ExtendedBiomePointers.MISTY_MOUNTAINS,
+			ExtendedBiomePointers.MISTY_MOUNTAINS_FOOTHILLS);
 
 	@Override
 	public void generateAdvancements() {

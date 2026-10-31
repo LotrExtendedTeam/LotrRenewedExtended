@@ -3,28 +3,28 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBiomePointers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> ERIADOR_BIOMES = ImmutableList.of(LOTRBiomes.ERIADOR, LOTRBiomes.ERIADOR_DOWNS,
-			LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS, LOTRBiomes.MIDGEWATER, LOTRBiomes.MINHIRIATH, LOTRBiomes.ERYN_VORN,
-			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL, ExtendedBiomes.RIVENDELL_CLIFFS,
-			ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, 
-			ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
+	private static final List<RegistryKey<Biome>> ERIADOR_BIOMES = ImmutableList.of(ExtendedBiomePointers.ERIADOR, ExtendedBiomePointers.ERIADOR_DOWNS,
+			ExtendedBiomePointers.LONE_LANDS, ExtendedBiomePointers.LONE_LANDS_HILLS, ExtendedBiomePointers.MIDGEWATER, ExtendedBiomePointers.MINHIRIATH, ExtendedBiomePointers.ERYN_VORN,
+			ExtendedBiomePointers.TROLLSHAWS, ExtendedBiomePointers.ETTENMOORS, ExtendedBiomePointers.COLDFELLS, ExtendedBiomePointers.SWANFLEET, ExtendedBiomePointers.RIVENDELL, ExtendedBiomePointers.RIVENDELL_CLIFFS,
+			ExtendedBiomePointers.RIVENDELL_RIVER, ExtendedBiomePointers.RIVENDELL_VALLEY, ExtendedBiomePointers.RIVENDELL_HILLS, ExtendedBiomePointers.BARROW_DOWNS, 
+			ExtendedBiomePointers.BARROW_DOWNS_RIVER);//, ExtendedBiomes.THE_ANGLE);
 
 	@Override
 	public void generateAdvancements() {
@@ -34,7 +34,7 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 		Advancement lone_lands = build(true, data(LOTRItems.CRACKED_ARNOR_BRICK.get(), "a_lonely_land", FrameType.TASK)
 				.setTitle("A Lonely Land").setDescription("Enter the Lone Lands."),
-				addBiomeTriggers(make(), LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS).parent(eriadorBase));
+				addBiomeTriggers(make(), ExtendedBiomePointers.LONE_LANDS, ExtendedBiomePointers.LONE_LANDS_HILLS).parent(eriadorBase));
 		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", FrameType.TASK)
 				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc."),
 				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get(),
@@ -66,11 +66,11 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 //		Advancement theAngle = build(data(Items.GREEN_WOOL, "a_fastness_in_the_wild", FrameType.TASK)
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."),
-//				addBiomeTrigger(make(),LOTRBiomes.THE_ANGLE).parent(eriadorBase));
+//				addBiomeTrigger(make(),ExtendedBiomes.THE_ANGLE).parent(eriadorBase));
 		
 		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", FrameType.TASK)
 			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
-			addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(eriadorBase));
+			addBiomeTriggers(make(), ExtendedBiomePointers.BARROW_DOWNS, ExtendedBiomePointers.BARROW_DOWNS_RIVER).parent(eriadorBase));
 		
 		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", FrameType.TASK)
 			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
@@ -78,20 +78,20 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 		Advancement minhiriath = build(true, data(Items.GRASS_BLOCK, "between_the_rivers", FrameType.TASK)
 				.setTitle("Between the Rivers").setDescription("Enter the region of Minhiriath."),
-				addBiomeTrigger(make(), LOTRBiomes.MINHIRIATH).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.MINHIRIATH).parent(eriadorBase));
 
 		Advancement midgewater = build(true, data(LOTRItems.QUAGMIRE.get(), "more_midges_than_water", FrameType.TASK)
 				.setTitle("More Midges than Water!").setDescription("Enter the marshes of Midgewater."),
-				addBiomeTrigger(make(), LOTRBiomes.MIDGEWATER).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.MIDGEWATER).parent(eriadorBase));
 
 		Advancement troll_shaws = build(true, data(Items.COOKED_MUTTON, "roast_mutton", FrameType.TASK)
 				.setTitle("Roast Mutton").setDescription("Enter the Trollshaws."),
-				addBiomeTrigger(make(), LOTRBiomes.TROLLSHAWS).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.TROLLSHAWS).parent(eriadorBase));
 
 		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", FrameType.TASK)
 				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell."),
-				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.RIVENDELL_CLIFFS, 
-					ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY).parent(eriadorBase));
+				addBiomeTriggers(make(), ExtendedBiomePointers.RIVENDELL, ExtendedBiomePointers.RIVENDELL_HILLS, ExtendedBiomePointers.RIVENDELL_CLIFFS, 
+					ExtendedBiomePointers.RIVENDELL_RIVER, ExtendedBiomePointers.RIVENDELL_VALLEY).parent(eriadorBase));
 		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", FrameType.TASK)
 				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor."),
 				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(),
@@ -126,15 +126,15 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", FrameType.TASK)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells."),
-				addBiomeTrigger(make(), LOTRBiomes.COLDFELLS).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.COLDFELLS).parent(eriadorBase));
 
 		Advancement ettenmoors = build(true, data(Items.SPRUCE_SAPLING, "the_troll_fells", FrameType.TASK)
 				.setTitle("The Troll-fells").setDescription("Enter the Ettenmoors."),
-				addBiomeTrigger(make(), LOTRBiomes.ETTENMOORS).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.ETTENMOORS).parent(eriadorBase));
 
 		Advancement swanfleet = build(true, data(Items.LILY_PAD, "nin_in_eilph", FrameType.TASK)
 				.setTitle("Nîn-in-Eilph").setDescription("Enter the fenlands of Swanfleet."),
-				addBiomeTrigger(make(), LOTRBiomes.SWANFLEET).parent(eriadorBase));
+				addBiomeTrigger(make(), ExtendedBiomePointers.SWANFLEET).parent(eriadorBase));
 
 		Advancement ranger_10 = build(true, data(LOTRItems.GOLD_RING.get(), "dunedain_friend", FrameType.TASK)
 				.setTitle("Dúnedain Friend").setDescription("Reach +10.0 alignment with the Dúnedain of the North."),
