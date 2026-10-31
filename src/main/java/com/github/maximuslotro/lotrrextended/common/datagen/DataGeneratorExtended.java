@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedTraderProfileGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.map.ExtendedMapBiomeColorsGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.map.ExtendedMapWaypointGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.map.ExtendedTravelRegions;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
@@ -52,6 +53,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedMapWaypointGenerator(generator, existingFileHelper, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedStructureProcessorListGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedBiomeInformationGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedMapBiomeColorsGenerator(generator, LotrExtendedMod.MODID));
 			// Make Data from Data
 			generator.addProvider(new ExtendedBiomeDataAggregator(generator, existingFileHelper));
 			// Validate Data

@@ -1,0 +1,17 @@
+{
+  "load_order": 2,
+  "biome_colors": {
+    "lotr:barrow_downs": "7B8E52",
+    "lotr:barrow_downs_river": "677A72",
+    "lotr:fangorn_wasteland": "647B45",
+    "lotr:mordor_river": "22303D",
+    "lotr:morgul_vale_river": "104622",
+    "lotr:nurn_river": "324659",
+    "lotr:rivendell": "7DA82D",
+    "lotr:rivendell_cliffs": "D8D5B1",
+    "lotr:rivendell_hills": "C4C59E",
+    "lotr:rivendell_river": "557CB5",
+    "lotr:rivendell_valley": "86B72A",
+    "lotr:uruk_highlands": "7E935A"
+  }
+}
