@@ -23,13 +23,19 @@ public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<Exten
             return;
         }
 
-        // TODO: Make a head dip animation?
-        // TODO: Figure out how to alternate between showing flapping and just normal standing and head dip animation
-        double animationTime = tileEntity.getLevel().getGameTime() + (double) pPartialTicks;
-        birdModel.setupCageAnim(animationTime);
+        double gameTime = tileEntity.getLevel().getGameTime() + (double) pPartialTicks;
+        float animationTime = (tileEntity.getLevel().getGameTime() + pPartialTicks) % 60;
+        double hopDistance = 0.0;
+        if (animationTime >= 0 && animationTime <= 20) {
+            birdModel.setupHeadMoveCageAnim(gameTime);
+        } else if (animationTime > 20 && animationTime <= 40) {
+            hopDistance = 0.2D * ((animationTime - 20) / 20);
+        } else {
+            birdModel.setupFlappingCageAnim(gameTime);
+        }
 
         pMatrixStack.pushPose();
-        pMatrixStack.translate(0.5D, 0.2D, 0.5D);
+        pMatrixStack.translate(0.5D, 0.2D + hopDistance, 0.5D);
         pMatrixStack.scale(0.90F, -0.90F, -0.90F);
         pMatrixStack.translate(0.0D, -1.501D, 0.0D);
         birdModel.renderToBuffer(pMatrixStack, pBuffer.getBuffer(birdModel.renderType(ExtendedCrabanRenderer.LOCATION)),

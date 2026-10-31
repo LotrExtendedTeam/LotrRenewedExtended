@@ -82,9 +82,23 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
         setupPose(pLimbSwing, pLimbSwingAmount, pNetHeadYaw, pHeadPitch, wing);
     }
 
-    public void setupCageAnim(double ageInTicks) {
+    public void setupFlappingCageAnim(double ageInTicks) {
         float wing = (float) Math.sin(ageInTicks * 1.2D) * 0.6F + 0.2F;
         setupPose(0.0F, 0.0F, 0.0F, 0.0F, wing);
+    }
+
+    public void setupHeadMoveCageAnim(double ageInTicks) {
+        float duration = 20.0F;
+        float maxAngle = 30.0F;
+
+        float progress = (float) (ageInTicks % duration);
+
+        float headPitch = maxAngle * 0.5F *
+                (1.0F - MathHelper.cos(
+                        2.0F * (float) Math.PI * progress / duration
+                ));
+
+        setupPose(0.0F, 0.0F, 0.0F, headPitch, 0.0F);
     }
 
     private void setupPose(float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, float wing) {
