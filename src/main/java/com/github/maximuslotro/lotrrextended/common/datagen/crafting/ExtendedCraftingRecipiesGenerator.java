@@ -825,6 +825,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_SLAB,
 			ExtendedItems.SNOWY_RED_ANGMAR_BRICK_WALL,
 			()->ExtendedItems.SNOWY_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
+		// ANCIENT
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_SWORD.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.ANCIENT_SWORD.get())
+		.pattern("T")
+		.pattern("B")
+		.pattern("H")
+		.define('T', Ingredient.of(ExtendedItems.ANCIENT_TIP.get()))
+		.define('B', Ingredient.of(ExtendedItems.ANCIENT_BLADE.get()))
+		.define('H', Ingredient.of(ExtendedItems.ANCIENT_HILT.get()))
+		.unlockedBy("has_"+ExtendedItems.ANCIENT_TIP.get().getRegistryName().getPath(), has(ExtendedItems.ANCIENT_TIP.get()))
+		.unlockedBy("has_"+ExtendedItems.ANCIENT_BLADE.get().getRegistryName().getPath(), has(ExtendedItems.ANCIENT_BLADE.get()))
+		.unlockedBy("has_"+ExtendedItems.ANCIENT_HILT.get().getRegistryName().getPath(), has(ExtendedItems.ANCIENT_HILT.get()))
+		.save(consumer,ExtendedItems.ANCIENT_SWORD);
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_DAGGER.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.ANCIENT_DAGGER.get())
+		.pattern("T")
+		.pattern("H")
+		.define('T', Ingredient.of(ExtendedItems.ANCIENT_TIP.get()))
+		.define('H', Ingredient.of(ExtendedItems.ANCIENT_HILT.get()))
+		.unlockedBy("has_"+ExtendedItems.ANCIENT_TIP.get().getRegistryName().getPath(), has(ExtendedItems.ANCIENT_TIP.get()))
+		.unlockedBy("has_"+ExtendedItems.ANCIENT_HILT.get().getRegistryName().getPath(), has(ExtendedItems.ANCIENT_HILT.get()))
+		.save(consumer,ExtendedItems.ANCIENT_DAGGER);
+		makeArmorRecipe(consumer, ExtendedItems.ANCIENT_HELMET,
+				ExtendedItems.ANCIENT_CHESTPLATE,
+				ExtendedItems.ANCIENT_LEGGINGS,
+				ExtendedItems.ANCIENT_BOOTS,
+				ExtendedItems.ANCIENT_ARMOR_PLATE, null);
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedItems.SMOOTH_GONDOR_ROCK_STAIRS,
 			()->LOTRItems.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING, "");
@@ -2504,6 +2531,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.SMITH_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.LEEKS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.LEEK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_ARMOR_PLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_TIP.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_BLADE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_HILT.get().getRegistryName().getPath());
 	}
 
 	@Override

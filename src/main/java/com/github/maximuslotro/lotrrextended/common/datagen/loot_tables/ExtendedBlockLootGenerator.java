@@ -87,6 +87,7 @@ import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.init.LOTRItems;
 import lotr.common.loot.functions.VesselDrink;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -112,6 +113,7 @@ import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.CopyNbt;
@@ -515,10 +517,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.DIAMOND_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.DIAMOND.get()));
 		add(ExtendedBlocks.OPAL_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.OPAL.get()));
 		add(ExtendedBlocks.EMERALD_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.EMERALD.get()));
-		dropSelf(ExtendedBlocks.REMAINS_ELF.get());
-		dropSelf(ExtendedBlocks.REMAINS_MAN.get());
-		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
-		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
+		dropRemains(ExtendedBlocks.REMAINS_ELF.get(), LOTRItems.ELF_BONE.get());
+		dropRemains(ExtendedBlocks.REMAINS_MAN.get(), Items.BONE);
+		dropRemains(ExtendedBlocks.REMAINS_ORC.get(), LOTRItems.ORC_BONE.get());
+		dropRemains(ExtendedBlocks.REMAINS_DWARF.get(), LOTRItems.DWARF_BONE.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
 		ILootCondition.IBuilder leekConditionBuilder = BlockStateProperty.hasBlockStateProperties(ExtendedBlocks.LEEKS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedLeekBlock.AGE, 7));
 		add(ExtendedBlocks.LEEKS.get(), (blockLamda) -> applyExplosionDecay(blockLamda, LootTable.lootTable()
@@ -545,6 +547,54 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			.add(ItemLootEntry.lootTableItem(lamdaBlock)
 				.when(BlockStateProperty.hasBlockStateProperties(lamdaBlock)
 					.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CakeBlock.BITES, 0)))))));
+	}
+
+	protected void dropRemains(Block block, IItemProvider boneItem) {
+		this.add(block, (pBlock) -> LootTable.lootTable()
+			// Pool 1: Silk Touch drops the block itself; normal mining drops the specific bone item
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.add(ItemLootEntry.lootTableItem(pBlock)
+					.when(HAS_SILK_TOUCH)
+					.otherwise(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(boneItem)
+						.apply(SetCount.setCount(RandomValueRange.between(1, 5)))
+						.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
+						.apply(ExplosionDecay.explosionDecay()))
+					)
+				)
+			)
+			.withPool(LootPool.lootPool()
+					.setRolls(ConstantRange.exactly(1))
+					.when(HAS_NO_SILK_TOUCH)
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(ExtendedItems.ANCIENT_ARMOR_PLATE.get())
+						.apply(SetCount.setCount(RandomValueRange.between(1, 2)))
+						.when(RandomChance.randomChance(0.3719f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(ExtendedItems.ANCIENT_BLADE.get())
+						.apply(SetCount.setCount(RandomValueRange.between(1, 2)))
+						.when(RandomChance.randomChance(0.1719f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(ExtendedItems.ANCIENT_TIP.get())
+						.apply(SetCount.setCount(RandomValueRange.between(1, 2)))
+						.when(RandomChance.randomChance(0.1625f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(ExtendedItems.ANCIENT_HILT.get())
+						.apply(SetCount.setCount(RandomValueRange.between(1, 2)))
+						.when(RandomChance.randomChance(0.1469f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(Items.SKELETON_SKULL)
+						.apply(SetCount.setCount(RandomValueRange.between(1, 2)))
+						.when(RandomChance.randomChance(0.0906f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(LOTRItems.SILVER_NUGGET.get())
+						.apply(SetCount.setCount(RandomValueRange.between(1, 6)))
+						.when(RandomChance.randomChance(0.0875f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(Items.GOLD_NUGGET)
+						.apply(SetCount.setCount(RandomValueRange.between(1, 5)))
+						.when(RandomChance.randomChance(0.075f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(ExtendedItems.SILVER_COIN_ONE.get())
+						.apply(SetCount.setCount(ConstantRange.exactly(1)))
+						.when(RandomChance.randomChance(0.0563f))))
+					.add(applyExplosionCondition(pBlock, ItemLootEntry.lootTableItem(LOTRItems.MITHRIL_NUGGET.get())
+						.apply(SetCount.setCount(ConstantRange.exactly(1)))
+						.when(RandomChance.randomChance(0.0125f))))
+				)
+		);
 	}
 
 	protected static LootTable.Builder createNameableBlockEntityTable(Block pBlock) {

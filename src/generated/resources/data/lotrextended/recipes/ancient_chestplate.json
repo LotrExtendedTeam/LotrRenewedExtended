@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:ancient_armor_plate"
+    }
+  },
+  "result": {
+    "item": "lotrextended:ancient_chestplate"
+  }
+}

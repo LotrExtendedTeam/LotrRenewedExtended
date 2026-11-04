@@ -1,0 +1,79 @@
+{
+  "parent": "lotrextended:nindalf/stench_of_evil",
+  "display": {
+    "icon": {
+      "item": "lotrextended:ancient_armor_plate"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.nindalf.archaeologist.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.nindalf.archaeologist.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_ancient_helmet": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_helmet"
+        }
+      }
+    },
+    "item_ancient_chestplate": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_chestplate"
+        }
+      }
+    },
+    "item_ancient_leggings": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_leggings"
+        }
+      }
+    },
+    "item_ancient_boots": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_boots"
+        }
+      }
+    },
+    "item_ancient_sword": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_sword"
+        }
+      }
+    },
+    "item_ancient_dagger": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:ancient_dagger"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_ancient_helmet",
+      "item_ancient_chestplate",
+      "item_ancient_leggings",
+      "item_ancient_boots",
+      "item_ancient_sword",
+      "item_ancient_dagger"
+    ]
+  ]
+}
