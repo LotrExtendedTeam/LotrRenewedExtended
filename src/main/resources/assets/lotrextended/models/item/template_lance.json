@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "_comment": "Based on minecraft:item/handheld, but with textures scaled by 4, for 64x64 lance textures; 0.68x4=2.72, 0.85x4=3.40",
+  "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 3.40, 3.40, 0.85 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 3.40, 3.40, 0.85 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 2.72, 2.72, 0.68 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 2.72, 2.72, 0.68 ]
+        }
+    }
+}

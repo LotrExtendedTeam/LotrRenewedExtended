@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rivendell",
+  "pattern": [
+    "  #",
+    " X#",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/wooden"
+    },
+    "#": {
+      "tag": "forge:ingots/elven_steel"
+    }
+  },
+  "result": {
+    "item": "lotrextended:rivendell_longspear"
+  }
+}

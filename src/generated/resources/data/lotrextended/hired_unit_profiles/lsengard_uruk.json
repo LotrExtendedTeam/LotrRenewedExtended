@@ -72,6 +72,13 @@
           "item": "lotr:uruk_spear",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
+      },
+      {
+        "weight": 3,
+        "equipmentItem": {
+          "item": "lotrextended:uruk_pike",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
       }
     ],
     "offhand": [

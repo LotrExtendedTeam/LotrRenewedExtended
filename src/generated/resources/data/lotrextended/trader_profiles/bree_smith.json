@@ -336,6 +336,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:iron_pike",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:blacksmith_hammer",
         "averageCost": 16,
         "nbt": "{Damage:0}"

@@ -101,10 +101,15 @@ public class ExtendedRendererEventHandler {
 		}
 	}
 
+	private static boolean shouldShowInTooltip(int pHideFlags, ItemStack.TooltipDisplayFlags pPart) {
+		return (pHideFlags & pPart.getMask()) == 0;
+	}
+
 	public static void addTooltipsForModifiers(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
+		int rejectFlag = stack.hasTag() && stack.getTag().contains("HideFlags", 99) ? stack.getTag().getInt("HideFlags") : 0;
 		List<ITextComponent> listedStartTooltips = new ArrayList<>();
-		if(ExtendedModifierUtils.hasModifiers(stack)) {
+		if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.ENCHANTMENTS) && ExtendedModifierUtils.hasModifiers(stack)) {
 			List<ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierList(stack);
 			if (!stack.hasCustomHoverName() && !modifiers.isEmpty()) {
 				ITextComponent baseName = stack.getItem().getName(stack);
@@ -134,7 +139,7 @@ public class ExtendedRendererEventHandler {
 				}
 			}
 			listedStartTooltips.addAll(entries);
-		}else if(ExtendedModifierScrollItem.hasModifier(stack)) {
+		}else if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.ENCHANTMENTS) && ExtendedModifierScrollItem.hasModifier(stack)) {
 			ExtendedModifier modifier = ExtendedModifierScrollItem.getModifier(stack);
 			List<ITextComponent> entries = new ArrayList<>();
 			if(modifier.getModifierType().getFrontValue().isEmpty()){
@@ -149,13 +154,13 @@ public class ExtendedRendererEventHandler {
 			}
 			listedStartTooltips.addAll(entries);
 		}
-		if(ExtendedDaggerItem.isPoisoned(stack)) {
+		if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.ADDITIONAL) && ExtendedDaggerItem.isPoisoned(stack)) {
 			listedStartTooltips.add((new TranslationTextComponent("gui.lotrextended.dagger.poisoned").withStyle(TextFormatting.DARK_GREEN)));
 		}
 		// Append on top
 		event.getToolTip().addAll(1, listedStartTooltips);
 
-		if(stack.getItem() instanceof BowItem) {
+		if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.MODIFIERS) && stack.getItem() instanceof BowItem) {
 			float drawSpeed = 1;
 			float damage = 1.0f;
 			if(stack.getItem() instanceof ExtendedBowItem) {
@@ -170,8 +175,7 @@ public class ExtendedRendererEventHandler {
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", String.format("%.0f%%", drawSpeed * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
-		}
-		if(stack.getItem() instanceof CrossbowItem) {
+		}else if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.MODIFIERS) && stack.getItem() instanceof CrossbowItem) {
 			float drawSpeedPercentage = 1;
 			float damage = 1.0f;
 			int level = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
@@ -189,8 +193,7 @@ public class ExtendedRendererEventHandler {
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", String.format("%.0f%%", drawSpeedPercentage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
-		}
-		if(stack.getItem() instanceof HorseArmorItem) {
+		}else if(shouldShowInTooltip(rejectFlag, ItemStack.TooltipDisplayFlags.MODIFIERS) && stack.getItem() instanceof HorseArmorItem) {
 			event.getToolTip().add(StringTextComponent.EMPTY);
 			event.getToolTip().add((new TranslationTextComponent("item.lotrextended.modifiers.horse")).withStyle(TextFormatting.GRAY));
 			event.getToolTip().add((new TranslationTextComponent("attribute.modifier.plus.0", ((HorseArmorItem)stack.getItem()).getProtection(), new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));

@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "  #",
+    " X#",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/wooden"
+    },
+    "#": {
+      "tag": "forge:ingots/uruk_steel"
+    }
+  },
+  "result": {
+    "item": "lotrextended:uruk_pike"
+  }
+}

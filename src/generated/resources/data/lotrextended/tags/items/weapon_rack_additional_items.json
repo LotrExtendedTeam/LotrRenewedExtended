@@ -11,6 +11,7 @@
     "lotrextended:angmar_spear",
     "lotrextended:angmar_sword",
     "lotrextended:barrow_blade",
+    "lotrextended:blue_dwarven_pike",
     "lotrextended:bone_axe",
     "lotrextended:bone_dagger",
     "lotrextended:bone_hoe",
@@ -19,6 +20,7 @@
     "lotrextended:bone_spear",
     "lotrextended:bone_sword",
     "lotrextended:branding_iron",
+    "lotrextended:bronze_pike",
     "lotrextended:chisel",
     "lotrextended:dol_guldur_axe",
     "lotrextended:dol_guldur_dagger",
@@ -29,11 +31,15 @@
     "lotrextended:dol_guldur_sword",
     "lotrextended:glamdring",
     "lotrextended:gundabad_uruk_dagger",
+    "lotrextended:gundabad_uruk_pike",
     "lotrextended:gundabad_uruk_spear",
     "lotrextended:gundabad_uruk_sword",
     "lotrextended:horn_of_command",
+    "lotrextended:iron_pike",
+    "lotrextended:lindon_longspear",
     "lotrextended:moon_chisel",
     "lotrextended:morgul_blade",
+    "lotrextended:rivendell_longspear",
     "lotrextended:staff_gandalf_the_gray",
     "lotrextended:staff_gandalf_the_white",
     "lotrextended:taurethrim_axe",
@@ -42,6 +48,7 @@
     "lotrextended:taurethrim_pickaxe",
     "lotrextended:taurethrim_shovel",
     "lotrextended:taurethrim_spear",
-    "lotrextended:taurethrim_sword"
+    "lotrextended:taurethrim_sword",
+    "lotrextended:uruk_pike"
   ]
 }

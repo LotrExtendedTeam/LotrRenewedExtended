@@ -153,6 +153,27 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
+          "name": "lotrextended:bronze_pike"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 25,
           "functions": [
             {
@@ -234,6 +255,27 @@
             }
           ],
           "name": "lotr:dunlending_club"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
+          "name": "lotrextended:iron_pike"
         },
         {
           "type": "minecraft:item",

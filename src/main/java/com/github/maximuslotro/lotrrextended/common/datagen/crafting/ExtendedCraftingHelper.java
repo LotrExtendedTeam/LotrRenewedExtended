@@ -1280,12 +1280,35 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_" + resourceName,has(resource))
+			.unlockedBy("has_" + resourceName, has(resource))
 			.save(consumer, itemToBeCrafted);
 		} else {
 			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
 			.pattern("  #")
 			.pattern(" X ")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_" + resourceName, has(resource))
+			.save(consumer, itemToBeCrafted);
+		}
+	}
+
+	protected void makeLongSpearPikeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(itemToBeCrafted.get().getRegistryName().getPath());
+		if (table == null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("  #")
+			.pattern(" X#")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_" + resourceName, has(resource))
+			.save(consumer, itemToBeCrafted);
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("  #")
+			.pattern(" X#")
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))

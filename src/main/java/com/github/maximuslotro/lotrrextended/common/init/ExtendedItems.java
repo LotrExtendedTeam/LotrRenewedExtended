@@ -697,11 +697,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_DWARVEN_MATTOCK = regItem("blue_dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.BLUE_DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
 	public static RegistryObject<Item> MITHRIL_MATTOCK = regItem("mithril_mattock", () -> new ExtendedMattockItem(LOTRMaterial.MITHRIL.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
 
-	public static RegistryObject<Item> IRON_THROWABLE_AXE = regItem("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
-	public static RegistryObject<Item> BRONZE_THROWABLE_AXE = regItem("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
 	public static RegistryObject<Item> LOSSARNACH_THROWABLE_AXE = regItem("lossarnach_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
 	public static RegistryObject<Item> DWARVEN_THROWABLE_AXE = regItem("dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
-	public static RegistryObject<Item> BLUE_DWARVEN_THROWABLE_AXE = regItem("blue_dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 	//######################################################################FOOD########################################################
 	//Berries
 	public static RegistryObject<Item> BLACKBERRY = regItem("blackberry", () -> new ExtendedBerryItem(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
@@ -754,6 +751,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LEATHER_WARG_ARMOR = regItem("leather_warg_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 	public static RegistryObject<Item> MAIL_WARG_ARMOR = regItem("mail_warg_armor", () -> new ExtendedMountedArmorItem(10, "mail", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
+	// Generic
+	public static RegistryObject<Item> IRON_THROWABLE_AXE = regItem("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
+	public static RegistryObject<Item> IRON_PIKE = regItem("iron_pike", () -> new ExtendedPikeItem(ItemTier.IRON, LOTRItemGroups.COMBAT));
+	public static RegistryObject<Item> BRONZE_THROWABLE_AXE = regItem("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
+	public static RegistryObject<Item> BRONZE_PIKE = regItem("bronze_pike", () -> new ExtendedPikeItem(LOTRMaterial.BRONZE.asTool(), LOTRItemGroups.COMBAT));
+	
 	//Generic Orc Equipment
 	public static RegistryObject<Item> ORC_BOW = regItem("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
 	public static RegistryObject<Item> ORC_BOMB = regGenericBlockItem(ExtendedBlocks.ORC_BOMB, () -> new ExtendedOrcBombItem(ExtendedBlocks.ORC_BOMB, new Properties().tab(LOTRItemGroups.COMBAT)));
@@ -846,11 +849,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_URUK_DAGGER = regItem("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK").asTool(), LOTRItemGroups.COMBAT));
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW = regItem("gundabad_uruk_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.GUNDABAD_URUK));
 	public static RegistryObject<Item> GUNDABAD_WARG_ARMOR = regItem("gundabad_warg_armor", () -> new ExtendedMountedArmorItem(10, "gundabad", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+	public static RegistryObject<Item> GUNDABAD_URUK_PIKE = regItem("gundabad_uruk_pike",() -> new ExtendedPikeItem(LOTRMaterial.valueOf("GUNDABAD_URUK").asTool(), LOTRItemGroups.COMBAT));
 
 	//Isengard
 	public static RegistryObject<Item> ISENGARD_WARG_ARMOR = regItem("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 	public static RegistryObject<Item> URUK_SHIELD = regItem("uruk_shield", () -> new LOTRShieldItem(LOTRMaterial.URUK));
 	public static RegistryObject<Item> URUK_CROSSBOW = regItem("uruk_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.URUK));
+	public static RegistryObject<Item> URUK_PIKE = regItem("uruk_pike", () -> new ExtendedPikeItem(LOTRMaterial.URUK.asTool(), LOTRItemGroups.COMBAT));
 
 	// Dunland
 	public static RegistryObject<Item> DUNLENDING_SHIELD = regItem("dunlending_shield", () -> new LOTRShieldItem(LOTRMaterial.DUNLENDING));
@@ -880,26 +885,33 @@ public class ExtendedItems {
 	//Blue Mountains equipment
 	public static RegistryObject<Item> DWARVEN_SHIELD = regItem("dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.DWARVEN));
 	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD = regItem("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
-
+	public static RegistryObject<Item> BLUE_DWARVEN_PIKE = regItem("blue_dwarven_pike", () -> new ExtendedPikeItem(LOTRMaterial.BLUE_DWARVEN.asTool(), LOTRItemGroups.COMBAT));
+	public static RegistryObject<Item> BLUE_DWARVEN_THROWABLE_AXE = regItem("blue_dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 	public static RegistryObject<Item> LEATHER_BOAR_ARMOR = regItem("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 	public static RegistryObject<Item> DWARVEN_BOAR_ARMOR = regItem("dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 	public static RegistryObject<Item> BLUE_DWARVEN_BOAR_ARMOR = regItem("blue_dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "blue_dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 	// High Elven Equipment
+	// Rivendell
 	public static RegistryObject<Item> RIVENDELL_SHIELD = regItem("rivendell_shield", () -> new LOTRShieldItem(LOTRMaterial.RIVENDELL));
 	public static RegistryObject<Item> RIVENDELL_BOW = regItem("rivendell_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.RIVENDELL));
+	public static RegistryObject<Item> RIVENDELL_LONGSPEAR = regItem("rivendell_longspear", () -> new ExtendedPikeItem(LOTRMaterial.RIVENDELL.asTool(), LOTRItemGroups.COMBAT));
 	public static RegistryObject<Item> IMLADRIS_GUARD_HELMET = regItem("imladris_guard_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.HEAD));
 	public static RegistryObject<Item> IMLADRIS_GUARD_CHESTPLATE = regItem("imladris_guard_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.CHEST));
 	public static RegistryObject<Item> IMLADRIS_GUARD_LEGGINGS = regItem("imladris_guard_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.LEGS));
 	public static RegistryObject<Item> IMLADRIS_GUARD_BOOTS = regItem("imladris_guard_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.FEET));
 	public static RegistryObject<Item> IMLADRIS_GUARD_SHIELD = regItem("imladris_guard_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("IMLADRIS_GUARD")));
+	// Eregion
 	public static RegistryObject<Item> EREGION_HELMET = regItem("eregion_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.HEAD));
 	public static RegistryObject<Item> EREGION_CHESTPLATE = regItem("eregion_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.CHEST));
 	public static RegistryObject<Item> EREGION_LEGGINGS = regItem("eregion_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.LEGS));
 	public static RegistryObject<Item> EREGION_BOOTS = regItem("eregion_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.FEET));
 	public static RegistryObject<Item> EREGION_SHIELD = regItem("eregion_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("EREGION")));
+	// Lindon
 	public static RegistryObject<Item> LINDON_SHIELD = regItem("lindon_shield", () -> new LOTRShieldItem(LOTRMaterial.LINDON));
 	public static RegistryObject<Item> LINDON_BOW = regItem("lindon_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.LINDON));
+	public static RegistryObject<Item> LINDON_LONGSPEAR = regItem("lindon_longspear", () -> new ExtendedPikeItem(LOTRMaterial.LINDON.asTool(), LOTRItemGroups.COMBAT));
+	// Galvorn
 	public static RegistryObject<Item> GALVORN_HELMET = regItem("galvorn_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.HEAD, "helmet"));
 	public static RegistryObject<Item> GALVORN_CHESTPLATE = regItem("galvorn_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.CHEST));
 	public static RegistryObject<Item> GALVORN_LEGGINGS = regItem("galvorn_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.LEGS));
