@@ -26,6 +26,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedCombatTracker;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
@@ -43,10 +44,8 @@ import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.fac.EntityFactionHelper;
 import lotr.common.fac.Faction;
-import lotr.common.init.LOTRBlocks;
-import lotr.common.init.LOTRDimensions;
-import lotr.common.init.LOTRItems;
-import lotr.common.init.LOTRMaterial;
+import lotr.common.init.*;
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.world.map.CustomWaypointStructureHandler;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.Block;
@@ -520,4 +519,25 @@ public class ExtendedWorldEventHandlers {
 			}
 		}
 	}
+
+	@SubscribeEvent
+	public static void playerUseSpawnEggOnBirdCage(final PlayerInteractEvent.RightClickBlock event) {
+		if (!event.getWorld().isClientSide()
+				&& event.getWorld().getBlockEntity(event.getPos()) instanceof ExtendedBirdcageTileEntity
+				&& (event.getItemStack().getItem() instanceof LOTRSpawnEggItem)) {
+
+			LOTRSpawnEggItem item = (LOTRSpawnEggItem) event.getItemStack().getItem();
+
+			// TODO: Come up with a more generalized system that uses ExtendedBirdEntity
+			if (item.getType(item.getShareTag(event.getItemStack())) == ExtendedEntities.CRABAN.get()) {
+				ExtendedBirdcageTileEntity tileEntity = (ExtendedBirdcageTileEntity) event.getWorld().getBlockEntity(event.getPos());
+				assert tileEntity != null;
+				tileEntity.setBird("craban");
+				event.getItemStack().setCount(event.getItemStack().getCount() - 1);
+				event.setCanceled(true);
+			}
+
+		}
+	}
+
 }

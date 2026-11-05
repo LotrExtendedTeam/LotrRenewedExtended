@@ -11,7 +11,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 
 public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<ExtendedBirdcageTileEntity> {
-    private final ExtendedCrabanModel<ExtendedCrabanEntity> birdModel = new ExtendedCrabanModel<>();
+
+    public static final ExtendedCrabanModel<ExtendedCrabanEntity> CRABAN_MODEL = new ExtendedCrabanModel<>();
 
     public ExtendedBirdCageTileEntityRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
@@ -23,28 +24,34 @@ public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<Exten
             return;
         }
 
-        double gameTime = tileEntity.getLevel().getGameTime() + pPartialTicks;
+        if (tileEntity.getBird().equals("craban")) {
+            renderCraban(tileEntity, pPartialTicks, pMatrixStack, pBuffer, pCombinedLight, pCombinedOverlay);
+        }
+    }
+
+    private void renderCraban(ExtendedBirdcageTileEntity tile, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
+        double gameTime = tile.getLevel().getGameTime() + pPartialTicks;
         float animationTime = (float) (gameTime % 80.0D);
 
         double hopDistance = 0.15D *
                 (0.9D - Math.cos(2.0D * Math.PI * animationTime / 80.0D));
 
         // always flap wings
-        birdModel.setupFlappingCageAnim(gameTime);
+        CRABAN_MODEL.setupFlappingCageAnim(gameTime);
 
-        birdModel.resetHeadPose();
+        CRABAN_MODEL.resetHeadPose();
 
         // occasionally animate head
-        long cycle = tileEntity.getLevel().getGameTime() / 80;
+        long cycle = tile.getLevel().getGameTime() / 80;
         if (cycle % 4 == 0) {
-            birdModel.setupHeadMoveCageAnim(animationTime);
+            CRABAN_MODEL.setupHeadMoveCageAnim(animationTime);
         }
 
         pMatrixStack.pushPose();
         pMatrixStack.translate(0.5D, 0.15D + hopDistance, 0.5D);
         pMatrixStack.scale(0.90F, -0.90F, -0.90F);
         pMatrixStack.translate(0.0D, -1.501D, 0.0D);
-        birdModel.renderToBuffer(pMatrixStack, pBuffer.getBuffer(birdModel.renderType(ExtendedCrabanRenderer.LOCATION)),
+        CRABAN_MODEL.renderToBuffer(pMatrixStack, pBuffer.getBuffer(CRABAN_MODEL.renderType(ExtendedCrabanRenderer.LOCATION)),
                 pCombinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         pMatrixStack.popPose();
     }
