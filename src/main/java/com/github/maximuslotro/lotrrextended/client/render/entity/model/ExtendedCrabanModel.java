@@ -84,7 +84,14 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
 
     public void setupFlappingCageAnim(double ageInTicks) {
         float wing = (float) Math.sin(ageInTicks * 1.2D) * 0.6F + 0.2F;
-        setupPose(0.0F, 0.0F, 0.0F, 0.0F, wing);
+
+        this.right_wing.zRot = wing;
+        this.left_wing.zRot = -wing;
+    }
+
+    public void resetHeadPose() {
+        this.head.xRot = 0.0F;
+        this.head.yRot = 0.0F;
     }
 
     public void setupHeadMoveCageAnim(double ageInTicks) {
@@ -98,7 +105,7 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
                         2.0F * (float) Math.PI * progress / duration
                 ));
 
-        setupPose(0.0F, 0.0F, 0.0F, headPitch, 0.0F);
+        this.head.xRot = (float) Math.toRadians(headPitch);
     }
 
     private void setupPose(float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, float wing) {

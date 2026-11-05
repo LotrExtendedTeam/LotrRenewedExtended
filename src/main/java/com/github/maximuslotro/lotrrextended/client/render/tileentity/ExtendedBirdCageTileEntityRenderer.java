@@ -23,19 +23,25 @@ public class ExtendedBirdCageTileEntityRenderer extends TileEntityRenderer<Exten
             return;
         }
 
-        double gameTime = tileEntity.getLevel().getGameTime() + (double) pPartialTicks;
-        float animationTime = (tileEntity.getLevel().getGameTime() + pPartialTicks) % 60;
-        double hopDistance = 0.0;
-        if (animationTime >= 0 && animationTime <= 20) {
-            birdModel.setupHeadMoveCageAnim(gameTime);
-        } else if (animationTime > 20 && animationTime <= 40) {
-            hopDistance = 0.2D * ((animationTime - 20) / 20);
-        } else {
-            birdModel.setupFlappingCageAnim(gameTime);
+        double gameTime = tileEntity.getLevel().getGameTime() + pPartialTicks;
+        float animationTime = (float) (gameTime % 80.0D);
+
+        double hopDistance = 0.15D *
+                (0.9D - Math.cos(2.0D * Math.PI * animationTime / 80.0D));
+
+        // always flap wings
+        birdModel.setupFlappingCageAnim(gameTime);
+
+        birdModel.resetHeadPose();
+
+        // occasionally animate head
+        long cycle = tileEntity.getLevel().getGameTime() / 80;
+        if (cycle % 4 == 0) {
+            birdModel.setupHeadMoveCageAnim(animationTime);
         }
 
         pMatrixStack.pushPose();
-        pMatrixStack.translate(0.5D, 0.2D + hopDistance, 0.5D);
+        pMatrixStack.translate(0.5D, 0.15D + hopDistance, 0.5D);
         pMatrixStack.scale(0.90F, -0.90F, -0.90F);
         pMatrixStack.translate(0.0D, -1.501D, 0.0D);
         birdModel.renderToBuffer(pMatrixStack, pBuffer.getBuffer(birdModel.renderType(ExtendedCrabanRenderer.LOCATION)),
