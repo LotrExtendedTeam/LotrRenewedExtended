@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:stone_root"
+    }
+  ],
+  "result": {
+    "item": "minecraft:gray_dye"
+  }
+}

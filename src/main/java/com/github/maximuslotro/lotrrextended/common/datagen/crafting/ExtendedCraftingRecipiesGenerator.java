@@ -221,6 +221,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.STRIPPED_EBONY_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedItems.STRIPPED_EBONY_WOOD, ExtendedItems.STRIPPED_EBONY_LOG, null);
 		makeFallenLeavesRecipe(consumer, ExtendedItems.FALLEN_EBONY_LEAVES, ExtendedItems.EBONY_LEAVES, null);
+		// FLOWERS
+		makeDyeRecipe(consumer, Items.BROWN_DYE::asItem, ExtendedItems.FANGORNS_BEARD, null);
+		makeDyeRecipe(consumer, Items.LIME_DYE::asItem, ExtendedItems.TEARS_OF_YAVANNA, null);
+		makeDyeRecipe(consumer, Items.YELLOW_DYE::asItem, ExtendedItems.ELFSONG, null);
+		makeDyeRecipe(consumer, Items.ORANGE_DYE::asItem, ExtendedItems.SUNFRUIT, null);
+		makeDyeRecipe(consumer, Items.LIGHT_GRAY_DYE::asItem, ExtendedItems.MOONFLOWER, null);
+		makeDyeRecipe(consumer, Items.YELLOW_DYE::asItem, ExtendedItems.HOURN_LEAF, null);
+		makeDyeRecipe(consumer, Items.GRAY_DYE::asItem, ExtendedItems.STONEROOT, null);
+		makeDyeRecipe(consumer, Items.LIME_DYE::asItem, ExtendedItems.SPRINGLEAF, null);
 		//ROHAN
 		GENERATEDRECIPES.add(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ROHAN_BEAM.get(), 3, LOTRRecipes.ROHAN_CRAFTING)
