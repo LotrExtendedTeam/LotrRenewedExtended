@@ -210,8 +210,15 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.get());
 				continue;
 			}
-			if(block.get() instanceof ExtendedBirdcageBlock) {
-				dropSelf(block.get());
+			if (block.get() instanceof ExtendedBirdcageBlock) {
+				Block cage = block.get();
+				add(cage, LootTable.lootTable().withPool(
+						applyExplosionCondition(cage, LootPool.lootPool()
+								.setRolls(ConstantRange.exactly(1))
+								.add(ItemLootEntry.lootTableItem(cage)
+										.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY)
+												.copy("BirdType", "BlockEntityTag.BirdType"))))
+				));
 				continue;
 			}
 			if(block.get() instanceof ExtendedBarsBlock) {

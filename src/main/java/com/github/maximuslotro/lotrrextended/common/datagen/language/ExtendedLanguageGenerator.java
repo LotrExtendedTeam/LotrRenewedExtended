@@ -151,6 +151,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.overview", "Overview");
 		addD("gui.lotrextended.menu.equipment", "Equipment");
 		addD("gui.lotrextended.menu.farmhand", "Farmhand");
+		addD("tooltip.lotrextended.birdcage.held_bird", "Held bird: %s");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
