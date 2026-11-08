@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMateri
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.*;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
+import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 
 import lotr.common.init.LOTRItemGroups;
@@ -920,6 +921,17 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LEATHER_HAT = regItem("leather_hat", ExtendedLeatherHatItem::new);
 	public static RegistryObject<Item> BARROW_BLADE = regItem("barrow_blade", ()-> new ExtendedBarrowBlade(LOTRItemGroups.COMBAT));
 	public static RegistryObject<Item> COMMANDHORN = regItem("horn_of_command", ()-> new ExtendedCommandHornItem(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+
+	public static RegistryObject<Item> ANCIENT_ARMOR_PLATE = regItem("ancient_armor_plate", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_HELMET = regItem("ancient_helmet", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_HELMET));
+	public static RegistryObject<Item> ANCIENT_CHESTPLATE = regItem("ancient_chestplate", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_CHESTPLATE));
+	public static RegistryObject<Item> ANCIENT_LEGGINGS = regItem("ancient_leggings", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_LEGGINGS));
+	public static RegistryObject<Item> ANCIENT_BOOTS = regItem("ancient_boots", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_BOOTS));
+	public static RegistryObject<Item> ANCIENT_TIP = regItem("ancient_tip", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_BLADE = regItem("ancient_blade", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_HILT = regItem("ancient_hilt", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_SWORD = regItem("ancient_sword", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_SWORD));
+	public static RegistryObject<Item> ANCIENT_DAGGER = regItem("ancient_dagger", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_DAGGER));
 
 	//########################################################################UTIL##########################################################
 	public static RegistryObject<Item> ORC_STEEL_DOOR = regTallBlockItem(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
