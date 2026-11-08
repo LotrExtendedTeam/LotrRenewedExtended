@@ -15,6 +15,9 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -34,6 +37,7 @@ public class ExtendedAncientItem extends Item {
 			heldItem.shrink(1);
 		}
 		pPlayer.awardStat(Stats.ITEM_USED.get(this));
+		pLevel.playSound(null, pPlayer.blockPosition(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundCategory.PLAYERS, 1, MathHelper.nextFloat(pLevel.random, 0.75F, 0.95F));
 		if (heldItem.isEmpty()) {
 			return ActionResult.sidedSuccess(discoveredItem, pLevel.isClientSide());
 		} else {
