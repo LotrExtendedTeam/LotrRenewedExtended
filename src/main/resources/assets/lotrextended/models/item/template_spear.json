@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "_comment": "Based on minecraft:item/handheld, but with textures scaled by 2, for 32x32 spear textures; 0.68x2=1.36, 0.85x2=1.70",
+  "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 1.70, 1.70, 0.85 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0, 4.0, 0.5 ],
+            "scale": [ 1.70, 1.70, 0.85 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 1.36, 1.36, 0.68 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -25 ],
+            "translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 1.36, 1.36, 0.68 ]
+        }
+    }
+}

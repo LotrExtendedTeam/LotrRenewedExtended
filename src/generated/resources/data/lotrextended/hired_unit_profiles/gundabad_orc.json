@@ -209,6 +209,13 @@
       {
         "weight": 1,
         "equipmentItem": {
+          "item": "lotrextended:iron_pike",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
           "item": "lotr:bronze_spear",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
@@ -224,6 +231,13 @@
         "weight": 1,
         "equipmentItem": {
           "item": "lotr:bronze_dagger",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:bronze_pike",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },

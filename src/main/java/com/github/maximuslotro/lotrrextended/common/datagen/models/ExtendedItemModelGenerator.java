@@ -38,6 +38,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPikeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.google.common.collect.ImmutableSet;
@@ -284,7 +285,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.get() instanceof SpearItem ||item.get() instanceof ExtendedStaffItem || item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
 				ItemModelBuilder guiModel = genHandheld(item.get(), "_gui", itemLocation(item.get()));
 				ItemModelBuilder heldModel = null;
-				if(item.get() instanceof SpearItem){
+				if(item.get() instanceof ExtendedPikeItem) {
+					heldModel = genPikeHeld(item.get());
+				}else if(item.get() instanceof SpearItem){
 					heldModel = genSpearHeld(item.get());
 				}else if(item.get() instanceof ExtendedStaffItem) {
 					heldModel = genStaffHeld(item.get());
@@ -376,6 +379,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return "Renewed Extended Item Model Provider";
 	}
 
+	// TODO fix bows not being drawn in the inventory 
 	private void genBow(Item item) {
 		String bowhandheldFileName = item.getRegistryName().getNamespace()+":item/"+item.getRegistryName().getPath()+"_held";
 		ItemModelBuilder builder_bow_held = gen(withExistingParent(bowhandheldFileName, "lotrextended:item/template_bow"), new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_large"));
@@ -405,6 +409,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSwordHeld(Item item) {
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_large");
+		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
+	}
+
+	private ItemModelBuilder genPikeHeld(Item item) {
+		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotrextended:item/template_pike");
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 

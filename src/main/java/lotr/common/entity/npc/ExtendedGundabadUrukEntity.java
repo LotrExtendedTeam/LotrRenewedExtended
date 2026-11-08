@@ -19,10 +19,8 @@ import net.minecraft.world.World;
 public class ExtendedGundabadUrukEntity extends GundabadOrcEntity implements ExtendedINPCEntitySettings {
 	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
 		ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedItems.GUNDABAD_URUK_DAGGER,
-		ExtendedItems.GUNDABAD_URUK_SPEAR);
+		ExtendedItems.GUNDABAD_URUK_SPEAR, ExtendedItems.GUNDABAD_URUK_PIKE);
 
 	public ExtendedGundabadUrukEntity(EntityType<? extends GundabadOrcEntity> type, World w) {
 		super(type, w);

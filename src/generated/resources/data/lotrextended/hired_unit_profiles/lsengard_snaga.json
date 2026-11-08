@@ -382,37 +382,44 @@
         }
       },
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "lotr:uruk_cleaver",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "lotr:uruk_axe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "lotr:uruk_pickaxe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "lotr:uruk_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "lotr:uruk_spear",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "lotrextended:uruk_pike",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }

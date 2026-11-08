@@ -1,0 +1,5 @@
+{
+  "loader": "lotrextended:transform_wrapper",
+  "gui_model": "lotrextended:item/rivendell_longspear_gui",
+  "held_model": "lotrextended:item/rivendell_longspear_held"
+}

@@ -22,7 +22,8 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
 		make(consumer, ExtendedLootTables.HOBBIT_WEAPONRACKS, makePool()
-			.add(addEntry(LOTRItems.IRON_DAGGER, 1)));
+			.add(addEntry(LOTRItems.IRON_DAGGER, 1))
+			.add(addEntry(ExtendedItems.BRONZE_PIKE, 1)));
 
 		make(consumer, ExtendedLootTables.RANGER_WEAPONRACKS, makePool()
 			.add(addEntry(Items.WOODEN_AXE, 60))
@@ -92,6 +93,7 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(ExtendedItems.GUNDABAD_URUK_CLEAVER, 30))
 			.add(addEntry(ExtendedItems.GUNDABAD_URUK_DAGGER, 40))
 			.add(addEntry(ExtendedItems.GUNDABAD_URUK_SPEAR, 40))
+			.add(addEntry(ExtendedItems.GUNDABAD_URUK_PIKE, 40))
 			.add(addEntry(Items.BOW, 85))
 			.add(addEntry(ExtendedItems.ORC_BOW, 65))
 			.add(addEntry(ExtendedItems.GUNDABAD_URUK_BOW, 35)));
@@ -163,7 +165,8 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(Items.IRON_SHOVEL, 60))
 			.add(addEntry(Items.IRON_SWORD, 90))
 			.add(addEntry(LOTRItems.IRON_DAGGER, 90))
-			.add(addEntry(LOTRItems.IRON_SPEAR, 90)));
+			.add(addEntry(LOTRItems.IRON_SPEAR, 90))
+			.add(addEntry(ExtendedItems.IRON_PIKE, 70)));
 
 		make(consumer, ExtendedLootTables.BREE_FARMER_WEAPONRACKS, makePool()
 			.add(addEntry(Items.WOODEN_AXE, 60))
@@ -181,15 +184,16 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(Items.IRON_HOE, 70))
 			.add(addEntry(Items.IRON_SHOVEL, 50)));
 
-		// Add blue dwarven hammer, battleaxe, pike
+		// Add blue dwarven hammer, battleaxe
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAIN_WEAPONRACKS, makePool()
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_DAGGER, 2))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_AXE, 1))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_PICKAXE, 2))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_SHOVEL, 1))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_HOE, 1))
-			.add(addEntry(LOTRItems.BLUE_DWARVEN_SWORD, 2))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_SWORD, 3))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_SPEAR, 1))
+			.add(addEntry(ExtendedItems.BLUE_DWARVEN_PIKE, 2))
 			.add(addEntry(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 2))
 			.add(addEntry(ExtendedItems.BLUE_DWARVEN_MATTOCK, 2)));
 
@@ -207,6 +211,7 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(LOTRItems.RIVENDELL_SHOVEL, 1))
 			.add(addEntry(LOTRItems.RIVENDELL_DAGGER, 1))
 			.add(addEntry(LOTRItems.RIVENDELL_SPEAR, 2))
+			.add(addEntry(ExtendedItems.RIVENDELL_LONGSPEAR, 2))
 			.add(addEntry(LOTRItems.RIVENDELL_SWORD, 2)));
 
 		make(consumer, ExtendedLootTables.LINDON_WEAPONRACKS, makePool()
@@ -216,13 +221,15 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(LOTRItems.LINDON_SHOVEL, 1))
 			.add(addEntry(LOTRItems.LINDON_SPEAR, 1))
 			.add(addEntry(LOTRItems.LINDON_SWORD, 1))
+			.add(addEntry(ExtendedItems.LINDON_LONGSPEAR, 2))
 			.add(addEntry(LOTRItems.LINDON_DAGGER, 1)));
 
 		make(consumer, ExtendedLootTables.LINDON_EQUIPMENT_WEAPONRACKS, makePool()
 			.add(addEntry(LOTRItems.LINDON_SPEAR, 1))
 			.add(addEntry(LOTRItems.LINDON_SWORD, 2))
 			.add(addEntry(ExtendedItems.LINDON_BOW, 2))
-			.add(addEntry(LOTRItems.LINDON_DAGGER, 1)));
+			.add(addEntry(LOTRItems.LINDON_DAGGER, 1))
+			.add(addEntry(ExtendedItems.LINDON_LONGSPEAR, 1)));
 
 
 		make(consumer, ExtendedLootTables.LINDON_BOW_WEAPONRACKS, makePool()
@@ -237,7 +244,9 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(LOTRItems.URUK_PICKAXE, 50))
 			.add(addEntry(LOTRItems.URUK_SHOVEL, 50))
 			.add(addEntry(ExtendedItems.URUK_CROSSBOW, 70))
-			.add(addEntry(ExtendedItems.ORC_BOW, 60)));
+			.add(addEntry(ExtendedItems.ORC_BOW, 60))
+			.add(addEntry(ExtendedItems.URUK_PIKE, 50))
+);
 
 		make(consumer, ExtendedLootTables.DUNLAND_WEAPONRACKS, makePool()
 			.add(addEntry(Items.STONE_SWORD, 25))
@@ -247,10 +256,12 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(LOTRItems.BRONZE_AXE, 25))
 			.add(addEntry(LOTRItems.BRONZE_DAGGER, 25))
 			.add(addEntry(LOTRItems.BRONZE_SPEAR, 25))
+			.add(addEntry(ExtendedItems.BRONZE_PIKE, 20))
 			.add(addEntry(Items.IRON_AXE, 25))
 			.add(addEntry(LOTRItems.IRON_DAGGER, 25))
 			.add(addEntry(LOTRItems.IRON_SPEAR, 25))
 			.add(addEntry(LOTRItems.DUNLENDING_CLUB, 100))
+			.add(addEntry(ExtendedItems.IRON_PIKE, 20))
 			.add(addEntry(Items.BOW, 50)));
 
 		make(consumer, ExtendedLootTables.DUNLAND_SMITHY_WEAPONRACKS, makePool()
@@ -258,10 +269,12 @@ public class ExtendedWeaponRackLootGenerator extends ExtendedAbstractLootGenerat
 			.add(addEntry(LOTRItems.BRONZE_AXE, 40))
 			.add(addEntry(LOTRItems.BRONZE_DAGGER, 60))
 			.add(addEntry(LOTRItems.BRONZE_SPEAR, 60))
+			.add(addEntry(ExtendedItems.BRONZE_PIKE, 50))
 			.add(addEntry(Items.IRON_SWORD, 50))
 			.add(addEntry(Items.IRON_AXE, 40))
 			.add(addEntry(LOTRItems.IRON_DAGGER, 60))
 			.add(addEntry(LOTRItems.IRON_SPEAR, 60))
+			.add(addEntry(ExtendedItems.IRON_PIKE, 50))
 			.add(addEntry(Items.BOW, 50)));
 
 		make(consumer, ExtendedLootTables.DUNLAND_DWARVEN_SMITHY_WEAPONRACKS, makePool()

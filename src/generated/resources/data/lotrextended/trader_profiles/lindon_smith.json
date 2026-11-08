@@ -278,6 +278,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:lindon_longspear",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotrextended:lindon_bow",
         "averageCost": 20,
         "nbt": "{Damage:0}"

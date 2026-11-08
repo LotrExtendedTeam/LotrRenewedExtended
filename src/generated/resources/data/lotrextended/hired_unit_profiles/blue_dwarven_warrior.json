@@ -74,6 +74,13 @@
         }
       },
       {
+        "weight": 3,
+        "equipmentItem": {
+          "item": "lotrextended:blue_dwarven_pike",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
         "weight": 1,
         "equipmentItem": {
           "item": "lotrextended:blue_dwarven_mattock",

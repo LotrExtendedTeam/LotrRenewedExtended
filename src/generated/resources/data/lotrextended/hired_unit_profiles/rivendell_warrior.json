@@ -72,6 +72,13 @@
           "item": "lotr:rivendell_axe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
+      },
+      {
+        "weight": 3,
+        "equipmentItem": {
+          "item": "lotrextended:rivendell_longspear",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
       }
     ],
     "ranged": [

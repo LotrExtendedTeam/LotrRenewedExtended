@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/template_pike",
+  "textures": {
+    "layer0": "lotrextended:item/iron_pike_large"
+  }
+}
