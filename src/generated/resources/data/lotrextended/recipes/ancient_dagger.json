@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T",
+    "H"
+  ],
+  "key": {
+    "T": {
+      "item": "lotrextended:ancient_tip"
+    },
+    "H": {
+      "item": "lotrextended:ancient_hilt"
+    }
+  },
+  "result": {
+    "item": "lotrextended:ancient_dagger"
+  }
+}

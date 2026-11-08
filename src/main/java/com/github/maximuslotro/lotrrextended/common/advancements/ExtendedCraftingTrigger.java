@@ -58,6 +58,10 @@ public class ExtendedCraftingTrigger extends AbstractCriterionTrigger<ExtendedCr
 			return new ExtendedCraftingTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.ANY, new ExtendedSimpleBlockPredicate(block));
 		}
 
+		public static ExtendedCraftingTrigger.Instance craftedItem(IItemProvider possableItem) {
+			return new ExtendedCraftingTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.Builder.item().of(possableItem).build(), ExtendedSimpleBlockPredicate.ANY);
+		}
+
 		public boolean matches(ItemStack stack, Block block) {
 			if (item.matches(stack) && craftingBlock.matches(block)) {
 				return true;

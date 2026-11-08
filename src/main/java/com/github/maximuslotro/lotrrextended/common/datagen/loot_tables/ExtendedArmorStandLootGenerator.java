@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import lotr.common.init.LOTRItems;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
@@ -85,8 +84,7 @@ public class ExtendedArmorStandLootGenerator extends ExtendedAbstractLootGenerat
 
 	@Override
 	public EItemLootEntry.ExtendedBuilder addEntry(Item item){
-		ItemStack stack = new ItemStack(item);
-		if(!(stack.getItem() instanceof ArmorItem)) {
+		if(!(item instanceof ArmorItem)) {
 			throw new IllegalArgumentException("Invalid item given for armor stand loot-table: "+item.getRegistryName().toString());
 		}
 		return super.addEntry(item);
