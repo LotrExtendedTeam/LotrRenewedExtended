@@ -1770,6 +1770,7 @@
   "block.minecraft.banner.lotrextended_woodland_realm.white": "White Woodland Realm",
   "block.minecraft.banner.lotrextended_woodland_realm.yellow": "Yellow Woodland Realm",
   "chat.lotrextended.bandit.stolen": "A bandit stole some items from your inventory!",
+  "chat.lotrextended.birdcapture.already_bas_bird": "That bird cage already has a bird in it.",
   "chat.lotrextended.hired_unit.death": "Your hired unit %1$s",
   "chat.lotrextended.hired_unit.desert": "Your hired unit %1$s has deserted",
   "chat.lotrextended.hired_unit.dismissed": "Your hired unit %1$s was dismissed from service",
