@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
 import lotr.common.world.gen.feature.WillowTreeFeature;
+import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -39,6 +40,9 @@ public class ExtendedFeature {
 
 	public static final ExtendedLandBlotFeature LAND_BLOT_PRE = new ExtendedLandBlotFeature(ExtendedLandBlotFeatureConfig.CODEC);
 	public static final RegistryObject<ExtendedLandBlotFeature> LAND_BLOT = regFeature("land_blot", LAND_BLOT_PRE);
+
+	public static final ExtendedDirectionalRandomPatchFeature RANDOM_PATCH_DIR_PRE = new ExtendedDirectionalRandomPatchFeature(BlockClusterFeatureConfig.CODEC);
+	public static final RegistryObject<ExtendedDirectionalRandomPatchFeature> RANDOM_PATCH_DIR = regFeature("random_patch_directional", RANDOM_PATCH_DIR_PRE);
 
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> regFeature(String name, F feature) {
 		return FEATURES.register(name, () -> feature);

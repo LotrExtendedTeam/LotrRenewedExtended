@@ -21,22 +21,16 @@ public class ExtendedDaggerPoisoningRecipe extends SpecialRecipe {
 		boolean foundDagger = false;
 		boolean foundPoison = false;
 		ItemStack daggerStack = ItemStack.EMPTY;
-		ItemStack poisonStack = ItemStack.EMPTY;
 		for(int i = 0; i < craftInv.getContainerSize(); ++i) {
 			ItemStack slotStack = craftInv.getItem(i);
 			if (!slotStack.isEmpty()) {
-				if(slotStack.getItem() instanceof ExtendedDaggerItem || slotStack.getItem() instanceof DaggerItem) {
-					if(foundDagger) {
-						return false;
-					}
+				if((slotStack.getItem() instanceof ExtendedDaggerItem || slotStack.getItem() instanceof DaggerItem) && !foundDagger) {
 					foundDagger = true;
 					daggerStack = slotStack;
-				}else if(slotStack.getItem() == ExtendedItems.BOTTLE_OF_POISON.get()) {
-					if(foundPoison) {
-						return false;
-					}
+				}else if(slotStack.getItem() == ExtendedItems.BOTTLE_OF_POISON.get() && !foundPoison) {
 					foundPoison = true;
-					poisonStack = slotStack;
+				}else {
+					return false;
 				}
 			}
 		}
@@ -54,10 +48,9 @@ public class ExtendedDaggerPoisoningRecipe extends SpecialRecipe {
 				}
 			}
 		}
-		if(daggerStack.isEmpty()) {
-			return ItemStack.EMPTY;
+		if(!daggerStack.isEmpty()) {
+			ExtendedDaggerItem.setPoisoned(daggerStack);
 		}
-		ExtendedDaggerItem.setPoisoned(daggerStack);
 		return daggerStack;
 	}
 

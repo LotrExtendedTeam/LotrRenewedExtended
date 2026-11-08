@@ -1099,6 +1099,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_BANNER_PROT_REMOVAL.get()).save(consumer, extendedLoc("banner_protection_removal"));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_TIPPED_ARROW.get()).save(consumer, extendedLoc("tipped_arrow_poison"));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_DAGGER_POISONING.get()).save(consumer, extendedLoc("dagger_poisoning"));
+		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_SUSPICIOUS_STEW.get()).save(consumer, extendedLoc("suspicious_stew"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)

@@ -174,5 +174,6 @@ public class ExtendedBlockRenderer {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GLASS_BOTTLE.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.STONEROOT.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RIVERWEED.get(), RenderType.cutout());
 	}
 }

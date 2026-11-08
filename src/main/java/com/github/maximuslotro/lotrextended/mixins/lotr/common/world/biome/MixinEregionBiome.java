@@ -40,7 +40,7 @@ public class MixinEregionBiome {
 		LOTRBiomeFeatures.addGrass((EregionBiome)(Object)this, builder, 6, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_WITH_FERNS);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST3);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST3);
 		// Extended End
 		LOTRBiomeFeatures.addDefaultDoubleFlowers(builder, 1);
 		LOTRBiomeFeatures.addFoxBerryBushes(builder);

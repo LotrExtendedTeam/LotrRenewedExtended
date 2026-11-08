@@ -39,7 +39,7 @@ public class MixinMirkwoodNorthernBiome {
 		LOTRBiomeFeatures.addGrass((Northern)(Object)this, builder, 12, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_WITH_FERNS);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST2);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST2);
 		// Extended End
 		LOTRBiomeFeatures.addDefaultDoubleFlowers(builder, 1);
 		LOTRBiomeFeatures.addMoreMushroomsFreq(builder, 2);

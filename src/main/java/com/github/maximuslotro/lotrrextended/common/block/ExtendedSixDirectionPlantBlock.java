@@ -1,25 +1,17 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public abstract class ExtendedSixDirectionPlantBlock extends HorizontalFaceBlock {
+public abstract class ExtendedSixDirectionPlantBlock extends ExtendedDirectionalFaceBlock {
 
 	public ExtendedSixDirectionPlantBlock(Properties pProperties) {
 		super(pProperties);
 		ExtendedDeferredComposterInjector.addCompostable(this, 0.65F);
-	}
-
-	@Override
-	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-		return !pState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
 	}
 
 	@Override

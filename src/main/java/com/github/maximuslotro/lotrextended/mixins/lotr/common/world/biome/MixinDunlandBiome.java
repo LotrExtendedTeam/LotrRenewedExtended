@@ -47,7 +47,7 @@ public class MixinDunlandBiome {
 		LOTRBiomeFeatures.addGrass((DunlandBiome)(Object)this, builder, 6, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST2);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST2);
 		// Extended End
 		LOTRBiomeFeatures.addFoxBerryBushes(builder);
 	}

@@ -116,6 +116,7 @@ import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.FourWayBlock;
@@ -2054,43 +2055,23 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(crossBlock, model);
 	}
 
-	private void genCrossDrectionalBlock(HorizontalFaceBlock crossBlock, Tinted tinted) {
+	private void genCrossDrectionalBlock(DirectionalBlock crossBlock, Tinted tinted) {
 		registeredBlocks.add(crossBlock);
 		ModelFile model = models().withExistingParent(crossBlock.getRegistryName().toString(), tinted.getCross()).texture("cross", getBlockTexture(crossBlock));
 		getVariantBuilder(crossBlock)
 		.forAllStatesExcept(state -> {
-			AttachFace face = state.getValue(HorizontalFaceBlock.FACE);
-			Direction faciing = state.getValue(HorizontalBlock.FACING);
+			Direction faciing = state.getValue(DirectionalBlock.FACING);
 			int yValue = 0;
 			if(faciing==Direction.EAST) {
-				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
-					yValue=90;
-				}
-				else {
-					yValue=270;
-				}
-			}
-			if(faciing==Direction.NORTH) {
-				if(face==AttachFace.CEILING) {
-					yValue=180;
-				}
-			}
-			if(faciing==Direction.SOUTH) {
-				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
-					yValue=180;
-				}
-			}
-			if(faciing==Direction.WEST) {
-				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
-					yValue=270;
-				}
-				else {
-					yValue=90;
-				}
+				yValue=90;
+			}else if(faciing==Direction.SOUTH) {
+				yValue=180;
+			}else if(faciing==Direction.WEST) {
+				yValue=270;
 			}
 			return ConfiguredModel.builder()
 					.modelFile(model).uvLock(false)//.uvLock(face==AttachFace.WALL)
-					.rotationX(face == AttachFace.CEILING ? 180 : (face == AttachFace.WALL ? 90 : 0))
+					.rotationX(faciing == Direction.DOWN ? 180 : (faciing == Direction.UP ? 0 : 90))
 					.rotationY(yValue)
 					.build();
 		});

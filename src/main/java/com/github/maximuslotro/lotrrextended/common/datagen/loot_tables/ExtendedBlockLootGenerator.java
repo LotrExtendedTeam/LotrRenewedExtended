@@ -531,6 +531,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			.withPool(LootPool.lootPool().add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get())))
 			.withPool(LootPool.lootPool().when(leekConditionBuilder).add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get()).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 		dropSelf(ExtendedBlocks.STONEROOT.get());
+		dropSelf(ExtendedBlocks.RIVERWEED.get());
 	}
 
 	@Override

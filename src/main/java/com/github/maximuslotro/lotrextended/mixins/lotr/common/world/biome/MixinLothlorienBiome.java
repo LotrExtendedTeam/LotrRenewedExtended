@@ -35,7 +35,7 @@ public class MixinLothlorienBiome {
 		LOTRBiomeFeatures.addGrass((LothlorienBiome)(Object)this, builder, 8, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN);
 		// Extended End
 		LOTRBiomeFeatures.addTreeTorches(builder, 120, 60, 110, LOTRBlocks.GOLD_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.BLUE_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.GREEN_MALLORN_WALL_TORCH.get().defaultBlockState(), LOTRBlocks.SILVER_MALLORN_WALL_TORCH.get().defaultBlockState());
 	}

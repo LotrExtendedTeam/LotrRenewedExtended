@@ -43,7 +43,7 @@ public class ExtendedFangornWastelandBiome extends FangornBiome implements Exten
 		LOTRBiomeFeatures.addGrass(this, builder, 5, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_WITH_FERNS);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
 		// Extended End
 		LOTRBiomeFeatures.addFallenLogs(builder, 2);
 	}

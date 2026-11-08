@@ -38,7 +38,7 @@ public class MixinOldForestBiome {
 		LOTRBiomeFeatures.addGrass((OldForestBiome) (Object) this, builder, 12, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 5, GrassBlends.DOUBLE_WITH_FERNS);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST1);
 		// Extended End
 		LOTRBiomeFeatures.addMoreMushroomsFreq(builder, 2);
 		LOTRBiomeFeatures.addFallenLogs(builder, 1);

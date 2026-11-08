@@ -875,7 +875,7 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> SUNFRUIT = register("sunfruit", () -> new ExtendedFlowerBlock(Effects.FIRE_RESISTANCE, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
 	public static RegistryObject<Block> SPRINGLEAF = register("springleaf", () -> new ExtendedFlowerBlock(Effects.JUMP, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
-	public static RegistryObject<Block> RIVERWEED = register("riverweed", () -> new ExtendedFangornRiverWeedBlock(Effects.WATER_BREATHING, 15, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> RIVERWEED = register("riverweed", () -> new ExtendedFangornRiverWeedBlock(Effects.WATER_BREATHING, 15, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS).hasPostProcess(ExtendedBlockParms::always)));
 	public static RegistryObject<Block> TEARS_OF_YAVANNA = register("tears_of_yavanna", () -> new ExtendedFlowerBlock(Effects.MOVEMENT_SPEED, 6, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
 	public static RegistryObject<Block> ELFSONG = register("elfsong", () -> new ExtendedFlowerBlock(Effects.REGENERATION, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
 	public static RegistryObject<Block> MOONFLOWER = register("moonflower", () -> new ExtendedFlowerBlock(Effects.NIGHT_VISION, 9, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));

@@ -40,7 +40,7 @@ public class MixinTrollshawsBiome {
 		LOTRBiomeFeatures.addGrass((TrollshawsBiome) (Object) this, builder, 6, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_WITH_FERNS);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_FOREST3);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_FOREST3);
 		// Extended End
 		LOTRBiomeFeatures.addDefaultDoubleFlowers(builder, 3, new Object[0]);
 		LOTRBiomeFeatures.addAthelasChance(builder);

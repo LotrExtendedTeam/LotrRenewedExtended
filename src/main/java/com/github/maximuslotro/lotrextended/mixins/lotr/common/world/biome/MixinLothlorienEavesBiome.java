@@ -32,7 +32,7 @@ public class MixinLothlorienEavesBiome {
 		LOTRBiomeFeatures.addGrass((Eaves)(Object)this, builder, 10, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);
 		// Extended Start
-		ExtendedDefaultBiomeFeatures.addFangornFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN_EVES);
+		ExtendedDefaultBiomeFeatures.addFlowers(builder, ExtendedFeatures.FLOWER_LOTHLORIEN_EVES);
 		// Extended End
 	}
 }
