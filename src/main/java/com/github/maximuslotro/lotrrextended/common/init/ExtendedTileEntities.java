@@ -6,18 +6,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBedTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.*;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedOrcBarrelTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
@@ -37,7 +26,7 @@ public class ExtendedTileEntities {
 	public static DeferredRegister<TileEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, LotrExtendedMod.MODID);
 
 	public static RegistryObject<TileEntityType<ExtendedStoneChestTileEntity>> STONE_CHEST = register("stone_chest", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
-	public static RegistryObject<TileEntityType<ExtendedBedTileEntity>> BED = register("bed", () -> Builder.of(ExtendedBedTileEntity::new, 
+	public static RegistryObject<TileEntityType<ExtendedBedTileEntity>> BED = register("bed", () -> Builder.of(ExtendedBedTileEntity::new,
 			ExtendedBlocks.BLACK_FUR_BED.get(), ExtendedBlocks.DWARVEN_BED.get(), ExtendedBlocks.FUR_BED.get(), ExtendedBlocks.GRAY_FUR_BED.get(), ExtendedBlocks.HIGH_ELVEN_BED.get(), ExtendedBlocks.ORC_BED.get(),
 			ExtendedBlocks.SILVER_FUR_BED.get(), ExtendedBlocks.STRAW_BED.get(), ExtendedBlocks.WHITE_FUR_BED.get()));
 	public static RegistryObject<TileEntityType<ExtendedNoRenderTileEntity>> NORENDER = register("no_render_tileentity", () -> Builder.of(ExtendedNoRenderTileEntity::new, ExtendedBlocks.BEDROLL.get()));
@@ -54,6 +43,8 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedLargePotTileEntity>> LARGE_POT = register("large_pot", () -> Builder.of(ExtendedLargePotTileEntity::new, ExtendedBlocks.LARGE_POT.get()));
 	public static RegistryObject<TileEntityType<ExtendedChimneyTileEntity>> CHIMNEY_POT = register("chimney_pot", () -> Builder.of(ExtendedChimneyTileEntity::new, ExtendedBlocks.CHIMNEYPOT.get()));
 	public static RegistryObject<TileEntityType<ExtendedCrucibleTileEntity>> CRUCIBLE = register("crucible", () -> Builder.of(ExtendedCrucibleTileEntity::new, ExtendedBlocks.CRUCIBLE.get()));
+	public static RegistryObject<TileEntityType<ExtendedBirdcageTileEntity>> BIRD_CAGE = register("birdcage", () -> Builder.of(ExtendedBirdcageTileEntity::new, ExtendedBlocks.WOODEN_BIRDCAGE.get(),
+		ExtendedBlocks.BRONZE_BIRDCAGE.get(), ExtendedBlocks.IRON_BIRDCAGE.get(), ExtendedBlocks.SILVER_BIRDCAGE.get(), ExtendedBlocks.GOLDEN_BIRDCAGE.get(), ExtendedBlocks.MITHRIL_BIRDCAGE.get()));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ENTITIES.register(bus);

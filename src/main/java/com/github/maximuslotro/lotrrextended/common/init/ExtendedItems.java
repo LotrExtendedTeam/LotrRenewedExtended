@@ -569,12 +569,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_CARPET = regBlockItem(ExtendedBlocks.SILVER_FUR_CARPET, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> WHITE_FUR_CARPET = regBlockItemProps(ExtendedBlocks.WHITE_FUR_CARPET, LOTRItemGroups.DECO, (props) -> props.rarity(Rarity.UNCOMMON));
 
-	public static RegistryObject<Item> WOODEN_BIRDCAGE = regBlockItem(ExtendedBlocks.WOODEN_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> BRONZE_BIRDCAGE = regBlockItem(ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> IRON_BIRDCAGE = regBlockItem(ExtendedBlocks.IRON_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> SILVER_BIRDCAGE = regBlockItem(ExtendedBlocks.SILVER_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> GOLDEN_BIRDCAGE = regBlockItem(ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> MITHRIL_BIRDCAGE = regBlockItem(ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> WOODEN_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.WOODEN_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.WOODEN_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> BRONZE_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.BRONZE_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.BRONZE_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> IRON_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.IRON_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.IRON_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> SILVER_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.SILVER_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.SILVER_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> GOLDEN_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.GOLDEN_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.GOLDEN_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> MITHRIL_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.MITHRIL_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.MITHRIL_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
 
 	public static RegistryObject<Item> MORGUL_TORCH = regWallOrFloorItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> MORGUL_BRAZIER = regBlockItem(ExtendedBlocks.MORGUL_BRAZIER, LOTRItemGroups.DECO);

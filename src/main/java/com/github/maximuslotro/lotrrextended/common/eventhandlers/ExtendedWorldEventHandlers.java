@@ -14,6 +14,8 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBl
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedBirdEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
@@ -21,11 +23,13 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespa
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBirdcageItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedCombatTracker;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBirdcageTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
@@ -43,10 +47,8 @@ import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.fac.EntityFactionHelper;
 import lotr.common.fac.Faction;
-import lotr.common.init.LOTRBlocks;
-import lotr.common.init.LOTRDimensions;
-import lotr.common.init.LOTRItems;
-import lotr.common.init.LOTRMaterial;
+import lotr.common.init.*;
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.world.map.CustomWaypointStructureHandler;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.Block;
@@ -87,6 +89,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
@@ -518,6 +521,64 @@ public class ExtendedWorldEventHandlers {
 					}
 				}
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void playerUseSpawnEggOnBirdCage(final PlayerInteractEvent.RightClickBlock event) {
+		if (!event.getWorld().isClientSide()
+				&& event.getWorld().getBlockEntity(event.getPos()) instanceof ExtendedBirdcageTileEntity
+				&& (event.getItemStack().getItem() instanceof LOTRSpawnEggItem)) {
+
+			LOTRSpawnEggItem item = (LOTRSpawnEggItem) event.getItemStack().getItem();
+
+			// TODO: Come up with a more generalized system that uses ExtendedBirdEntity
+			if (item.getType(item.getShareTag(event.getItemStack())) == ExtendedEntities.CRABAN.get()) {
+				ExtendedBirdcageTileEntity tileEntity = (ExtendedBirdcageTileEntity) event.getWorld().getBlockEntity(event.getPos());
+				assert tileEntity != null;
+				tileEntity.setBird("craban");
+				event.getItemStack().setCount(event.getItemStack().getCount() - 1);
+				event.setCanceled(true);
+			}
+
+		}
+	}
+
+	@SubscribeEvent
+	public static void playerRightClickCrabanWithBirdCage(final PlayerInteractEvent.EntityInteractSpecific event) {
+		if (event.getTarget() instanceof ExtendedBirdEntity) {
+			ExtendedBirdEntity bird = (ExtendedBirdEntity) event.getTarget();
+			ItemStack stack = event.getItemStack();
+			if (stack.isEmpty()) return;
+			if (stack.getItem() instanceof ExtendedBirdcageItem) {
+				String currentBird = "";
+				CompoundNBT nbt = stack.getTagElement("BlockEntityTag");
+				if (nbt != null) {
+					currentBird = nbt.getString("BirdType");
+				}
+
+				if (currentBird.isEmpty()) {
+					System.out.println("Is Bird Cage item");
+					CompoundNBT blockEntityTag = new CompoundNBT();
+					blockEntityTag.putString("BirdType", getKeyOfBird(bird));
+					stack.addTagElement("BlockEntityTag", blockEntityTag);
+					bird.remove();
+				} else {
+					if (!event.getWorld().isClientSide()) {
+						event.getPlayer().sendMessage(new TranslationTextComponent("chat.lotrextended.birdcapture.already_bas_bird"), Util.NIL_UUID);
+					}
+				}
+			}
+		}
+
+	}
+
+	// TODO: Add support for additional birds when we add them/and or build a better system for this
+	private static String getKeyOfBird(ExtendedBirdEntity entity) {
+		if (entity instanceof ExtendedCrabanEntity) {
+			return "craban";
+		} else {
+			return "";
 		}
 	}
 }

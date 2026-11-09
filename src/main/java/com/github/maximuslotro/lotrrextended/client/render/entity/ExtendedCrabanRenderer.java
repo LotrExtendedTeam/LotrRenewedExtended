@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ExtendedCrabanRenderer extends ExtendedMobRenderer<ExtendedCrabanEntity, ExtendedCrabanModel<ExtendedCrabanEntity>> {
 
-    private static final ResourceLocation LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/birds/craban.png");
+    public static final ResourceLocation LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/birds/craban.png");
 
     public ExtendedCrabanRenderer(EntityRendererManager p_i4entityRendererManager) {
         super(p_i4entityRendererManager, new ExtendedCrabanModel<>(), 0.3F);
