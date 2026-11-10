@@ -117,7 +117,6 @@ public class ExtendedHorseBoarModel<T extends ExtendedHorseBoarEntity> extends Q
 	public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 		super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
 		boolean saddled = pEntity.isSaddled();
-		boolean flag1 = pEntity.isVehicle();
 		boolean male = pEntity.getGender().isMale();
 		
 		saddle_r1.visible = saddled;

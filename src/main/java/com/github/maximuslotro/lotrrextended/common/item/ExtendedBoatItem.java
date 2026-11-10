@@ -43,7 +43,6 @@ public class ExtendedBoatItem extends Item {
 			return ActionResult.pass(itemstack);
 		} else {
 			Vector3d vector3d = pPlayer.getViewVector(1.0F);
-			double d0 = 5.0D;
 			List<Entity> list = pLevel.getEntities(pPlayer, pPlayer.getBoundingBox().expandTowards(vector3d.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
 			if (!list.isEmpty()) {
 				Vector3d vector3d1 = pPlayer.getEyePosition(1.0F);

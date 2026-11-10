@@ -60,9 +60,9 @@ public class ExtendedStoneTextSignTileEntityRenderer extends TileEntityRenderer<
 	private static int getDarkColor(ExtendedStoneTextSignTileEntity pBlockEntity) {
 		int i = pBlockEntity.getColor().getTextColor();
 		double d0 = 0.4D;
-		int j = (int)((double)NativeImage.getR(i) * 0.4D);
-		int k = (int)((double)NativeImage.getG(i) * 0.4D);
-		int l = (int)((double)NativeImage.getB(i) * 0.4D);
+		int j = (int)((double)NativeImage.getR(i) * d0);
+		int k = (int)((double)NativeImage.getG(i) * d0);
+		int l = (int)((double)NativeImage.getB(i) * d0);
 		return NativeImage.combine(0, l, k, j);
 	}
 }

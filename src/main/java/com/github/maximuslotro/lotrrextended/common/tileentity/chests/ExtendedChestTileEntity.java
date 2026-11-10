@@ -27,7 +27,6 @@ public abstract class ExtendedChestTileEntity<T extends ChestTileEntity> extends
 		++this.tickInterval;
 		this.openCount = getOpenCount(this.level, this, this.tickInterval, i, j, k, this.openCount);
 		this.oOpenness = this.openness;
-		float f = 0.1F;
 		if (this.openCount > 0 && this.openness == 0.0F) {
 			this.playSound(openSound());
 		}
@@ -44,7 +43,6 @@ public abstract class ExtendedChestTileEntity<T extends ChestTileEntity> extends
 				this.openness = 1.0F;
 			}
 
-			float f2 = 0.5F;
 			if (this.openness < 0.5F && f1 >= 0.5F) {
 				this.playSound(closeCound());
 			}

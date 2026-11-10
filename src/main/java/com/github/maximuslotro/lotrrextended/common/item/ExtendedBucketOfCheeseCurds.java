@@ -24,7 +24,6 @@ public class ExtendedBucketOfCheeseCurds extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
 		if(!world.isClientSide) {
-			 float f = 0.5F;
 	         double d0 = (double)(world.random.nextFloat() * 0.5F) + 0.25D;
 	         double d1 = (double)(world.random.nextFloat() * 0.5F) + 0.25D;
 	         double d2 = (double)(world.random.nextFloat() * 0.5F) + 0.25D;

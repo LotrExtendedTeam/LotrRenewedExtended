@@ -33,7 +33,6 @@ public class BanditsSpawner {
         // get the biome the player is in and check if we should attempt to spawn
         if (!alwaysSpawn) {
             BlockPos pos = new BlockPos(player.position());
-            String biomeName = world.getBiomeName(pos).toString();
             int chance = ExtendedBiomeInformationManager.INSTANCE.get(world.getBiome(pos)).getBanditChance().getChance();
             int roll = world.random.nextInt(100) + 1;
             if (roll >= chance) {
