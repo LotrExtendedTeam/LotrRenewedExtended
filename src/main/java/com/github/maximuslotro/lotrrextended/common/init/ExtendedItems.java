@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEnti
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedAncientItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBarrowBlade;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
@@ -39,6 +40,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedDyeableArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedOrcBombItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPikeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffGandalfGrey;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffGandalfWhite;
