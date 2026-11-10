@@ -1737,6 +1737,20 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
+	protected void makeDyeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		if (table == null) {
+			ShapelessRecipeBuilder.shapeless(itemToBeCrafted.get())
+			.requires(resource.get())
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, itemToBeCrafted.get().getRegistryName().toString()+"_from_"+resource.get().getRegistryName().getPath());
+		} else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(itemToBeCrafted.get(), table)
+			.requires(resource.get())
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, new ResourceLocation(itemToBeCrafted.get().getRegistryName().toString()+"_from_"+resource.get().getRegistryName().getPath()));
+		}
+	}
+
 	protected void makeTorchConversionRecipeDirect(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		if(table==null) {

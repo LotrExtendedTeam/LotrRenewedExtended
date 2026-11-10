@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:springleaf"
+    }
+  ],
+  "result": {
+    "item": "minecraft:lime_dye"
+  }
+}

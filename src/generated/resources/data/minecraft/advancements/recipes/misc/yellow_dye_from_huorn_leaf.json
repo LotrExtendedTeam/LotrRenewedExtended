@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:yellow_dye_from_huorn_leaf"
+    ]
+  },
+  "criteria": {
+    "has_huorn_leaf": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:huorn_leaf"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:yellow_dye_from_huorn_leaf"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_huorn_leaf",
+      "has_the_recipe"
+    ]
+  ]
+}

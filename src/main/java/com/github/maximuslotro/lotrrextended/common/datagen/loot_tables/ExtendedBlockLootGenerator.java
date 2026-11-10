@@ -19,6 +19,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandel
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -412,6 +414,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.get());
 				continue;
 			}
+			if(block.get() instanceof ExtendedFlowerBlock || block.get() instanceof ExtendedFlowerEffectlessBlock) {
+				dropSelf(block.get());
+				continue;
+			}
 			if(block.get() instanceof ExtendedHearthBlock) {
 				dropOther(block.get(), LOTRBlocks.HEARTH_BLOCK.get());
 				continue;
@@ -526,6 +532,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.LEEKS.get(), (blockLamda) -> applyExplosionDecay(blockLamda, LootTable.lootTable()
 			.withPool(LootPool.lootPool().add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get())))
 			.withPool(LootPool.lootPool().when(leekConditionBuilder).add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get()).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		dropSelf(ExtendedBlocks.STONEROOT.get());
+		dropSelf(ExtendedBlocks.RIVERWEED.get());
 	}
 
 	@Override

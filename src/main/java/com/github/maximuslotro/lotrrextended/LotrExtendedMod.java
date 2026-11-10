@@ -41,6 +41,7 @@ import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfil
 import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
@@ -144,6 +145,7 @@ public class LotrExtendedMod{
 			ExtendedStructuresV5.setupStructures();
 			ExtendedConfiguredStructuresV5.registerConfiguredStructures();
 			ExtendedDeferredComposterInjector.registerCompostables();
+			ExtendedFeatures.init();
 		});
 	}
 

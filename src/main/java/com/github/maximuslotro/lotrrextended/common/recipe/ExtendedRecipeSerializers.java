@@ -23,6 +23,7 @@ public class ExtendedRecipeSerializers {
 	public static final RegistryObject<IRecipeSerializer<ExtendedCrucibleMaterialRecipe>> CRUCIBLE_MATERIAL_SERIALIZER = RECIPE_SERIALIZERS.register("crucible_material", ExtendedCrucibleMaterialRecipe.ExtendedCrucibleRecipeSerializer::new);
 	public static final RegistryObject<IRecipeSerializer<ExtendedCrucibleSpecificRecipe>> CRUCIBLE_SPECIFIC_SERIALIZER = RECIPE_SERIALIZERS.register("crucible_specific", ExtendedCrucibleSpecificRecipe.ExtendedCrucibleSpecificRecipeSerializer::new);
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedDaggerPoisoningRecipe>> EXTENDED_DAGGER_POISONING = RECIPE_SERIALIZERS.register("crafting_special_dagger_poisoning", ()-> new SpecialRecipeSerializer<>(ExtendedDaggerPoisoningRecipe::new));
+	public static final RegistryObject<SpecialRecipeSerializer<ExtendedSuspiciousStewRecipe>> EXTENDED_SUSPICIOUS_STEW = RECIPE_SERIALIZERS.register("crafting_special_suspiciousstew", ()-> new SpecialRecipeSerializer<>(ExtendedSuspiciousStewRecipe::new));
 
 	public static void register(IEventBus modBus) {
 		RECIPE_SERIALIZERS.register(modBus);

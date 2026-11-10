@@ -8,11 +8,47 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemStackTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
-import com.github.maximuslotro.lotrrextended.common.item.*;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedAncientItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBarrowBlade;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerryItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedColoringItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedFangornRiverWeedItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedDyeableArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedOrcBombItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPikeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffGandalfGrey;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffGandalfWhite;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedTapestryEntityItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 
@@ -634,6 +670,16 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROHAN_BANNER = regItem("rohan_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.ROHAN_BANNER.get(), ExtendedBlocks.ROHAN_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 	public static RegistryObject<Item> WOODLAND_REALM_BANNER = regItem("woodland_realm_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.WOODLAND_REALM_BANNER.get(), ExtendedBlocks.WOODLAND_REALM_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 
+	public static RegistryObject<Item> ELFSONG = regBlockItem(ExtendedBlocks.ELFSONG, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> FANGORNS_BEARD = regBlockItem(ExtendedBlocks.FANGORNS_BEARD, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> HOURN_LEAF = regBlockItem(ExtendedBlocks.HOURN_LEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> MOONFLOWER = regBlockItem(ExtendedBlocks.MOONFLOWER, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> RIVERWEED = regGenericBlockItem(ExtendedBlocks.RIVERWEED, () -> new ExtendedFangornRiverWeedItem(ExtendedBlocks.RIVERWEED.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> SPRINGLEAF = regBlockItem(ExtendedBlocks.SPRINGLEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> STONEROOT = regBlockItem(ExtendedBlocks.STONEROOT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> SUNFRUIT = regBlockItem(ExtendedBlocks.SUNFRUIT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> TEARS_OF_YAVANNA = regBlockItem(ExtendedBlocks.TEARS_OF_YAVANNA, LOTRItemGroups.DECO);
+
 	//###################################################################MATERIALS########################################################
 	//Misc
 	public static RegistryObject<Item> OBSIDIAN_SHARD = regItem("obsidian_shard", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
@@ -999,13 +1045,13 @@ public class ExtendedItems {
 		ITEMS.register(bus);
 	}
 
-	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {
-		RegistryObject<Item> item = ITEMS.register(name, sup);
+	private static <I extends Item> RegistryObject<I> regItem(String name, Supplier<I> sup) {
+		RegistryObject<I> item = ITEMS.register(name, sup);
 		LOTRItems.putItemInCreativeTabOrder(item.getId());
 		return item;
 	}
-	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {
-		RegistryObject<Item> item = regItem(name, sup);
+	private static <I extends Item> RegistryObject<I> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<I> sup)  {
+		RegistryObject<I> item = regItem(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.bannerPatternItemNameHolders.put(name, bannerPattern.getFilename());
 		}
@@ -1018,15 +1064,15 @@ public class ExtendedItems {
 		}
 		return item;
 	}
-	private static RegistryObject<Item> regGenericBlockItem(RegistryObject<Block> blockSup, Supplier<? extends BlockItem> sup) {
-		return regItem(blockSup.getId().getPath(), sup);
+	private static <I extends Item, B extends Block> RegistryObject<I> regGenericBlockItem(RegistryObject<B> blockSup, Supplier<I> sup) {
+	    return regItem(blockSup.getId().getPath(), sup);
 	}
-	private static RegistryObject<Item> regBlockItemProps(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> props) {
+	private static <B extends Block> RegistryObject<Item> regBlockItemProps(RegistryObject<B> blockSup, ItemGroup group, Consumer<Properties> props) {
 		Properties properties =  new Properties().tab(group);
 		props.accept(properties);
 		return regGenericBlockItem(blockSup, () -> new BlockItem(blockSup.get(), properties));
 	}
-	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {
+	private static <B extends Block> RegistryObject<Item> regBlockItem(RegistryObject<B> blockSup, ItemGroup group) {
 		return regBlockItemProps(blockSup, group, props -> {});
 	}
 	private static RegistryObject<Item> regCakeItem(RegistryObject<Block> blockSup, ItemGroup group) {

@@ -82,6 +82,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(Tags.Blocks.CHESTS, Tags.Items.CHESTS);
 		this.copy(Tags.Blocks.BARRELS, Tags.Items.BARRELS);
 		this.copy(Tags.Blocks.BARRELS_WOODEN, Tags.Items.BARRELS_WOODEN);
+		this.copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
 
 		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCES, ExtendedItemTagGenerator.WOODEN_FENCES);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCE_GATES, ExtendedItemTagGenerator.WOODEN_FENCE_GATES);

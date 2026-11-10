@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_water_weed",
+  "textures": {
+    "texture": "lotrextended:block/riverweed",
+    "particle": "lotrextended:block/riverweed"
+  }
+}

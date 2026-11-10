@@ -27,6 +27,7 @@ public class ExtendedBlockItemColors {
 		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_FERN.get());
 		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_FOUR_CLOVER.get());
 		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_CLOVER.get());
+		colors.register(naturalTint, ExtendedBlocks.SPRINGLEAF.get());
 	}
 
 	public static void makeItemsColors(ColorHandlerEvent.Item event) {

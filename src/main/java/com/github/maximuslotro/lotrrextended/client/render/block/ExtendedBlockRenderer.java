@@ -8,6 +8,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
@@ -157,6 +159,10 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}else if(block instanceof CropsBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}else if(block instanceof ExtendedFlowerBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}else if(block instanceof ExtendedFlowerEffectlessBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());
@@ -167,5 +173,7 @@ public class ExtendedBlockRenderer {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GLASS_BOTTLE.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.STONEROOT.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RIVERWEED.get(), RenderType.cutout());
 	}
 }
