@@ -27,15 +27,15 @@ public class MixinFactionCraftingTableBlock {
 
 	@Inject(method = "hasRequiredAligment(Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At("HEAD"), cancellable = true, remap=false)
 	private void hasRequiredAligment$Extended(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
-		final Optional<Faction> optFaction = this.tableFac.resolveFaction(player.level);
-		if(!player.level.isClientSide() && optFaction.isPresent()) {
+		Optional<Faction> tableFaction = this.tableFac.resolveFaction(player.level);
+		if(!player.level.isClientSide() && tableFaction.isPresent()) {
 			LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
 			Faction pedegeFaction = playerData.getAlignmentData().getPledgeFaction();
-			if(pedegeFaction!=null && optFaction.get().isBadRelation(pedegeFaction)) {
+			if(pedegeFaction!=null && tableFaction.get().isBadRelation(pedegeFaction)) {
 				ExtendedConquestRegion region = ExtendedLevelData.serverInstance().getConquestData().getConquestSquare(player.blockPosition());
-				if(region.getConquest(pedegeFaction.getName())>=500) {
+				if(region.getConquest(pedegeFaction.getName())>=region.getConquest(tableFaction.get().getName())+750) {
 					cir.setReturnValue(true);
-				};
+				}
 			}
 		}
 	}
