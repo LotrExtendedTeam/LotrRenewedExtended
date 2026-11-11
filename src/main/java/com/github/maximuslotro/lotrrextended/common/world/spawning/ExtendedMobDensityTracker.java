@@ -5,7 +5,11 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.spawner.MobDensityTracker;
 
+/**
+ * Based upon {@link MobDensityTracker}
+ * */
 public class ExtendedMobDensityTracker {
 	   private final List<ExtendedMobDensityTracker.DensityEntry> charges = Lists.newArrayList();
 

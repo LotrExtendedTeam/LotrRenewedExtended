@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -16,7 +15,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMaps;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -25,20 +23,12 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -47,9 +37,9 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -87,8 +77,8 @@ public final class ExtendedWorldEntitySpawner {
 			if (entityclassification != EntityClassification.MISC) {
 				BlockPos blockpos = entity.blockPosition();
 				long i = ChunkPos.asLong(blockpos.getX() >> 4, blockpos.getZ() >> 4);
-				pChunkGetter.query(i, (p_234971_5_) -> {
-					ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getRoughBiome(blockpos, p_234971_5_).getMobSettings().getMobSpawnCost(entity_f.getType());
+				pChunkGetter.query(i, (pChunk) -> {
+					ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getSpawnsForBiome(blockpos, pChunk).getMobSpawnCost(entity_f.getType());
 					if (mobspawninfo$spawncosts != null) {
 						mobdensitytracker.addCharge(entity_f.blockPosition(), mobspawninfo$spawncosts.getCharge());
 					}
@@ -99,23 +89,10 @@ public final class ExtendedWorldEntitySpawner {
 		}
 	}
 
-	private static Biome getRoughBiome(BlockPos pPos, IChunk pChunk) {
-		return DefaultBiomeMagnifier.INSTANCE.getBiome(0L, pPos.getX(), pPos.getY(), pPos.getZ(), pChunk.getBiomes());
-	}
-
-	public static void spawnForChunk(ServerWorld pLevel, Chunk pChunk, ExtendedWorldEntitySpawner.EntityDensityManager pSpawnState, boolean pSpawnFriendlies, boolean pSpawnMonsters, boolean p_234979_5_) {
+	// TODO limit spawning to every 20 seconds
+	public static void spawnForChunk(ServerWorld pLevel, Chunk pChunk, ExtendedWorldEntitySpawner.EntityDensityManager pSpawnState, boolean p_234979_5_) {
 		pLevel.getProfiler().push("spawner");
-
-		for(EntityClassification entityclassification : SPAWNING_CATEGORIES) {
-			if ((pSpawnFriendlies || !entityclassification.isFriendly()) && (pSpawnMonsters || entityclassification.isFriendly()) && (p_234979_5_ || !entityclassification.isPersistent()) && pSpawnState.canSpawnForCategory(entityclassification)) {
-				spawnCategoryForChunk(entityclassification, pLevel, pChunk, (p_234969_1_, p_234969_2_, p_234969_3_) -> {
-					return pSpawnState.canSpawn(p_234969_1_, p_234969_2_, p_234969_3_);
-				}, (p_234970_1_, p_234970_2_) -> {
-					pSpawnState.afterSpawn(p_234970_1_, p_234970_2_);
-				});
-			}
-		}
-
+		spawnCategoryForChunk(pLevel, pChunk, pSpawnState::canSpawn, pSpawnState::afterSpawn);
 		pLevel.getProfiler().pop();
 	}
 
@@ -280,10 +257,15 @@ public final class ExtendedWorldEntitySpawner {
 		return mobsAt(pLevel, pStructureManager, pGenerator, pPos, (Biome)null).contains(pData);
 	}
 
-	//TODO write logic to retrieve spawn data from a loader
-	private static List<ExtendedSpawnInfo.Spawners> mobsAt(ServerWorld p_241463_0_, StructureManager p_241463_1_, ChunkGenerator p_241463_2_, BlockPos p_241463_4_, @Nullable Biome p_241463_5_) {
-		//return p_241463_3_ == EntityClassification.MONSTER && p_241463_0_.getBlockState(p_241463_4_.below()).getBlock() == Blocks.NETHER_BRICKS && p_241463_1_.getStructureAt(p_241463_4_, false, Structure.NETHER_BRIDGE).isValid() ? Structure.NETHER_BRIDGE.getSpecialEnemies() : 
-		//return p_241463_2_.getMobsAt(p_241463_5_ != null ? p_241463_5_ : p_241463_0_.getBiome(p_241463_4_), p_241463_1_, p_241463_3_, p_241463_4_);
+	private static List<ExtendedSpawnInfo.Spawners> mobsAt(ServerWorld pLevel, StructureManager p_241463_1_, ChunkGenerator p_241463_2_, BlockPos pBlockPos, @Nullable Biome pBiome) {
+		return getSpawnsForBiome(pBiome != null ? pBiome : pLevel.getBiome(pBlockPos)).getMobs(null);
+	}
+
+	public static ExtendedSpawnInfo getSpawnsForBiome(BlockPos pPos, IChunk pChunk){
+		return getSpawnsForBiome(DefaultBiomeMagnifier.INSTANCE.getBiome(0L, pPos.getX(), pPos.getY(), pPos.getZ(), pChunk.getBiomes()));
+	}
+
+	public static ExtendedSpawnInfo getSpawnsForBiome(Biome pBiome){
 		return null;
 	}
 
@@ -305,17 +287,17 @@ public final class ExtendedWorldEntitySpawner {
 			this.unmodifiableMobCategoryCounts = Object2IntMaps.unmodifiable(pMobCategoryCounts);
 		}
 
-		private boolean canSpawn(EntityType<?> pEntityType, BlockPos pPos, IChunk pChunk) {
-			this.lastCheckedPos = pPos;
+		private boolean canSpawn(EntityType<?> pEntityType, BlockPos pBlockpos, IChunk pChunk) {
+			this.lastCheckedPos = pBlockpos;
 			this.lastCheckedType = pEntityType;
-			ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = ExtendedWorldEntitySpawner.getRoughBiome(pPos, pChunk).getMobSettings().getMobSpawnCost(pEntityType);
+			ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getSpawnsForBiome(pBlockpos, pChunk).getMobSpawnCost(pEntityType);
 			if (mobspawninfo$spawncosts == null) {
 				this.lastCharge = 0.0D;
 				return true;
 			} else {
 				double d0 = mobspawninfo$spawncosts.getCharge();
 				this.lastCharge = d0;
-				double d1 = this.spawnPotential.getPotentialEnergyChange(pPos, d0);
+				double d1 = this.spawnPotential.getPotentialEnergyChange(pBlockpos, d0);
 				return d1 <= mobspawninfo$spawncosts.getEnergyBudget();
 			}
 		}
@@ -327,7 +309,7 @@ public final class ExtendedWorldEntitySpawner {
 			if (blockpos.equals(this.lastCheckedPos) && entitytype == this.lastCheckedType) {
 				d0 = this.lastCharge;
 			} else {
-				ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = ExtendedWorldEntitySpawner.getRoughBiome(blockpos, pChunk).getMobSettings().getMobSpawnCost(entitytype);
+				ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getSpawnsForBiome(blockpos, pChunk).getMobSpawnCost(entitytype);
 				if (mobspawninfo$spawncosts != null) {
 					d0 = mobspawninfo$spawncosts.getCharge();
 				} else {
