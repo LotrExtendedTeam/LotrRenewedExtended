@@ -373,7 +373,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		ItemModelBuilder builder_bow_gui_p2 = gen(withExistingParent(bowFileName+"_pulling_2", bowFileName), false, new ResourceLocation(item.getRegistryName().getNamespace(), "item/"+item.getRegistryName().getPath()+"_pulling_2"));
 		builder_bow_gui.override().model(builder_bow_gui_p0).predicate(ExtendedItemModelsProperties.pulling, 1);
 		builder_bow_gui.override().model(builder_bow_gui_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
-		builder_bow_gui.override().model(builder_bow_gui_p1).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		builder_bow_gui.override().model(builder_bow_gui_p2).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
 		genTransformWrapper(item, builder_bow_gui, builder_bow_held);
 	}
 

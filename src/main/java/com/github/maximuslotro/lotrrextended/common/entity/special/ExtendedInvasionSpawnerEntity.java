@@ -450,7 +450,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 player.sendMessage(new TranslationTextComponent("chat.lotrextended.invasion.started", text), Util.NIL_UUID);
             }else {
                 IFormattableTextComponent text = invasion.get().getTranslatableName().copy().withStyle(TextFormatting.YELLOW);
-                player.sendMessage(new TranslationTextComponent("chat.lotrextended.invasion.started", invasion.get().getTranslatableName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("chat.lotrextended.invasion.started", text), Util.NIL_UUID);
             }
         }
 

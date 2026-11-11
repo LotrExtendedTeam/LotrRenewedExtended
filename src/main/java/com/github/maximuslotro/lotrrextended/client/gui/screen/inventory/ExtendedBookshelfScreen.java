@@ -17,8 +17,6 @@ public class ExtendedBookshelfScreen extends ExtendedContainerScreen<ExtendedBoo
 	public ExtendedBookshelfScreen(ExtendedBookshelfContainer pChestMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pChestMenu, pPlayerInventory, pTitle);
 		this.passEvents = false;
-		int i = 222;
-		int j = 114;
 		this.containerRows = pChestMenu.containerRows;
 		this.imageHeight = 114 + this.containerRows * 18;
 		this.inventoryLabelY = this.imageHeight - 94;

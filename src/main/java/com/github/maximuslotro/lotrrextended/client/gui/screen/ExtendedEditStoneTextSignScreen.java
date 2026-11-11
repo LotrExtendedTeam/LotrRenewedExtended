@@ -113,7 +113,6 @@ public class ExtendedEditStoneTextSignScreen extends Screen {
 		drawCenteredString(pMatrixStack, this.font, this.title, this.width / 2, 40, 16777215);
 		pMatrixStack.pushPose();
 		pMatrixStack.translate((double)(this.width / 2), 0.0D, 50.0D);
-		float f = 93.75F;
 		pMatrixStack.scale(93.75F, -93.75F, 93.75F);
 		pMatrixStack.translate(0.0D, -1.3125D, 0.0D);
 		// Bypass StandingSignBlock check
@@ -122,7 +121,6 @@ public class ExtendedEditStoneTextSignScreen extends Screen {
 		boolean flag1 = this.frame / 6 % 2 == 0;
 		IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.renderBuffers().bufferSource();
 		
-		float f2 = 0.010416667F;
 		pMatrixStack.translate(0.0D, (double)0.33333334F, (double)0.046666667F);
 		pMatrixStack.scale(0.010416667F, -0.010416667F, 0.010416667F);
 		int i = this.sign.getColor().getTextColor();

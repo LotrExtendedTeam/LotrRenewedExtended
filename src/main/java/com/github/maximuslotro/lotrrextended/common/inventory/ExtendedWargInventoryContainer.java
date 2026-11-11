@@ -20,9 +20,7 @@ public class ExtendedWargInventoryContainer extends Container {
 	      super(null, pContainerId);
 	      this.horseContainer = pContainer;
 	      this.warg = pwarg;
-	      int i = 3;
 	      pContainer.startOpen(pPlayerInventory.player);
-	      int j = -18;
 	      this.addSlot(new Slot(pContainer, 0, 8, 18) {
 	         /**
 	          * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.

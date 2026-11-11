@@ -68,7 +68,6 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 			List<PlayerEntity> shuffledPlayers = new ArrayList<>(level.players());
 			Collections.shuffle(shuffledPlayers);
 
-			boolean attemptedTraderSpawn = false;
 			for (PlayerEntity player : shuffledPlayers) {
 				if(this.tolkienTalkedTo.contains(player.getUUID())) {
 					continue;

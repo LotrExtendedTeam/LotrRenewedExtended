@@ -73,7 +73,6 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 	public boolean isValidPosForTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
 		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if(blockEntity instanceof ChestTileEntity) {
-			ChestTileEntity chest = (ChestTileEntity) blockEntity;
 			BlockState chestState = blockEntity.getBlockState();
 			ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 

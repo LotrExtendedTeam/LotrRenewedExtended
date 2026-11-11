@@ -55,7 +55,6 @@ public class ExtendedWorldRegenEngineWatcher {
 	}
 	public static void startProgressWatcher(MinecraftServer server) {
 		new Thread(() -> {
-			ITextComponent lastStatus = null;
 			if(ACTIVE_ENGINE==null) {
 				return;
 			}

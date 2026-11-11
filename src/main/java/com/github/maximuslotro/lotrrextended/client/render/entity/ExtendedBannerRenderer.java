@@ -58,7 +58,6 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 		Minecraft minecraft = Minecraft.getInstance();
 		if (minecraft.options.renderDebug && pEntity.getProtectionRange() > 0) {
 			pMatrixStack.pushPose();
-			IVertexBuilder ivertexBuilder = pBuffer.getBuffer(RenderType.lines());
 			RenderSystem.lineWidth(10.0f);
 			IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().renderBuffers().bufferSource();
 			if (buffer == null)

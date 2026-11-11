@@ -15,13 +15,9 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.AttributeUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
-import com.google.common.collect.Multimap;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -178,7 +174,6 @@ public class MixinEnchantmentHelper {
 	private static boolean containsLongWeapon$Extended(Iterable<ItemStack> iterable) {
 		for (ItemStack stack : iterable) {
 			if (stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack).containsKey(ForgeMod.REACH_DISTANCE.get())) {
-				Multimap<Attribute, AttributeModifier> multimap = stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack);
 				if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>=1.0D) {
 					return true; // Spear, polearms, and lances
 				}

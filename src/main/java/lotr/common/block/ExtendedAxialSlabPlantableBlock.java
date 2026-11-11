@@ -26,7 +26,6 @@ public class ExtendedAxialSlabPlantableBlock extends ExtendedAxialSlabStemableBl
 
 	@Override
 	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
-		BlockState plant = plantable.getPlant(world, pos.relative(facing));
 		PlantType type = plantable.getPlantType(world, pos.relative(facing));
 		if (PlantType.CROP.equals(type)) {
 			if(plantable instanceof StemBlock) {

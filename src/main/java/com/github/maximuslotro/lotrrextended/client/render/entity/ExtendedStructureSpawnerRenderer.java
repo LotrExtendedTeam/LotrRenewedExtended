@@ -72,7 +72,6 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 				//RenderSystem.disableDepthTest();
 				RenderSystem.disableCull();
 				// Setup rendering with lines
-				IVertexBuilder ivertexBuilder = pBuffer.getBuffer(RenderType.lines());
 				RenderSystem.lineWidth(10.0f);
 				IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().renderBuffers().bufferSource();
 				if (buffer == null)

@@ -24,7 +24,6 @@ import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -33,7 +32,6 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -60,8 +58,6 @@ public class ExtendedRendererEventHandler {
 
 			double d0 = minecraft.getEntityRenderDispatcher().distanceToSqr(event.getEntity());
 			FontRenderer fontrenderer = event.getEntityRenderer().getFont();
-			IRenderTypeBuffer.Impl buffer = minecraft.renderBuffers().bufferSource();
-			Matrix4f matrix4f = matrixStackIn.last().pose();
 
 			if (ForgeHooksClient.isNameplateInRenderDistance(event.getEntity(), d0)) {
 				float f = event.getEntity().getBbHeight() + 1.2F;

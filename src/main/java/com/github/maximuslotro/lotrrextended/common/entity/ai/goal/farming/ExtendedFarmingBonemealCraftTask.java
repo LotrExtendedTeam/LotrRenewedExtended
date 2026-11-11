@@ -247,7 +247,6 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	public static BlockState extractProduce(BlockState pState, World pLevel, BlockPos pComposterPos, Entity pEntity) {
 		if(!pLevel.isClientSide) {
-			float f = 0.7F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
 			double d2 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;

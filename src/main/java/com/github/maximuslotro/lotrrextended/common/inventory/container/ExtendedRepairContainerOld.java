@@ -606,7 +606,7 @@ public class ExtendedRepairContainerOld extends Container {
 				slot.onQuickCraft(itemstack1, itemstack);
 			} else if (pIndex != 0 && pIndex != 1 && pIndex != 2) {
 				if (pIndex >= 4 && pIndex < 40) {
-					int i = this.shouldQuickMoveToAdditionalSlot(itemstack) ? 1 : 0;
+					//int i = this.shouldQuickMoveToAdditionalSlot(itemstack) ? 1 : 0;
 					if (!this.moveItemStackTo(itemstack1, 0, 3, false)) {
 						return ItemStack.EMPTY;
 					}

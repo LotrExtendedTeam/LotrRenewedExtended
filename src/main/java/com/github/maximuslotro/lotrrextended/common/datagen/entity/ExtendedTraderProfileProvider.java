@@ -76,14 +76,12 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 		for(Entry<ItemStack, List<Integer>> entrySold : soldItems.entrySet()) {
 			for(Entry<ItemStack, List<Integer>> entryBought : boughtItems.entrySet()) {
 				if(ItemStack.isSame(entrySold.getKey(), entryBought.getKey())) {
-					boolean isHigher = false;
 					for (Integer buyCost : entryBought.getValue()) {
 						for (Integer soldCost : entrySold.getValue()) {
 							float soldAmount = soldCost / (float)entrySold.getKey().getCount();
 							float boughtAmount = buyCost / (float)entryBought.getKey().getCount();
 							if(soldAmount<boughtAmount) {
 								LOGGER.warn(entrySold.getKey().toString() + " tried being sold for less than the raw buy price of " + buyCost +":["+ soldAmount + "<" + boughtAmount+"]");
-								isHigher = true;
 							}
 							if(soldAmount==boughtAmount) {
 								if(buyCost!=1 && soldCost!=1) {

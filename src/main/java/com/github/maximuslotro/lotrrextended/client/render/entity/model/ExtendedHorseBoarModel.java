@@ -150,7 +150,7 @@ public class ExtendedHorseBoarModel<T extends ExtendedHorseBoarEntity> extends Q
 		//float f7 = 1.0F - f6;
 		//float f8 = pEntity.getMouthAnim(pPartialTick);
 		//boolean flag = pEntity.tailCounter != 0;
-		float f9 = (float)pEntity.tickCount + pPartialTick;
+		//float f9 = (float)pEntity.tickCount + pPartialTick;
 		//this.head.y = 4.0F;
 		//this.head.z = -12.0F;
 		this.body.xRot = 0.0F;

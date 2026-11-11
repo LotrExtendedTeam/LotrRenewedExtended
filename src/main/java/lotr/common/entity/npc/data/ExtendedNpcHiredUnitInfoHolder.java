@@ -1079,8 +1079,6 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			CompoundNBT nbt = new CompoundNBT();
 			nbt.putInt("align", alignmentRequired);
 			nbt.putBoolean("pledged", pledgeRequired);
-			int alignmentRequired = nbt.getInt("align");
-			boolean pledgeRequired = nbt.getBoolean("pledged");
 			return nbt;
 		}
 

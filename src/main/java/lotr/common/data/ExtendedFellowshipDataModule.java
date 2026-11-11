@@ -61,7 +61,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	public void load(CompoundNBT playerNBT) {
 		if(playerNBT.contains("FellowshipData")) {
 			CompoundNBT fellowshipData = playerNBT.getCompound("FellowshipData");
-			int dataVersion = ExtendedNBTUtils.getInt(fellowshipData, "datVer", 0);
+			//int dataVersion = ExtendedNBTUtils.getInt(fellowshipData, "datVer", 0);
 			fellowshipIDs.clear();
 			invites.clear();
 			ListNBT fellowships = fellowshipData.getList("Fellowships", 10);

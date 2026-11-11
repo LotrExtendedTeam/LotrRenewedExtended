@@ -293,7 +293,6 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	 */
 	public static void popResourceOwning(World pLevel, BlockPos cropPosition, ItemStack pStack, Entity pEntity) {
 		if (!pLevel.isClientSide && !pStack.isEmpty() && pLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !pLevel.restoringBlockSnapshots) {
-			float f = 0.5F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			double d2 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;

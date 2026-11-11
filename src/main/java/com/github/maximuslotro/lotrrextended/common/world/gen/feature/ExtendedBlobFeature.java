@@ -40,8 +40,8 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 		double zStart = (double)originPos.getZ() + Math.cos((double)angle) * (double)horizontalRange;
 		double zEnd = (double)originPos.getZ() - Math.cos((double)angle) * (double)horizontalRange;
 		int verticalPadding = 2;
-		double yStart = (double)(originPos.getY() + rand.nextInt(3) - 2);
-		double yEnd = (double)(originPos.getY() + rand.nextInt(3) - 2);
+		double yStart = (double)(originPos.getY() + rand.nextInt(3) - verticalPadding);
+		double yEnd = (double)(originPos.getY() + rand.nextInt(3) - verticalPadding);
 		int xMin = originPos.getX() - MathHelper.ceil(horizontalRange) - featureRadius;
 		int yMin = originPos.getY() - 2 - featureRadius;
 		int zMin = originPos.getZ() - MathHelper.ceil(horizontalRange) - featureRadius;

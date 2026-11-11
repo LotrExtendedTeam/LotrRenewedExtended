@@ -183,7 +183,6 @@ public class ExtendedVineBlock extends VineBlock {
 	}
 
 	private boolean canSpread(IBlockReader pBlockReader, BlockPos pPos) {
-		int i = 4;
 		Iterable<BlockPos> iterable = BlockPos.betweenClosed(pPos.getX() - 4, pPos.getY() - 1, pPos.getZ() - 4, pPos.getX() + 4, pPos.getY() + 1, pPos.getZ() + 4);
 		int j = 5;
 

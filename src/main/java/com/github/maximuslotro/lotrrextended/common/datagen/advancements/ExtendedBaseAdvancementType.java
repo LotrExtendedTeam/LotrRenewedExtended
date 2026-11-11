@@ -214,10 +214,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 	}
 
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item... items) {
-		int amount=0;
-		for(Item item: items){
-			amount+=1;
-		}
+		int amount=items.length;
 		if(amount>1) {
 			for(Item item: items){
 				builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy")+"_"+item.getRegistryName().getPath(), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.ANY));

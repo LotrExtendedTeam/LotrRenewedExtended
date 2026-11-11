@@ -70,7 +70,7 @@ public abstract class ExtendedRadialScreen extends Screen {
 			int r = 40;
 			int g = 40;
 			int b = 40;
-			int a = 230;
+			//int a = 230;
 			Integer color = getText(i).getColor();
 			if (color != null) {
 				r = (color >> 16) & 0xFF;
@@ -81,7 +81,7 @@ public abstract class ExtendedRadialScreen extends Screen {
 				r = (int) (r * 0.5F);
 				g = (int) (g * 0.5F);
 				b = (int) (b * 0.5F);
-				a = 150;
+				//a = 150;
 			}
 			drawPieSegment(matrixStack, centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, r, g, b, 255);
 		}

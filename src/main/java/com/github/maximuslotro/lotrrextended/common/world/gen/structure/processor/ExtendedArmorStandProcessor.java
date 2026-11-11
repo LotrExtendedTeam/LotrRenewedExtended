@@ -80,7 +80,6 @@ public class ExtendedArmorStandProcessor extends StructureProcessor {
 			CompoundNBT forgeData = nbt.getCompound("ForgeData");
 			if (forgeData.contains("StandLootTable", 8) && world instanceof IServerWorld) {
 				ServerWorld serverWorld = ((IServerWorld) world).getLevel();
-				String lootTableStr = forgeData.getString("StandLootTable");
 				ResourceLocation lootTableId = new ResourceLocation(forgeData.getString("StandLootTable"));
 				forgeData.remove("StandLootTable");
 				LootTable lootTable = serverWorld.getServer().getLootTables().get(lootTableId);

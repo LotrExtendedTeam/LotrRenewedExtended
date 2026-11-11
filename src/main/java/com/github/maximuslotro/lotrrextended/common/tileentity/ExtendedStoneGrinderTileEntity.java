@@ -64,27 +64,27 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 		@Override
 		public int get(int pIndex) {
 			switch(pIndex) {
-			case 0:
-				return ExtendedStoneGrinderTileEntity.this.grindingProgress;
-			case 1:
-				return ExtendedStoneGrinderTileEntity.this.grindingTotalTime;
-			case 2:
-				return ExtendedStoneGrinderTileEntity.this.usingLubrication ? 1 : 0;
-			default:
-				return 0;
+				case 0:
+					return ExtendedStoneGrinderTileEntity.this.grindingProgress;
+				case 1:
+					return ExtendedStoneGrinderTileEntity.this.grindingTotalTime;
+				case 2:
+					return ExtendedStoneGrinderTileEntity.this.usingLubrication ? 1 : 0;
+				default:
+					return 0;
 			}
 		}
 		@Override
 		public void set(int pIndex, int pValue) {
 			switch(pIndex) {
-			case 0:
-				ExtendedStoneGrinderTileEntity.this.grindingProgress = pValue;
-				break;
-			case 1:
-				ExtendedStoneGrinderTileEntity.this.grindingTotalTime = pValue;
-				break;
-			case 2:
-				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue != 0;
+				case 0:
+					ExtendedStoneGrinderTileEntity.this.grindingProgress = pValue;
+					break;
+				case 1:
+					ExtendedStoneGrinderTileEntity.this.grindingTotalTime = pValue;
+					break;
+				case 2:
+					ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue != 0;
 			}
 		}
 		@Override
@@ -274,7 +274,6 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				} else if (itemstack3.getItem() instanceof PotionItem) {
 					this.items.set(1, new ItemStack(Items.GLASS_BOTTLE));
 				} else if (!itemstack3.isEmpty()) {
-					Item item = itemstack3.getItem();
 					itemstack3.shrink(1);
 					if (itemstack3.isEmpty()) {
 						this.items.set(1, itemstack3.getContainerItem());

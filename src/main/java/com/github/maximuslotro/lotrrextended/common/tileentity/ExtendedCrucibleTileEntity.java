@@ -161,14 +161,12 @@ public class ExtendedCrucibleTileEntity extends LockableTileEntity implements IS
 						litChanged = true;
 						if (fuelStack.hasContainerItem())
 							this.items.set(1, fuelStack.getContainerItem());
-						else
-							if (!fuelStack.isEmpty()) {
-								Item item = fuelStack.getItem();
-								fuelStack.shrink(1);
-								if (fuelStack.isEmpty()) {
-									this.items.set(1, fuelStack.getContainerItem());
-								}
+						else if (!fuelStack.isEmpty()) {
+							fuelStack.shrink(1);
+							if (fuelStack.isEmpty()) {
+								this.items.set(1, fuelStack.getContainerItem());
 							}
+						}
 					}
 				}
 
@@ -237,11 +235,11 @@ public class ExtendedCrucibleTileEntity extends LockableTileEntity implements IS
 				ItemStack outputFull = this.items.get(2);
 				ItemStack outputFraction = this.items.get(3);
 				boolean fullValid = outputFull.isEmpty() || (outputFull.sameItem(resultFull) 
-								&& outputFull.getCount() + resultFull.getCount() <= this.getMaxStackSize() 
-								&& outputFull.getCount() + resultFull.getCount() <= outputFull.getMaxStackSize());
+						&& outputFull.getCount() + resultFull.getCount() <= this.getMaxStackSize() 
+						&& outputFull.getCount() + resultFull.getCount() <= outputFull.getMaxStackSize());
 				boolean fractionValid = outputFraction.isEmpty() || (outputFraction.sameItem(resultFraction) 
-					    		&& outputFraction.getCount() + resultFraction.getCount() <= this.getMaxStackSize() 
-					    		&& outputFraction.getCount() + resultFraction.getCount() <= outputFraction.getMaxStackSize());
+						&& outputFraction.getCount() + resultFraction.getCount() <= this.getMaxStackSize() 
+						&& outputFraction.getCount() + resultFraction.getCount() <= outputFraction.getMaxStackSize());
 				return fullValid && fractionValid;
 			}
 		} else {

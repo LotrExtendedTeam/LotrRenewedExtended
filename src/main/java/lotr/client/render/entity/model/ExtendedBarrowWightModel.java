@@ -217,8 +217,8 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWightEntity> exten
 
 			float f7 = 0.3F;
 			float f5 = 0.33333334F;
-			this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, 0.3F * MathHelper.cos(pLimbSwing * 0.33333334F + (float)Math.PI));
-			this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * MathHelper.cos(pLimbSwing * 0.33333334F));
+			this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, f7 * MathHelper.cos(pLimbSwing * f5 + (float)Math.PI));
+			this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, f7 * MathHelper.cos(pLimbSwing * f5));
 		}
 
 		this.hat.copyFrom(this.head);
