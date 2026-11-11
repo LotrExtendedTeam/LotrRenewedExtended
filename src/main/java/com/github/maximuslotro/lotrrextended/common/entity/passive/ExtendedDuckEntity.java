@@ -120,7 +120,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 			return true;
 		}
 		for(BlockPos pos : BlockPos.betweenClosed(pPos.offset(-12, -5, -12), pPos.offset(12, 4, 12))) {
-			if(pReader.getBlockState(pPos).is(Blocks.WATER)) {
+			if(pReader.getBlockState(pos).is(Blocks.WATER)) {
 				return true;
 			}
 		}
