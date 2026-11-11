@@ -1,0 +1,20 @@
+{
+  "type": "lotr:vessel_drink_shapeless",
+  "ingredients": [
+    {
+      "tag": "lotr:drink_vessels"
+    },
+    {
+      "item": "lotrextended:cranberry"
+    },
+    {
+      "item": "lotrextended:cranberry"
+    },
+    {
+      "item": "lotrextended:cranberry"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:cranberry_juice"
+  }
+}

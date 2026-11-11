@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapelessVesselBrewingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedVesselBrewingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
@@ -1763,7 +1764,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
-		.save(consumer, ExtendedItems.BANANA_BEER.get().getRegistryName());
+		.save(consumer);
 		GENERATEDRECIPES.add(ExtendedItems.PLUM_KVASS.get().getRegistryName().getPath());
 		ExtendedVesselBrewingRecipeBuilder.brewing(ExtendedItems.PLUM_KVASS.get(), LOTRRecipes.DRINK_BREWING_SERIALIZER.get())
 		.requires(Ingredient.of(ExtendedItems.PLUM.get()))
@@ -1772,7 +1773,49 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
-		.save(consumer, ExtendedItems.PLUM_KVASS.get().getRegistryName());
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.BLACKBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.BLACKBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.BLUEBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.BLUEBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.CRANBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.CRANBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.ELDERBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.ELDERBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.RASPBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.RASPBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.WILDBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.WILDBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.save(consumer);
 	}
 
 	private void buildStoneGrinderRecipes(Consumer<IFinishedRecipe> consumer) {

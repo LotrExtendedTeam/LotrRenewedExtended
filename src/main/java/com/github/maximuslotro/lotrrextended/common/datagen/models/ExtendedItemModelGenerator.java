@@ -264,7 +264,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.get() instanceof VesselDrinkItem) {
-				genDrink(item.get(), "item/"+item.getId().getPath());
+				genDrink(item.get());
 				continue;
 			}
 			if(item.get() instanceof BannerPatternItem) {
@@ -400,9 +400,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genTransformWrapper(item, builder_bow_gui, builder_bow_held);
 	}
 
-	private ItemModelBuilder genDrink(Item item, String location) {
+	private ItemModelBuilder genDrink(Item item) {
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString(), "item/generated");
-		builder.texture("liquid", new ResourceLocation(item.getRegistryName().getNamespace(), location+"_liquid"));
+		builder.texture("liquid", itemLocation(item, "_liquid"));
 		builder.customLoader(ExtendedVesselModelBuilder::new);
 		return builder;
 	}

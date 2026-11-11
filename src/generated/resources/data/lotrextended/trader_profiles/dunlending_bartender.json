@@ -380,6 +380,48 @@
         "item": "lotr:apple_juice",
         "averageCost": 6
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:blackberry_juice",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:blueberry_juice",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:cranberry_juice",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:elderberry_juice",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:raspberry_juice",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:sweet_berry_juice",
+        "averageCost": 5
+      }
     }
   ]
 }

@@ -790,6 +790,12 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BANANA_BEER = regItem("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));
 	public static RegistryObject<Item> PLUM_KVASS = regItem("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
+	public static RegistryObject<Item> BLACKBERRY_JUICE = regItem("blackberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> BLUEBERRY_JUICE = regItem("blueberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> CRANBERRY_JUICE = regItem("cranberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> ELDERBERRY_JUICE = regItem("elderberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> RASPBERRY_JUICE = regItem("raspberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> WILDBERRY_JUICE = regItem("wildberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
 
 	
 	public static RegistryObject<Item> LEEK = regItem("leek", () -> new BlockNamedItem(ExtendedBlocks.LEEKS.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.LEEK)));

@@ -1,0 +1,20 @@
+{
+  "type": "lotr:vessel_drink_shapeless",
+  "ingredients": [
+    {
+      "tag": "lotr:drink_vessels"
+    },
+    {
+      "item": "lotrextended:wildberry"
+    },
+    {
+      "item": "lotrextended:wildberry"
+    },
+    {
+      "item": "lotrextended:wildberry"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:wildberry_juice"
+  }
+}
