@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.world.spawning;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -23,7 +22,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -42,6 +40,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.event.ForgeEventFactory;
 
 /**
  * Heavily copied from {@link WorldEntitySpawner}
@@ -127,7 +127,7 @@ public final class ExtendedWorldEntitySpawner {
 			int spawnX = pPos.getX();
 			int spawnZ = pPos.getZ();
 			int spawnRandomSpread = 6;
-			ExtendedSpawnInfo.Spawners mobspawninfo$spawners = null;
+			ExtendedSpawnInfo.GroupSpawner groupSpawner = null;
 			ILivingEntityData ilivingentitydata = null;
 			int spawnCount = MathHelper.ceil(pLevel.random.nextFloat() * 4.0F);
 			int spawnedGroupSize = 0;
@@ -136,31 +136,30 @@ public final class ExtendedWorldEntitySpawner {
 				spawnX += pLevel.random.nextInt(spawnRandomSpread) - pLevel.random.nextInt(spawnRandomSpread);
 				spawnZ += pLevel.random.nextInt(spawnRandomSpread) - pLevel.random.nextInt(spawnRandomSpread);
 				mutablePos.set(spawnX, spawnY, spawnZ);
-				double spawnXOffset = (double)spawnX + 0.5D;
-				double spawnZOffset = (double)spawnZ + 0.5D;
-				PlayerEntity playerentity = pLevel.getNearestPlayer(spawnXOffset, (double)spawnY, spawnZOffset, -1.0D, false);
+				double spawnXOffset = spawnX + 0.5D;
+				double spawnZOffset = spawnZ + 0.5D;
+				PlayerEntity playerentity = pLevel.getNearestPlayer(spawnXOffset, spawnY, spawnZOffset, -1.0D, false);
 				if (playerentity != null) {
-					double playerDistance = playerentity.distanceToSqr(spawnXOffset, (double)spawnY, spawnZOffset);
+					double playerDistance = playerentity.distanceToSqr(spawnXOffset, spawnY, spawnZOffset);
 					if (isRightDistanceToPlayerAndSpawnPoint(pLevel, pChunk, mutablePos, playerDistance)) {
-						if (mobspawninfo$spawners == null) {
-							mobspawninfo$spawners = getRandomSpawnMobAt(pLevel, structuremanager, chunkgenerator, pLevel.random, mutablePos);
-							if (mobspawninfo$spawners == null) {
+						if (groupSpawner == null) {
+							groupSpawner = getRandomSpawnMobAt(pLevel, structuremanager, chunkgenerator, pLevel.random, mutablePos);
+							if (groupSpawner == null) {
 								break;
 							}
-
-							spawnCount = mobspawninfo$spawners.minCount + pLevel.random.nextInt(1 + mobspawninfo$spawners.maxCount - mobspawninfo$spawners.minCount);
+							spawnCount = groupSpawner.minCount + pLevel.random.nextInt(1 + groupSpawner.maxCount - groupSpawner.minCount);
 						}
-
-						if (isValidSpawnPostitionForType(pLevel, structuremanager, chunkgenerator, mobspawninfo$spawners, mutablePos, playerDistance) && pFilter.test(mobspawninfo$spawners.type, mutablePos, pChunk)) {
-							MobEntity mobentity = getMobForSpawn(pLevel, mobspawninfo$spawners.type);
+						EntityType<?> potentialEntityType = groupSpawner.getSpawner(pLevel.random).getType();
+						if (isValidSpawnPostitionForType(pLevel, structuremanager, chunkgenerator, potentialEntityType, mutablePos, playerDistance) && pFilter.test(potentialEntityType, mutablePos, pChunk)) {
+							MobEntity mobentity = getMobForSpawn(pLevel, potentialEntityType);
 							if (mobentity == null) {
 								return;
 							}
 
 							mobentity.moveTo(spawnXOffset, spawnY, spawnZOffset, pLevel.random.nextFloat() * 360.0F, 0.0F);
-							int canSpawn = net.minecraftforge.common.ForgeHooks.canEntitySpawn(mobentity, pLevel, spawnXOffset, spawnY, spawnZOffset, null, SpawnReason.NATURAL);
+							int canSpawn = ForgeHooks.canEntitySpawn(mobentity, pLevel, spawnXOffset, spawnY, spawnZOffset, null, SpawnReason.NATURAL);
 							if (canSpawn != -1 && (canSpawn == 1 || isValidPositionForMob(pLevel, mobentity, playerDistance))) {
-								if (!net.minecraftforge.event.ForgeEventFactory.doSpecialSpawn(mobentity, pLevel, (float)spawnXOffset, (float)spawnY, (float)spawnZOffset, null, SpawnReason.NATURAL)) {
+								if (!ForgeEventFactory.doSpecialSpawn(mobentity, pLevel, (float)spawnXOffset, (float)spawnY, (float)spawnZOffset, null, SpawnReason.NATURAL)) {
 									ilivingentitydata = mobentity.finalizeSpawn(pLevel, pLevel.getCurrentDifficultyAt(mobentity.blockPosition()), SpawnReason.NATURAL, ilivingentitydata, null);
 								}
 								++spawned;
@@ -180,8 +179,14 @@ public final class ExtendedWorldEntitySpawner {
 			}
 		}
 	}
-
-	// Spawning in chunk validation
+	/**
+	 * Checks for spawn distance from player and world spawn
+	 * @param pLevel The world being spawned in
+	 * @param pChunk The chunk being spawned at
+	 * @param pPos The block position being spawned at
+	 * @param pDistance The distance away from closest player
+	 * @return True if within proper distances from player and spawn
+	 * */
 	private static boolean isRightDistanceToPlayerAndSpawnPoint(ServerWorld pLevel, IChunk pChunk, BlockPos.Mutable pPos, double pDistance) {
 		if (pDistance <= 576.0D) {
 			return false;
@@ -192,27 +197,42 @@ public final class ExtendedWorldEntitySpawner {
 			return Objects.equals(chunkpos, pChunk.getPos()) || pLevel.getChunkSource().isEntityTickingChunk(chunkpos);
 		}
 	}
-
-	private static boolean isValidSpawnPostitionForType(ServerWorld pLevel, StructureManager pStructureManager, ChunkGenerator pGenerator, ExtendedSpawnInfo.Spawners pData, BlockPos.Mutable pPos, double pDistance) {
-		EntityType<?> entitytype = pData.type;
-		if (entitytype.getCategory() == EntityClassification.MISC) {
+	/**
+	 * Checks if the given position is valid for entities to spawn at
+	 * @param pLevel The world being spawned in
+	 * @param pStructureManager Structure manager for checking structures at position
+	 * @param pGenerator The world generator for the world
+	 * @param pEntity The entity type being considered for spawning
+	 * @param pPos The block position being spawned at
+	 * @param pDistance The distance away from closest player
+	 * @return True if within proper distances from player and spawn
+	 * */
+	private static boolean isValidSpawnPostitionForType(ServerWorld pLevel, StructureManager pStructureManager, ChunkGenerator pGenerator, EntityType<?> pEntity, BlockPos.Mutable pPos, double pDistance) {
+		if (pEntity.getCategory() == EntityClassification.MISC) {
 			return false;
-		} else if (!entitytype.canSpawnFarFromPlayer() && pDistance > entitytype.getCategory().getDespawnDistance() * entitytype.getCategory().getDespawnDistance()) {
+		} else if (!pEntity.canSpawnFarFromPlayer() && pDistance > pEntity.getCategory().getDespawnDistance() * pEntity.getCategory().getDespawnDistance()) {
 			return false;
-		} else if (entitytype.canSummon() && canSpawnMobAt(pLevel, pStructureManager, pGenerator, pData, pPos)) {
-			EntitySpawnPlacementRegistry.PlacementType spawnPlacementType = EntitySpawnPlacementRegistry.getPlacementType(entitytype);
-			if (!isSpawnPositionOk(spawnPlacementType, pLevel, pPos, entitytype)) {
+		} else if (pEntity.canSummon()) {//&& canSpawnMobAt(pLevel, pStructureManager, pGenerator, pEntity, pPos)) {
+			EntitySpawnPlacementRegistry.PlacementType spawnPlacementType = EntitySpawnPlacementRegistry.getPlacementType(pEntity);
+			if (!isSpawnPositionOk(spawnPlacementType, pLevel, pPos, pEntity)) {
 				return false;
-			} else if (!EntitySpawnPlacementRegistry.checkSpawnRules(entitytype, pLevel, SpawnReason.NATURAL, pPos, pLevel.random)) {
+			} else if (!EntitySpawnPlacementRegistry.checkSpawnRules(pEntity, pLevel, SpawnReason.NATURAL, pPos, pLevel.random)) {
 				return false;
 			} else {
-				return pLevel.noCollision(entitytype.getAABB(pPos.getX() + 0.5D, pPos.getY(), pPos.getZ() + 0.5D));
+				return pLevel.noCollision(pEntity.getAABB(pPos.getX() + 0.5D, pPos.getY(), pPos.getZ() + 0.5D));
 			}
 		} else {
 			return false;
 		}
 	}
-
+	/**
+	 * Checks for world border and entity placement type restrictions
+	 * @param pPlaceType The placement type for the entity
+	 * @param pLevel The world being spawned in
+	 * @param pPos The block position being spawned at
+	 * @param pEntityType The entity type being considered for spawning
+	 * @return True if within proper distances from player and spawn
+	 * */
 	public static boolean isSpawnPositionOk(EntitySpawnPlacementRegistry.PlacementType pPlaceType, IWorldReader pLevel, BlockPos pPos, @Nullable EntityType<?> pEntityType) {
 		if (pPlaceType == EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS) {
 			return true;
@@ -247,18 +267,8 @@ public final class ExtendedWorldEntitySpawner {
 	}
 
 	@Nullable
-	private static ExtendedSpawnInfo.Spawners getRandomSpawnMobAt(ServerWorld p_234977_0_, StructureManager p_234977_1_, ChunkGenerator p_234977_2_, Random p_234977_4_, BlockPos p_234977_5_) {
-		Biome biome = p_234977_0_.getBiome(p_234977_5_);
-		List<ExtendedSpawnInfo.Spawners> list = mobsAt(p_234977_0_, p_234977_1_, p_234977_2_, p_234977_5_, biome);
-		return WeightedRandom.getRandomItem(p_234977_4_, list);
-	}
-
-	private static boolean canSpawnMobAt(ServerWorld pLevel, StructureManager pStructureManager, ChunkGenerator pGenerator, ExtendedSpawnInfo.Spawners pData, BlockPos pPos) {
-		return mobsAt(pLevel, pStructureManager, pGenerator, pPos, (Biome)null).contains(pData);
-	}
-
-	private static List<ExtendedSpawnInfo.Spawners> mobsAt(ServerWorld pLevel, StructureManager p_241463_1_, ChunkGenerator p_241463_2_, BlockPos pBlockPos, @Nullable Biome pBiome) {
-		return getSpawnsForBiome(pBiome != null ? pBiome : pLevel.getBiome(pBlockPos)).getMobs(null);
+	private static ExtendedSpawnInfo.GroupSpawner getRandomSpawnMobAt(ServerWorld pLevel, StructureManager pStructureManager, ChunkGenerator pGenerator, Random pRandom, BlockPos pPos) {
+		return getSpawnsForBiome(pLevel.getBiome(pPos)).getSpawner(pRandom);
 	}
 
 	public static ExtendedSpawnInfo getSpawnsForBiome(BlockPos pPos, IChunk pChunk){
