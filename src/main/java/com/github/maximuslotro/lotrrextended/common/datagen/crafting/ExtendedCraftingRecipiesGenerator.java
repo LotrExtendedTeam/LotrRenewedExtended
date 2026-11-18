@@ -344,6 +344,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.MORGUL_STEEL_INGOT, ExtendedItems.MORGUL_STEEL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OBSIDIAN_SHARD, Items.OBSIDIAN::asItem, null);
 		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.ORC_STEEL_INGOT, ExtendedItems.ORC_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, ExtendedItems.MORGUL_STEEL_INGOT, ExtendedItems.MORGUL_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, ExtendedItems.GALVORN_INGOT, ExtendedItems.GALVORN_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, ExtendedItems.BLACK_URUK_STEEL_INGOT, ExtendedItems.BLACK_URUK_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedItems.GILDED_IRON_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.DWARVEN_STEEL_INGOT, ExtendedItems.DWARVEN_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.ELVEN_STEEL_INGOT, ExtendedItems.ELVEN_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.URUK_STEEL_INGOT, ExtendedItems.URUK_STEEL_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.COPPER_INGOT, ExtendedItems.COPPER_NUGGET, null);
+		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.TIN_INGOT, ExtendedItems.TIN_NUGGET, null);
 		makeStairSlabWallRecipe(consumer, ExtendedItems.BONE_BLOCK_STAIRS,
 			ExtendedItems.BONE_BLOCK_SLAB,
 			ExtendedItems.BONE_BLOCK_WALL,
@@ -905,6 +914,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.SMOOTH_MORGOND_SLAB,
 			ExtendedItems.SMOOTH_MORGOND_WALL,
 			ExtendedItems.SMOOTH_MORGOND, LOTRRecipes.GONDOR_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.GONDORIAN_HALBERD.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GONDORIAN_HALBERD.get(), LOTRRecipes.GONDOR_CRAFTING)
+		.pattern("ISI")
+		.pattern(" S ")
+		.pattern(" S ")
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('S', Ingredient.of(STICKS))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.save(consumer, ExtendedItems.GONDORIAN_HALBERD);
 		//DWARVEN
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedItems.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedItems.OBSIDIAN_DWARVEN_BRICK_STAIRS,

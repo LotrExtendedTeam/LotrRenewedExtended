@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:gilded_iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:gilded_iron_nugget",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:elven_steel_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:elven_steel_nugget",
+    "count": 9
+  }
+}

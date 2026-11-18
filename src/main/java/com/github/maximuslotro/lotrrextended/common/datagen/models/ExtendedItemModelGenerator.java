@@ -288,7 +288,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				if(item.get() instanceof ExtendedPikeItem) {
 					heldModel = genPikeHeld(item.get());
 				}else if(item.get() instanceof SpearItem){
-					heldModel = genSpearHeld(item.get());
+					heldModel = genSpearHeld(item.get(), itemLocation(item.get(), "_large"));
 				}else if(item.get() instanceof ExtendedStaffItem) {
 					heldModel = genStaffHeld(item.get());
 				}else if(item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
@@ -422,11 +422,23 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
 	}
 
-	private ItemModelBuilder genSpearHeld(Item item) {
+	private ItemModelBuilder genSpearHeld(Item item, ResourceLocation texture) {
 		ItemModelBuilder builder = withExistingParent(item.getRegistryName().toString()+"_held", "lotr:item/handheld_spear");
+		if(item == ExtendedItems.GONDORIAN_HALBERD.get()) {
+			builder.transforms()
+				.transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT)
+					.rotation(0, -90, 45).translation(0, 4.0F, 0.5F).scale(1.7F, 1.7F, 0.85F).end()
+				.transform(ModelBuilder.Perspective.THIRDPERSON_LEFT)
+					.rotation(0, 90, -45).translation(0, 4.0F, 0.5F).scale(1.7F, 1.7F, 0.85F).end()
+				.transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
+					.rotation(0, -90, 90).translation(1.13F, 5.2F, -1.9F).scale(1.36F, 1.36F, 0.68F).end()
+				.transform(ModelBuilder.Perspective.FIRSTPERSON_LEFT)
+					.rotation(0, 90, -90).translation(1.13F, 5.2F, -1.9F).scale(1.36F, 1.36F, 0.68F);
+		}
 		ItemModelBuilder builderPulling = withExistingParent(item.getRegistryName().toString()+"_held_pulling", "lotr:item/handheld_spear_pulling");
+		gen(builderPulling, texture);
 		builder.override().model(builderPulling).predicate(mcLoc("pulling"), 1);
-		return gen(builder, new ResourceLocation(item.getRegistryName().getNamespace(),"item/"+item.getRegistryName().getPath()+"_large"));
+		return gen(builder, texture);
 	}
 
 	private ItemModelBuilder genDagger(Item item, ResourceLocation texture, ResourceLocation texturePoisoned, boolean useExtendedNamespace) {
