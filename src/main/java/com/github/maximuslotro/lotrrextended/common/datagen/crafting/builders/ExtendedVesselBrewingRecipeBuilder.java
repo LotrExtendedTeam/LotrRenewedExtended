@@ -45,40 +45,17 @@ public class ExtendedVesselBrewingRecipeBuilder {
 		return new ExtendedVesselBrewingRecipeBuilder(result, xp, time, serializer);
 	}
 
-	public ExtendedVesselBrewingRecipeBuilder requires(ITag<Item> p_203221_1_) {
-		return this.requires(Ingredient.of(p_203221_1_));
+	public ExtendedVesselBrewingRecipeBuilder requires(ITag<Item> pTagIngredient) {
+		return this.requires(Ingredient.of(pTagIngredient));
 	}
 
-	public ExtendedVesselBrewingRecipeBuilder requires(IItemProvider p_200491_1_, int p_200491_2_) {
-		for(int i = 0; i < p_200491_2_; ++i) {
-			this.requires(Ingredient.of(p_200491_1_));
-		}
-		return this;
-	}
-
-	public ExtendedVesselBrewingRecipeBuilder requires(Ingredient p_200489_1_) {
-		return this.requires(p_200489_1_, 1);
-	}
-
-	public ExtendedVesselBrewingRecipeBuilder requires(Ingredient p_200492_1_, int p_200492_2_) {
-		for(int i = 0; i < p_200492_2_; ++i) {
-			this.ingredients.add(p_200492_1_);
-		}
+	public ExtendedVesselBrewingRecipeBuilder requires(Ingredient pIngredient) {
+		this.ingredients.add(pIngredient);
 		return this;
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_218630_1_) {
 		this.save(p_218630_1_, ForgeRegistries.ITEMS.getKey(this.result));
-	}
-
-	public void save(Consumer<IFinishedRecipe> p_218632_1_, String p_218632_2_) {
-		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-		ResourceLocation resourcelocation1 = new ResourceLocation(p_218632_2_);
-		if (resourcelocation1.equals(resourcelocation)) {
-			throw new IllegalStateException("Recipe " + resourcelocation1 + " should remove its 'save' argument");
-		} else {
-			this.save(p_218632_1_, resourcelocation1);
-		}
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_218635_1_, ResourceLocation outputLocation) {

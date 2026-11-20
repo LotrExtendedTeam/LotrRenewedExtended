@@ -54,6 +54,56 @@
             }
           ],
           "name": "lotr:apple_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:blackberry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:blueberry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:cranberry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:elderberry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:raspberry_juice"
         }
       ]
     }

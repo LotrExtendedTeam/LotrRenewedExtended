@@ -77,6 +77,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -89,7 +90,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ExtendedBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, LotrExtendedMod.MODID);
 	// Only used for dataGen
-	public static Map<String, RegistryObject<Block>> REGISTEREDPOTS = new HashMap<>();
+	public static Map<String, RegistryObject<? extends Block>> REGISTEREDPOTS = new HashMap<>();
 
 	//ORE STORAGE
 	public static RegistryObject<Block> GALVORN_BLOCK = register("galvorn_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(2)));
@@ -872,18 +873,28 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> LEEKS = register("leeks", () -> new ExtendedLeekBlock(Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP)));
 
+	public static RegistryObject<Block> SUNFRUIT = register("sunfruit", () -> new ExtendedFlowerBlock(Effects.FIRE_RESISTANCE, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> SPRINGLEAF = register("springleaf", () -> new ExtendedFlowerBlock(Effects.JUMP, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> RIVERWEED = register("riverweed", () -> new ExtendedFangornRiverWeedBlock(Effects.WATER_BREATHING, 15, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS).hasPostProcess(ExtendedBlockParms::always)));
+	public static RegistryObject<Block> TEARS_OF_YAVANNA = register("tears_of_yavanna", () -> new ExtendedFlowerBlock(Effects.MOVEMENT_SPEED, 6, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> ELFSONG = register("elfsong", () -> new ExtendedFlowerBlock(Effects.REGENERATION, 7, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> MOONFLOWER = register("moonflower", () -> new ExtendedFlowerBlock(Effects.NIGHT_VISION, 9, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> FANGORNS_BEARD = register("fangorns_beard", () -> new ExtendedFlowerBlock(Effects.SATURATION, 6, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<Block> HOURN_LEAF = register("huorn_leaf", () -> new ExtendedFangornHournLeafBlock(Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+	public static RegistryObject<ExtendedFangornStoneRootBlock> STONEROOT = register("stone_root", () -> new ExtendedFangornStoneRootBlock(Effects.DAMAGE_RESISTANCE, 12, Properties.of(Material.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)));
+
 	public static void register(IEventBus bus) {
 		BLOCKS.register(bus);
 		bus.addGenericListener(Block.class, ExtendedSignTileEntitySetup::setup);
 		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);
 	}
 
-	private static RegistryObject<Block> register(String name, Supplier<? extends Block> sup) {
+	private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> sup) {
 		return BLOCKS.register(name, sup);
 	}
 
-	private static RegistryObject<Block> registerPOT(String name, Supplier<? extends Block> sup) {
-		RegistryObject<Block> block = register(name, sup);
+	private static <T extends Block> RegistryObject<T> registerPOT(String name, Supplier<T> sup) {
+		RegistryObject<T> block = register(name, sup);
 		REGISTEREDPOTS.put(name, block);
 		return block;
 	}

@@ -5,8 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+
 import lotr.common.init.LOTRBlocks;
-import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.BiomeGenerationSettings;
@@ -82,6 +83,6 @@ public class MixinLOTRBiomeFeatures {
      */
 	@Inject(method = "addOres(Lnet/minecraft/world/biome/BiomeGenerationSettings$Builder;)V", at = @At("TAIL"), remap = false)
 	private static void addOres(BiomeGenerationSettings.Builder builder, CallbackInfo info) {
-		ExtendedBiomeFeatures.addOres(builder);
+		ExtendedDefaultBiomeFeatures.addDefaultOres(builder);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
@@ -20,13 +21,17 @@ public class ExtendedDrinkLootGenerator extends ExtendedAbstractLootGenerator  {
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
-		// TODO add remaining berry juices
 		make(consumer, ExtendedLootTables.HOBBIT_KEGS, ExtendedLootTables.HOBBIT_VESSELS, makePool()
 			.add(addEntry(LOTRItems.ALE, 2))
 			.add(addEntry(LOTRItems.CIDER, 1))
 			.add(addEntry(LOTRItems.PERRY, 1))
 			.add(addEntry(LOTRItems.CHERRY_LIQUEUR, 1))
-			.add(addEntry(LOTRItems.APPLE_JUICE, 1)));
+			.add(addEntry(LOTRItems.APPLE_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLACKBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLUEBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.CRANBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.ELDERBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.RASPBERRY_JUICE, 1)));
 
 		make(consumer, ExtendedLootTables.RANGER_KEGS, ExtendedLootTables.RANGER_VESSELS, makePool()
 			.add(addEntry(LOTRItems.ALE, 2))
@@ -49,17 +54,25 @@ public class ExtendedDrinkLootGenerator extends ExtendedAbstractLootGenerator  {
 			.add(addEntry(LOTRItems.DWARVEN_TONIC, 1))
 			.add(addEntry(LOTRItems.ALE, 1)));
 
-		// TODO add remaining berry juices
 		make(consumer, ExtendedLootTables.RIVENDELL_VESSELS, ExtendedLootTables.RIVENDELL_KEGS, makePool()
 			.add(addEntry(LOTRItems.MIRUVOR, 2))
 			.add(addEntry(LOTRItems.APPLE_JUICE, 1))
-			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE, 1)));
+			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLACKBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLUEBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.CRANBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.ELDERBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.RASPBERRY_JUICE, 1)));
 
-		// TODO add remaining berry juices
 		make(consumer, ExtendedLootTables.LINDON_VESSELS, ExtendedLootTables.LINDON_KEGS, makePool()
 			.add(addEntry(LOTRItems.MIRUVOR, 2))
 			.add(addEntry(LOTRItems.APPLE_JUICE, 1))
-			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE, 1)));
+			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLACKBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.BLUEBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.CRANBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.ELDERBERRY_JUICE, 1))
+			.add(addEntry(ExtendedItems.RASPBERRY_JUICE, 1)));
 
 		make(consumer, ExtendedLootTables.ISENGARD_KEGS, ExtendedLootTables.ISENGARD_VESSELS, makePool()
 			.add(addEntry(LOTRItems.ORC_DRAUGHT)));

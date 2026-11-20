@@ -41,7 +41,6 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
-import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
@@ -59,6 +58,10 @@ import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 
+/**
+ * Move to new class
+ * */
+@Deprecated
 public class ExtendedBiomeFeatures {
 	private static boolean created = false;
 	public static final RuleTest MIDDLE_EARTH_SURFACE = new TagMatchRuleTest(ExtendedTags.Blocks.MIDDLE_EARTH_PLACEABLE_SURFACE);
@@ -116,15 +119,6 @@ public class ExtendedBiomeFeatures {
 	private static BlockState GRANITE;
 	private static BlockState GRANITE_SLAB;
 	private static BlockState GRANITE_STAIRS;
-	// Ores
-	private static BlockState AMETHYST_ORE;
-	private static BlockState TOPAZ_ORE;
-	private static BlockState AMBER_ORE;
-	private static BlockState OPAL_ORE;
-	private static BlockState SAPPHIRE_ORE;
-	private static BlockState RUBY_ORE;
-	private static BlockState EMERALD_ORE;
-	private static BlockState DIAMOND_ORE;
 
 	// Remains Ores
 	private static BlockState REMAINS_ORC;
@@ -313,16 +307,6 @@ public class ExtendedBiomeFeatures {
 		GRANITE_SLAB = Blocks.GRANITE_SLAB.defaultBlockState();
 		GRANITE_STAIRS = Blocks.GRANITE_STAIRS.defaultBlockState();
 
-		// gem block states
-		AMETHYST_ORE = ExtendedBlocks.AMETHYST_ORE.get().defaultBlockState();
-		TOPAZ_ORE = ExtendedBlocks.TOPAZ_ORE.get().defaultBlockState();
-		AMBER_ORE = ExtendedBlocks.AMBER_ORE.get().defaultBlockState();
-		OPAL_ORE = ExtendedBlocks.OPAL_ORE.get().defaultBlockState();
-		SAPPHIRE_ORE = ExtendedBlocks.SAPPHIRE_ORE.get().defaultBlockState();
-		RUBY_ORE = ExtendedBlocks.RUBY_ORE.get().defaultBlockState();
-		EMERALD_ORE = ExtendedBlocks.EMERALD_ORE.get().defaultBlockState();
-		DIAMOND_ORE = ExtendedBlocks.DIAMOND_ORE.get().defaultBlockState();
-
 		// remains block states
 		REMAINS_ORC = ExtendedBlocks.REMAINS_ORC.get().defaultBlockState();
 		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
@@ -391,43 +375,12 @@ public class ExtendedBiomeFeatures {
 	}
 	public static void addOrthancWalls(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.RING_OF_ISENGARD.decorated(
-			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).chance(1)));
+			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE)));
 	}
 
 	public static void addScorchedLand(BiomeGenerationSettings.Builder builder, ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> feature, int chance) {
 		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, feature.decorated(
 			Placement.HEIGHTMAP_WORLD_SURFACE.configured(IPlacementConfig.NONE).squared().chance(chance)));
-	}
-
-	public static void addOres(BiomeGenerationSettings.Builder builder) {
-		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
-		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);
-		addUndergroundOreWeighted(builder, AMBER_ORE, 5, 48, 1.5F);
-		addUndergroundOreWeighted(builder, OPAL_ORE, 5, 48, 1.5F);
-		addUndergroundOreWeighted(builder, SAPPHIRE_ORE, 4, 32, 1F);
-		addUndergroundOreWeighted(builder, RUBY_ORE, 4, 32, 1F);
-		addUndergroundOreWeighted(builder, EMERALD_ORE, 4, 24, 0.75F);
-		addUndergroundOreWeighted(builder, DIAMOND_ORE, 4, 16, 0.5F);
-	}
-
-	public static void addBlueOres(BiomeGenerationSettings.Builder builder) {
-		addUndergroundOre(builder, AMETHYST_ORE, 6, 64, 2);
-		addUndergroundOre(builder, TOPAZ_ORE, 6, 64, 2);
-		addUndergroundOre(builder, AMBER_ORE, 5, 48, 2);
-		addUndergroundOre(builder, OPAL_ORE, 5, 48, 2);
-		addUndergroundOre(builder, SAPPHIRE_ORE, 4, 32, 1);
-		addUndergroundOre(builder, RUBY_ORE, 4, 32, 1);
-		addUndergroundOre(builder, EMERALD_ORE, 4, 24, 1);
-		addUndergroundOre(builder, DIAMOND_ORE, 4, 16, 1);
-		addUndergroundOre(builder, Blocks.LAPIS_ORE.defaultBlockState(), 7, 32, 2);
-	}
-
-	private static void addUndergroundOreWeighted(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, float weight) {
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().weighted(weight).feature.get());
-	}
-
-	private static void addUndergroundOre(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, int frequency) {
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().count(frequency));
 	}
 
 	// Common Blobs

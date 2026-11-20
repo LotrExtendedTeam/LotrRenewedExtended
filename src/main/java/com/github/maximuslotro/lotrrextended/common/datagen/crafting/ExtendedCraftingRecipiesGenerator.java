@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapelessVesselBrewingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedVesselBrewingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
@@ -221,6 +222,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.STRIPPED_EBONY_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedItems.STRIPPED_EBONY_WOOD, ExtendedItems.STRIPPED_EBONY_LOG, null);
 		makeFallenLeavesRecipe(consumer, ExtendedItems.FALLEN_EBONY_LEAVES, ExtendedItems.EBONY_LEAVES, null);
+		// FLOWERS
+		makeDyeRecipe(consumer, Items.BROWN_DYE::asItem, ExtendedItems.FANGORNS_BEARD, null);
+		makeDyeRecipe(consumer, Items.LIME_DYE::asItem, ExtendedItems.TEARS_OF_YAVANNA, null);
+		makeDyeRecipe(consumer, Items.YELLOW_DYE::asItem, ExtendedItems.ELFSONG, null);
+		makeDyeRecipe(consumer, Items.ORANGE_DYE::asItem, ExtendedItems.SUNFRUIT, null);
+		makeDyeRecipe(consumer, Items.LIGHT_GRAY_DYE::asItem, ExtendedItems.MOONFLOWER, null);
+		makeDyeRecipe(consumer, Items.YELLOW_DYE::asItem, ExtendedItems.HOURN_LEAF, null);
+		makeDyeRecipe(consumer, Items.GRAY_DYE::asItem, ExtendedItems.STONEROOT, null);
+		makeDyeRecipe(consumer, Items.LIME_DYE::asItem, ExtendedItems.SPRINGLEAF, null);
 		//ROHAN
 		GENERATEDRECIPES.add(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ROHAN_BEAM.get(), 3, LOTRRecipes.ROHAN_CRAFTING)
@@ -1124,6 +1134,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_BANNER_PROT_REMOVAL.get()).save(consumer, extendedLoc("banner_protection_removal"));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_TIPPED_ARROW.get()).save(consumer, extendedLoc("tipped_arrow_poison"));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_DAGGER_POISONING.get()).save(consumer, extendedLoc("dagger_poisoning"));
+		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_SUSPICIOUS_STEW.get()).save(consumer, extendedLoc("suspicious_stew"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)
@@ -1753,7 +1764,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
 		.requires(Ingredient.of(ExtendedItems.BANANA.get()))
-		.save(consumer, ExtendedItems.BANANA_BEER.get().getRegistryName());
+		.save(consumer);
 		GENERATEDRECIPES.add(ExtendedItems.PLUM_KVASS.get().getRegistryName().getPath());
 		ExtendedVesselBrewingRecipeBuilder.brewing(ExtendedItems.PLUM_KVASS.get(), LOTRRecipes.DRINK_BREWING_SERIALIZER.get())
 		.requires(Ingredient.of(ExtendedItems.PLUM.get()))
@@ -1762,7 +1773,49 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
-		.save(consumer, ExtendedItems.PLUM_KVASS.get().getRegistryName());
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.BLACKBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.BLACKBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLACKBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.BLUEBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.BLUEBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.BLUEBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.CRANBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.CRANBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.CRANBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.ELDERBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.ELDERBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.ELDERBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.RASPBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.RASPBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.RASPBERRY.get()))
+		.save(consumer);
+		GENERATEDRECIPES.add(ExtendedItems.WILDBERRY_JUICE.get().getRegistryName().getPath());
+		ExtendedShapelessVesselBrewingRecipeBuilder.crafting(ExtendedItems.WILDBERRY_JUICE.get())
+		.requires(Ingredient.of(LOTRTags.Items.DRINK_VESSELS))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.requires(Ingredient.of(ExtendedItems.WILDBERRY.get()))
+		.save(consumer);
 	}
 
 	private void buildStoneGrinderRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -2472,7 +2525,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WHITE_WARG_HELMET.get().getRegistryName().getPath());
-		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
+		for(RegistryObject<? extends Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
@@ -2531,6 +2584,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.SMITH_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.LEEKS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.LEEK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SUNFRUIT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.MOONFLOWER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.FANGORNS_BEARD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.HOURN_LEAF.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RIVERWEED.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SPRINGLEAF.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STONEROOT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.TEARS_OF_YAVANNA.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ELFSONG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_ARMOR_PLATE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_TIP.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ANCIENT_BLADE.get().getRegistryName().getPath());

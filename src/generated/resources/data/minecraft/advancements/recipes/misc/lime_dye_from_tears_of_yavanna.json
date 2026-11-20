@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:lime_dye_from_tears_of_yavanna"
+    ]
+  },
+  "criteria": {
+    "has_tears_of_yavanna": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:tears_of_yavanna"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:lime_dye_from_tears_of_yavanna"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tears_of_yavanna",
+      "has_the_recipe"
+    ]
+  ]
+}

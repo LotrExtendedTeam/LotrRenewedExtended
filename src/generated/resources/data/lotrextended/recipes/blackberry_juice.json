@@ -1,0 +1,20 @@
+{
+  "type": "lotr:vessel_drink_shapeless",
+  "ingredients": [
+    {
+      "tag": "lotr:drink_vessels"
+    },
+    {
+      "item": "lotrextended:blackberry"
+    },
+    {
+      "item": "lotrextended:blackberry"
+    },
+    {
+      "item": "lotrextended:blackberry"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:blackberry_juice"
+  }
+}
