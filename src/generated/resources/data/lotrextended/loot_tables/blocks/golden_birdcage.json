@@ -6,6 +6,19 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "BirdType",
+                  "target": "BlockEntityTag.BirdType",
+                  "op": "replace"
+                }
+              ]
+            }
+          ],
           "name": "lotrextended:golden_birdcage"
         }
       ],
