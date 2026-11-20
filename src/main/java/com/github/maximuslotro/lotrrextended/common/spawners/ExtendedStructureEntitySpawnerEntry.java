@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.ExtendedStructureEntityTypeInterface;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType.MultiSpawnEntry;
@@ -26,7 +25,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 	private final ExtendedStructureEntityTypeInterface entityProvider;
@@ -64,7 +62,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 			int maxSpawn = jsonobject.get("maxSpawnCount").getAsInt();
 			ExtendedStructureEntityTypeInterface entityProvider = null;
 			if (jsonobject.has("entity_type")) {
-				EntityType<?> entityType = getEntityTypeFromString(jsonobject.get("entity_type").getAsString());
+				EntityType<?> entityType = ExtendedEntitiesNew.getEntityType(jsonobject.get("entity_type").getAsString());
 				if (entityType == null) {
 					ExtendedLog.warn("Failed to load structure entity type: "+jsonobject.get("entity_type").getAsString());
 					return null;
@@ -76,7 +74,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 				JsonArray types = jsonobject.get("entity_types").getAsJsonArray();
 				for(JsonElement element : types) {
 					JsonObject jsonSubObject = element.getAsJsonObject();
-					EntityType<?> entityType = getEntityTypeFromString(jsonSubObject.get("entity_type").getAsString());
+					EntityType<?> entityType = ExtendedEntitiesNew.getEntityType(jsonSubObject.get("entity_type").getAsString());
 					if (entityType == null) {
 						ExtendedLog.warn("Failed to load structure entity type: "+jsonSubObject.get("entity_type").getAsString());
 						return null;
@@ -119,12 +117,6 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 				return null;
 			}
 			return jsonobject;
-		}
-
-		@Nullable
-		public static EntityType<?> getEntityTypeFromString(String str) {
-			ResourceLocation entityReasourceName = new ResourceLocation(str);
-			return ForgeRegistries.ENTITIES.getValue(entityReasourceName);
 		}
 	}
 }

@@ -3,11 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.hiredunits;
 import java.lang.reflect.Type;
 import java.util.function.Consumer;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -24,7 +23,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedHiredUnitProfile {
 	public static final String ENTITYUNITNAME = "EMPTY";
@@ -165,7 +163,7 @@ public class ExtendedHiredUnitProfile {
 				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: {}!", id);
 				return null;
 			}
-			EntityType<?> entityType = getEntityTypeFromString(jsonobject.get("entity_type").getAsString());
+			EntityType<?> entityType = ExtendedEntitiesNew.getEntityType(jsonobject.get("entity_type").getAsString());
 			if (entityType == null) {
 				ExtendedLog.warn("Failed to load unit entity type: {}", jsonobject.get("entity_type").getAsString());
 				return null;
@@ -519,12 +517,6 @@ public class ExtendedHiredUnitProfile {
 		}
 	}
 
-	@Nullable
-	public static EntityType<?> getEntityTypeFromString(String str) {
-		ResourceLocation entityReasourceName = new ResourceLocation(str);
-		return ForgeRegistries.ENTITIES.getValue(entityReasourceName);
-	}
-
 	public static ExtendedHiredUnitProfile fromNetwork(PacketBuffer buf) {
 		ResourceLocation id = buf.readResourceLocation();
 		boolean translateStrings = buf.readBoolean();
@@ -533,7 +525,7 @@ public class ExtendedHiredUnitProfile {
 		boolean hiringRequiresPledge = buf.readBoolean();
 		int hiringAlignmentRequired = buf.readInt();
 		ExtendedUnitCombatTypes attackType = ExtendedUnitCombatTypes.byName(buf.readUtf());
-		EntityType<?> entityType = getEntityTypeFromString(buf.readUtf());
+		EntityType<?> entityType = ExtendedEntitiesNew.getEntityType(buf.readUtf());
 		return new ExtendedHiredUnitProfile(id, translateStrings, ENTITYUNITNAME, ENTITYUNITNAME, entity_unit_type, ExtendedHiredUnitEquipmentPool.EMPTY, 
 			hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
 	}
@@ -557,7 +549,7 @@ public class ExtendedHiredUnitProfile {
 		boolean hiringRequiresPledge = nbt.getBoolean("hiringRequiresPledge");
 		int hiringAlignmentRequired = nbt.getInt("hiringAlignmentRequired");
 		ExtendedUnitCombatTypes attackType = ExtendedUnitCombatTypes.byName(nbt.getString("attack_type"));
-		EntityType<?> entityType = getEntityTypeFromString(nbt.getString("entity_type"));
+		EntityType<?> entityType = ExtendedEntitiesNew.getEntityType(nbt.getString("entity_type"));
 		return new ExtendedHiredUnitProfile(id, translateStrings, ENTITYUNITNAME, ENTITYUNITNAME, entity_unit_type, ExtendedHiredUnitEquipmentPool.EMPTY, 
 			hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
 	}

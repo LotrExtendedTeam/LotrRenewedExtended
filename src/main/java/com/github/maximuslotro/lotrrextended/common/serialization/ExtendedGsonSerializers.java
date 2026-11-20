@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEn
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformation;
+import com.github.maximuslotro.lotrrextended.common.world.spawning.ExtendedSpawnInfo;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.loot.BinomialRange;
@@ -62,5 +63,14 @@ public class ExtendedGsonSerializers {
 	public static GsonBuilder createBiomeInformationSerializer() {
 		return createConditionSerializer()
 			.registerTypeAdapter(ExtendedBiomeInformation.class, new ExtendedBiomeInformation.Serializer());
+	}
+
+	public static GsonBuilder createBiomeSpawnInfoSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedSpawnInfo.class, new ExtendedSpawnInfo.Serializer())
+			.registerTypeAdapter(ExtendedSpawnInfo.FactionSpawner.class, new ExtendedSpawnInfo.FactionSpawner.Serializer())
+			.registerTypeAdapter(ExtendedSpawnInfo.GroupSpawner.class, new ExtendedSpawnInfo.GroupSpawner.Serializer())
+			.registerTypeAdapter(ExtendedSpawnInfo.IndividualSpawner.class, new ExtendedSpawnInfo.IndividualSpawner.Serializer())
+			.registerTypeAdapter(ExtendedSpawnInfo.SpawnCosts.class, new ExtendedSpawnInfo.SpawnCosts.Serializer());
 	}
 }

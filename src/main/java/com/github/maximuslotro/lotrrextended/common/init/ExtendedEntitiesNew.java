@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
 
@@ -8,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityType.Builder;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
@@ -30,4 +33,13 @@ public class ExtendedEntitiesNew {
 		ENTITIES.register(bus);
 	}
 
+	@Nullable
+	public static EntityType<?> getEntityType(String entityID) {
+		return getEntityType(new ResourceLocation(entityID));
+	}
+
+	@Nullable
+	public static EntityType<?> getEntityType(ResourceLocation entityID) {
+		return ForgeRegistries.ENTITIES.getValue(entityID);
+	}
 }

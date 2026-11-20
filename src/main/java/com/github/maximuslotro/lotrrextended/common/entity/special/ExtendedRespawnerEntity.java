@@ -4,8 +4,7 @@ import java.util.Locale;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
-
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -120,7 +119,7 @@ public class ExtendedRespawnerEntity extends Entity{
 	}
 
 	private boolean attemptEntityRespawn(ServerWorld world) {
-		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(entityType);
+		EntityType<?> traderEntityType = ExtendedEntitiesNew.getEntityType(entityType);
 		if(traderEntityType!=null) {
 			Entity spawnedEntity = traderEntityType.create(world);
 			spawnedEntity.moveTo(getX(), getY(), getZ());
@@ -222,7 +221,7 @@ public class ExtendedRespawnerEntity extends Entity{
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
 		if(getSpawnerName()!=null) {
-			SpawnEggItem egg = ForgeSpawnEggItem.fromEntityType(ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(getSpawnerName()));
+			SpawnEggItem egg = ForgeSpawnEggItem.fromEntityType(ExtendedEntitiesNew.getEntityType(getSpawnerName()));
 			if(egg==null) {
 				return ItemStack.EMPTY;
 			}

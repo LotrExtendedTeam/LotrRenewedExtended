@@ -80,7 +80,7 @@ public final class ExtendedWorldEntitySpawner {
 				pChunkGetter.query(i, (pChunk) -> {
 					ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getSpawnsForBiome(blockpos, pChunk).getMobSpawnCost(entity_f.getType());
 					if (mobspawninfo$spawncosts != null) {
-						mobdensitytracker.addCharge(entity_f.blockPosition(), mobspawninfo$spawncosts.getCharge());
+						mobdensitytracker.addCharge(entity_f.blockPosition(), mobspawninfo$spawncosts.getBiomeSpawnWeight());
 					}
 
 					object2intopenhashmap.addTo(entityclassification, 1);
@@ -305,10 +305,10 @@ public final class ExtendedWorldEntitySpawner {
 				this.lastCharge = 0.0D;
 				return true;
 			} else {
-				double d0 = mobspawninfo$spawncosts.getCharge();
+				double d0 = mobspawninfo$spawncosts.getBiomeSpawnWeight();
 				this.lastCharge = d0;
 				double d1 = this.spawnPotential.getPotentialEnergyChange(pBlockpos, d0);
-				return d1 <= mobspawninfo$spawncosts.getEnergyBudget();
+				return d1 <= mobspawninfo$spawncosts.getBiomeSpawnCap();
 			}
 		}
 
@@ -321,7 +321,7 @@ public final class ExtendedWorldEntitySpawner {
 			} else {
 				ExtendedSpawnInfo.SpawnCosts mobspawninfo$spawncosts = getSpawnsForBiome(blockpos, pChunk).getMobSpawnCost(entitytype);
 				if (mobspawninfo$spawncosts != null) {
-					d0 = mobspawninfo$spawncosts.getCharge();
+					d0 = mobspawninfo$spawncosts.getBiomeSpawnWeight();
 				} else {
 					d0 = 0.0D;
 				}

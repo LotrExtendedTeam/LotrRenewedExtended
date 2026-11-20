@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
@@ -29,13 +27,11 @@ import com.google.gson.JsonSerializer;
 
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Represents an extended trader profile with detailed trade configurations,
@@ -733,17 +729,5 @@ public class ExtendedTraderProfile {
 			pConsumer.accept(spawner);
 			return spawner;
 		}
-	}
-	/**
-	 * Attempts to get an {@link EntityType} from a string identifier.
-	 * Used primarily to resolve entity types referenced in trader configurations.
-	 * 
-	 * @param str A string representing the {@link ResourceLocation} of the entity
-	 * @return The corresponding {@link EntityType}, or null if not found
-	 */
-	@Nullable
-	public static EntityType<?> getEntityTypeFromString(String str) {
-		ResourceLocation entityReasourceName = new ResourceLocation(str);
-		return ForgeRegistries.ENTITIES.getValue(entityReasourceName);
 	}
 }
