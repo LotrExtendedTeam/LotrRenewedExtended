@@ -914,15 +914,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.SMOOTH_MORGOND_SLAB,
 			ExtendedItems.SMOOTH_MORGOND_WALL,
 			ExtendedItems.SMOOTH_MORGOND, LOTRRecipes.GONDOR_CRAFTING);
-		GENERATEDRECIPES.add(ExtendedItems.GONDORIAN_HALBERD.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GONDORIAN_HALBERD.get(), LOTRRecipes.GONDOR_CRAFTING)
-		.pattern("ISI")
-		.pattern(" S ")
-		.pattern(" S ")
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.define('S', Ingredient.of(STICKS))
-		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
-		.save(consumer, ExtendedItems.GONDORIAN_HALBERD);
 		//DWARVEN
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedItems.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedItems.OBSIDIAN_DWARVEN_BRICK_STAIRS,

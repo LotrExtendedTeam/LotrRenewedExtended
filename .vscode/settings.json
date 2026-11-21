@@ -1,5 +1,0 @@
-{
-    "java.compile.nullAnalysis.mode": "automatic",
-    "java.import.gradle.java.home": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.21.9-hotspot",
-    "java.configuration.updateBuildConfiguration": "interactive"
-}

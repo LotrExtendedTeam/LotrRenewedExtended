@@ -1,6 +1,3 @@
 {
-  "parent": "lotr:item/handheld_spear_pulling",
-  "textures": {
-    "layer0": "lotrextended:item/bone_spear_large"
-  }
+  "parent": "lotr:item/handheld_spear_pulling"
 }
