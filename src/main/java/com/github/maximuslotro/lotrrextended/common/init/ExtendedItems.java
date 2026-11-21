@@ -998,8 +998,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANCIENT_SWORD = regItem("ancient_sword", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_SWORD));
 	public static RegistryObject<Item> ANCIENT_DAGGER = regItem("ancient_dagger", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_DAGGER));
 
-	public static RegistryObject<Item> GONDORIAN_HALBERD = regItem("gondorian_halberd",() -> new SpearItem(LOTRMaterial.valueOf("IRON")));
-
 	//########################################################################UTIL##########################################################
 	public static RegistryObject<Item> ORC_STEEL_DOOR = regTallBlockItem(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR = regBlockItem(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);

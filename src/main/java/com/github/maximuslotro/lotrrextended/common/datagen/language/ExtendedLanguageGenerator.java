@@ -41,17 +41,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
 			addItem(item.get(), "");
 		}
-		addOverride(ExtendedItems.GALVORN_NUGGET.get().getDescriptionId(), "Galvorn Nugget");
-		addOverride(ExtendedItems.MORGUL_STEEL_NUGGET.get().getDescriptionId(), "Morgul Steel Nugget");
-		addOverride(ExtendedItems.URUK_STEEL_NUGGET.get().getDescriptionId(), "Uruk Steel Nugget");
-		addOverride(ExtendedItems.BLACK_URUK_STEEL_NUGGET.get().getDescriptionId(), "Black Uruk Steel Nugget");
-		addOverride(ExtendedItems.GILDED_IRON_NUGGET.get().getDescriptionId(), "Gilded Iron Nugget");
-		addOverride(ExtendedItems.TIN_NUGGET.get().getDescriptionId(), "Tin Nugget");
-		addOverride(ExtendedItems.COPPER_NUGGET.get().getDescriptionId(), "Copper Nugget");
-		addOverride(ExtendedItems.ELVEN_STEEL_NUGGET.get().getDescriptionId(), "Elven Steel Nugget");
-		addOverride(ExtendedItems.DWARVEN_STEEL_NUGGET.get().getDescriptionId(), "Dwarven Steel Nugget");
-		addOverride(ExtendedItems.GONDORIAN_HALBERD.get().getDescriptionId(), "Gondorian Halberd");
-
 		// Try Add New Biome Names
 		for (String biome : DataGenValueHolder.biomeNames) {
 			addD(biome);
