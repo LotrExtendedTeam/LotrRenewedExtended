@@ -34,6 +34,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -364,12 +365,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Sets both the UUID and username of the player who placed the banner,
 	 * resets faction permissions to default full access, and persists the update.
 	 *
-	 * @param placedPlayer     the {@link UUID} of the player
-	 * @param placedPlayerName the username of the player
+	 * @param pPlayer The player placing the banner
 	 */
-	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
-		setPlacedPlayerUUID(placedPlayer);
-		setPlacedPlayerName(placedPlayerName);
+	public void setPlacedPlayerNameAndID(PlayerEntity pPlayer) {
+		setPlacedPlayerUUID(pPlayer.getUUID());
+		setPlacedPlayerName(pPlayer.getGameProfile().getName());
 		factionPerms.clear();
 		factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
 		markAndUpdate();
@@ -552,7 +552,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	@Override
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
-		loadProtectionData(pCompound);
+		loadProtectionData(pCompound, null);
 	}
 
 	@Override
@@ -570,7 +570,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public static float clampAlignmentValue(float input) {
 		return MathHelper.clamp(Math.round(input * 10) / 10f, 0f, MAX_ALIGNMENT);
 	}
-	public void loadProtectionData(CompoundNBT loadableData) {
+	public void loadProtectionData(CompoundNBT loadableData, PlayerEntity namingFallback) {
 		if(loadableData.contains("ProtectionDataUnique")) {
 			if(loadableData.contains("connectedEntity")) {
 				connectedEntity = loadableData.getUUID("connectedEntity");
@@ -584,10 +584,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				alignmentLevel = MathHelper.clamp(pCompound.getFloat("alignmentThreshold"), 0f, ExtendedMEBannerTileEntity.MAX_ALIGNMENT);
 			}
 			if(pCompound.contains("placedPlayer")) {
-				placedPlayerUUID = pCompound.getUUID("placedPlayer");
+				setPlacedPlayerUUID(pCompound.getUUID("placedPlayer"));
 			}
 			if(pCompound.contains("placedPlayerName")) {
-				placedPlayerName = pCompound.getString("placedPlayerName");
+				setPlacedPlayerName(pCompound.getString("placedPlayerName"));
+			}
+			if(placedPlayerUUID==null && namingFallback!=null) {
+				setPlacedPlayerUUID(namingFallback.getUUID());
+				setPlacedPlayerName(namingFallback.getGameProfile().getName());
 			}
 			// Load data for first tick
 			if(pCompound.contains("radius")) {
@@ -860,5 +864,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		public int hashCode() {
 			return Objects.hash(entryPerms, profile);
 		}
+	}
+
+	@Override
+	public double getViewDistance() {
+	    return 128.0D;
 	}
 }

@@ -26,6 +26,7 @@ public class ExtendedBirdcageBlock extends ContainerBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
+	@Override
 	public BlockState mirror(BlockState pState, Mirror pMirror) {
 		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
 	}
