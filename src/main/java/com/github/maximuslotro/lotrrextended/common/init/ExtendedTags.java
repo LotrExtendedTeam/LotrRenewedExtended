@@ -108,6 +108,15 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> MITHRIL_INGOT = ItemTags.bind("forge:ingots/mithril");
 
 		public static final ITag.INamedTag<Item> ORC_STEEL_NUGGET = ItemTags.bind("forge:nuggets/orc_steel");
+		public static final ITag.INamedTag<Item> COPPER_NUGGET = ItemTags.bind("forge:nuggets/copper");
+		public static final ITag.INamedTag<Item> TIN_NUGGET = ItemTags.bind("forge:nuggets/tin");
+		public static final ITag.INamedTag<Item> DWARVEN_STEEL_NUGGET = ItemTags.bind("forge:nuggets/dwarven_steel");
+		public static final ITag.INamedTag<Item> ELVEN_STEEL_NUGGET = ItemTags.bind("forge:nuggets/elven_steel");
+		public static final ITag.INamedTag<Item> URUK_STEEL_NUGGET = ItemTags.bind("forge:nuggets/uruk_steel");
+		public static final ITag.INamedTag<Item> GALVORN_NUGGET = ItemTags.bind("forge:nuggets/galvorn");
+		public static final ITag.INamedTag<Item> BLACK_URUK_STEEL_NUGGET = ItemTags.bind("forge:nuggets/black_uruk_steel");
+		public static final ITag.INamedTag<Item> GILDED_IRON_NUGGET = ItemTags.bind("forge:nuggets/gilded_iron");
+		public static final ITag.INamedTag<Item> MORGUL_STEEL_NUGGET = ItemTags.bind("forge:nuggets/morgul_steel");
 		public static final ITag.INamedTag<Item> BRONZE_NUGGET = ItemTags.bind("forge:nuggets/bronze");
 		public static final ITag.INamedTag<Item> SILVER_NUGGET = ItemTags.bind("forge:nuggets/silver");
 		

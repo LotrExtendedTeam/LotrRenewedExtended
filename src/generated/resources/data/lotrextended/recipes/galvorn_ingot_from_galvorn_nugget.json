@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:galvorn_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:galvorn_nugget",
+    "count": 9
+  }
+}

@@ -173,6 +173,15 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.MITHRIL_INGOT).add(LOTRItems.MITHRIL_INGOT.get());
 
 		tag(ExtendedTags.Items.ORC_STEEL_NUGGET).add(ExtendedItems.ORC_STEEL_NUGGET.get());
+		tag(ExtendedTags.Items.MORGUL_STEEL_NUGGET).add(ExtendedItems.MORGUL_STEEL_NUGGET.get());
+		tag(ExtendedTags.Items.GALVORN_NUGGET).add(ExtendedItems.GALVORN_NUGGET.get());
+		tag(ExtendedTags.Items.BLACK_URUK_STEEL_NUGGET).add(ExtendedItems.BLACK_URUK_STEEL_NUGGET.get());
+		tag(ExtendedTags.Items.GILDED_IRON_NUGGET).add(ExtendedItems.GILDED_IRON_NUGGET.get());
+		tag(ExtendedTags.Items.COPPER_NUGGET).add(ExtendedItems.COPPER_NUGGET.get());
+		tag(ExtendedTags.Items.TIN_NUGGET).add(ExtendedItems.TIN_NUGGET.get());
+		tag(ExtendedTags.Items.DWARVEN_STEEL_NUGGET).add(ExtendedItems.DWARVEN_STEEL_NUGGET.get());
+		tag(ExtendedTags.Items.ELVEN_STEEL_NUGGET).add(ExtendedItems.ELVEN_STEEL_NUGGET.get());
+		tag(ExtendedTags.Items.URUK_STEEL_NUGGET).add(ExtendedItems.URUK_STEEL_NUGGET.get());
 
 		tag(Tags.Items.INGOTS).addTag(ExtendedTags.Items.MORGUL_STEEL_INGOT)
 		.addTag(ExtendedTags.Items.ORC_STEEL_INGOT).addTag(ExtendedTags.Items.GALVORN_INGOT)
@@ -180,7 +189,10 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		.addTag(ExtendedTags.Items.DWARVEN_STEEL_INGOT).addTag(ExtendedTags.Items.ELVEN_STEEL_INGOT)
 		.addTag(ExtendedTags.Items.URUK_STEEL_INGOT).addTag(ExtendedTags.Items.MITHRIL_INGOT);
 
-		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
+		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET).addTag(ExtendedTags.Items.MORGUL_STEEL_NUGGET)
+		.addTag(ExtendedTags.Items.GALVORN_NUGGET).addTag(ExtendedTags.Items.BLACK_URUK_STEEL_NUGGET).addTag(ExtendedTags.Items.GILDED_IRON_NUGGET)
+		.addTag(ExtendedTags.Items.COPPER_NUGGET).addTag(ExtendedTags.Items.TIN_NUGGET).addTag(ExtendedTags.Items.DWARVEN_STEEL_NUGGET)
+		.addTag(ExtendedTags.Items.ELVEN_STEEL_NUGGET).addTag(ExtendedTags.Items.URUK_STEEL_NUGGET);
 
 		tag(ExtendedTags.Items.ANVIL_IRON_INGOT).addTag(ExtendedTags.Items.ORC_STEEL_INGOT).addTag(Tags.Items.INGOTS_IRON);
 		tag(ExtendedTags.Items.ANVIL_IRON_BLOCK).addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL).addTag(Tags.Items.STORAGE_BLOCKS_IRON);

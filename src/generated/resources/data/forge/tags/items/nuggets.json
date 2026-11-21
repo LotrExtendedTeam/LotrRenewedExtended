@@ -1,6 +1,15 @@
 {
   "replace": false,
   "values": [
-    "#forge:nuggets/orc_steel"
+    "#forge:nuggets/black_uruk_steel",
+    "#forge:nuggets/copper",
+    "#forge:nuggets/dwarven_steel",
+    "#forge:nuggets/elven_steel",
+    "#forge:nuggets/galvorn",
+    "#forge:nuggets/gilded_iron",
+    "#forge:nuggets/morgul_steel",
+    "#forge:nuggets/orc_steel",
+    "#forge:nuggets/tin",
+    "#forge:nuggets/uruk_steel"
   ]
 }
