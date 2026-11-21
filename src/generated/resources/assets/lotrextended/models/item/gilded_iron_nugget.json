@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/gilded_iron_nugget"
+  }
+}

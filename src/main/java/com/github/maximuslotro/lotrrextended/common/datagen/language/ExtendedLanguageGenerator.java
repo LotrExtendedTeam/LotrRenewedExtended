@@ -41,7 +41,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
 			addItem(item.get(), "");
 		}
-
 		// Try Add New Biome Names
 		for (String biome : DataGenValueHolder.biomeNames) {
 			addD(biome);

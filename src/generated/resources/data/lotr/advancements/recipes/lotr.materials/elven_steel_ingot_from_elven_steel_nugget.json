@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:elven_steel_ingot_from_elven_steel_nugget"
+    ]
+  },
+  "criteria": {
+    "has_elven_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:elven_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:elven_steel_ingot_from_elven_steel_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_elven_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

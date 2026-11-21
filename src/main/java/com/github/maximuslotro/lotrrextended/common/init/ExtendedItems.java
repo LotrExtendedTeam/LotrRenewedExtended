@@ -662,6 +662,19 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GILDED_IRON_INGOT = regItem("gilded_iron_ingot", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	public static RegistryObject<Item> MORGUL_STEEL_INGOT = regItem("morgul_steel_ingot", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	public static RegistryObject<Item> ORC_STEEL_NUGGET = regItem("orc_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+
+	//Nuggets - Sahib
+
+	public static RegistryObject<Item> COPPER_NUGGET = regItem("copper_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> TIN_NUGGET = regItem("tin_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> DWARVEN_STEEL_NUGGET = regItem("dwarven_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> ELVEN_STEEL_NUGGET = regItem("elven_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> URUK_STEEL_NUGGET = regItem("uruk_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> GALVORN_NUGGET = regItem("galvorn_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> BLACK_URUK_STEEL_NUGGET = regItem("black_uruk_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> GILDED_IRON_NUGGET = regItem("gilded_iron_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> MORGUL_STEEL_NUGGET = regItem("morgul_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+
 	//Gems
 	public static RegistryObject<Item> TOPAZ = regItem("topaz", () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), TextFormatting.GOLD));
 	public static RegistryObject<Item> AMETHYST = regItem("amethyst", () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), TextFormatting.LIGHT_PURPLE));
