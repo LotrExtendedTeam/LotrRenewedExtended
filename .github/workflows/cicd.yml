@@ -1,0 +1,234 @@
+name: Build & Release Mod
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Mod version (e.g., 1.11.0 -> tag beta-1.11.0, jar lotr-1.16-extended-1.11.0.jar)'
+        required: true
+        type: string
+      channel:
+        description: 'Build channel'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - release
+          - alpha
+      alpha_num:
+        description: 'Alpha number (optional; auto-increments if left blank)'
+        required: false
+        type: string
+      alpha_changes:
+        description: 'Alpha changelog (separate items with | or newlines; ignored for releases)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Compute tag, asset names, and release notes
+        id: meta
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_CHANNEL: ${{ inputs.channel }}
+          INPUT_ALPHA_NUM: ${{ inputs.alpha_num }}
+          INPUT_ALPHA_CHANGES: ${{ inputs.alpha_changes }}
+          REPO_SLUG: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          VERSION="${INPUT_VERSION#beta-}"
+          VERSION="${VERSION#v}"
+          VERSION="${VERSION// /}"
+          if [[ -z "$VERSION" ]]; then
+            echo "::error::Version cannot be empty."
+            exit 1
+          fi
+
+          BASE_TAG="beta-${VERSION}"
+          ESCAPED_BASE_TAG="$(printf '%s\n' "$BASE_TAG" | sed -E 's/[][\/.^$*+?()|]/\\&/g')"
+
+          if [[ "$INPUT_CHANNEL" == "alpha" ]]; then
+            ALPHA_NUM="${INPUT_ALPHA_NUM// /}"
+            if [[ -z "$ALPHA_NUM" ]]; then
+              LAST_ALPHA_NUM="$(
+                git tag -l "${BASE_TAG}-alpha-*" \
+                  | grep -E "^${ESCAPED_BASE_TAG}-alpha-[0-9]+$" \
+                  | sed -E "s/^${ESCAPED_BASE_TAG}-alpha-([0-9]+)$/\1/" \
+                  | sort -n \
+                  | tail -n 1 || true
+              )"
+              if [[ -n "$LAST_ALPHA_NUM" ]]; then
+                ALPHA_NUM=$((LAST_ALPHA_NUM + 1))
+              else
+                ALPHA_NUM=1
+              fi
+            elif ! [[ "$ALPHA_NUM" =~ ^[1-9][0-9]*$ ]]; then
+              echo "::error::alpha_num must be a positive integer, got '$INPUT_ALPHA_NUM'."
+              exit 1
+            fi
+
+            TAG_NAME="${BASE_TAG}-alpha-${ALPHA_NUM}"
+            JAR_NAME="lotr-1.16-extended-${VERSION}-alpha.${ALPHA_NUM}.jar"
+            TAR_NAME=""
+            RELEASE_TITLE="LotR Renewed Extended ${BASE_TAG} Alpha ${ALPHA_NUM}"
+            TAG_MSG="${RELEASE_TITLE} (${TAG_NAME})"
+
+            FORMATTED_CHANGES=""
+            if [[ -n "${INPUT_ALPHA_CHANGES// /}" ]]; then
+              NORMALIZED_CHANGES="${INPUT_ALPHA_CHANGES//\\n/$'\n'}"
+              NORMALIZED_CHANGES="${NORMALIZED_CHANGES//|/$'\n'}"
+              while IFS= read -r line; do
+                trimmed="$(printf '%s\n' "$line" | sed -E 's/^[[:space:]]*[-*]?[[:space:]]*//; s/[[:space:]]+$//')"
+                if [[ -n "$trimmed" ]]; then
+                  FORMATTED_CHANGES+="- ${trimmed}"$'\n'
+                fi
+              done <<< "$NORMALIZED_CHANGES"
+            fi
+
+            if [[ -z "$FORMATTED_CHANGES" ]]; then
+              FORMATTED_CHANGES="- General work-in-progress updates and fixes."$'\n'
+            fi
+
+            {
+              echo "release_body<<__GH_RELEASE_EOF__"
+              echo "> [!WARNING]"
+              echo "> **Pre-Release / Alpha Build** — This build contains active, in-development work."
+              echo ">"
+              echo "> - **Unstable & Subject to Change:** Features, mechanics, and content are incomplete and may change or break at any time."
+              echo "> - **Do NOT Open Existing Worlds:** Always test on a brand-new world or a separate backup copy. Loading existing saves can cause world corruption or permanent data loss."
+              echo "> - **Report Issues:** Please report any bugs, crashes, or feedback on the [Issues](https://github.com/${REPO_SLUG}/issues) tracker."
+              echo ""
+              echo "### Changes in this Alpha"
+              printf "%s" "$FORMATTED_CHANGES"
+              echo "__GH_RELEASE_EOF__"
+            } >> "$GITHUB_OUTPUT"
+          else
+            TAG_NAME="${BASE_TAG}"
+            JAR_NAME=""
+            TAR_NAME="lotr-1.16-extended-${VERSION}.tar.gz"
+            RELEASE_TITLE="LotR Renewed Extended ${BASE_TAG}"
+            TAG_MSG="${RELEASE_TITLE} (${TAG_NAME})"
+
+            {
+              echo "release_body<<__GH_RELEASE_EOF__"
+              echo "## ${RELEASE_TITLE}"
+              echo ""
+              echo "Mod \`.jar\` downloads are not hosted on GitHub Releases."
+              echo "Please download the official mod files from **CurseForge** or **Modrinth**:"
+              echo "- **CurseForge:** https://legacy.curseforge.com/minecraft/mc-mods/lotr-renewed-extended"
+              echo "- **Modrinth:** https://modrinth.com/mod/lotr-renewed-extended"
+              echo ""
+              echo "*Source archives for this release are attached below.*"
+              echo "__GH_RELEASE_EOF__"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "::error::Git tag '$TAG_NAME' already exists."
+            exit 1
+          fi
+
+          {
+            echo "version=$VERSION"
+            echo "tag_name=$TAG_NAME"
+            echo "jar_name=$JAR_NAME"
+            echo "tar_name=$TAR_NAME"
+            echo "release_title=$RELEASE_TITLE"
+            echo "tag_msg=$TAG_MSG"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Build mod
+        run: ./gradlew clean build
+
+      - name: Package artifacts
+        env:
+          INPUT_CHANNEL: ${{ inputs.channel }}
+          TARGET_JAR_NAME: ${{ steps.meta.outputs.jar_name }}
+          TARGET_TAR_NAME: ${{ steps.meta.outputs.tar_name }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+
+          if [[ "$INPUT_CHANNEL" == "alpha" ]]; then
+            mapfile -t BUILT_JARS < <(find build/libs -maxdepth 1 -type f -name "*.jar" \
+              ! -name "*-sources.jar" \
+              ! -name "*-javadoc.jar" \
+              ! -name "*-dev.jar" \
+              ! -name "*-slim.jar" \
+              ! -name "*-raw.jar" \
+              | sort)
+
+            if [[ ${#BUILT_JARS[@]} -eq 0 ]]; then
+              echo "::error::No mod JAR found in build/libs."
+              exit 1
+            fi
+
+            if [[ ${#BUILT_JARS[@]} -gt 1 ]]; then
+              echo "::error::Multiple candidate JARs found in build/libs."
+              exit 1
+            fi
+
+            cp "${BUILT_JARS[0]}" "artifacts/${TARGET_JAR_NAME}"
+            echo "Packaged alpha JAR: artifacts/${TARGET_JAR_NAME}"
+          else
+            git archive --format=tar.gz --prefix="lotr-1.16-extended-${VERSION}/" HEAD -o "artifacts/${TARGET_TAR_NAME}"
+            echo "Packaged release tarball: artifacts/${TARGET_TAR_NAME}"
+          fi
+
+      - name: Create and push Git tag
+        env:
+          TAG_NAME: ${{ steps.meta.outputs.tag_name }}
+          TAG_MSG: ${{ steps.meta.outputs.tag_msg }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG_NAME" -m "$TAG_MSG"
+          git push origin "$TAG_NAME"
+
+      - name: Create GitHub Release (Alpha)
+        if: ${{ inputs.channel == 'alpha' }}
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.meta.outputs.tag_name }}
+          name: ${{ steps.meta.outputs.release_title }}
+          body: ${{ steps.meta.outputs.release_body }}
+          prerelease: true
+          files: artifacts/${{ steps.meta.outputs.jar_name }}
+
+      - name: Create GitHub Release (Release)
+        if: ${{ inputs.channel == 'release' }}
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.meta.outputs.tag_name }}
+          name: ${{ steps.meta.outputs.release_title }}
+          body: ${{ steps.meta.outputs.release_body }}
+          prerelease: false
+          files: artifacts/${{ steps.meta.outputs.tar_name }}
+
+      - name: Clean up build workspace
+        if: always()
+        run: rm -rf build artifacts
