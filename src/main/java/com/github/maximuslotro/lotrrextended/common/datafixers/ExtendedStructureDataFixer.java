@@ -42,6 +42,34 @@ public class ExtendedStructureDataFixer {
 						}
 					}
 				}
+				// Container tile entities (chests, barrels, hoppers, etc.)
+				if(remapItemStackList(tileNbt, "Items")) {
+					changed = true;
+				}
+				// Lecterns
+				if(remapItemStackTag(tileNbt, "Book")) {
+					changed = true;
+				}
+				// Plates
+				if(remapItemStackTag(tileNbt, "FoodItem")) {
+					changed = true;
+				}
+				// Vessels
+				if(remapItemStackTag(tileNbt, "DrinkItem")) {
+					changed = true;
+				}
+				// Large Pots old
+				if(remapItemStackTag(tileNbt, "contained_item")) {
+					changed = true;
+				}
+				// Weaponrack old
+				if(remapItemStackTag(tileNbt, "contained_item")) {
+					changed = true;
+				}
+				// Large Pots & Weaponrack new
+				if(remapItemStackTag(tileNbt, "Item")) {
+					changed = true;
+				}
 			}
 		}
 		if(root.contains("entities", 9)) {

@@ -33,7 +33,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity implements ITickableTileEntity {
-	private static final String STACK_TAG = "extended_ditem";
 	private ItemStack containedItem = ItemStack.EMPTY;
 	private boolean unpacked=false;
 	public ExtendedWeaponRackTileEntity() {
@@ -62,8 +61,10 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 		super.load(p_230337_1_, nbt);
 		if(this.tryLoadLootTable(nbt)) {
 			this.containedItem = ItemStack.EMPTY;
-		} else if(nbt.contains(STACK_TAG, NBT.TAG_COMPOUND)) {
-			this.containedItem = ItemStack.of(nbt.getCompound(STACK_TAG));
+		} else if(nbt.contains("extended_ditem", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("extended_ditem"));
+		} else if(nbt.contains("Item", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("Item"));
 		} else {
 			this.containedItem = ItemStack.EMPTY;
 		}
@@ -73,7 +74,7 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	public CompoundNBT save(CompoundNBT nbt) {
 		super.save(nbt);
 		if(!this.trySaveLootTable(nbt)) {
-			nbt.put(STACK_TAG, this.containedItem.save(new CompoundNBT()));
+			nbt.put("Item", this.containedItem.save(new CompoundNBT()));
 		}
 		return nbt;
 	}
