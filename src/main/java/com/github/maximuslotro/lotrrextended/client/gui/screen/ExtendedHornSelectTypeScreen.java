@@ -35,7 +35,7 @@ public class ExtendedHornSelectTypeScreen extends ExtendedAbstractWindowedScreen
 		renderBackground(matStack);
 		minecraft.getTextureManager().bind(TEXTURE);
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		this.font.draw(matStack, title, leftPos + ((this.imageWidth - font.width(title)) / 2), topPos + 10, 4210752);
+		draw(matStack, title, leftPos + ((this.imageWidth - font.width(title)) / 2), topPos + 10, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 

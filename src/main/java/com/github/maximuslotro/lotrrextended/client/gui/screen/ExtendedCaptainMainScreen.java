@@ -187,27 +187,27 @@ public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 		this.minecraft.getTextureManager().bind(SCREEN_BACKGROUND);
 		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
-		this.font.draw(pMatrixStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 4, 4210752);
+		draw(pMatrixStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 4, 4210752);
 		// Display unit type name and page indicator
 		ExtendedHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile != null) {
 			String unitTypeName = currentProfile.getEntityUnitTypeName();
 			TextComponent unitTypeText = currentProfile.stringsAreTranslated() ? new TranslationTextComponent(unitTypeName) : new StringTextComponent(unitTypeName);
-			this.font.draw(pMatrixStack, unitTypeText, this.leftPos + 128 - (font.width(unitTypeText) / 2), this.topPos + 37, 4210752);
+			draw(pMatrixStack, unitTypeText, this.leftPos + 128 - (font.width(unitTypeText) / 2), this.topPos + 37, 4210752);
 
 			Faction fac = npcEntity.getFaction();
 			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
 			TextComponent coinCost  = new StringTextComponent(currentProfile.getHiringCost() + "c");
 			TextComponent alighmentNeeded  = new StringTextComponent("+"+currentProfile.getHiringAlignmentRequired());
 			TextComponent pledgeRequired  = currentProfile.isHiringRequiresPledge() ? new TranslationTextComponent("gui.lotrextended.hiring.pledge_required") : new StringTextComponent("...");
-			this.font.draw(pMatrixStack, coinCost, this.leftPos + 90, this.topPos + 53, currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory) ? 16736352 : 4210752);
-			this.font.draw(pMatrixStack, alighmentNeeded, this.leftPos + 90, this.topPos + 74, currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac) ? 16736352 : 4210752);
-			this.font.draw(pMatrixStack, pledgeRequired, this.leftPos + 76, this.topPos + 92, currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac) ? 16736352 : 4210752);
+			draw(pMatrixStack, coinCost, this.leftPos + 90, this.topPos + 53, currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory) ? 16736352 : 4210752);
+			draw(pMatrixStack, alighmentNeeded, this.leftPos + 90, this.topPos + 74, currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac) ? 16736352 : 4210752);
+			draw(pMatrixStack, pledgeRequired, this.leftPos + 76, this.topPos + 92, currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac) ? 16736352 : 4210752);
 
 			if (unitProfiles.size() > 1) {
 				String pageIndicator = "(" + (currentProfileIndex + 1) + "/" + unitProfiles.size() + ")";
 				TextComponent pageText = new StringTextComponent(pageIndicator);
-				this.font.draw(pMatrixStack, pageText, this.leftPos + 109 - (font.width(pageText) / 2), this.topPos + 123, 4210752);
+				draw(pMatrixStack, pageText, this.leftPos + 109 - (font.width(pageText) / 2), this.topPos + 123, 4210752);
 			}
 		}
 		if(hiringEntity!=null) {

@@ -382,7 +382,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		fillCircleArc(matrixStack, bodyRight, 0, boxHeight, 0, Math.PI / 2, factionColor);
 		float textX = centerX - halfTextWidth;
 		float textY = bodyTop + 12;
-		this.font.draw(matrixStack, faction, textX, textY, 0xFFFFFFFF);
+		draw(matrixStack, faction, textX, textY, 0xFFFFFFFF);
 	}
 
 	private void renderFactionScrollBar(MatrixStack matrixStack) {
@@ -518,9 +518,9 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		float minX = barLeft + 3;
 		float midX = barLeft + (barWidth / 2.0F) - (this.font.width(midStr) / 2.0F);
 		float maxX = barLeft + barWidth - this.font.width(maxStr) - 3;
-		this.font.draw(matrixStack, minStr, minX, textY, 0xFFFFFFFF);
-		this.font.draw(matrixStack, midStr, midX, textY, 0xFFFFFFFF);
-		this.font.draw(matrixStack, maxStr, maxX, textY, 0xFFFFFFFF);
+		draw(matrixStack, minStr, minX, textY, 0xFFFFFFFF);
+		draw(matrixStack, midStr, midX, textY, 0xFFFFFFFF);
+		draw(matrixStack, maxStr, maxX, textY, 0xFFFFFFFF);
 	}
 
 	private void renderDebugInfo(MatrixStack matrixStack, int mouseX, int mouseY) {
@@ -549,7 +549,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 
 		};
 		for(int i = 0; i < debugLines.length; i++) {
-			this.font.draw(matrixStack, debugLines[i], 10, 10 + (i * 11), 0xFFFF0000);
+			draw(matrixStack, debugLines[i], 10, 10 + (i * 11), 0xFFFF0000);
 		}
 	}
 
@@ -574,7 +574,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			TranslationTextComponent teleport = new TranslationTextComponent("gui.lotrextended.map.teleport", LOTRKeyHandler.KEY_BIND_MAP_TELEPORT.getTranslatedKeyMessage());
 			int textX = this.width-30 - this.font.width(teleport);
 			int textY = this.height-30;
-			this.font.draw(matrixStack, teleport, textX, textY, 16777215);
+			draw(matrixStack, teleport, textX, textY, 16777215);
 		}
 	}
 }

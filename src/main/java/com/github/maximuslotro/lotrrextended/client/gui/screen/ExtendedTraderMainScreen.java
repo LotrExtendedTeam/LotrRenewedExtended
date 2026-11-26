@@ -158,7 +158,7 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
+		draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 }

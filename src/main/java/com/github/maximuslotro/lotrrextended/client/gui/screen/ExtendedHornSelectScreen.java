@@ -47,7 +47,7 @@ public class ExtendedHornSelectScreen extends ExtendedAbstractWindowedScreen {
 		renderBackground(matStack);
 		minecraft.getTextureManager().bind(TEXTURE);
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		this.font.draw(matStack, title, leftPos + ((this.imageWidth - font.width(title)) / 2), topPos + 11, 4210752);
+		draw(matStack, title, leftPos + ((this.imageWidth - font.width(title)) / 2), topPos + 11, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
 		ItemStack halt = ExtendedCommandHornItem.setType(this.minecraft.player.getMainHandItem().copy(), ExtendedUnitHornTypes.HALT);
 		ItemStack summon = ExtendedCommandHornItem.setType(this.minecraft.player.getMainHandItem().copy(), ExtendedUnitHornTypes.SUMMON);

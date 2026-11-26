@@ -77,19 +77,19 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitContainer
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
-		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
-		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
+		draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
+		draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 		// show armor points
 		if (getMenu().getCompanion() != null) {
 			double armor = getMenu().getCompanion().getAttributeValue(Attributes.ARMOR);
 			double armorT = getMenu().getCompanion().getAttributeValue(Attributes.ARMOR_TOUGHNESS);
 			//double attackD = entity.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			//double attackS = entity.getAttributeValue(Attributes.ATTACK_SPEED);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor").withStyle(TextFormatting.ITALIC), 6, 23, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_points", df.format(armor)), 6, 34, 15790320);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_toughness", df.format(armorT)), 6, 46, 15790320);
-			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
-			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
+			draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor").withStyle(TextFormatting.ITALIC), 6, 23, 4210752);
+			draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_points", df.format(armor)), 6, 34, 15790320);
+			draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.armor_toughness", df.format(armorT)), 6, 46, 15790320);
+			//draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
+			//draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
 		}
 	}
 

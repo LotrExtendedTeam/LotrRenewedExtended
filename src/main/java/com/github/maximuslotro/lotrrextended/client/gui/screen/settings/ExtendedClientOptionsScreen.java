@@ -251,7 +251,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.settings.title");
-		this.font.draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
+		draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 			catagories.handleUpdates();

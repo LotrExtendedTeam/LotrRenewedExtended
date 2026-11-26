@@ -70,10 +70,10 @@ public class ExtendedCoinExchangeScreen extends ExtendedContainerScreen<Extended
 		fill(matrix, 180, 105, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 120, 0x99000000);
 		this.minecraft.getTextureManager().bind(GUI_TEXTURE);
 		blit(matrix, 179, 104, 176, 77, 18, 18);
-		this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 109, 0xFFFFFFFF);
+		draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 109, 0xFFFFFFFF);
 
-		this.font.draw(matrix, this.title, this.titleLabelX, this.titleLabelY, 4210752);
-		this.font.draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
+		draw(matrix, this.title, this.titleLabelX, this.titleLabelY, 4210752);
+		draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
 	}
 
 	@Override

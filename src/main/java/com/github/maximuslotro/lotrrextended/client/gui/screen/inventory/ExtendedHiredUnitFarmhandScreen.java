@@ -116,12 +116,12 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitContainerS
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
-		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
-		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
+		draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
+		draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 		TranslationTextComponent level = new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.farming_level", getMenu().getFarmhandInfo().getFarmerLevel());
-		this.font.draw(matrix, level, titleLabelX - (font.width(level)/2), 30, 4210752);
+		draw(matrix, level, titleLabelX - (font.width(level)/2), 30, 4210752);
 		TranslationTextComponent crops = new TranslationTextComponent("gui.lotrextended.hired_unit.farmhand.crops_farmed", getMenu().getFarmhandInfo().getCropsHarvested());
-		this.font.draw(matrix, crops, 16, 83, 4210752);
+		draw(matrix, crops, 16, 83, 4210752);
 		//drawScaled(matrix, crops, titleLabelX - (font.width(crops)/2) * 0.8F, 84, 4210752, 0.8F);
 		ITextComponent currentXP = new StringTextComponent(Integer.toString(getMenu().getFarmhandInfo().getCurrentFarmerXp()));
 		ITextComponent maxXP = new StringTextComponent(Integer.toString(getMenu().getFarmhandInfo().getMaxFarmerXp()));

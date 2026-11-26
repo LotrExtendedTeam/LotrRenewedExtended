@@ -18,8 +18,8 @@ public class ExtendedProtectionList extends ExtendedScrollList<ExtendedProtectio
 	private final Minecraft minecraft;
 	private final List<ExtendedProtectionListEntry> protections = new ArrayList<>();
 
-	public ExtendedProtectionList(ExtendedBannerConfigurationScreen pParentScreen, Minecraft pMinecraft, int pWindowHeight, int pX0, int pScrollPlaneWidth, int pY0, int pY1, int pItemHeight) {
-		super(pMinecraft, pWindowHeight, pX0, pScrollPlaneWidth, pY0, pY1, pItemHeight);
+	public ExtendedProtectionList(ExtendedBannerConfigurationScreen pParentScreen, Minecraft pMinecraft, int pWindowHeight, int pPlaneX0, int pScrollPlaneWidth, int pPlaneY0, int pPlaneY1, int pEntryHeight) {
+		super(pMinecraft, pWindowHeight, pPlaneX0, pScrollPlaneWidth, pPlaneY0, pPlaneY1, pEntryHeight);
 		this.bannerScreen = pParentScreen;
 		this.minecraft = pMinecraft;
 		this.setRenderBackground(false);

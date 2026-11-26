@@ -7,14 +7,24 @@ import net.minecraft.client.gui.widget.list.AbstractOptionList;
 
 public abstract class ExtendedScrollList<E extends AbstractOptionList.Entry<E>> extends AbstractOptionList<E> {
 
-	public ExtendedScrollList(Minecraft pMinecraft, int pWindowHeight, int pX0, int pScrollPlaneWidth, int pY0, int pY1, int pItemHeight) {
-		super(pMinecraft, pScrollPlaneWidth, pWindowHeight, pY0, pY1, pItemHeight);
-		setLeftPos(pX0);
+	public ExtendedScrollList(Minecraft pMinecraft, int pWindowHeight, int pPlaneX0, int pScrollPlaneWidth, int pPlaneY0, int pPlaneY1, int pEntryHeight) {
+		super(pMinecraft, pScrollPlaneWidth, pWindowHeight, pPlaneY0, pPlaneY1, pEntryHeight);
+		setLeftPos(pPlaneX0);
 	}
 
 	@Override
 	public int getRowWidth() {
 		return this.width;
+	}
+
+	@Override
+	public void updateSize(int pWidth, int pHeight, int pY0, int pY1) {
+		this.width = pWidth;
+		this.height = pHeight;
+		this.y0 = pY0;
+		this.y1 = pY1;
+		this.x0 = 0;
+		this.x1 = pWidth;
 	}
 
 	@Override

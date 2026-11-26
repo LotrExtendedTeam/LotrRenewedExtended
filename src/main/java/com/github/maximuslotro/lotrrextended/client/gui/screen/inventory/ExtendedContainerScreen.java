@@ -20,7 +20,15 @@ public abstract class ExtendedContainerScreen<T extends Container> extends Conta
 		pMatrixStack.scale(scale, scale, scale);
 		int scaledX = Math.round(pX / scale);
 		int scaledY = Math.round(pY / scale);
-		font.draw(pMatrixStack, pText, scaledX, scaledY, pColor);
+		draw(pMatrixStack, pText, scaledX, scaledY, pColor);
 		pMatrixStack.popPose();
+	}
+
+	public void draw(MatrixStack pMatrixStack, String pText, float pX, float pY, int pColor) {
+		this.font.draw(pMatrixStack,pText, pX, pY, pColor);
+	}
+
+	public void draw(MatrixStack pMatrixStack, ITextComponent pText, float pX, float pY, int pColor) {
+		this.font.draw(pMatrixStack,pText, pX, pY, pColor);
 	}
 }

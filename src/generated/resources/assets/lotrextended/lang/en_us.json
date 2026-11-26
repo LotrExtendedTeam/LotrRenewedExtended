@@ -2483,6 +2483,8 @@
   "gui.lotrextended.settings.windambience.setting": "Wind Ambience: ",
   "gui.lotrextended.settings.worldhelp.setting": "World Generation Help: ",
   "gui.lotrextended.settings.worldsettings": "World Settings",
+  "gui.lotrextended.speechbank.editor": "Speechbank Editor",
+  "gui.lotrextended.speechbank.editor.tooltip": "Create and edit speechbanks",
   "gui.lotrextended.stone_engraving.title": "Engrave Message",
   "gui.lotrextended.trading.buy": "Buy",
   "gui.lotrextended.trading.coin_exchange.tooltip.down": "Break a higher denomination coin into lower denomination coins.",

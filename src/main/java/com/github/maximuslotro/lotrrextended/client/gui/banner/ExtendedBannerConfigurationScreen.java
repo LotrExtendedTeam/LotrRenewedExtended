@@ -373,7 +373,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		this.minecraft.getTextureManager().bind(GUI_TEXTURE);
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, SIZE, SIZE);
 		TranslationTextComponent title = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
-		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
+		draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
 		if(!isEnabled) {
 			alignmentField.visible=false;
 			factionPermButton.visible = false;
@@ -382,7 +382,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			syncChanges.visible=false;
 			globalPermButtons.forEach((permButton) -> permButton.visible=false);
 			showFactionPerms=false;
-			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 25, topPos + 64, 16711680);
+			draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 25, topPos + 64, 16711680);
 			playerInfo.visible=false;
 			return;
 		}
@@ -394,9 +394,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			messageField.visible=false;
 			createPlayer.visible = false;
 			createFellowship.visible = false;
-			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
+			draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
 			if(this.getFactionMessage()!=null) {
-				this.font.draw(matStack, this.getFactionMessage(), leftPos + (this.imageWidth/2) - (this.font.width(this.getFactionMessage())/2), topPos + 47, 4210752);
+				draw(matStack, this.getFactionMessage(), leftPos + (this.imageWidth/2) - (this.font.width(this.getFactionMessage())/2), topPos + 47, 4210752);
 			}
 			if(this.getFlagLoc()!=null) {
 				this.minecraft.getTextureManager().bind(this.getFlagLoc());
@@ -431,7 +431,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 			showFactionPerms=false;
 			createPlayer.visible = false;
 			createFellowship.visible = false;
-			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.custom.description"), leftPos + 31, topPos + 64, 4210752);
+			draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.custom.description"), leftPos + 31, topPos + 64, 4210752);
 			this.minecraft.getTextureManager().bind(GUI_TEXTURE);
 			blit(matStack, this.leftPos+30, this.topPos+76, 0, 192, 79, 17, SIZE, SIZE);
 			blit(matStack, this.leftPos+100, this.topPos+76, 1, 192, 79, 17, SIZE, SIZE);

@@ -6,13 +6,12 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.text.ITextComponent;
 
-public abstract class ExtendedRadialScreen extends Screen {
+public abstract class ExtendedRadialScreen extends ExtendedAbstractBasicScreen {
 	private final int innerRadius = 20;
 	protected int outerRadius = 120;
 	protected int hoveredIndex = -1;
@@ -40,7 +39,7 @@ public abstract class ExtendedRadialScreen extends Screen {
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 		renderRadialMenu(matrixStack, mouseX, mouseY, centerX, centerY, innerRadius, outerRadius, this.font);
 
-		this.font.draw(matrixStack, title, (width - font.width(title)) / 2, 20, 16777215);
+		draw(matrixStack, title, (width - font.width(title)) / 2, 20, 16777215);
 	}
 	protected void renderRadialMenu(MatrixStack matrixStack, int mouseX, int mouseY, int cx, int cy, int innerR, int outerR, FontRenderer fontRenderer) {
 		int count = getOptionsCount();

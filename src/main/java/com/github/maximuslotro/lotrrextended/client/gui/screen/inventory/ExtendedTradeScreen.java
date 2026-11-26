@@ -120,16 +120,16 @@ public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeCo
         fill(matrix, 180, 188, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 203, 0x99000000);
         this.minecraft.getTextureManager().bind(GUI_TEXTURE);
         blit(matrix, 179, 187, 176, 54, 18, 18, 280, 280);
-        this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 192, 0xFFFFFFFF);
+        draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 192, 0xFFFFFFFF);
 
         // render labels
-        this.font.draw(matrix, this.title, (((imageWidth - 32) - font.width(this.title)) / 2) + 16, 11, 4210752);
-        this.font.draw(matrix, this.inventory.getDisplayName(), 8, this.inventoryLabelY, 4210752);
-        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.buy"), 8, 30, 4210752);
-        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell"), 8, 82, 4210752);
-        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell_offers"), 8, 131, 4210752);
+        draw(matrix, this.title, (((imageWidth - 32) - font.width(this.title)) / 2) + 16, 11, 4210752);
+        draw(matrix, this.inventory.getDisplayName(), 8, this.inventoryLabelY, 4210752);
+        draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.buy"), 8, 30, 4210752);
+        draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell"), 8, 82, 4210752);
+        draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell_offers"), 8, 131, 4210752);
         if (container.getSellValue() > 0) {
-            this.font.draw(matrix, "x " + container.getSellValue(), 99, 168, 4210752);
+            draw(matrix, "x " + container.getSellValue(), 99, 168, 4210752);
         }
 
         // render prices
@@ -139,7 +139,7 @@ public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeCo
             if (container.getSoldQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
             	priceStr = "...";
             }
-            this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 62, 4210752);
+            draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 62, 4210752);
         }
 
         for (int i = 0; i < container.getBoughtPrices().length; i++) {
@@ -148,7 +148,7 @@ public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeCo
             if (container.getBoughtQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
             	priceStr = "...";
             }
-            this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 114, 4210752);
+            draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 114, 4210752);
         }
 
         // render a blocker in front of items sold to player

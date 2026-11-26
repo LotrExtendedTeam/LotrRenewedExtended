@@ -202,7 +202,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.serversettings.title");
-		this.font.draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
+		draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 			catagories.handleUpdates();
@@ -270,8 +270,8 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public ExtendedTogglableTitleButton<Boolean> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+		public ExtendedTogglableTitleButton<Boolean> addButton(String messageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(messageKey), 
 					wdget -> setValue(type, !configSpec.get()), (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
@@ -279,8 +279,8 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public ExtendedTogglableTitleButton<Boolean> addButtonAddDisable(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey, ExtendedSettingToggles typeDisable) {
-			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+		public ExtendedTogglableTitleButton<Boolean> addButtonAddDisable(String messageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey, ExtendedSettingToggles typeDisable) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(messageKey), 
 					wdget -> {boolean newValue = !configSpec.get();setValue(type, newValue); if(newValue) {setValue(typeDisable, false);}}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
@@ -288,8 +288,8 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public ExtendedTogglableTitleButton<Boolean> addButtonDisabled(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<Boolean>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+		public ExtendedTogglableTitleButton<Boolean> addButtonDisabled(String messageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<Boolean>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(messageKey), 
 					wdget -> {}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled).forceDisableButton();

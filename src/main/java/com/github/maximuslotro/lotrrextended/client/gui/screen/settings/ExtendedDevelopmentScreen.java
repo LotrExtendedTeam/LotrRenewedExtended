@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.SpeechbankEditScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.IGetValue;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.ISetValue;
@@ -27,6 +28,7 @@ import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.Button.IPressable;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
@@ -92,26 +94,26 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		catagories.clear();
 
 		SettingsCatagory itemGen = new SettingsCatagory(this, 0, x, y, xTabs);
-		addButton(itemGen.addCatagoryButton("Wiki Image Generation"));
-		addButton(itemGen.addButtonNew("16x Item Icons: %s", button -> {
+		addButton(itemGen.addCatagoryButton("Wiki Generation"));
+		addButton(itemGen.addButtonNew(new StringTextComponent("16x Item Icons: %s"), button -> {
 			make16Itemicons = !make16Itemicons;
 		}, (button, pd) -> {return make16Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 16x item image generation"));
-		addButton(itemGen.addButtonNew("32x Item Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("32x Item Icons: %s"), button -> {
 			make32Itemicons = !make32Itemicons;
 		}, (button, pd) -> {return make32Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 32x item image generation"));
-		addButton(itemGen.addButtonNew("64x Item Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("64x Item Icons: %s"), button -> {
 			make64Itemicons = !make64Itemicons;
 		}, (button, pd) -> {return make64Itemicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 64x item image generation"));
-		addButton(itemGen.addButtonNew("16x Block Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("16x Block Icons: %s"), button -> {
 			make16Blockicons = !make16Blockicons;
 		}, (button, pd) -> {return make16Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 16x block image generation"));
-		addButton(itemGen.addButtonNew("32x Block Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("32x Block Icons: %s"), button -> {
 			make32Blockicons = !make32Blockicons;
 		}, (button, pd) -> {return make32Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 32x block image generation"));
-		addButton(itemGen.addButtonNew("64x Block Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("64x Block Icons: %s"), button -> {
 			make64Blockicons = !make64Blockicons;
 		}, (button, pd) -> {return make64Blockicons;}, "gui.lotrextended.base.true", "gui.lotrextended.base.false", "Enable 64x block image generation"));
-		addButton(itemGen.addButtonNew("Generate Icons: %s", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("Generate Icons: %s"), button -> {
 			boolean checkAny = make16Itemicons || make32Itemicons || make64Itemicons || make16Blockicons || make32Blockicons || make64Blockicons;
 			if(isExporting || !checkAny) {
 				return;
@@ -148,12 +150,12 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 			currentItemIndex = 0;
 			completedItemsRenderScaled.set(0);
 		}, (button, pd) -> {return (make16Itemicons || make32Itemicons || make64Itemicons || make16Blockicons || make32Blockicons || make64Blockicons) && !isExporting;}, "", "", "May crash, report any issues!"));
-		addButton(itemGen.addButtonNew(output, button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent(output), button -> {
 		}, (button, pd) -> {
 			button.setMessage(new StringTextComponent(output));
 			return null;
 		}, "", "", "Item generation output"));
-		addButton(itemGen.addButtonNew("Make items.json", button -> {
+		addButton(itemGen.addButtonNew(new StringTextComponent("Make items.json"), button -> {
 			Minecraft mc = Minecraft.getInstance();
 			generateInfoboxJson(new File(mc.gameDirectory, "lotrextended_item_images"));
 		}, (button, pd) -> true, "", "", "May crash, report any issues!"));
@@ -162,7 +164,8 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		addButton(spawnMaps.addCatagoryButton("Distribution Maps"));
 		catagories.add(spawnMaps);
 		SettingsCatagory speechbank = new SettingsCatagory(this, 2, x, y, xTabs);
-		addButton(speechbank.addCatagoryButton("Speechbank Tools"));
+		addButton(speechbank.addCatagoryButton("Client Data Editors"));
+		addButton(speechbank.addButton(new TranslationTextComponent("gui.lotrextended.speechbank.editor"), (buton) -> Minecraft.getInstance().setScreen(new SpeechbankEditScreen()), new TranslationTextComponent("gui.lotrextended.speechbank.editor.tooltip")));
 		catagories.add(speechbank);
 		for(SettingsCatagory catagory : catagories) {
 			catagory.checkVisability();
@@ -308,7 +311,7 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.settings.title");
-		this.font.draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
+		draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 			catagories.handleUpdates();
@@ -323,7 +326,7 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		private final int placementYOffset;
 		private final int catagoryXOffset;
 		private int offsetAmount=0;
-		private final List<ExtendedTogglableTitleButton<Boolean>> bottons = new ArrayList<>();
+		private final List<Widget> widgets = new ArrayList<>();
 		private final List<ExtendedSlider> sliders = new ArrayList<>();
 		private Widget catagoryButton;
 
@@ -350,12 +353,21 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 			};
 			return catagoryButton;
 		}
-		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<Boolean> pOnTick, String enabled, String disabled, String tooltip) {
-			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, 
+		public Button addButton(TextComponent titleKey, IPressable pOnPress, TextComponent tooltipKey) {
+			Button button = new Button(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, titleKey, 
+				pOnPress, (wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(tooltipKey, 200), pMouseX, pMouseY);
+					});
+			widgets.add(button);
+			offsetAmount+=1;
+			return button;
+		}
+		public Widget addButtonNew(TextComponent titleComponent, IPressable pOnPress, IOnTick<Boolean> pOnTick, String enabled, String disabled, String tooltip) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, titleComponent, pOnPress, 
 					(wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new StringTextComponent(tooltip), 200), pMouseX, pMouseY);
 					}, pOnTick, enabled, disabled);
-			bottons.add(button);
+			widgets.add(button);
 			offsetAmount+=1;
 			return button;
 		}
@@ -369,18 +381,21 @@ public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 		public void clean() {
 			screen=null;
 			catagoryButton=null;
-			bottons.clear();
+			widgets.clear();
 			sliders.clear();
 		}
+		@SuppressWarnings("unchecked")
 		public void handleUpdates() {
 			if(ExtendedClientOptionsScreen.optionClient==index) {
-				for(ExtendedTogglableTitleButton<Boolean> widget : bottons) {
-					widget.onTick(true);
+				for(Widget widget : widgets) {
+					if(widget instanceof ExtendedTogglableTitleButton) {
+						((ExtendedTogglableTitleButton<Boolean>)widget).onTick(true);
+					}
 				}
 			}
 		}
 		public void checkVisability(){
-			for(Widget widget : bottons) {
+			for(Widget widget : widgets) {
 				widget.visible = ExtendedDevelopmentScreen.optionDevelopment==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
