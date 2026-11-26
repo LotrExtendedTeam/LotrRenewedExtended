@@ -20,6 +20,6 @@ public class MixinTileEntity {
     )
     private static String remapTileEntityId(CompoundNBT compound, String key) {
         String originalId = compound.getString(key);
-        return ExtendedMissingMappings.BLOCK_ENTITIES.getOrDefault(originalId, originalId);
+        return ExtendedMissingMappings.resolveBlockEntity(originalId);
     }
 }
