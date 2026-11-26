@@ -33,13 +33,10 @@ public class ExtendedStructureDataFixer {
 				CompoundNBT tileNbt = entry.getCompound("nbt");
 				if(tileNbt.contains("id", 8)) {
 					String oldId = tileNbt.getString("id");
-					// All Block Entity remaps are Hardcoded
-					if(ExtendedMissingMappings.BLOCK_ENTITIES.containsKey(oldId)) {
-						ResourceLocation newId = new ResourceLocation(ExtendedMissingMappings.BLOCK_ENTITIES.get(oldId));
-						if(newId != null) {
-							tileNbt.putString("id", newId.toString());
-							changed = true;
-						}
+					String newId = ExtendedMissingMappings.resolveBlockEntity(oldId);
+					if(newId != null && !newId.equals(oldId)) {
+						tileNbt.putString("id", newId);
+						changed = true;
 					}
 				}
 				// Container tile entities (chests, barrels, hoppers, etc.)

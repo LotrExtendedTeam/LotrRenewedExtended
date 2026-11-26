@@ -32,10 +32,9 @@ public class ExtendedMissingMappings {
 	private static final String MODID = "lotrextended";
 	private static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
 	private static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
-	public static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
-	public static final Map<String, String> BLOCK_ENTITIES = new HashMap<>();
+	private static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
+	private static final Map<String, String> BLOCK_ENTITIES = new HashMap<>();
 	private static final List<ResourceLocation> IGNORE_MAPPINGS = new ArrayList<>();
-
 	private static boolean hasMappingsBeenCreated = false;
 
 	public static void ensureMappingsCreated() {
@@ -111,6 +110,13 @@ public class ExtendedMissingMappings {
 			}
 		}
 		return null;
+	}
+
+	@Nullable
+	public static String resolveBlockEntity(String oldId) {
+		ensureMappingsCreated();
+		// All Block Entity remaps are Hardcoded
+		return BLOCK_ENTITIES.getOrDefault(oldId, oldId);
 	}
 
 	public static <T extends IForgeRegistryEntry<T>> void fixMappings(MissingMappings<T> event, Map<ResourceLocation, T> explicitOverrides, IForgeRegistry<T> registry, String typeName) {
