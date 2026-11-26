@@ -71,6 +71,25 @@ public class ExtendedMissingMappings {
 		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ITEMS, ForgeRegistries.ITEMS, "item");
 	}
 
+	@Nullable
+	public static Item resolveItem(ResourceLocation oldId) {
+		ensureMappingsCreated();
+		if (ITEMS.containsKey(oldId)) {
+			return ITEMS.get(oldId);
+		}
+		if (IGNORE_MAPPINGS.contains(oldId)) {
+			return null;
+		}
+		// Handle dynamic Namespace Fallback: Remap lotr:x -> lotrextended:x
+		if (oldId.getNamespace().equals("lotr") || oldId.getNamespace().equals(MODID)) {
+			ResourceLocation fallbackId = new ResourceLocation(MODID, oldId.getPath());
+			if (ForgeRegistries.ITEMS.containsKey(fallbackId)) {
+				return ForgeRegistries.ITEMS.getValue(fallbackId);
+			}
+		}
+		return null;
+	}
+
 	public static void onMissingEntityMappings(RegistryEvent.MissingMappings<EntityType<?>> event) {
 		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ENTITIES, ForgeRegistries.ENTITIES, "entity");
 	}

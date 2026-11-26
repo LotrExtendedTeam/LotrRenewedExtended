@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
+import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedStructureDataFixer;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
@@ -24,20 +25,17 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.command.arguments.ResourceLocationArgument;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.LockableLootTileEntity;
@@ -95,7 +93,7 @@ public class ExtendedStructureHelperComamnd {
 			try {
 				IResource resource = manager.getResource(found);
 				CompoundNBT tag = CompressedStreamTools.readCompressed(resource.getInputStream());
-				boolean changed = remapUsingExtendedMappings(tag);
+				boolean changed = ExtendedStructureDataFixer.remapUsingExtendedMappings(tag);
 				if (changed) {
 					Path out = Paths.get(level.getServer().getServerDirectory().toString(), "world", "generated", found.getNamespace(), found.getPath());
 					Files.createDirectories(out.getParent());
@@ -115,63 +113,6 @@ public class ExtendedStructureHelperComamnd {
 		}
 		source.sendSuccess(new StringTextComponent("Remapped IDs in " + fixed + " structures."), false);
 		return Command.SINGLE_SUCCESS;
-	}
-
-	//TODO handle item in blocks and entities remapping
-	private static boolean remapUsingExtendedMappings(CompoundNBT root) {
-		boolean changed = false;
-		if(root.contains("palette", 9)) {
-			ListNBT palette = root.getList("palette", 10);
-			for(int i = 0; i < palette.size(); i++) {
-				CompoundNBT state = palette.getCompound(i);
-				ResourceLocation oldId = new ResourceLocation(state.getString("Name"));
-				Block newBlock = ExtendedMissingMappings.resolveBlock(oldId);
-				if(newBlock != null && newBlock.getRegistryName() != null) {
-					ResourceLocation newId = newBlock.getRegistryName();
-					if(!newId.equals(oldId)) {
-						state.putString("Name", newId.toString());
-						changed = true;
-					}
-				}
-			}
-		}
-		if(root.contains("blocks", 9)) {
-			ListNBT blocks = root.getList("blocks", 10);
-			for(int i = 0; i < blocks.size(); i++) {
-				CompoundNBT entry = blocks.getCompound(i);
-				if(!entry.contains("nbt", 10)) continue;
-				CompoundNBT tileNbt = entry.getCompound("nbt");
-				if(tileNbt.contains("id", 8)) {
-					String oldId = tileNbt.getString("id");
-					if(ExtendedMissingMappings.BLOCK_ENTITIES.containsKey(oldId)) {
-						ResourceLocation newId = new ResourceLocation(ExtendedMissingMappings.BLOCK_ENTITIES.get(oldId));
-						if(newId != null) {
-							tileNbt.putString("id", newId.toString());
-							changed = true;
-						}
-					}
-				}
-			}
-		}
-		if(root.contains("entities", 9)) {
-			ListNBT entities = root.getList("entities", 10);
-			for(int i = 0; i < entities.size(); i++) {
-				CompoundNBT entry = entities.getCompound(i);
-				if(!entry.contains("nbt", 10)) continue;
-				CompoundNBT entityNbt = entry.getCompound("nbt");
-				if(!entityNbt.contains("id", 8)) continue;
-				ResourceLocation oldId = new ResourceLocation(entityNbt.getString("id"));
-				EntityType<?> newEntity = ExtendedMissingMappings.resolveEntity(oldId);
-				if(newEntity != null && newEntity.getRegistryName() != null) {
-					ResourceLocation newId = newEntity.getRegistryName();
-					if(!newId.equals(oldId)) {
-						entityNbt.putString("id", newId.toString());
-						changed = true;
-					}
-				}
-			}
-		}
-		return changed;
 	}
 
 	public static int executeEntity(CommandSource source, ResourceLocation resourceLocation, BlockPos pos) {
