@@ -9,7 +9,9 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
 import net.minecraft.client.gui.IGuiEventListener;
+import net.minecraft.client.gui.IRenderable;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -35,7 +37,7 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 	private static final int COLOR_BORDER = 0xFF2D2D2D;
 	private static final int COLOR_TAB_ACTIVE = 0xFF2E3440;
 	private static final int COLOR_TAB_INACTIVE = 0xFF1A1D24;
-	private final List<SpeechbankTabSession> tabs = new ArrayList<>();
+	private final List<SpeechbankTab> tabs = new ArrayList<>();
 	private int activeTabIndex = -1;
 	private int tabScrollOffset = 0;
 	private double splitRatio = 0.30D;
@@ -54,7 +56,10 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 	private Button optionsButton;
 	private Button helpButton;
 	@Nullable
-	public LeftPanel leftPanel;
+	public SpeechbankEditleftScreen leftPanel;
+	private final List<IGuiEventListener> tabListeners = new ArrayList<>();
+	@Nullable
+	private SpeechbankEditRightScreen boundSubScreen;
 
 	public SpeechbankEditScreen() {
 		super(TITLE);
@@ -63,9 +68,51 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 	@Override
 	protected void init() {
 		super.init();
+		this.leftPanel = new SpeechbankEditleftScreen(this);
 		this.calculatePositions();
-		this.intButtons();
+		this.fileButton = this.addButton(new Button(4, 0, 44, 20, new StringTextComponent("Open"), (btn) -> this.onOpenMenuClicked()));
+		this.optionsButton = this.addButton(new Button(52, 0, 44, 20, new StringTextComponent("New"), (btn) -> this.onNewMenuClicked()));
+		this.helpButton = this.addButton(new Button(100, 0, 44, 20, new StringTextComponent("Help"), (btn) -> this.onHelpMenuClicked()));
+		this.addButton(new Button(width - 50, 0, 50, 20, new TranslationTextComponent("gui.lotrextended.base.return"), btn -> this.minecraft.setScreen(new ExtendedAbstractOptionsScreen())));
+		this.children.add(leftPanel);
+		this.children.add(new TabScrollControlsListener());
+		this.children.add(new DeviderListener());
+		this.rebuildTabListeners();
+		this.refreshTabs(true);
+		this.syncLeftPanel();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+	}
+
+	private void rebuildTabListeners() {
+		this.children.removeAll(this.tabListeners);
+		this.tabListeners.clear();
+		for (int i = 0; i < this.tabs.size(); ++i) {
+			TabHitRegion hitRegion = new TabHitRegion(i);
+			this.tabListeners.add(hitRegion);
+			this.children.add(hitRegion);
+		}
+	}
+
+	private void refreshTabs(boolean forceScreenRefresh) {
+		leftPanel.refreshLayout(this.leftPanelX0, this.contentTop, this.leftPanelWidth, this.contentBottom - this.contentTop);
+		SpeechbankTab active = this.getActiveTab();
+		SpeechbankEditRightScreen newSubScreen = active != null ? active.subScreen : null;
+		if(this.boundSubScreen != null && this.boundSubScreen != newSubScreen) {
+			this.children.remove(this.boundSubScreen);
+			this.boundSubScreen = null;
+		}
+
+		if(newSubScreen != null) {
+			if(forceScreenRefresh || this.boundSubScreen != newSubScreen) {
+				newSubScreen.refreshLayout(this.rightPanelWidth, this.contentHeight, this.rightPanelX0, this.contentTop);
+				if(!this.children.contains(newSubScreen)) {
+					this.children.add(newSubScreen);
+				}
+				this.boundSubScreen = newSubScreen;
+			} else {
+				newSubScreen.refreshLayout(this.rightPanelWidth, this.contentHeight, this.rightPanelX0, this.contentTop);
+			}
+		}
 	}
 
 	public void calculatePositions() {
@@ -92,7 +139,7 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 	}
 
 	private int getTabWidth(int index) {
-		SpeechbankTabSession tab = this.tabs.get(index);
+		SpeechbankTab tab = this.tabs.get(index);
 		int desired = this.font.width(tab.getDisplayTitle()) + 14;
 		return MathHelper.clamp(desired, 64, TAB_MAX_WIDTH);
 	}
@@ -200,37 +247,14 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 		return trimmed + dots;
 	}
 
-	private void intButtons() {
-		this.buttons.clear();
-		this.children.clear();
-
-		this.fileButton = this.addButton(new Button(4, 0, 44, 20, new StringTextComponent("File"), (btn) -> this.onFileMenuClicked()));
-		this.optionsButton = this.addButton(new Button(52, 0, 54, 20, new StringTextComponent("Options"), (btn) -> this.onOptionsMenuClicked()));
-		this.helpButton = this.addButton(new Button(110, 0, 44, 20, new StringTextComponent("Help"), (btn) -> this.onHelpMenuClicked()));
-		this.addButton(new Button(width-50, 0, 50, 20, new TranslationTextComponent("gui.lotrextended.base.return"), btn -> this.minecraft.setScreen(new ExtendedAbstractOptionsScreen())));
-
-		this.children.add(new TabScrollControlsListener());
-		for(int i = 0; i < this.tabs.size(); ++i) {
-			this.children.add(new TabHitRegion(i));
-		}
-		if(leftPanel != null) {
-			leftPanel.layout(this.leftPanelX0, this.contentTop, this.leftPanelWidth, this.contentBottom - this.contentTop);
-			this.children.add(leftPanel);
-		}
-		SpeechbankTabSession active = this.getActiveTab();
-		if(active != null) {
-			active.subScreen.init(this.rightPanelWidth, this.contentHeight, this.rightPanelX0, this.contentTop, this);
-			this.children.add(active.subScreen);
-		}
-		this.children.add(new DeviderListener());
-	}
-
-	public int addTab(SpeechbankTabSession session) {
+	public int addTab(SpeechbankTab session) {
 		this.tabs.add(session);
 		this.activeTabIndex = this.tabs.size() - 1;
 		calculatePositions();
 		ensureTabVisible(this.activeTabIndex);
-		intButtons();
+		rebuildTabListeners();
+		refreshTabs(true);
+		syncLeftPanel();
 		return this.activeTabIndex;
 	}
 
@@ -239,7 +263,9 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 			this.activeTabIndex = index;
 			calculatePositions();
 			ensureTabVisible(this.activeTabIndex);
-			intButtons();
+			rebuildTabListeners();
+			refreshTabs(true);
+			syncLeftPanel();
 		}
 	}
 
@@ -249,7 +275,7 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 		}
 		this.tabs.remove(index);
 		if(this.tabs.isEmpty()) {
-			this.tabs.add(SpeechbankTabSession.createEmpty("new_speechbank"));
+			this.tabs.add(new SpeechbankTab(this, new ResourceLocation("speech/new_speechbank")));
 			this.activeTabIndex = 0;
 			this.tabScrollOffset = 0;
 		} else {
@@ -257,28 +283,30 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 			ensureTabVisible(this.activeTabIndex);
 		}
 		calculatePositions();
-		intButtons();
+		rebuildTabListeners();
+		refreshTabs(true);
+		syncLeftPanel();
 	}
 
 	@Nullable
-	public SpeechbankTabSession getActiveTab() {
+	public SpeechbankTab getActiveTab() {
 		if(this.activeTabIndex >= 0 && this.activeTabIndex < this.tabs.size()) {
 			return this.tabs.get(this.activeTabIndex);
 		}
 		return null;
 	}
 
-	public void onFileMenuClicked() {
-		addTab(SpeechbankTabSession.createEmpty("new_speechbank"));
-	}
+	public void onOpenMenuClicked() {}
 
-	public void onOptionsMenuClicked() {}
+	public void onNewMenuClicked() {
+		addTab(new SpeechbankTab(this, new ResourceLocation("speech/new_speechbank")));
+	}
 
 	public void onHelpMenuClicked() {}
 
 	@Override
 	public void tick() {
-		SpeechbankTabSession active = this.getActiveTab();
+		SpeechbankTab active = this.getActiveTab();
 		if(active != null) {
 			active.subScreen.tick();
 		}
@@ -298,10 +326,8 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 		//Content Window
 		fill(matrixStack, this.leftPanelX0, this.contentTop, this.leftPanelX0 + this.leftPanelWidth, this.contentBottom, COLOR_LEFT_PANEL_BG);
 		fill(matrixStack, this.rightPanelX0, this.contentTop, this.rightPanelX0 + this.rightPanelWidth, this.contentBottom, COLOR_RIGHT_PANEL_BG);
-		if(leftPanel != null) {
-			leftPanel.renderPanel(matrixStack, this.leftPanelX0, this.contentTop, this.leftPanelWidth, contentHeight, mouseX, mouseY, partialTicks);
-		}
-		SpeechbankTabSession active = this.getActiveTab();
+		leftPanel.render(matrixStack, mouseX, mouseY, partialTicks);
+		SpeechbankTab active = this.getActiveTab();
 		if(active != null) {
 			active.subScreen.render(matrixStack, mouseX, mouseY, partialTicks);
 		}
@@ -327,7 +353,7 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 		int tabH = TAB_BAR_HEIGHT - 3;
 		int maxRight = getTabStripMaxRight();
 		for(int i = this.tabScrollOffset; i < this.tabs.size(); ++i) {
-			SpeechbankTabSession tab = this.tabs.get(i);
+			SpeechbankTab tab = this.tabs.get(i);
 			int tabW = getTabWidth(i);
 			if(tabX + tabW > maxRight) {
 				break;
@@ -340,7 +366,7 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 			int bg = isActive ? COLOR_TAB_ACTIVE : (isHovered ? 0xFF252A34 : COLOR_TAB_INACTIVE);
 			fill(matrixStack, tabX, tabY, tabX + tabW, tabY + tabH, bg);
 			if(isActive) {
-				fillGradientHorizontal(matrixStack, tabX, tabY, tabX + tabW, tabY + 2, COLOR_DIVIDER_ACTIVE, 0xFF88C0D0);
+				fill(matrixStack, tabX, tabY, tabX + tabW, tabY + 2, COLOR_DIVIDER_ACTIVE);
 			}
 			int textColor = isActive ? WHITE_TEXT : 0xFFB0B0B0;
 			drawString(matrixStack, this.font, displayLabel, tabX + 6, tabY + (tabH - 8) / 2, textColor);
@@ -478,32 +504,47 @@ public class SpeechbankEditScreen extends ExtendedAbstractBasicScreen {
 			int clampedLeft = MathHelper.clamp((int)Math.round(mouseX), minLeft, maxLeft);
 			splitRatio = (double)clampedLeft / (double)usableWidth;
 			calculatePositions();
-			intButtons();
+			refreshTabs(false);
 			return true;
 		}
 
 	}
 
-	public static class SpeechbankTabSession {
-		public boolean dirty;
-		public SpeechbankEditSubScreen subScreen;
+	private void syncLeftPanel() {
+		leftPanel.syncFromTab(this.getActiveTab());
+	}
 
-		public SpeechbankTabSession(String title) {
-			this.subScreen = new SpeechbankEditSubScreen(title);
-		}
-
-		public static SpeechbankTabSession createEmpty(String title) {
-			return new SpeechbankTabSession(title);
-		}
-
-		public String getDisplayTitle() {
-			return this.dirty ? this.subScreen.getFileName() + "*" : this.subScreen.getFileName();
+	public void onActiveTabModified(SpeechbankEditRightScreen source) {
+		SpeechbankTab active = this.getActiveTab();
+		if (active != null && active.subScreen == source) {
+			active.dirty = true;
+			syncLeftPanel();
 		}
 	}
 
-	public interface LeftPanel extends IGuiEventListener {
-		void layout(int x0, int y0, int width, int height);
+	public static String getFileName(ResourceLocation location) {
+		if (location == null) {
+			return "";
+		}
+		String path = location.getPath();
+		int slashIndex = path.lastIndexOf('/');
+		return slashIndex >= 0 ? path.substring(slashIndex + 1) : path;
+	}
 
-		void renderPanel(MatrixStack matrixStack, int x0, int y0, int width, int height, int mouseX, int mouseY, float partialTicks);
+	protected static class SpeechbankTab {
+		public boolean dirty;
+		public SpeechbankEditRightScreen subScreen;
+
+		public SpeechbankTab(SpeechbankEditScreen pParentScreen, ResourceLocation filePath) {
+			this.subScreen = new SpeechbankEditRightScreen(pParentScreen, filePath);
+		}
+
+		public String getDisplayTitle() {
+			return this.dirty ? getFileName(this.subScreen.getFilePath()) + "*" : getFileName(this.subScreen.getFilePath());
+		}
+	}
+
+	public interface PanelResize extends IRenderable {
+		void refreshLayout(int pXOffset, int pYOffset, int pWidth, int pHeight);
 	}
 }
