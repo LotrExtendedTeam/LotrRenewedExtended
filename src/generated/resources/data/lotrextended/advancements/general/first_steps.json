@@ -1054,6 +1054,14 @@
           "biome": "lotr:uruk_highlands"
         }
       }
+    },
+    "enter_adornland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:adornland"
+        }
+      }
     }
   },
   "requirements": [
@@ -1187,7 +1195,8 @@
       "enter_morgul_vale_river",
       "enter_nurn_river",
       "enter_fangorn_wasteland",
-      "enter_uruk_highlands"
+      "enter_uruk_highlands",
+      "enter_adornland"
     ]
   ]
 }

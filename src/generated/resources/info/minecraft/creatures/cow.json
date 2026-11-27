@@ -1,6 +1,7 @@
 {
   "entity": "minecraft:cow",
   "biomes": [
+    "lotr:adornland",
     "lotr:andrast",
     "lotr:anduin_hills",
     "lotr:anfalas",

@@ -24,5 +24,6 @@ public class ExtendedMapBiomeColorsGenerator extends ExtendedMapBiomeColorsProvi
 		addBiome(ExtendedBiomePointers.MORDOR_RIVER, "22303D");
 		addBiome(ExtendedBiomePointers.URUK_HIGHLANDS, "7E935A");
 		addBiome(ExtendedBiomePointers.FANGORN_WASTELAND, "647B45");
+		addBiome(ExtendedBiomePointers.ADORNLAND, "97A85E");
 	}
 }

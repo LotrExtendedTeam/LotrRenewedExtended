@@ -889,6 +889,14 @@
           "biome": "lotr:uruk_highlands"
         }
       }
+    },
+    "enter_adornland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:adornland"
+        }
+      }
     }
   },
   "requirements": [
@@ -1218,6 +1226,9 @@
     ],
     [
       "enter_uruk_highlands"
+    ],
+    [
+      "enter_adornland"
     ]
   ]
 }

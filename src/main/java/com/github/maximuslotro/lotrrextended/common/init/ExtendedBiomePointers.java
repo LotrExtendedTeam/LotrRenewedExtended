@@ -38,6 +38,7 @@ public class ExtendedBiomePointers {
 	public static final RegistryKey<Biome> ANGMAR = registerRenewed("angmar");
 	public static final RegistryKey<Biome> HARONDOR = registerRenewed("harondor");
 	public static final RegistryKey<Biome> ENEDWAITH = registerRenewed("enedwaith");
+	public static final RegistryKey<Biome> ADORNLAND = registerRenewed("adornland");
 	public static final RegistryKey<Biome> VALES_OF_ANDUIN = registerRenewed("vales_of_anduin");
 	public static final RegistryKey<Biome> ANDUIN_HILLS = registerRenewed("anduin_hills");
 	public static final RegistryKey<Biome> WILDERLAND = registerRenewed("wilderland");

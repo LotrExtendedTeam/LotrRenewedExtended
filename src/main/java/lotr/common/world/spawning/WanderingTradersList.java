@@ -102,6 +102,8 @@ public class WanderingTradersList {
 		register("lotr:emyn_winion", genMap("lotr:galadhrim_wanderer", 40, "lotr:oddment_collector", 60));
 
 		register("lotr:dunland", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO iron_hills merchant, dale merchant
+		register("lotr:adornland", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 		register("lotr:umbar", genRates("lotr:oddment_collector"));
 		register("lotr:umbar_hills", genRates("lotr:oddment_collector"));

@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
+import lotr.common.biome.ExtendedAdornlandBiome;
 import lotr.common.biome.ExtendedBarrowDownsBiome;
 import lotr.common.biome.ExtendedFangornWastelandBiome;
 import lotr.common.biome.ExtendedGorgorothRiverBiome;
@@ -89,5 +90,6 @@ public class MixinLOTRBiomes {
 		prepareD("nurn_river", () -> new ExtendedNurnRiverBiome());
 		prepareD("fangorn_wasteland", () -> new ExtendedFangornWastelandBiome(true));
 		prepareD("uruk_highlands", () -> new ExtendedUrukHighlandsBiome(true));
+		prepareD("adornland", () -> new ExtendedAdornlandBiome(true));
 	}
 }

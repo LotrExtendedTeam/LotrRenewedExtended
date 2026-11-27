@@ -1,6 +1,7 @@
 {
   "entity": "lotr:craban",
   "biomes": [
+    "lotr:adornland",
     "lotr:dunland",
     "lotr:fangorn",
     "lotr:fangorn_wasteland",

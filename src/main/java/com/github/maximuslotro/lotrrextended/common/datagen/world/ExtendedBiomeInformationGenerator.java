@@ -143,6 +143,12 @@ public class ExtendedBiomeInformationGenerator extends ExtendedBiomeInformationP
 		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
 		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.UNCOMMON)
 		.addInvasion(ExtendedInvasions.DUNLAND, ExtendedInvasionChance.UNCOMMON).save(pConsumer);
+		make(ExtendedBiomePointers.ADORNLAND).setBanditChance(ExtendedBanditChance.COMMON)
+		.addInvasion(ExtendedInvasions.DUNLAND, ExtendedInvasionChance.UNCOMMON)
+		.addInvasion(ExtendedInvasions.ISENGARD, ExtendedInvasionChance.RARE)
+		.addInvasion(ExtendedInvasions.ROHAN, ExtendedInvasionChance.UNCOMMON)
+		.addInvasion(ExtendedInvasions.GUNDABAD, ExtendedInvasionChance.RARE)
+		.addInvasion(ExtendedInvasions.GUNDABAD_WARGS, ExtendedInvasionChance.RARE).save(pConsumer);
 		// Isengard
 		make(ExtendedBiomePointers.NAN_CURUNIR).setConquestRate(0.2f).setBanditChance(ExtendedBanditChance.UNCOMMON)
 		.addInvasion(ExtendedInvasions.ROHAN, ExtendedInvasionChance.RARE).save(pConsumer);

@@ -26,6 +26,10 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."),
 				addBiomeTrigger(make(), ExtendedBiomePointers.NAN_CURUNIR).parent(horse_lords));
 	
+		Advancement enter_adornland = build(true, data(LOTRItems.IRON_SPEAR.get(), "enter_adornland", FrameType.TASK)
+			.setTitle("The People of Wulf").setDescription("Enter the Dunlending-occupied region of Adornland."),
+			addBiomeTrigger(make(), ExtendedBiomePointers.ADORNLAND).parent(horse_lords));
+
 		Advancement uruk_highlands = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "uruk_highlands", FrameType.TASK)
 			.setTitle("Place of Devastation").setDescription("Enter the Uruk Highlands."),
 			addBiomeTrigger(make(), ExtendedBiomePointers.URUK_HIGHLANDS).parent(vale_of_the_wizard));

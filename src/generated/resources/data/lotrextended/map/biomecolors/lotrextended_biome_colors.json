@@ -1,6 +1,7 @@
 {
   "load_order": 2,
   "biome_colors": {
+    "lotr:adornland": "97A85E",
     "lotr:barrow_downs": "7B8E52",
     "lotr:barrow_downs_river": "677A72",
     "lotr:fangorn_wasteland": "647B45",
