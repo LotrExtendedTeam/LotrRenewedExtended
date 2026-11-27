@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:light_gray_dye_from_moonflower"
+    ]
+  },
+  "criteria": {
+    "has_moonflower": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:moonflower"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:light_gray_dye_from_moonflower"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_moonflower",
+      "has_the_recipe"
+    ]
+  ]
+}

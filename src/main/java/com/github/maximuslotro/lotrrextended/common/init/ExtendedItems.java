@@ -8,11 +8,12 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemStackTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.*;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
+import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 
 import lotr.common.init.LOTRItemGroups;
@@ -568,12 +569,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_CARPET = regBlockItem(ExtendedBlocks.SILVER_FUR_CARPET, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> WHITE_FUR_CARPET = regBlockItemProps(ExtendedBlocks.WHITE_FUR_CARPET, LOTRItemGroups.DECO, (props) -> props.rarity(Rarity.UNCOMMON));
 
-	public static RegistryObject<Item> WOODEN_BIRDCAGE = regBlockItem(ExtendedBlocks.WOODEN_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> BRONZE_BIRDCAGE = regBlockItem(ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> IRON_BIRDCAGE = regBlockItem(ExtendedBlocks.IRON_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> SILVER_BIRDCAGE = regBlockItem(ExtendedBlocks.SILVER_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> GOLDEN_BIRDCAGE = regBlockItem(ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItemGroups.DECO);
-	public static RegistryObject<Item> MITHRIL_BIRDCAGE = regBlockItem(ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> WOODEN_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.WOODEN_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.WOODEN_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> BRONZE_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.BRONZE_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.BRONZE_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> IRON_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.IRON_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.IRON_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> SILVER_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.SILVER_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.SILVER_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> GOLDEN_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.GOLDEN_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.GOLDEN_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> MITHRIL_BIRDCAGE = regGenericBlockItem(ExtendedBlocks.MITHRIL_BIRDCAGE, () -> new ExtendedBirdcageItem(ExtendedBlocks.MITHRIL_BIRDCAGE.get(), new Properties().tab(LOTRItemGroups.DECO)));
 
 	public static RegistryObject<Item> MORGUL_TORCH = regWallOrFloorItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 	public static RegistryObject<Item> MORGUL_BRAZIER = regBlockItem(ExtendedBlocks.MORGUL_BRAZIER, LOTRItemGroups.DECO);
@@ -633,6 +634,16 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROHAN_BANNER = regItem("rohan_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.ROHAN_BANNER.get(), ExtendedBlocks.ROHAN_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 	public static RegistryObject<Item> WOODLAND_REALM_BANNER = regItem("woodland_realm_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.WOODLAND_REALM_BANNER.get(), ExtendedBlocks.WOODLAND_REALM_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 
+	public static RegistryObject<Item> ELFSONG = regBlockItem(ExtendedBlocks.ELFSONG, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> FANGORNS_BEARD = regBlockItem(ExtendedBlocks.FANGORNS_BEARD, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> HOURN_LEAF = regBlockItem(ExtendedBlocks.HOURN_LEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> MOONFLOWER = regBlockItem(ExtendedBlocks.MOONFLOWER, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> RIVERWEED = regGenericBlockItem(ExtendedBlocks.RIVERWEED, () -> new ExtendedFangornRiverWeedItem(ExtendedBlocks.RIVERWEED.get(), new Properties().tab(LOTRItemGroups.DECO)));
+	public static RegistryObject<Item> SPRINGLEAF = regBlockItem(ExtendedBlocks.SPRINGLEAF, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> STONEROOT = regBlockItem(ExtendedBlocks.STONEROOT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> SUNFRUIT = regBlockItem(ExtendedBlocks.SUNFRUIT, LOTRItemGroups.DECO);
+	public static RegistryObject<Item> TEARS_OF_YAVANNA = regBlockItem(ExtendedBlocks.TEARS_OF_YAVANNA, LOTRItemGroups.DECO);
+
 	//###################################################################MATERIALS########################################################
 	//Misc
 	public static RegistryObject<Item> OBSIDIAN_SHARD = regItem("obsidian_shard", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
@@ -651,6 +662,19 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GILDED_IRON_INGOT = regItem("gilded_iron_ingot", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	public static RegistryObject<Item> MORGUL_STEEL_INGOT = regItem("morgul_steel_ingot", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	public static RegistryObject<Item> ORC_STEEL_NUGGET = regItem("orc_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+
+	//Nuggets - Sahib
+
+	public static RegistryObject<Item> COPPER_NUGGET = regItem("copper_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> TIN_NUGGET = regItem("tin_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> DWARVEN_STEEL_NUGGET = regItem("dwarven_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> ELVEN_STEEL_NUGGET = regItem("elven_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> URUK_STEEL_NUGGET = regItem("uruk_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> GALVORN_NUGGET = regItem("galvorn_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> BLACK_URUK_STEEL_NUGGET = regItem("black_uruk_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> GILDED_IRON_NUGGET = regItem("gilded_iron_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+	public static RegistryObject<Item> MORGUL_STEEL_NUGGET = regItem("morgul_steel_nugget", () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
+
 	//Gems
 	public static RegistryObject<Item> TOPAZ = regItem("topaz", () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), TextFormatting.GOLD));
 	public static RegistryObject<Item> AMETHYST = regItem("amethyst", () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), TextFormatting.LIGHT_PURPLE));
@@ -743,6 +767,12 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BANANA_BEER = regItem("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));
 	public static RegistryObject<Item> PLUM_KVASS = regItem("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
+	public static RegistryObject<Item> BLACKBERRY_JUICE = regItem("blackberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> BLUEBERRY_JUICE = regItem("blueberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> CRANBERRY_JUICE = regItem("cranberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> ELDERBERRY_JUICE = regItem("elderberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> RASPBERRY_JUICE = regItem("raspberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
+	public static RegistryObject<Item> WILDBERRY_JUICE = regItem("wildberry_juice", () -> VesselDrinkItem.newBasic(5, 0.5F));
 
 	
 	public static RegistryObject<Item> LEEK = regItem("leek", () -> new BlockNamedItem(ExtendedBlocks.LEEKS.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.LEEK)));
@@ -921,6 +951,17 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BARROW_BLADE = regItem("barrow_blade", ()-> new ExtendedBarrowBlade(LOTRItemGroups.COMBAT));
 	public static RegistryObject<Item> COMMANDHORN = regItem("horn_of_command", ()-> new ExtendedCommandHornItem(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
+	public static RegistryObject<Item> ANCIENT_ARMOR_PLATE = regItem("ancient_armor_plate", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_HELMET = regItem("ancient_helmet", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_HELMET));
+	public static RegistryObject<Item> ANCIENT_CHESTPLATE = regItem("ancient_chestplate", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_CHESTPLATE));
+	public static RegistryObject<Item> ANCIENT_LEGGINGS = regItem("ancient_leggings", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_LEGGINGS));
+	public static RegistryObject<Item> ANCIENT_BOOTS = regItem("ancient_boots", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_BOOTS));
+	public static RegistryObject<Item> ANCIENT_TIP = regItem("ancient_tip", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_BLADE = regItem("ancient_blade", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_HILT = regItem("ancient_hilt", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+	public static RegistryObject<Item> ANCIENT_SWORD = regItem("ancient_sword", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_SWORD));
+	public static RegistryObject<Item> ANCIENT_DAGGER = regItem("ancient_dagger", () -> new ExtendedAncientItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedLootTables.ANCIENT_ARMOR_DAGGER));
+
 	//########################################################################UTIL##########################################################
 	public static RegistryObject<Item> ORC_STEEL_DOOR = regTallBlockItem(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR = regBlockItem(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);
@@ -987,13 +1028,13 @@ public class ExtendedItems {
 		ITEMS.register(bus);
 	}
 
-	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {
-		RegistryObject<Item> item = ITEMS.register(name, sup);
+	private static <I extends Item> RegistryObject<I> regItem(String name, Supplier<I> sup) {
+		RegistryObject<I> item = ITEMS.register(name, sup);
 		LOTRItems.putItemInCreativeTabOrder(item.getId());
 		return item;
 	}
-	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {
-		RegistryObject<Item> item = regItem(name, sup);
+	private static <I extends Item> RegistryObject<I> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<I> sup)  {
+		RegistryObject<I> item = regItem(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.bannerPatternItemNameHolders.put(name, bannerPattern.getFilename());
 		}
@@ -1006,15 +1047,15 @@ public class ExtendedItems {
 		}
 		return item;
 	}
-	private static RegistryObject<Item> regGenericBlockItem(RegistryObject<Block> blockSup, Supplier<? extends BlockItem> sup) {
-		return regItem(blockSup.getId().getPath(), sup);
+	private static <I extends Item, B extends Block> RegistryObject<I> regGenericBlockItem(RegistryObject<B> blockSup, Supplier<I> sup) {
+	    return regItem(blockSup.getId().getPath(), sup);
 	}
-	private static RegistryObject<Item> regBlockItemProps(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> props) {
+	private static <B extends Block> RegistryObject<Item> regBlockItemProps(RegistryObject<B> blockSup, ItemGroup group, Consumer<Properties> props) {
 		Properties properties =  new Properties().tab(group);
 		props.accept(properties);
 		return regGenericBlockItem(blockSup, () -> new BlockItem(blockSup.get(), properties));
 	}
-	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {
+	private static <B extends Block> RegistryObject<Item> regBlockItem(RegistryObject<B> blockSup, ItemGroup group) {
 		return regBlockItemProps(blockSup, group, props -> {});
 	}
 	private static RegistryObject<Item> regCakeItem(RegistryObject<Block> blockSup, ItemGroup group) {

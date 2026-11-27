@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
+import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedStructureDataFixer;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
@@ -23,20 +25,17 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.command.arguments.ResourceLocationArgument;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.LockableLootTileEntity;
@@ -85,83 +84,35 @@ public class ExtendedStructureHelperComamnd {
 		ExtendedMissingMappings.ensureMappingsCreated();
 		Collection<ResourceLocation> structures = manager.listResources("structures", p -> p.endsWith(".nbt"));
 
+		int processed = 0;
 		int fixed = 0;
+		int total = structures.size();
+		source.sendSuccess(new StringTextComponent("Processing " + total + " structures"), false);
 
 		for (ResourceLocation found : structures) {
 			try {
 				IResource resource = manager.getResource(found);
 				CompoundNBT tag = CompressedStreamTools.readCompressed(resource.getInputStream());
-				boolean changed = remapUsingExtendedMappings(tag);
+				boolean changed = ExtendedStructureDataFixer.remapUsingExtendedMappings(tag);
 				if (changed) {
 					Path out = Paths.get(level.getServer().getServerDirectory().toString(), "world", "generated", found.getNamespace(), found.getPath());
 					Files.createDirectories(out.getParent());
 					CompressedStreamTools.writeCompressed(tag, Files.newOutputStream(out));
 					fixed++;
-					source.sendSuccess(new StringTextComponent("Remapped IDs in " + found), false);
+					ExtendedLog.info("Remapped IDs in {}", found);
 				}
 
 			} catch (Exception e) {
 				source.sendFailure(new StringTextComponent("Failed remapping IDs in: " + found));
 				e.printStackTrace();
 			}
+			processed++;
+			if (processed % 100 == 0) {
+				source.sendSuccess(new StringTextComponent("Processed " + processed + " / " + total + " structures (" + fixed + " remapped)"), false);
+			}
 		}
-
 		source.sendSuccess(new StringTextComponent("Remapped IDs in " + fixed + " structures."), false);
 		return Command.SINGLE_SUCCESS;
-
-	}
-
-	//TODO handle tile-entity remapping, and item remapping if needed
-	private static boolean remapUsingExtendedMappings(CompoundNBT root) {
-		boolean changed = false;
-		if (root.contains("palette", 9)) {
-	        ListNBT palette = root.getList("palette", 10);
-	        for (int i = 0; i < palette.size(); i++) {
-	            CompoundNBT state = palette.getCompound(i);
-	            ResourceLocation oldId = new ResourceLocation(state.getString("Name"));
-	            if (ExtendedMissingMappings.BLOCKS.containsKey(oldId)) {
-					Block newBlock = ExtendedMissingMappings.BLOCKS.get(oldId);
-					ResourceLocation newId = newBlock.getRegistryName();
-					state.putString("Name", newId.toString());
-					changed = true;
-				}
-	        }
-	    }
-		if (root.contains("blocks", 9)) {
-	        ListNBT blocks = root.getList("blocks", 10);
-	        for (int i = 0; i < blocks.size(); i++) {
-	            CompoundNBT entry = blocks.getCompound(i);
-	            if (!entry.contains("nbt", 10)) continue;
-	            CompoundNBT tileNbt = entry.getCompound("nbt");
-	            if (tileNbt.contains("id", 8)) {
-	                String oldId = tileNbt.getString("id");
-	                if (ExtendedMissingMappings.BLOCK_ENTITIES.containsKey(oldId)) {
-	                    ResourceLocation newId = new ResourceLocation(ExtendedMissingMappings.BLOCK_ENTITIES.get(oldId));
-	                    if (newId != null) {
-	                        tileNbt.putString("id", newId.toString());
-	                        changed = true;
-	                    }
-	                }
-	            }
-	        }
-	    }
-		if (root.contains("entities", 9)) {
-	        ListNBT entities = root.getList("entities", 10);
-	        for (int i = 0; i < entities.size(); i++) {
-	            CompoundNBT entry = entities.getCompound(i);
-	            if (!entry.contains("nbt", 10)) continue;
-	            CompoundNBT entityNbt = entry.getCompound("nbt");
-	            if (!entityNbt.contains("id", 8)) continue;
-	            ResourceLocation oldId = new ResourceLocation(entityNbt.getString("id"));
-	            if (ExtendedMissingMappings.ENTITIES.containsKey(oldId)) {
-	            	EntityType<?> newEntity = ExtendedMissingMappings.ENTITIES.get(oldId);
-					ResourceLocation newId = newEntity.getRegistryName();
-					entityNbt.putString("id", newId.toString());
-					changed = true;
-				}
-	        }
-	    }
-		return changed;
 	}
 
 	public static int executeEntity(CommandSource source, ResourceLocation resourceLocation, BlockPos pos) {
@@ -239,19 +190,19 @@ public class ExtendedStructureHelperComamnd {
 			AxisAlignedBB area = new AxisAlignedBB(pos);
 			List<ArmorStandEntity> armorStands = source.getLevel().getEntitiesOfClass(ArmorStandEntity.class, area);
 			if (!armorStands.isEmpty()) {
-		        ArmorStandEntity armorStand = armorStands.get(0);
-		        armorStand.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		        armorStand.setItemSlot(EquipmentSlotType.CHEST, ItemStack.EMPTY);
-		        armorStand.setItemSlot(EquipmentSlotType.LEGS, ItemStack.EMPTY);
-		        armorStand.setItemSlot(EquipmentSlotType.FEET, ItemStack.EMPTY);
-		        CompoundNBT forgeData = armorStand.getPersistentData();
-		        forgeData.putString("StandLootTable", resourceLocation.toString());
-		        source.sendSuccess(new StringTextComponent("Set ArmorStand Location: " + resourceLocation.toString()), false);
-		        return Command.SINGLE_SUCCESS;
-		    } else {
-		        source.sendFailure(new StringTextComponent("No armor stand found at the specified block position!"));
-		        return Command.SINGLE_SUCCESS;
-		    }
+				ArmorStandEntity armorStand = armorStands.get(0);
+				armorStand.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+				armorStand.setItemSlot(EquipmentSlotType.CHEST, ItemStack.EMPTY);
+				armorStand.setItemSlot(EquipmentSlotType.LEGS, ItemStack.EMPTY);
+				armorStand.setItemSlot(EquipmentSlotType.FEET, ItemStack.EMPTY);
+				CompoundNBT forgeData = armorStand.getPersistentData();
+				forgeData.putString("StandLootTable", resourceLocation.toString());
+				source.sendSuccess(new StringTextComponent("Set ArmorStand Location: " + resourceLocation.toString()), false);
+				return Command.SINGLE_SUCCESS;
+			} else {
+				source.sendFailure(new StringTextComponent("No armor stand found at the specified block position!"));
+				return Command.SINGLE_SUCCESS;
+			}
 		}
 		source.sendFailure(new StringTextComponent("Destination is not instanceof supported objects or tried setting invalid loot-table for object!"));
 		return Command.SINGLE_SUCCESS;

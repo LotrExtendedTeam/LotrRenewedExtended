@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -19,10 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Renders an {@link ExtendedBannerEntity} in the world.
- * <p>
- * This class extends {@link EntityRenderer} to customize the rendering behavior for a modded entity,
- * specifically a banner entity with potential debug rendering for its protection area.
- * </p>
  * 
  * <p>
  * When debug mode is enabled, it visualizes the protection range using a wireframe bounding box.
@@ -30,10 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  */
 @OnlyIn(Dist.CLIENT)
 public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity> {
-	/**
-     * The texture resource used to render the banner entity.
-     */
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
 	/**
      * Constructs a new renderer for the {@link ExtendedBannerEntity}.
      *
@@ -73,39 +64,14 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 			pMatrixStack.popPose();
 		}
 	}
-
-//	if (minecraft.options.renderDebug && pEntity.getProtectionRange()>0) {
-//		RenderSystem.lineWidth(10.0f);
-//        IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-//        if(buffer == null)
-//        	return;
-//        IVertexBuilder builder = buffer.getBuffer(RenderType.LINES);
-//        ClientPlayerEntity player = minecraft.player;
-//        double x = player.xOld + (player.getX() - player.xOld) * pPartialTicks;
-//        double y = player.yOld + (player.getY() - player.yOld) * pPartialTicks;
-//        double z = player.zOld + (player.getZ() - player.zOld) * pPartialTicks;
-//		minecraft.player.sendMessage(new StringTextComponent("Show "+pEntity.getProtectionRange()+" "+pEntity.getProtectionArea().toString()+"X:"+x+", Y:"+y+", Z:"+z), Util.NIL_UUID);
-//        pMatrixStack.pushPose();
-//        pMatrixStack.translate(x, -y, z);
-//        WorldRenderer.renderLineBox(pMatrixStack, builder, pEntity.getProtectionArea(), 1.0f, 1.0f, 1.0f, 1.0f);
-//        pMatrixStack.popPose();
-//        RenderSystem.disableDepthTest();
-//        buffer.endBatch(RenderType.LINES);
-//
-//	}
-//	pMatrixStack.popPose();
-//	//super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
-//}
 	/**
-     * Returns the texture location for the {@link ExtendedBannerEntity}.
+     * No texture needed, return null
      *
      * @param entity The entity being rendered.
      * @return The {@link ResourceLocation} for the entity's texture.
      */
 	@Override
-	public ResourceLocation getTextureLocation(ExtendedBannerEntity entity) {
-		return TEXTURE_LOCATION;
-	}
+	public ResourceLocation getTextureLocation(ExtendedBannerEntity entity) { return null;}
 	/**
      * Controls whether the entity's name should be rendered.
      *
@@ -116,7 +82,6 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 	protected boolean shouldShowName(ExtendedBannerEntity pEntity) {
 		return false;
 	}
-
 	/**
      * Renders a wireframe box using integer color values, wrapping min/max bounds from the given {@link AxisAlignedBB}.
      *
@@ -131,7 +96,6 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 	public static void renderLineBox(MatrixStack pMatrixStack, IVertexBuilder pBuffer, AxisAlignedBB pAabb, int pRed, int pGreen, int pBlue, int pAlpha) {
 		renderLineBox(pMatrixStack, pBuffer, pAabb.minX, pAabb.minY, pAabb.minZ, pAabb.maxX, pAabb.maxY, pAabb.maxZ, pRed, pGreen, pBlue, pAlpha);
 	}
-
 	/**
      * Renders a wireframe bounding box using specified min/max coordinates and integer color values.
      * This is a modified version of {@code WorldRenderer.renderLineBox} supporting int color parameters.

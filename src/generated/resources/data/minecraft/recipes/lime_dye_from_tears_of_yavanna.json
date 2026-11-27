@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:tears_of_yavanna"
+    }
+  ],
+  "result": {
+    "item": "minecraft:lime_dye"
+  }
+}

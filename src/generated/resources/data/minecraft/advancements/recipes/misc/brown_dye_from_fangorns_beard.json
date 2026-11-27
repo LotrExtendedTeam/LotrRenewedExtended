@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:brown_dye_from_fangorns_beard"
+    ]
+  },
+  "criteria": {
+    "has_fangorns_beard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:fangorns_beard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:brown_dye_from_fangorns_beard"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fangorns_beard",
+      "has_the_recipe"
+    ]
+  ]
+}

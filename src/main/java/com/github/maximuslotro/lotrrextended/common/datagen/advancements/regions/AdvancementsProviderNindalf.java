@@ -28,6 +28,10 @@ public class AdvancementsProviderNindalf extends ExtendedBaseAdvancementType{
 			addBreakBlockTriggers(make(), ExtendedBlocks.REMAINS_DWARF.get(), ExtendedBlocks.REMAINS_ELF.get(), 
 				ExtendedBlocks.REMAINS_MAN.get(), ExtendedBlocks.REMAINS_ORC.get()).parent(stench_of_evil));
 
+		Advancement archaeologist = build(true, data(ExtendedItems.ANCIENT_ARMOR_PLATE.get(), "archaeologist", FrameType.TASK)
+				.setTitle("Archaeologist").setDescription("Recover an ancient item from ancient item parts."),
+				addCraftingTrigger(make(), ExtendedItems.ANCIENT_HELMET.get(), ExtendedItems.ANCIENT_CHESTPLATE.get(), ExtendedItems.ANCIENT_LEGGINGS.get(),
+						ExtendedItems.ANCIENT_BOOTS.get(), ExtendedItems.ANCIENT_SWORD.get(), ExtendedItems.ANCIENT_DAGGER.get()).parent(stench_of_evil));
 	}
 
 	@Override

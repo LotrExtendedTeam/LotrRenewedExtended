@@ -111,9 +111,9 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
 			if(placer instanceof PlayerEntity) {
 				if (stack.hasTag() && stack.getTag().contains("ProtectionData", 10)) {
-					((ExtendedMEBannerTileEntity) tileentity).loadProtectionData(stack.getTag());
+					((ExtendedMEBannerTileEntity) tileentity).loadProtectionData(stack.getTag(), (PlayerEntity)placer);
 				}else {
-					((ExtendedMEBannerTileEntity) tileentity).setPlacedPlayerNameAndID(placer.getUUID(), ((PlayerEntity)placer).getGameProfile().getName());
+					((ExtendedMEBannerTileEntity) tileentity).setPlacedPlayerNameAndID((PlayerEntity)placer);
 				}
 			}
 		}

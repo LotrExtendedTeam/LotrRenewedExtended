@@ -41,7 +41,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
 			addItem(item.get(), "");
 		}
-
 		// Try Add New Biome Names
 		for (String biome : DataGenValueHolder.biomeNames) {
 			addD(biome);
@@ -151,6 +150,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.overview", "Overview");
 		addD("gui.lotrextended.menu.equipment", "Equipment");
 		addD("gui.lotrextended.menu.farmhand", "Farmhand");
+		addD("tooltip.lotrextended.birdcage.held_bird", "Held bird: %s");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
@@ -279,6 +279,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.lotrextended.hired_unit.transfered", "Your hired unit %1$s was transfered to %2$s");
 		addD("chat.lotrextended.hired_unit.levelup.combat", "Your hired unit %1$s has reached combat level %2$s");
 		addD("chat.lotrextended.hired_unit.levelup.farming", "Your hired unit %1$s has reached farming level %2$s");
+		// bird capturing
+		addD("chat.lotrextended.birdcapture.already_bas_bird", "That bird cage already has a bird in it.");
 
 		// wandering trader departure lines
 		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do

@@ -30,3 +30,4 @@ run*/
 *.log
 hs_err_pid*.log
 crash-reports/
+/.vscode/

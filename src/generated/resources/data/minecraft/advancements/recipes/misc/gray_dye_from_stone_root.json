@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:gray_dye_from_stone_root"
+    ]
+  },
+  "criteria": {
+    "has_stone_root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stone_root"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:gray_dye_from_stone_root"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stone_root",
+      "has_the_recipe"
+    ]
+  ]
+}

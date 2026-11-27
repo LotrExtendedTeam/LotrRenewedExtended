@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedDefaultBiomeFeatures;
+
 @Mixin(FangornBiome.class)
 public class MixinFangornBiome {
 	/**
@@ -51,7 +53,9 @@ public class MixinFangornBiome {
 			LOTRBiomeFeatures.darkOakShrub(), 600);
 		LOTRBiomeFeatures.addGrass((FangornBiome)(Object)this, builder, 12, GrassBlends.WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_WITH_FERNS);
-		LOTRBiomeFeatures.addForestFlowers(builder, 6);
+		// Extended Start
+		ExtendedDefaultBiomeFeatures.addFangornVegetation(builder);
+		// Extended End
 		LOTRBiomeFeatures.addDefaultDoubleFlowers(builder, 1);
 		LOTRBiomeFeatures.addMoreMushroomsFreq(builder, 1);
 		LOTRBiomeFeatures.addFallenLogs(builder, 3);

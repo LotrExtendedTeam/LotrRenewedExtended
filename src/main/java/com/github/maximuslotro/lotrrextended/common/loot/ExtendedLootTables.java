@@ -212,6 +212,14 @@ public class ExtendedLootTables {
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_JUNK = registerGameplay("fishing/junk");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_TREASURE = registerGameplay("fishing/treasure");
 
+	// ITEMS
+	public static final ResourceLocation ANCIENT_ARMOR_HELMET = registerItem("ancient_helmet");
+	public static final ResourceLocation ANCIENT_ARMOR_CHESTPLATE = registerItem("ancient_chestplate");
+	public static final ResourceLocation ANCIENT_ARMOR_LEGGINGS = registerItem("ancient_leggings");
+	public static final ResourceLocation ANCIENT_ARMOR_BOOTS = registerItem("ancient_boots");
+	public static final ResourceLocation ANCIENT_ARMOR_SWORD = registerItem("ancient_sword");
+	public static final ResourceLocation ANCIENT_ARMOR_DAGGER = registerItem("ancient_dagger");
+
 	public static void init() {}
 
 	private static ResourceLocation registerChest(String location) {
@@ -248,6 +256,10 @@ public class ExtendedLootTables {
 
 	private static ResourceLocation registerGameplay(String location) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "gameplay/"+location));
+	}
+
+	private static ResourceLocation registerItem(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "items/"+location));
 	}
 
 	private static ResourceLocation register(ResourceLocation location) {

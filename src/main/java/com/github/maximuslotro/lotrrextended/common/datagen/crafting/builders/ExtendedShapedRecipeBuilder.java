@@ -162,32 +162,29 @@ public class ExtendedShapedRecipeBuilder {
 		}
 
 		@Override
-		public void serializeRecipeData(JsonObject p_218610_1_) {
+		public void serializeRecipeData(JsonObject jsonObject) {
 			if (!this.group.isEmpty()) {
-				p_218610_1_.addProperty("group", this.group);
+				jsonObject.addProperty("group", this.group);
 			}
 
-			JsonArray jsonarray = new JsonArray();
-
+			JsonArray patternJSON = new JsonArray();
 			for(String s : this.pattern) {
-				jsonarray.add(s);
+				patternJSON.add(s);
 			}
-
-			p_218610_1_.add("pattern", jsonarray);
-			JsonObject jsonobject = new JsonObject();
-
+			jsonObject.add("pattern", patternJSON);
+			
+			JsonObject keyJSON = new JsonObject();
 			for(Entry<Character, Ingredient> entry : this.key.entrySet()) {
-				jsonobject.add(String.valueOf(entry.getKey()), entry.getValue().toJson());
+				keyJSON.add(String.valueOf(entry.getKey()), entry.getValue().toJson());
 			}
+			jsonObject.add("key", keyJSON);
 
-			p_218610_1_.add("key", jsonobject);
-			JsonObject jsonobject1 = new JsonObject();
-			jsonobject1.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
+			JsonObject resultJSON = new JsonObject();
+			resultJSON.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
 			if (this.count > 1) {
-				jsonobject1.addProperty("count", this.count);
+				resultJSON.addProperty("count", this.count);
 			}
-
-			p_218610_1_.add("result", jsonobject1);
+			jsonObject.add("result", resultJSON);
 		}
 
 		@Override

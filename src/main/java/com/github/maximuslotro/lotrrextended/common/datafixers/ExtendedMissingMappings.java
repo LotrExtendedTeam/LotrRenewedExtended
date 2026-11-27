@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
@@ -28,12 +30,11 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @SuppressWarnings("deprecation")
 public class ExtendedMissingMappings {
 	private static final String MODID = "lotrextended";
-	public static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
-	public static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
-	public static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
-	public static final Map<String, String> BLOCK_ENTITIES = new HashMap<>();
-	public static final List<ResourceLocation> IGNORE_MAPPINGS = new ArrayList<>();
-
+	private static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
+	private static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
+	private static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
+	private static final Map<String, String> BLOCK_ENTITIES = new HashMap<>();
+	private static final List<ResourceLocation> IGNORE_MAPPINGS = new ArrayList<>();
 	private static boolean hasMappingsBeenCreated = false;
 
 	public static void ensureMappingsCreated() {
@@ -47,14 +48,76 @@ public class ExtendedMissingMappings {
 		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.BLOCKS, ForgeRegistries.BLOCKS, "block");
 	}
 
+	@Nullable
+	public static Block resolveBlock(ResourceLocation oldId) {
+		ensureMappingsCreated();
+		if (BLOCKS.containsKey(oldId)) {
+			return BLOCKS.get(oldId);
+		}
+		if (IGNORE_MAPPINGS.contains(oldId)) {
+			return null;
+		}
+		// Handle dynamic Namespace Fallback: Remap lotr:x -> lotrextended:x
+		if (oldId.getNamespace().equals("lotr") || oldId.getNamespace().equals(MODID)) {
+			ResourceLocation fallbackId = new ResourceLocation(MODID, oldId.getPath());
+			if (ForgeRegistries.BLOCKS.containsKey(fallbackId)) {
+				return ForgeRegistries.BLOCKS.getValue(fallbackId);
+			}
+		}
+		return null;
+	}
 	public static void onMissingItemMappings(RegistryEvent.MissingMappings<Item> event) {
 		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ITEMS, ForgeRegistries.ITEMS, "item");
+	}
+
+	@Nullable
+	public static Item resolveItem(ResourceLocation oldId) {
+		ensureMappingsCreated();
+		if (ITEMS.containsKey(oldId)) {
+			return ITEMS.get(oldId);
+		}
+		if (IGNORE_MAPPINGS.contains(oldId)) {
+			return null;
+		}
+		// Handle dynamic Namespace Fallback: Remap lotr:x -> lotrextended:x
+		if (oldId.getNamespace().equals("lotr") || oldId.getNamespace().equals(MODID)) {
+			ResourceLocation fallbackId = new ResourceLocation(MODID, oldId.getPath());
+			if (ForgeRegistries.ITEMS.containsKey(fallbackId)) {
+				return ForgeRegistries.ITEMS.getValue(fallbackId);
+			}
+		}
+		return null;
 	}
 
 	public static void onMissingEntityMappings(RegistryEvent.MissingMappings<EntityType<?>> event) {
 		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ENTITIES, ForgeRegistries.ENTITIES, "entity");
 	}
 
+	@Nullable
+	public static EntityType<?> resolveEntity(ResourceLocation oldId) {
+		ensureMappingsCreated();
+		if (ENTITIES.containsKey(oldId)) {
+			return ENTITIES.get(oldId);
+		}
+		if (IGNORE_MAPPINGS.contains(oldId)) {
+			return null;
+		}
+		// Handle dynamic Namespace Fallback: Remap lotr:x -> lotrextended:x
+		if (oldId.getNamespace().equals("lotr") || oldId.getNamespace().equals(MODID)) {
+			ResourceLocation fallbackId = new ResourceLocation(MODID, oldId.getPath());
+			if (ForgeRegistries.ENTITIES.containsKey(fallbackId)) {
+				return ForgeRegistries.ENTITIES.getValue(fallbackId);
+			}
+		}
+		return null;
+	}
+
+	@Nullable
+	public static String resolveBlockEntity(String oldId) {
+		ensureMappingsCreated();
+		// All Block Entity remaps are Hardcoded
+		return BLOCK_ENTITIES.getOrDefault(oldId, oldId);
+	}
 
 	public static <T extends IForgeRegistryEntry<T>> void fixMappings(MissingMappings<T> event, Map<ResourceLocation, T> explicitOverrides, IForgeRegistry<T> registry, String typeName) {
 		ensureMappingsCreated();

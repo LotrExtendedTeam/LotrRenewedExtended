@@ -39,22 +39,20 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 	@Override
 	public void load(BlockState p_230337_1_, CompoundNBT nbt) {
 		super.load(p_230337_1_, nbt);
-		// Set empty if loot-table is set
-		if (this.tryLoadLootTable(nbt)) {
+		if(this.tryLoadLootTable(nbt)) {
 			containedItem = ItemStack.EMPTY;
-		}else {
-			if (nbt.contains("contained_item", NBT.TAG_COMPOUND)) {
-				this.containedItem = ItemStack.of(nbt.getCompound("contained_item"));
-			}
+		} else if(nbt.contains("contained_item", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("contained_item"));
+		} else if(nbt.contains("Item", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("Item"));
 		}
 	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT nbt) {
 		super.save(nbt);
-		// Don't save item if loot-table is saved
-		if (!this.trySaveLootTable(nbt)) {
-			nbt.put("contained_item", this.containedItem.save(new CompoundNBT()));
+		if(!this.trySaveLootTable(nbt)) {
+			nbt.put("Item", this.containedItem.save(new CompoundNBT()));
 		}
 		return nbt;
 	}
@@ -73,12 +71,9 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 		super.onDataPacket(net, pkt);
-		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
-	}
-
-	@Override
-	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
-		super.handleUpdateTag(state, tag);
+		if(this.hasLevel()) {
+			this.load(this.level.getBlockState(pkt.getPos()), pkt.getTag());
+		}
 	}
 
 	public ItemStack getContainedItem(boolean triggerTable) {
@@ -88,8 +83,8 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 		return containedItem;
 	}
 
-	public void setContainedItem(ItemStack containedItem) {
-		this.containedItem = containedItem;
+	public void setContainedItem(ItemStack pStack) {
+		this.containedItem = (pStack == null) ? ItemStack.EMPTY : pStack;
 	}
 
 	@Override

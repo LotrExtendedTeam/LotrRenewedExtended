@@ -5,6 +5,8 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFlowerEffectlessBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
@@ -202,6 +204,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			if(block.get() instanceof ExtendedChainBlock) {
 				tag(ExtendedTags.Blocks.CHAINS).add(block.get());
 			}
+			if(block.get() instanceof ExtendedFlowerBlock || block.get() instanceof ExtendedFlowerEffectlessBlock) {
+				tag(BlockTags.SMALL_FLOWERS).add(block.get());
+			}
 		}
 
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
@@ -228,14 +233,15 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(BlockTags.SOUL_SPEED_BLOCKS).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.DEAD_MOSS_VINES.get())
-		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
-		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
+		.add(ExtendedBlocks.WILLOW_VINES.get()).addTag(Tags.Blocks.DIRT);
 
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
 		.add(ExtendedBlocks.BARREN_DIRT.get()).addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(ExtendedTags.Blocks.MIDDLE_EARTH_PLACEABLE_SURFACE).addTag(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH).add(Blocks.GRASS_BLOCK).add(Blocks.GRASS_PATH)
 		.add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get()).add(Blocks.DIRT).add(Blocks.COARSE_DIRT);
+
+		tag(ExtendedTags.Blocks.STONE_ROOT_GROWABLE).addTag(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH).addTag(Tags.Blocks.DIRT);
 
 		tag(BlockTags.LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS).addTag(ExtendedTags.Blocks.EBONY_LOGS);

@@ -75,15 +75,44 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
 
     @Override
     public void setupAnim(T e, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
-        this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
-        this.left_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
-        this.right_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
-
         float wing = 0.0F;
         if (!e.isOnGround() && e.isFlying()) {
             wing = MathHelper.sin(pAgeInTicks * 1.2F) * 0.6F +.2F;
         }
+        setupPose(pLimbSwing, pLimbSwingAmount, pNetHeadYaw, pHeadPitch, wing);
+    }
+
+    public void setupFlappingCageAnim(double ageInTicks) {
+        float wing = (float) Math.sin(ageInTicks * 1.2D) * 0.6F + 0.2F;
+
+        this.right_wing.zRot = wing;
+        this.left_wing.zRot = -wing;
+    }
+
+    public void resetHeadPose() {
+        this.head.xRot = 0.0F;
+        this.head.yRot = 0.0F;
+    }
+
+    public void setupHeadMoveCageAnim(double ageInTicks) {
+        float duration = 20.0F;
+        float maxAngle = 30.0F;
+
+        float progress = (float) (ageInTicks % duration);
+
+        float headPitch = maxAngle * 0.5F *
+                (1.0F - MathHelper.cos(
+                        2.0F * (float) Math.PI * progress / duration
+                ));
+
+        this.head.xRot = (float) Math.toRadians(headPitch);
+    }
+
+    private void setupPose(float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, float wing) {
+        this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
+        this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
+        this.left_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
+        this.right_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
 
         this.right_wing.zRot = wing;
         this.left_wing.zRot = -wing;

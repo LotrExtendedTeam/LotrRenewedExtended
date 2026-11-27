@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:ancient_helmet"
+    ]
+  },
+  "criteria": {
+    "has_ancient_armor_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:ancient_armor_plate"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:ancient_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ancient_armor_plate",
+      "has_the_recipe"
+    ]
+  ]
+}

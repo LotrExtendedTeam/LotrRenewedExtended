@@ -25,6 +25,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -32,65 +33,48 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity implements ITickableTileEntity {
-	private static final String tagName = "extended_ditem";
-	private ItemStack containedItem;
-	private boolean ticked=false;
+	private ItemStack containedItem = ItemStack.EMPTY;
+	private boolean unpacked=false;
 	public ExtendedWeaponRackTileEntity() {
 		super(ExtendedTileEntities.WEAPON_RACK.get());
-		this.containedItem = ItemStack.EMPTY;
 	}
 
 	@Override
 	public void tick() {
-		if(!ExtendedServerConfig.enableDevMode.get()) {
-			if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
-				ticked=true;
-				this.unpackLootTable(null);
-				this.markAndUpdate();
-			}
+		if(!this.hasLevel() || this.level.isClientSide) {
+			return;
 		}
+		if(!ExtendedServerConfig.enableDevMode.get() && this.lootTable != null && !unpacked && playerInDistance()) {
+			unpacked=true;
+			this.unpackLootTable(null);
+			this.markAndUpdate();
+		}
+
 	}
 
 	private boolean playerInDistance() {
-		return level.hasNearbyAlivePlayer(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 50D);
-	}
-
-	@Override
-	public void setChanged() {
-		super.setChanged();
+		return this.hasLevel() && this.level.hasNearbyAlivePlayer(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 50D);
 	}
 
 	@Override
 	public void load(BlockState p_230337_1_, CompoundNBT nbt) {
 		super.load(p_230337_1_, nbt);
-		// Set empty if loot-table is set
-		if (this.tryLoadLootTable(nbt)) {
-			containedItem = ItemStack.EMPTY;
-		}else {
-			if (nbt.contains(tagName, NBT.TAG_COMPOUND)) {
-				this.containedItem = ItemStack.of(nbt.getCompound(tagName));
-				// Should never run, but can if major issues
-				if (containedItem == null) {
-					ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!");
-					containedItem = ItemStack.EMPTY;
-					this.markAndUpdate();
-				}
-			}
+		if(this.tryLoadLootTable(nbt)) {
+			this.containedItem = ItemStack.EMPTY;
+		} else if(nbt.contains("extended_ditem", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("extended_ditem"));
+		} else if(nbt.contains("Item", NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(nbt.getCompound("Item"));
+		} else {
+			this.containedItem = ItemStack.EMPTY;
 		}
 	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT nbt) {
 		super.save(nbt);
-		// Don't save item if loot-table is saved
-		if (!this.trySaveLootTable(nbt)) {
-			// Should never run, but can if major issues
-			if (containedItem == null) {
-				ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
-				containedItem = ItemStack.EMPTY;
-				this.markAndUpdate();
-			}
-			nbt.put(tagName, this.containedItem.save(new CompoundNBT()));
+		if(!this.trySaveLootTable(nbt)) {
+			nbt.put("Item", this.containedItem.save(new CompoundNBT()));
 		}
 		return nbt;
 	}
@@ -109,17 +93,14 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 		super.onDataPacket(net, pkt);
-		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
+		if(this.hasLevel()) {
+			this.load(this.level.getBlockState(pkt.getPos()), pkt.getTag());
+		}
 	}
 
 	@Override
 	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
-		super.handleUpdateTag(state, tag);
-	}
-
-	@Override
-	public boolean triggerEvent(int id, int type) {
-		return super.triggerEvent(id, type);
+		this.load(state, tag);
 	}
 
 	public void markAndUpdate() {
@@ -130,28 +111,15 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	}
 
 	public boolean hasItem() {
-		if (containedItem != null && !containedItem.isEmpty()) {
-			return true;
-		}
-		return false;
-	}
-	public ItemStack getContainedItem() {
-		// Should never run, but can if major issues
-		if (containedItem == null) {
-			ExtendedLog.warn("Weapon Rack contains a null Item, this should not happen. All Contained Items Have been lost!");
-			containedItem = ItemStack.EMPTY;
-			this.markAndUpdate();
-		}
-		return containedItem;
+		return !this.containedItem.isEmpty();
 	}
 
-	public void setContainedItem(ItemStack containedItem) {
-		this.containedItem = containedItem;
-		// Should never run, but can if major issues
-		if (containedItem == null) {
-			ExtendedLog.warn("Tried Setting a NULL item to a Weapon Rack, correcting to ItemStack.EMPTY!");
-			containedItem = ItemStack.EMPTY;
-		}
+	public ItemStack getContainedItem() {
+		return this.containedItem;
+	}
+
+	public void setContainedItem(ItemStack pStack) {
+		this.containedItem = (pStack == null) ? ItemStack.EMPTY : pStack;
 		this.markAndUpdate();
 	}
 
@@ -162,13 +130,14 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 
 	@Override
 	protected NonNullList<ItemStack> getItems() {
-		return NonNullList.withSize(1, this.containedItem==null ? ItemStack.EMPTY : this.containedItem);
+		return NonNullList.withSize(1, containedItem);
 	}
 
 	@Override
 	protected void setItems(NonNullList<ItemStack> list) {
-		if(list.size()>=1) {
+		if(!list.isEmpty()) {
 			this.containedItem=list.get(0);
+			this.markAndUpdate();
 		}
 	}
 
@@ -183,31 +152,30 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	}
 
 	@Override
-	public void unpackLootTable(@Nullable PlayerEntity p_184281_1_) {
+	public void unpackLootTable(@Nullable PlayerEntity pPlayer) {
+		if (this.lootTable == null || !this.hasLevel() || this.level.getServer() == null) {
+			return;
+		}
+		ResourceLocation lootId = this.lootTable;
 		try {
-			if (this.lootTable != null && this.level.getServer() != null) {
-				LootTable loottable = this.level.getServer().getLootTables().get(this.lootTable);
-				if (p_184281_1_ instanceof ServerPlayerEntity) {
-					CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) p_184281_1_, this.lootTable);
-				}
-				this.lootTable = null;
-				LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) this.level)).withParameter(LootParameters.ORIGIN,Vector3d.atCenterOf(this.worldPosition)).withOptionalRandomSeed(this.lootTableSeed);
-				if (p_184281_1_ != null) {
-					lootcontext$builder.withLuck(p_184281_1_.getLuck()).withParameter(LootParameters.THIS_ENTITY, p_184281_1_);
-				}
-				List<ItemStack> list = loottable.getRandomItems(lootcontext$builder.create(LootParameterSets.CHEST));
-				if(list.size()>0) {
-					ItemStack stack = list.get(0);
-					stack.setCount(1);
-					setContainedItem(stack);
-				}
+			LootTable loottable = this.level.getServer().getLootTables().get(this.lootTable);
+			if (pPlayer instanceof ServerPlayerEntity) {
+				CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) pPlayer, this.lootTable);
+			}
+			this.lootTable = null;
+			LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) this.level)).withParameter(LootParameters.ORIGIN,Vector3d.atCenterOf(this.worldPosition)).withOptionalRandomSeed(this.lootTableSeed);
+			if (pPlayer != null) {
+				lootcontext$builder.withLuck(pPlayer.getLuck()).withParameter(LootParameters.THIS_ENTITY, pPlayer);
+			}
+			List<ItemStack> drops = loottable.getRandomItems(lootcontext$builder.create(LootParameterSets.CHEST));
+			if(!drops.isEmpty()) {
+				ItemStack stack = drops.get(0).copy();
+				stack.setCount(1);
+				setContainedItem(stack);
 			}
 		}catch(NullPointerException e) {
-			ExtendedLog.error("Caught a null-pointer exception while unpacking weapon rack loot-table");
-			ExtendedLog.error("Location: "+lootTable.toString()+", Pos: "+this.getBlockPos().toString());
+			ExtendedLog.error("Error unpacking weapon rack loot table: " + lootId + " at " + this.worldPosition);
 			e.printStackTrace();
-			ExtendedLog.error("Please report this if it happens again");
 		}
-
 	}
 }

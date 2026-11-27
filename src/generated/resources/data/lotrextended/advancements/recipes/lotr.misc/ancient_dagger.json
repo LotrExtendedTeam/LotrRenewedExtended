@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:ancient_dagger"
+    ]
+  },
+  "criteria": {
+    "has_ancient_tip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:ancient_tip"
+          }
+        ]
+      }
+    },
+    "has_ancient_hilt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:ancient_hilt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:ancient_dagger"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ancient_tip",
+      "has_ancient_hilt",
+      "has_the_recipe"
+    ]
+  ]
+}
